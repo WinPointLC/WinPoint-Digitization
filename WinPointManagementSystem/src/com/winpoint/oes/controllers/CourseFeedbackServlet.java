@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.winpoint.common.controllers.ParentWEBController;
+
 /**
  * Servlet implementation class CourseFeedbackServlet
  */
 @WebServlet("/CourseFeedbackServlet")
-public class CourseFeedbackServlet extends HttpServlet {
+public class CourseFeedbackServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
        
     /**

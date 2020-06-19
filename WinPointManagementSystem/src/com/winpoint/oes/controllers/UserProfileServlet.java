@@ -23,6 +23,7 @@ import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.UserCategory;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
@@ -33,7 +34,7 @@ import com.winpoint.common.helpers.UserProfileHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/UserProfileServlet")
-public class UserProfileServlet extends HttpServlet {
+public class UserProfileServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -70,10 +71,10 @@ public class UserProfileServlet extends HttpServlet {
 		boolean isUpdated = new UserProfileHelper().updateUserProfile(userProfile);
 		String json1 = "";
 		if(isUpdated) {
-			json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/User.jsp'}");//"?varid=" + userProfile + "}");   
+			json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "User.jsp'}");//"?varid=" + userProfile + "}");   
 		}
 		else {
-			json1 = gson.toJson("{ 'success': 'false', 'location': '/OnlineEvaluationSystem/jsp/User.jsp'}");//"?varid=" + userProfile + "}");
+			json1 = gson.toJson("{ 'success': 'false', 'location': '" + jspURL + "User.jsp'}");//"?varid=" + userProfile + "}");
 		}
 		
 		String json2 = gson.toJson(userProfile);

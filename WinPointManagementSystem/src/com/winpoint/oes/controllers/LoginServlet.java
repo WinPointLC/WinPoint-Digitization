@@ -19,6 +19,7 @@ import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.CourseTypeHelper;
 import com.winpoint.common.helpers.LoginHelper;
@@ -28,7 +29,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -79,13 +80,13 @@ public class LoginServlet extends HttpServlet {
 				PrintWriter writer = response.getWriter();
 				userCategoryId =  userProfileRecd.getUserCategoryId();
 				if (userCategoryId == 1) {
-				   json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/ClientDashboard.jsp'}");
+				   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ClientDashboard.jsp'}");
 				   jsonString = "[" + json1 + "," + json2 + "]";
 				}
 				else if(userCategoryId == 2) {
 					List<Stream> streamList = new StreamHelper().getStreamList();
 					String json3 = gson.toJson(streamList);
-					json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/EmployeeDashboard.jsp'}");
+					json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard.jsp'}");
 					jsonString = "[" + json1 + "," + json2 + "," + json3 + "]";
 				}
 				

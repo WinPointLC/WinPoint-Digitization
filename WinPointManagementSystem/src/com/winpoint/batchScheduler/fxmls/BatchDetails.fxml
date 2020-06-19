@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.BatchDetailsController">
+   <center>
+      <ScrollPane BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="25.0" right="25.0" />
+         </BorderPane.margin>
+         <content>
+            <AnchorPane>
+               <children>
+                  <TreeTableView prefHeight="750.0" prefWidth="1230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TreeTableColumn prefWidth="75.0" text="Batch ID" />
+                        <TreeTableColumn prefWidth="75.0" text="Course ID" />
+                        <TreeTableColumn prefWidth="75.0" text="Faculty" />
+                      <TreeTableColumn prefWidth="75.0" text="Time" />
+                      <TreeTableColumn prefWidth="75.0" text="Begin Date" />
+                        <TreeTableColumn prefWidth="75.0" text="End Date" />
+                        <TreeTableColumn prefWidth="75.0" text="Created By" />
+                        <TreeTableColumn prefWidth="75.0" text="Create Date" />
+                        <TreeTableColumn prefWidth="75.0" text="Add Student" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TreeTableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <bottom>
+      <HBox prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: navy blue;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" />
+         </BorderPane.margin>
+         <children>
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="25.0" prefWidth="100.0" text="Cancel" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: navy blue;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="25.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
+         <children>
+            <Label text="Batch Details" textFill="WHITE" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="25.0" top="25.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Region prefHeight="75.0" prefWidth="226.0" HBox.hgrow="ALWAYS" />
+            <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />
+               </image>
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

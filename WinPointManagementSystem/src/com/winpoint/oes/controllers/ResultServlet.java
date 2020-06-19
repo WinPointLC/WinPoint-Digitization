@@ -28,6 +28,7 @@ import com.winpoint.common.beans.Result;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.FeedbackQuestionsHelper;
 import com.winpoint.common.helpers.LoginHelper;
@@ -38,7 +39,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/ResultServlet")
-public class ResultServlet extends HttpServlet {
+public class ResultServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -93,7 +94,7 @@ public class ResultServlet extends HttpServlet {
 		boolean isUpdated = new ResultHelper().updateUserTestDetails(userId, questionsList, result);
 		isUpdated = new ResultHelper().updateStudentTestResponses(userId, questionsList, answersList, isCorrectList, result);
 	  
-        String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/FeedBackForm.jsp'}");
+        String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "FeedBackForm.jsp'}");
         String json2 = null;
         ArrayList<FeedbackQuestions> feedbackQuestionsList = new FeedbackQuestionsHelper().getFeedbackQuestions();
         if (feedbackQuestionsList != null) {

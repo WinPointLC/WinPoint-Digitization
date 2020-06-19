@@ -20,6 +20,7 @@ import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
@@ -29,7 +30,7 @@ import com.winpoint.common.helpers.TopicsHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/CourseTopicsSelectServlet")
-public class CourseTopicsSelectServlet extends HttpServlet {
+public class CourseTopicsSelectServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**

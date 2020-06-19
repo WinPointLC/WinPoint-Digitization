@@ -22,6 +22,7 @@ import com.winpoint.common.beans.DifficultyLevel;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.DifficultyLevelHelper;
 import com.winpoint.common.helpers.LoginHelper;
@@ -31,7 +32,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/DifficultyLevelServlet")
-public class DifficultyLevelServlet extends HttpServlet {
+public class DifficultyLevelServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -65,7 +66,7 @@ public class DifficultyLevelServlet extends HttpServlet {
 		List<DifficultyLevel> testsList = new DifficultyLevelHelper().getDifficultyLevelsList();
 				
 		if(testsList != null) {		  
-		   String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/TestSelectPage.jsp'}");
+		   String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "TestSelectPage.jsp'}");
 		   String json2 = gson.toJson(testsList);
 		  		   
 		   String jsonString = "[" + json1  + "," + json2 + "]";

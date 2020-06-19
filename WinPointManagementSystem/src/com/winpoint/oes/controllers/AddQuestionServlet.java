@@ -20,6 +20,7 @@ import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.QuestionBank;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.AddQuestionHelper;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.CourseTypeHelper;
@@ -30,7 +31,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/AddQuestionServlet")
-public class AddQuestionServlet extends HttpServlet {
+public class AddQuestionServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -68,7 +69,7 @@ public class AddQuestionServlet extends HttpServlet {
 			userProfile.setFirstName((String)session.getAttribute("firstName"));
 			userProfile.setLastName((String)session.getAttribute("lastName"));
 			
-			String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/EmployeeDashboard.jsp'}");
+			String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard.jsp'}");
 			String json2 = gson.toJson(userProfile);
 				
 			List<Stream> streamList = new StreamHelper().getStreamList();

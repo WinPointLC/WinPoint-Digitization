@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.winpoint.common.beans.SecurityQuestions;
 import com.winpoint.common.beans.UserCategory;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.SecurityQuestionsHelper;
 import com.winpoint.common.helpers.UserCategoryHelper;
@@ -28,7 +29,7 @@ import com.winpoint.common.helpers.UserCategoryHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/SignUpServlet")
-public class SignUpServlet extends HttpServlet {
+public class SignUpServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -83,9 +84,9 @@ public class SignUpServlet extends HttpServlet {
 				PrintWriter writer = response.getWriter();
 				userCategoryId =  userProfileRecd.getUserCategoryId();
 				if (userCategoryId == 1)
-				   json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/ClientDashboard.jsp'}");
+				   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ClientDashboard.jsp'}");
 				else if(userCategoryId == 2) {
-					json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/EmployeeDashboard.jsp'}");
+					json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard.jsp'}");
 				}
 				String json2 = gson.toJson(userProfileRecd);
 				String jsonString = "[" + json1 + "," + json2 + "]";
