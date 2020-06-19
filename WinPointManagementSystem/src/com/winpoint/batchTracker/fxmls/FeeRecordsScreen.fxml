@@ -25,7 +25,7 @@
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <HBox prefHeight="70.0" prefWidth="1000.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="83.2" prefWidth="1010.4" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                      <font>
@@ -35,6 +35,14 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
+                  <Text fx:id="batchName" fill="#f8f6f6" layoutX="416.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
+                     <font>
+                        <Font name="Calibri Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </Text>
                   <Region prefHeight="68.0" prefWidth="302.0" HBox.hgrow="ALWAYS" />
                   <Text fill="#f8f6f6" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee Records">
                      <HBox.margin>
@@ -51,7 +59,8 @@
                      </image>
                      <HBox.margin>
                         <Insets top="3.0" />
-                     </HBox.margin></ImageView>
+                     </HBox.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -102,12 +111,12 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="uniqueID" prefHeight="31.0" prefWidth="120.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="name1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="mobileNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="reminderCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="dueAmount" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="FeeUniqueId" prefHeight="31.0" prefWidth="120.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="FeeName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="FeeEmailID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="FeeMobileNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="FeeReminderCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="FeeDueAmount" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text="E Mail ID :" textFill="WHITE" GridPane.rowIndex="2">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />
@@ -138,16 +147,16 @@
                                  <children>
                                     <TableView fx:id="feeTable" layoutX="-2.0" prefHeight="945.0" prefWidth="1864.0">
                                       <columns>
-                                        <TableColumn fx:id="name" editable="false" minWidth="120.0" prefWidth="150.0" text="Name" />
-                                        <TableColumn fx:id="feestatus" editable="false" minWidth="120.0" prefWidth="150.0" text="Fee Status" />
-                                          <TableColumn fx:id="paymentmode" editable="false" minWidth="120.0" prefWidth="150.0" text="Payment Mode" />
-                                          <TableColumn fx:id="installment1" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 1" />
-                                          <TableColumn fx:id="duedate1" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 1" />
-                                          <TableColumn fx:id="installment2" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 2" />
-                                          <TableColumn fx:id="duedate2" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 2" />
-                                          <TableColumn fx:id="installment3" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 3" />
-                                          <TableColumn fx:id="duedate3" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 3" />
-                                          <TableColumn fx:id="dueamount" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Amount" />
+                                        <TableColumn fx:id="feeTableNameColumn" editable="false" minWidth="120.0" prefWidth="150.0" text="Name" />
+                                        <TableColumn fx:id="feeTableFeeStatusColumn" editable="false" minWidth="120.0" prefWidth="150.0" text="Fee Status" />
+                                          <TableColumn fx:id="feeTablePaymentModeColumn" editable="false" minWidth="120.0" prefWidth="150.0" text="Payment Mode" />
+                                          <TableColumn fx:id="feeTableInstallment1Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 1" />
+                                          <TableColumn fx:id="feeTableDueDate1Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 1" />
+                                          <TableColumn fx:id="feeTableInstallment2Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 2" />
+                                          <TableColumn fx:id="feeTableDueDate2Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 2" />
+                                          <TableColumn fx:id="feeTableInstallment3Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 3" />
+                                          <TableColumn fx:id="feeTableDueDate3Column" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 3" />
+                                          <TableColumn fx:id="feeTableDueAmountColumn" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Amount" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

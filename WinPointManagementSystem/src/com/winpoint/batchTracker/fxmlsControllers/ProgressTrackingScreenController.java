@@ -45,10 +45,10 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
     private TableView<?> topicsTable;
 
     @FXML
-    private TableColumn<?, ?> topicsTableTopicName;
+    private TableColumn<?, ?> topicsTableTopicNameColumn;
 
     @FXML
-    private TableColumn<?, ?> topicsTableTopicDuration;
+    private TableColumn<?, ?> topicsTableTopicDurationColumn;
 
     @FXML
     private PieChart processTrackingPieChart;
@@ -58,9 +58,9 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
     	System.out.println(event);
     }
     @Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		super.initialize(location, resources);
-		logo.setImage(logoImage);
-	}
+   	public void initialize(URL location, ResourceBundle resources) {
+   		// TODO Auto-generated method stub
+   		super.initialize(location, resources);
+   		logo.setImage(logoImage);
+   	}
 }

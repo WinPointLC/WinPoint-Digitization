@@ -71,10 +71,10 @@
                         <TableView fx:id="assignmentsTable" prefHeight="607.0" prefWidth="1002.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="assignmentsTableNameColumn" minWidth="150.0" prefWidth="200.0" text="Name" />
-                            <TableColumn fx:id="assignmentsTableFeeStatus" minWidth="150.0" prefWidth="200.0" text="Fee Status" />
-                              <TableColumn fx:id="assignmentsTableCourseware" minWidth="150.0" prefWidth="200.0" text="CourseWare" />
-                              <TableColumn fx:id="assignmentsTableAssignmentsIssued" minWidth="150.0" prefWidth="200.0" text="Assignment Issued" />
-                              <TableColumn fx:id="assignmentsTableAssignmentsSubmitted" minWidth="150.0" prefWidth="200.0" text="Assignment Submitted" />
+                            <TableColumn fx:id="assignmentsTableFeeStatusColumn" minWidth="150.0" prefWidth="200.0" text="Fee Status" />
+                              <TableColumn fx:id="assignmentsTableCoursewareColumn" minWidth="150.0" prefWidth="200.0" text="CourseWare" />
+                              <TableColumn fx:id="assignmentsTableAssignmentsIssuedColumn" minWidth="150.0" prefWidth="200.0" text="Assignment Issued" />
+                              <TableColumn fx:id="assignmentsTableAssignmentsSubmittedColumn" minWidth="150.0" prefWidth="200.0" text="Assignment Submitted" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

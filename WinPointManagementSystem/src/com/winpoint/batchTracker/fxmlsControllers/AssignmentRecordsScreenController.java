@@ -34,26 +34,25 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     private TableColumn<?, ?> assignmentsTableNameColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableFeeStatus;
+    private TableColumn<?, ?> assignmentsTableFeeStatusColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableCourseware;
+    private TableColumn<?, ?> assignmentsTableCoursewareColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableAssignmentsIssued;
+    private TableColumn<?, ?> assignmentsTableAssignmentsIssuedColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableAssignmentsSubmitted;
+    private TableColumn<?, ?> assignmentsTableAssignmentsSubmittedColumn;
 
     @FXML
     void GoToPreviousScreen(ActionEvent event) {
     	System.out.println(event);
     }
     @Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		super.initialize(location, resources);
-		logo.setImage(logoImage);
-	}
-
+   	public void initialize(URL location, ResourceBundle resources) {
+   		// TODO Auto-generated method stub
+   		super.initialize(location, resources);
+   		logo.setImage(logoImage);
+   	}
 }

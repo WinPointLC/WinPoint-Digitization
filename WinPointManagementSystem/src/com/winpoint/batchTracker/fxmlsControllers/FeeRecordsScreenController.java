@@ -7,79 +7,80 @@ import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
-public class FeeRecordsScreenController extends ParentFXMLController {
+public class FeeRecordsScreenController extends ParentFXMLController{
 
     @FXML
     private Button backButton;
 
     @FXML
+    private Text batchName;
+
+    @FXML
     private ImageView logo;
 
     @FXML
-    private TextField uniqueID;
+    private TextField FeeUniqueId;
 
     @FXML
-    private TextField name1;
+    private TextField FeeName;
 
     @FXML
-    private TextField email;
+    private TextField FeeEmailID;
 
     @FXML
-    private TextField mobileNumber;
+    private TextField FeeMobileNumber;
 
     @FXML
-    private TextField reminderCount;
+    private TextField FeeReminderCount;
 
     @FXML
-    private TextField dueAmount;
+    private TextField FeeDueAmount;
 
     @FXML
     private TableView<?> feeTable;
 
     @FXML
-    private TableColumn<?, ?> name;
+    private TableColumn<?, ?> feeTableNameColumn;
 
     @FXML
-    private TableColumn<?, ?> feestatus;
+    private TableColumn<?, ?> feeTableFeeStatusColumn;
 
     @FXML
-    private TableColumn<?, ?> paymentmode;
+    private TableColumn<?, ?> feeTablePaymentModeColumn;
 
     @FXML
-    private TableColumn<?, ?> installment1;
+    private TableColumn<?, ?> feeTableInstallment1Column;
 
     @FXML
-    private TableColumn<?, ?> duedate1;
+    private TableColumn<?, ?> feeTableDueDate1Column;
 
     @FXML
-    private TableColumn<?, ?> installment2;
+    private TableColumn<?, ?> feeTableInstallment2Column;
 
     @FXML
-    private TableColumn<?, ?> duedate2;
+    private TableColumn<?, ?> feeTableDueDate2Column;
 
     @FXML
-    private TableColumn<?, ?> installment3;
+    private TableColumn<?, ?> feeTableInstallment3Column;
 
     @FXML
-    private TableColumn<?, ?> duedate3;
+    private TableColumn<?, ?> feeTableDueDate3Column;
 
     @FXML
-    private TableColumn<?, ?> dueamount;
+    private TableColumn<?, ?> feeTableDueAmountColumn;
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
     	System.out.println(event);
     }
-
-	@Override
+    @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
@@ -87,4 +88,3 @@ public class FeeRecordsScreenController extends ParentFXMLController {
 	}
 
 }
-
