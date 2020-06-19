@@ -29,6 +29,7 @@ import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.TestFeedback;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
@@ -38,7 +39,7 @@ import com.winpoint.common.helpers.TestFeedbackHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/FeedbackServlet")
-public class FeedbackServlet extends HttpServlet {
+public class FeedbackServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -92,7 +93,7 @@ public class FeedbackServlet extends HttpServlet {
 	    System.out.println("From FB Servlet UserId = " + userId);
 	    
 	    new TestFeedbackHelper().insertTestFeedback(userId, courseId, testFeedbackList);
-	    String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/Result.jsp', 'firstName': '" + firstName + "', 'lastName': '" + lastName + "'}");
+	    String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "Result.jsp', 'firstName': '" + firstName + "', 'lastName': '" + lastName + "'}");
 	    String jsonString = "[" + json1 + "]";
 	    PrintWriter writer = response.getWriter();
 		   writer.println(jsonString);

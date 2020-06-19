@@ -29,6 +29,7 @@ import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.TopicWisePerformance;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.AnalyticsHelper;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.FeedbackQuestionsHelper;
@@ -40,7 +41,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/AnalyticsServlet")
-public class AnalyticsServlet extends HttpServlet {
+public class AnalyticsServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -79,7 +80,7 @@ public class AnalyticsServlet extends HttpServlet {
 
 		ArrayList<TopicWisePerformance > topicPerfoList = new AnalyticsHelper().getStudentTestAnalysis(userId, courseId);
 		
-        String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/Analytics.jsp'}");
+        String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "Analytics.jsp'}");
         String json2 = null;
         
         if (topicPerfoList != null) {

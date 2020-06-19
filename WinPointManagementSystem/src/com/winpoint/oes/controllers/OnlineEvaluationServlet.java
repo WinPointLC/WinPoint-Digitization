@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseTypeHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
@@ -26,7 +27,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/OnlineEvaluationServlet")
-public class OnlineEvaluationServlet extends HttpServlet {
+public class OnlineEvaluationServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -64,9 +65,9 @@ public class OnlineEvaluationServlet extends HttpServlet {
 		if(streamList != null && courseTypeList != null) {
 		   PrintWriter writer = response.getWriter();
 		   if(Integer.parseInt(isReg) == 1)
-			   json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/CourseRegistration.jsp'}");
+			   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "CourseRegistration.jsp'}");
 		   else
-		       json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/MainCoursePage.jsp'}");
+		       json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "MainCoursePage.jsp'}");
 		   String json2 = gson.toJson(streamList);
 		   String json3 = gson.toJson(courseTypeList);
 		   

@@ -1,0 +1,33 @@
+.heading{
+  background-color: rgb(7, 33, 108);
+  color: #fff;
+}
+.heading h3{
+  margin-left: 40%;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+.card{
+  margin-left: 5%;
+}
+.nav-heading{
+  background-color: rgb(0, 64, 150);
+  color: #fff;
+}
+.drop1{
+  margin-left: 40%;
+}
+.column1{
+  margin-left: 4%;
+}
+.column2{
+  margin-left: 4%;
+}
+
+.column3{
+  margin-left: 4%;
+}
+
+.column4{
+  margin-left: 35%;
+}

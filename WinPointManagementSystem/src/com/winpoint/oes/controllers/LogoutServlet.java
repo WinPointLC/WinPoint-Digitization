@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.winpoint.common.controllers.ParentWEBController;
 
 @WebServlet("/LogoutServlet")
-public class LogoutServlet extends HttpServlet {
+public class LogoutServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
        
     public LogoutServlet() {
@@ -33,7 +34,7 @@ public class LogoutServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String json1 = null;
 		String jsonString = null;
-		json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/LoginForm.jsp'}");
+		json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "LoginForm.jsp'}");
 		jsonString = "[" + json1 + "]";
 		
 		PrintWriter writer = response.getWriter();

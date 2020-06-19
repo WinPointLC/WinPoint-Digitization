@@ -23,6 +23,7 @@ import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.TestDetails;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.QuestionBankHelper;
@@ -33,7 +34,7 @@ import com.winpoint.common.helpers.StreamHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/RulesServlet")
-public class RulesServlet extends HttpServlet {
+public class RulesServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -72,7 +73,7 @@ public class RulesServlet extends HttpServlet {
 		System.out.println("Question List size =  " + questionsList.size());
 
 		if(rulesList != null && questionsList != null) {
-		   String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/RulesPage.jsp'}");
+		   String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "RulesPage.jsp'}");
 		   String json2 = gson.toJson(rulesList);
 		   String json3 = gson.toJson(questionsList);
 		   String json4 = gson.toJson(testDetails);		
