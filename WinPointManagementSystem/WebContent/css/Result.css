@@ -1,0 +1,88 @@
+body{
+  background-color: rgb(255, 255, 255);
+}
+.R3{
+  margin: 20px;
+}
+.R4{
+  margin-bottom: 40%;
+}
+.c2{
+  margin-left: 20%;
+}
+.card-heading{
+  color:#000;
+}
+#result-header-card{
+  margin-left: 15%;
+}
+#result-header-card2{
+  margin-left: 20%;
+}
+.result-footer{
+  background-color:lawgreen;
+}
+.score{
+  float: left;
+  display: inline-block;
+  padding-top: 5%;
+}
+.detail-card{
+  box-shadow: none;
+}
+.stats2{
+  display: inline-block;
+  margin: 0;
+  float: left;
+
+}
+.stats2 p{
+  margin-left: 20%;
+  font-size: 120%;
+  font-family: sans-serif;
+  border-bottom: 1px solid black;
+  border-width: thin;
+  width: 60%;
+}
+
+.time p{
+  transition-duration: 500ms;
+  border-bottom:1px solid rgb(247, 227, 41);
+  margin-bottom: 5%;
+}
+.Attempted p{
+  transition-duration: 500ms;
+  border-bottom:1px solid rgb(13, 94, 204);
+  margin-bottom: 5%;
+}
+.Correct p{
+  transition-duration: 500ms;
+  border-bottom:1px solid rgb(8, 238, 4);
+  margin-bottom: 5%;
+}
+.Wrong p{
+  transition-duration: 500ms;
+  border-bottom:1px solid rgb(238, 41, 21);
+  margin-bottom: 5%;  
+}
+
+.time p:hover{
+  transition-duration: 500ms;
+  border-bottom:3px solid rgb(247, 227, 41);
+}
+.Attempted p:hover{
+  transition-duration: 500ms;
+  border-bottom:3px solid rgb(13, 94, 204);
+}
+.Correct p:hover{
+  transition-duration: 500ms;
+  border-bottom:3px solid rgb(8, 238, 4);
+}
+.Wrong p:hover{
+  transition-duration: 500ms;
+  border-bottom:3px solid rgb(238, 41, 21);
+}
+.stats2 i{
+  font-size: 230%;
+  float: left;
+}

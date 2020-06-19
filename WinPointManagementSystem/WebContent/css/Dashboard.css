@@ -1,0 +1,99 @@
+body{
+  background-color: rgb(255, 255, 255);
+}
+.Tech-typo h2{
+  margin-left: 20%;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  /* animation: TextGradient 10s ease infinite; */ 
+ background: -webkit-linear-gradient(12deg,#7900ab,#e61010,#8f06b1);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+.Tech-typo h2:hover{
+background: -webkit-linear-gradient(132deg,#530075,#7113cf,#120147);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.GA-typo h2{
+  margin-left: 20%;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  /* animation: TextGradient 10s ease infinite; */
+  background: -webkit-linear-gradient(132deg,#530075,#7113cf,#120147);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+.GA-typo h2:hover{
+background: -webkit-linear-gradient(12deg,#7900ab,#e61010,#8f06b1);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+#card{
+  background-color: #2e7fe8;
+}
+#card3{
+  background-color: rgb(37, 195, 138);
+}
+#row1-card1 {
+  background-color: rgb(13, 0, 89);
+}
+#card4{
+  background-color: rgb(0, 0, 0);
+}
+.card-heading{
+  font-family: sans-serif;
+  color: #000;
+}
+.card-heading h6{
+font-size: 13px;
+}
+
+/* Styling DropDowns */
+.drop1{
+  width: 190px;
+}
+.Dashboard-content-2{
+  /* overflow-y: scroll; */
+  width: 70vw;
+  height:60vh;
+  margin-left:15%;
+  border: 1px solid rgb(196, 188, 188);
+  box-shadow: 2px 2px 8px 3px rgb(196, 188, 188);
+}
+.tech-row-1{
+/* margin-left: 10%; */
+}
+.tech-row-2{
+/* margin-left: 10%; */
+}
+
+.row-main-header2{
+  /* margin-top:7%; */
+  margin-left: 3%;
+}
+.row-main-header1{
+  margin-left: 3%;
+}
+
+.GA-row-1 .col-md-6{
+  /* margin-left: 15%; */
+}
+.GA-row-2 .col-md-6{
+  /* margin-left: 15%; */
+}
+.inner-Tech-content{
+border: 1px solid rgb(196, 188, 188);
+box-shadow: 2px 2px 8px 3px rgb(196, 188, 188);
+overflow-y: scroll;
+}
+.inner-GA-content{
+  border: 1px solid rgb(196, 188, 188);
+  box-shadow: 2px 2px 8px 3px rgb(196, 188, 188);
+  overflow-y: scroll;
+}
