@@ -1,4 +1,4 @@
-package com.winpoint.batchScheduler;
+package com.winpoint.batchScheduler.fxmlsControllers;
 
 public class ToRemove {
 

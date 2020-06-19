@@ -1,4 +1,4 @@
-package com.winpoint.batchTracker;
+package com.winpoint.batchTracker.fxmlsControllers;
 
 public class ToRemove {
 
