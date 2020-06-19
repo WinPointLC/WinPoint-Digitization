@@ -31,12 +31,12 @@
                </padding>
                <children>
                   <Button fx:id="back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GoToPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch 1">
+                  <Text fx:id="batchName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Calibri Bold" size="18.0" />
+                        <Font name="Calibri Bold Italic" size="18.0" />
                      </font>
                   </Text>
                   <Region prefWidth="218.0" HBox.hgrow="ALWAYS" />
@@ -84,31 +84,31 @@
                               <Font name="Calibri Bold" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="totallectures" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <TextField fx:id="progressTrackingTotalLectures" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Course Duration :" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Calibri Bold" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="totalduration" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <TextField fx:id="ProgressTrackingTotalDuration" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Elapsed Duration :" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Calibri Bold" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="elapsedduration" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <TextField fx:id="progressTrackingElapsedDuration" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total topics :" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Calibri Bold" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="totaltopics" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <TextField fx:id="progressTrackingTotalTopics" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Remaining Topics :" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Calibri Bold" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="remainingtopics" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="progressTrackingRemainingTopics" editable="false" prefHeight="50.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -127,10 +127,10 @@
                           <content>
                             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="560.0">
                                  <children>
-                                    <TableView fx:id="topicstable" prefHeight="297.6" prefWidth="550.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="topicsTable" prefHeight="297.6" prefWidth="550.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn fx:id="topicName" prefWidth="200.0" text="Topic Name" />
-                                        <TableColumn fx:id="topicDuration" prefWidth="200.0" text="Duration" />
+                                        <TableColumn fx:id="topicsTableTopicName" prefWidth="200.0" text="Topic Name" />
+                                        <TableColumn fx:id="topicsTableTopicDuration" prefWidth="200.0" text="Duration" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -140,7 +140,7 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <PieChart fx:id="piechart" prefHeight="266.0" prefWidth="417.0" title="Syllabus" VBox.vgrow="ALWAYS" />
+                        <PieChart fx:id="processTrackingPieChart" prefHeight="266.0" prefWidth="417.0" title="Syllabus" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
