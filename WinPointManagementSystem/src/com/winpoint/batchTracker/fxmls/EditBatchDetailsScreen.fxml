@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.EditBatchDetailsScreenController">
+   <top>
+      <AnchorPane prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="110.0" prefWidth="1000.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="Back" />
+                  <Text fx:id="batchName" fill="WHITE" layoutX="323.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
+                     <font>
+                        <Font name="Calibri Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Batch Details">
+                     <font>
+                        <Font name="Calibri Bold" size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Region layoutX="72.0" layoutY="15.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="logo" fitHeight="60.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Logo.jpeg" />
+                     </image></ImageView>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </AnchorPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="500.0" minWidth="350.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="623.0" prefWidth="294.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GridPane hgap="5.0" minHeight="130.0" minWidth="266.0" prefHeight="130.0" prefWidth="279.0" vgap="5.0" VBox.vgrow="ALWAYS">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date :">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Text>
+                              <DatePicker fx:id="batchStartDate" promptText="Batch Start Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date :" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Text>
+                              <DatePicker fx:id="batchEndDate" promptText="Batch End Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Duration :" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="estimateLectureDuration" maxWidth="175.0" minWidth="150.0" prefHeight="25.0" prefWidth="147.0" promptText="Estimate Lecture Duration" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: orange;">
+                           <children>
+                              <Button fx:id="removeLecture" layoutX="81.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeLectureFromBatch" prefHeight="50.0" prefWidth="50.0" text="-">
+                                 <font>
+                                    <Font name="Calibri Bold" size="27.0" />
+                                 </font>
+                              </Button>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="addLecture" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addLectureToBatch" prefHeight="50.0" prefWidth="50.0" text="+">
+                                 <font>
+                                    <Font name="Calibri Bold" size="27.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Button fx:id="addStudent" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#addStudentToLecture" prefHeight="50.0" prefWidth="150.0" text="Add Student" />
+                              <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="editStudent" layoutX="15.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#editStudentInLecture" prefHeight="50.0" prefWidth="150.0" text="Edit Student" />
+                           </children>
+                        </HBox>
+                        <AnchorPane VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="213.0" prefWidth="343.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <children>
+                                    <Button fx:id="saveBatchDetails" minWidth="100.0" mnemonicParsing="false" onAction="#saveUpdatedBatchDetails" prefHeight="50.0" prefWidth="150.0" text="Save" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" />
+               </padding>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="160.0" prefWidth="642.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="623.0" prefWidth="698.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ComboBox fx:id="selectlecture" onAction="#getLectureList" prefHeight="30.0" prefWidth="400.0" promptText="Select Lecture" />
+                        <GridPane prefHeight="158.0" prefWidth="378.0" VBox.vgrow="ALWAYS">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Date :">
+                                 <font>
+                                    <Font name="Calibri Bold Italic" size="24.0" />
+                                 </font>
+                              </Text>
+                              <DatePicker fx:id="lectureDate" onAction="#getLectureDate" promptText="Lecture Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time :" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Calibri Bold Italic" size="24.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="lectureStartTime" maxWidth="175.0" minWidth="150.0" onAction="#getLectureStartTime" promptText="hh : mm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Session Duration :" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Calibri Bold Italic" size="24.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="lectureSessionDuration" maxWidth="175.0" minWidth="150.0" onAction="#getLectureSessionDuration" promptText="X hours" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                           </children>
+                        </GridPane>
+                        <HBox prefHeight="336.0" prefWidth="622.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="350.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments :">
+                                       <font>
+                                          <Font name="Calibri Bold Italic" size="24.0" />
+                                       </font>
+                                    </Text>
+                                    <TextArea fx:id="lectureComments" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="290.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Coverage :">
+                                       <font>
+                                          <Font name="Calibri Bold Italic" size="24.0" />
+                                       </font>
+                                    </Text>
+                                    <ComboBox fx:id="lectureTopics" maxWidth="600.0" minHeight="25.0" minWidth="270.0" onAction="#listOfLectureTopics" prefHeight="25.0" prefWidth="270.0" promptText="List of Topics" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <AnchorPane minHeight="65.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="BOTTOM_CENTER" fillHeight="false" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" prefWidth="683.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Button fx:id="resetLecture" minWidth="100.0" mnemonicParsing="false" onAction="#resetLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Reset" />
+                                    <Region layoutX="310.0" layoutY="10.0" prefHeight="6.0" prefWidth="308.0" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="saveLecture" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Save" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" right="5.0" />
+               </padding>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
