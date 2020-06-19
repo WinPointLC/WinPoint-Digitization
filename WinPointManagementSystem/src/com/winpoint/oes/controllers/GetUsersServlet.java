@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
 
@@ -23,7 +24,7 @@ import com.winpoint.common.helpers.UserProfileHelper;
  * Servlet implementation class GetUsersServlet
  */
 @WebServlet("/GetUsersServlet")
-public class GetUsersServlet extends HttpServlet {
+public class GetUsersServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
        
     /**

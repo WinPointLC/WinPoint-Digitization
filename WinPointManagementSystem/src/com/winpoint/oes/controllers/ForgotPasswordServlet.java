@@ -15,13 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.LoginHelper;
 
 /**
  * Servlet implementation class LoginServ
  */
 @WebServlet("/ForgotPasswordServlet")
-public class ForgotPasswordServlet extends HttpServlet {
+public class ForgotPasswordServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -65,7 +66,7 @@ public class ForgotPasswordServlet extends HttpServlet {
 				String json1 = null;
 						
 				PrintWriter writer = response.getWriter();
-				json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/ForgotPassword.jsp'}");
+				json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ForgotPassword.jsp'}");
 				
 				String json2 = gson.toJson(userProfileRecd);
 				String jsonString = "[" + json1 + "," + json2 + "]";

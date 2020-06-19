@@ -34,6 +34,7 @@ import com.google.gson.Gson;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.StudentCourseFeesBean;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.FeeDetailsHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
@@ -43,7 +44,7 @@ import com.winpoint.common.helpers.StudentCourseDetailsHelper;
  * Servlet implementation class FeeDetailsServlet
  */
 @WebServlet("/FeeDetailsServlet")
-public class FeeDetailsServlet extends HttpServlet {
+public class FeeDetailsServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
        
     /**

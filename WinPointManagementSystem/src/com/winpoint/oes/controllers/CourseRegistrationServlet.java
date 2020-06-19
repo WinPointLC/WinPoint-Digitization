@@ -21,6 +21,7 @@ import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.dao.UserTestDetailsDao;
 import com.winpoint.common.helpers.CourseTypeHelper;
 import com.winpoint.common.helpers.LoginHelper;
@@ -31,7 +32,7 @@ import com.winpoint.common.helpers.StudentCourseDetailsHelper;
  * Servlet implementation class LoginServ
  */
 @WebServlet("/CourseRegistrationServlet")
-public class CourseRegistrationServlet extends HttpServlet {
+public class CourseRegistrationServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -77,7 +78,7 @@ public class CourseRegistrationServlet extends HttpServlet {
 		ArrayList <StudentCourseDetails>studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList(userId);
 		ArrayList <StudentCourseDetails>studentGACourseDetailsList =  new StudentCourseDetailsHelper().getStudentGACourseDetailsList(userId);
 		
-		String json1 = gson.toJson("{ 'success': 'true', 'location': '/OnlineEvaluationSystem/jsp/CourseRegistration.jsp'}");
+		String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "CourseRegistration.jsp'}");
 		String json2 = gson.toJson(studentCourseDetailsList);
 		String json3 = gson.toJson(studentGACourseDetailsList);
 		

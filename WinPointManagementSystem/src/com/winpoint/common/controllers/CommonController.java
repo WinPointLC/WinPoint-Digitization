@@ -19,6 +19,7 @@ import com.winpoint.oes.controllers.LoginServlet;
 @WebServlet("/CommonController")
 public class CommonController extends HttpServlet {
 	private HttpSession session;
+	
 	private static final long serialVersionUID = 1L;
 
     /**
