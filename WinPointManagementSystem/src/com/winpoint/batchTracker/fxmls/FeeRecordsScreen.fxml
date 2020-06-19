@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.FeeRecordsScreenController">
+   <top>
+      <AnchorPane prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <HBox prefHeight="70.0" prefWidth="1000.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Region prefHeight="68.0" prefWidth="302.0" HBox.hgrow="ALWAYS" />
+                  <Text fill="#f8f6f6" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee Records">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="logo" fitHeight="60.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Downloads/Winpoint%20Logo.jpeg" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin></ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </AnchorPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: purple;">
+               <children>
+                  <GridPane layoutX="79.0" layoutY="101.0" prefHeight="343.0" prefWidth="293.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Unique ID :" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Name :" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Mobile Number :" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Due Amount :" textFill="WHITE" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="uniqueID" prefHeight="31.0" prefWidth="120.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="name1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="mobileNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="reminderCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="dueAmount" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="E Mail ID :" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="No. of Reminders :" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Calibri Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </AnchorPane>
+          <AnchorPane minHeight="50.0" minWidth="10.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: purple;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <VBox prefHeight="615.0" prefWidth="692.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="1000.0" prefWidth="682.0">
+                          <content>
+                            <AnchorPane prefHeight="1000.0">
+                                 <children>
+                                    <TableView fx:id="feeTable" layoutX="-2.0" prefHeight="945.0" prefWidth="1864.0">
+                                      <columns>
+                                        <TableColumn fx:id="name" editable="false" minWidth="120.0" prefWidth="150.0" text="Name" />
+                                        <TableColumn fx:id="feestatus" editable="false" minWidth="120.0" prefWidth="150.0" text="Fee Status" />
+                                          <TableColumn fx:id="paymentmode" editable="false" minWidth="120.0" prefWidth="150.0" text="Payment Mode" />
+                                          <TableColumn fx:id="installment1" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 1" />
+                                          <TableColumn fx:id="duedate1" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 1" />
+                                          <TableColumn fx:id="installment2" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 2" />
+                                          <TableColumn fx:id="duedate2" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 2" />
+                                          <TableColumn fx:id="installment3" editable="false" minWidth="120.0" prefWidth="150.0" text="Install 3" />
+                                          <TableColumn fx:id="duedate3" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Date 3" />
+                                          <TableColumn fx:id="dueamount" editable="false" minWidth="120.0" prefWidth="150.0" text="Due Amount" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" />
+         </padding>
+      </SplitPane>
+   </center>
+</BorderPane>
