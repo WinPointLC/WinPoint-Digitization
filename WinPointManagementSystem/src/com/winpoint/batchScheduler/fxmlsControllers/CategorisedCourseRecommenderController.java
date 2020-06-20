@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
 
-public class CourseRecommenderController extends ParentFXMLController {
+public class CategorisedCourseRecommenderController extends ParentFXMLController {
     @FXML
     private Button cancelButton;
 

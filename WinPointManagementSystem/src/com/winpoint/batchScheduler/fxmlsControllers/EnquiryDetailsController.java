@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
-public class EnquiryDetailsController extends ParentFXMLController {
+public class EnquiryDetailsController extends ParentFXMLController{
 
     @FXML
     private Button CancelButton;
@@ -20,15 +20,13 @@ public class EnquiryDetailsController extends ParentFXMLController {
 
     @FXML
     void CancelClick(ActionEvent event) {
-
+    	System.out.println(event);
     }
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	// TODO Auto-generated method stub
-    	super.initialize(location, resources);
-    	logo.setImage(logoImage);
-    }
-
-
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		super.initialize(location, resources);
+		logo.setImage(logoImage);
+	}
 }

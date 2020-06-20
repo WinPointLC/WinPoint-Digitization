@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.AddStudentToBatchController">
+<BorderPane prefHeight="400.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.NumberOfStudentsController">
    <center>
       <ScrollPane>
          <BorderPane.margin>
@@ -28,8 +28,8 @@
                         <TableColumn prefWidth="120.0" text="Student" />
                       <TableColumn prefWidth="120.0" text="Enquired" />
                       <TableColumn prefWidth="120.0" text="Registered" />
-                        <TableColumn prefWidth="120.0" text="Check Box ( Email to be sent  )" />
-                        <TableColumn prefWidth="120.0" text="Add Student" />
+                        <TableColumn prefWidth="120.0" text="Start Date" />
+                        <TableColumn prefWidth="120.0" text="Preferred  Batch" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

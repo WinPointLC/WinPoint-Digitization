@@ -13,7 +13,7 @@ import com.winpoint.common.controllers.ParentFXMLController;
 	import javafx.scene.control.Button;
 	import javafx.scene.image.ImageView;
 
-	public class AddStudentToBatchController extends ParentFXMLController{
+	public class NumberOfStudentsController extends ParentFXMLController{
 
 	    @FXML
 	    private Button cancel;
