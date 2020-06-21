@@ -8,6 +8,7 @@ import com.winpoint.common.controllers.ParentFXMLController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class StudentDetailsController extends ParentFXMLController {
@@ -17,10 +18,18 @@ public class StudentDetailsController extends ParentFXMLController {
 
     @FXML
     private Button cancelButton;
+    
+
+    @FXML
+    private Label nameLabel;
+    
+    public void setLabel(String s){ 
+    	nameLabel.setText(s);
+    }
 
     @FXML
     void cancelClick(ActionEvent event) {
-    	System.out.println(event);
+    	System.out.println();
     }
     
     @Override

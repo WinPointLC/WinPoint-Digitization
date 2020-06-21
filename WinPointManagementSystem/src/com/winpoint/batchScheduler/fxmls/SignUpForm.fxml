@@ -40,19 +40,19 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="13.0" prefHeight="27.0" prefWidth="410.0" />
+                        <TextField fx:id="textTrial" layoutX="235.0" layoutY="13.0" prefHeight="27.0" prefWidth="410.0" />
                         <Label layoutX="40.0" layoutY="57.0" prefHeight="23.0" prefWidth="195.0" text="Last Name">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="55.0" prefHeight="27.0" prefWidth="410.0" />
+                        <TextField fx:id="lastNameLabel" layoutX="235.0" layoutY="55.0" prefHeight="27.0" prefWidth="410.0" />
                         <Label layoutX="40.0" layoutY="98.0" prefHeight="17.0" prefWidth="195.0" text="Email ID">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="96.0" prefHeight="27.0" prefWidth="411.0" />
+                        <TextField fx:id="emailidLabel" layoutX="235.0" layoutY="96.0" prefHeight="27.0" prefWidth="411.0" />
                         <Label layoutX="40.0" layoutY="141.0" prefHeight="23.0" prefWidth="195.0" text="DOB">
                            <font>
                               <Font size="18.0" />
@@ -63,25 +63,25 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="179.0" prefHeight="27.0" prefWidth="411.0" />
+                        <TextField fx:id="adressLabel" layoutX="235.0" layoutY="179.0" prefHeight="27.0" prefWidth="411.0" />
                         <Label layoutX="39.0" layoutY="221.0" prefHeight="23.0" prefWidth="195.0" text="Gender">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="219.0" prefHeight="27.0" prefWidth="169.0" />
+                        <TextField fx:id="genderLabel" layoutX="235.0" layoutY="219.0" prefHeight="27.0" prefWidth="169.0" />
                         <Label layoutX="40.0" layoutY="259.0" prefHeight="23.0" prefWidth="195.0" text="Mobile No.">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="236.0" layoutY="257.0" prefHeight="28.0" prefWidth="167.0" />
+                        <TextField fx:id="mobileLabel" layoutX="236.0" layoutY="257.0" prefHeight="28.0" prefWidth="167.0" />
                         <Label layoutX="37.0" layoutY="299.0" prefHeight="17.0" prefWidth="195.0" text="College">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="236.0" layoutY="297.0" />
+                        <TextField fx:id="collegeLabel" layoutX="236.0" layoutY="297.0" />
                         <Label layoutX="37.0" layoutY="336.0">
                            <font>
                               <Font size="18.0" />
@@ -98,14 +98,14 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="235.0" layoutY="373.0" prefHeight="27.0" prefWidth="170.0" />
+                        <TextField fx:id="branchLabel" layoutX="235.0" layoutY="373.0" prefHeight="27.0" prefWidth="170.0" />
                         <DatePicker layoutX="235.0" layoutY="139.0" />
                         <Label layoutX="38.0" layoutY="412.0" prefHeight="23.0" prefWidth="195.0" text="Pass-out Year">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="236.0" layoutY="410.0" />
+                        <TextField fx:id="passOutLabel" layoutX="236.0" layoutY="410.0" />
                         <Label layoutX="37.0" layoutY="449.0" prefHeight="23.0" prefWidth="188.0" text="Courses Interested In">
                            <font>
                               <Font size="18.0" />
