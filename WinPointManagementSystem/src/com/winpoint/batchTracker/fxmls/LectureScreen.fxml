@@ -22,7 +22,7 @@
                <children>
                   <HBox prefHeight="60.0" prefWidth="1000.0" spacing="5.0">
                      <children>
-                        <Button fx:id="backButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="Back">
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                            <font>
                               <Font name="Calibri Bold Italic" size="12.0" />
                            </font>

@@ -26,7 +26,7 @@
                      <children>
                         <Button fx:id="backButton" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                            <font>
-                              <Font name="Calibri Bold Italic" size="12.0" />
+                              <Font name="Calibri Bold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -108,7 +108,7 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
                                        <children>
-                                          <Button fx:id="batchName1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 1" textAlignment="CENTER">
+                                          <Button fx:id="batchName1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails1" prefHeight="140.0" prefWidth="200.0" text="BATCH 1" textAlignment="CENTER">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -139,7 +139,7 @@
                                     </VBox>
                                     <VBox layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Button fx:id="batchName2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 2">
+                                          <Button fx:id="batchName2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails2" prefHeight="140.0" prefWidth="200.0" text="BATCH 2">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -167,7 +167,7 @@
                                     </VBox>
                                     <VBox layoutX="260.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Button fx:id="batchName3" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 3">
+                                          <Button fx:id="batchName3" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails3" prefHeight="140.0" prefWidth="200.0" text="BATCH 3">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -195,7 +195,7 @@
                                     </VBox>
                                     <VBox layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3">
                                        <children>
-                                          <Button fx:id="batchName4" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 4">
+                                          <Button fx:id="batchName4" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails4" prefHeight="140.0" prefWidth="200.0" text="BATCH 4">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -223,7 +223,7 @@
                                     </VBox>
                                     <VBox layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="batchName5" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 5">
+                                          <Button fx:id="batchName5" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails5" prefHeight="140.0" prefWidth="200.0" text="BATCH 5">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -251,7 +251,7 @@
                                     </VBox>
                                     <VBox layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="batchName6" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 6">
+                                          <Button fx:id="batchName6" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails6" prefHeight="140.0" prefWidth="200.0" text="BATCH 6">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -279,7 +279,7 @@
                                     </VBox>
                                     <VBox layoutX="260.0" layoutY="270.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="batchName7" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 7">
+                                          <Button fx:id="batchName7" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails7" prefHeight="140.0" prefWidth="200.0" text="BATCH 7">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>
@@ -307,7 +307,7 @@
                                     </VBox>
                                     <VBox layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="batchName8" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails" prefHeight="140.0" prefWidth="200.0" text="BATCH 8">
+                                          <Button fx:id="batchName8" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getBatchDetails8" prefHeight="140.0" prefWidth="200.0" text="BATCH 8">
                                              <font>
                                                 <Font name="Calibri Bold Italic" size="34.0" />
                                              </font>

@@ -1,17 +1,20 @@
 package com.winpoint.batchTracker.fxmlsControllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class BatchSelectionScreenController extends ParentFXMLController{
+public class BatchSelectionScreenController extends ParentFXMLController {
 
     @FXML
     private Button backButton;
@@ -95,22 +98,147 @@ public class BatchSelectionScreenController extends ParentFXMLController{
     private Text facultyName8;
 
     @FXML
-    void getBatchDetails(ActionEvent event) {
-    	System.out.println(event);
+    void getBatchDetails1(ActionEvent event) {
+    	Stage stage = (Stage) batchName1.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
+    @FXML
+    void getBatchDetails2(ActionEvent event) {
+    	Stage stage = (Stage) batchName2.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails3(ActionEvent event) {
+    	Stage stage = (Stage) batchName3.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails4(ActionEvent event) {
+    	Stage stage = (Stage) batchName4.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails5(ActionEvent event) {
+    	Stage stage = (Stage) batchName5.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails6(ActionEvent event) {
+    	Stage stage = (Stage) batchName6.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails7(ActionEvent event) {
+    	Stage stage = (Stage) batchName7.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void getBatchDetails8(ActionEvent event) {
+    	Stage stage = (Stage) batchName8.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
-    	System.out.println(event);
-
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+    	Parent myNewScene;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/CourseSelectScreen.fxml"));
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
-    
-    @Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		super.initialize(location, resources);
-		logo.setImage(logoImage);
-	}
 
 }
