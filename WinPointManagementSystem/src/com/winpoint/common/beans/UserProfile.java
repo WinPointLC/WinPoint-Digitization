@@ -30,6 +30,10 @@ public class UserProfile {
 	private Integer experience;
 	private Integer createdBy;
 	private Date createDate;
+	private String timeSlotsId;
+	private Integer segmentTypeId;
+	private Integer courseAlreadyDone;
+	private Boolean activeStatus;
 	
 	/**
 	 * @param userId
@@ -58,6 +62,10 @@ public class UserProfile {
 	 * @param createdBy
 	 * @param createDate
 	 * @param photoLocation 
+	 * @param timeSlotsId
+	 * @param segmentTypeId
+	 * @param courseAlreadyDone
+	 * @param activeStatus
 	 */
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
@@ -152,6 +160,46 @@ public class UserProfile {
 		this.email = email;
 		this.mobileNumber = mobileNumber;
 		this.college = college;
+	}
+	
+	
+	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
+			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
+			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
+			Integer segmentTypeId, Integer courseAlreadyDone, Boolean activeStatus) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.yearOfGraduation = yearOfGraduation;
+		this.photoLocation = photoLocation;
+		this.password = password;
+		this.gender = gender;
+		this.securityQuestionId = securityQuestionId;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		this.userCategoryId = userCategoryId;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.createdBy = createdBy;
+		this.createDate = createDate;
+		this.timeSlotsId = timeSlotsId;
+		this.segmentTypeId = segmentTypeId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.activeStatus = activeStatus;
 	}
 
 	public UserProfile() {
@@ -397,14 +445,14 @@ public class UserProfile {
 	}
 
 	/**
-	 * @return the organisation
+	 * @return the organization
 	 */
 	public String getOrganisation() {
 		return organisation;
 	}
 
 	/**
-	 * @param organisation the organisation to set
+	 * @param organisation the organization to set
 	 */
 	public void setOrganisation(String organisation) {
 		this.organisation = organisation;
@@ -493,25 +541,106 @@ public class UserProfile {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-
+	
+	/**
+	 * @return the gender
+	 */
 	public String getGender() {
 		// TODO Auto-generated method stub
 		return gender;
 		//return null;
 	}
+	/**
+	 * @param gender the gender to set
+	 */
+	
 	public void setGender(String gender) {
 		// TODO Auto-generated method stub
 		this.gender = gender;
 	}
+	
+	/**
+	 * @return the securityQuestion
+	 */
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
 
+	
+
+	/**
+	 * @param securityQuestion the securityQuestion to set
+	 */
+	
 	public void setSecurityQuestion(String securityQuestion) {
 		this.securityQuestion = securityQuestion;
 	}
+	
 
 	public void setPhotoLocation(String photoLocation) {
 		this.photoLocation = photoLocation;
 	}
+
+	/**
+	 * @return the timeSlotsId
+	 */
+	
+	public String getTimeSlotsId() {
+		return timeSlotsId;
+	}
+
+	
+	/**
+	 * @param timeSlotsId the timeSlotsId to set
+	 */
+	
+	public void setTimeSlotsId(String timeSlotsId) {
+		this.timeSlotsId = timeSlotsId;
+	}
+
+	
+	/**
+	 * @return the segmentTypeId
+	 */
+	
+	public Integer getSegmentTypeId() {
+		return segmentTypeId;
+	}
+
+	
+	/**
+	 * @param segmentTypeId the segmentTypeId to set
+	 */
+	public void setSegmentTypeId(Integer segmentTypeId) {
+		this.segmentTypeId = segmentTypeId;
+	}
+
+	
+	/**
+	 * @return the courseAlreadyDone
+	 */
+	public Integer getCourseAlreadyDone() {
+		return courseAlreadyDone;
+	}
+	/**
+	 * @param courseAlreadyDone the courseAlreadyDone to set
+	 */
+	public void setCourseAlreadyDone(Integer courseAlreadyDone) {
+		this.courseAlreadyDone = courseAlreadyDone;
+	}
+
+	
+	/**
+	 * @return the activeStatus
+	 */
+	public Boolean getActiveStatus() {
+		return activeStatus;
+	}
+	/**
+	 * @param activeStatus the activeStatus to set
+	 */
+	public void setActiveStatus(Boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+	
 }

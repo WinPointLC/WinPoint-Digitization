@@ -17,7 +17,11 @@ public class StudentCourseDetails {
 	private String feeStatus;
 	private Integer createdBy;
 	private Date createdDate;
-	
+	private String CoursewareIssued="NO";
+	private String AssignmentsIssued="NO";
+	private String AssignmentsSubmitted="NO";
+	private String ReminderTypeId;
+	private Integer FeeReminderCount;
 	/**
 	 * @param userId
 	 * @param batchId
@@ -59,6 +63,73 @@ public class StudentCourseDetails {
 		this.courseTypeName = courseTypeName;
 		this.streamName = streamName;
 		this.courseAggr = courseAggr;
+	}
+
+	public StudentCourseDetails(Integer userId, Integer courseId, String courseName, String logoLocation,
+			String courseTypeName, String streamName, Integer batchId, String isFeedbackGiven,
+			String isCertificateGiven, Integer courseAggr, String gradeId, String feeStatus, Integer createdBy,
+			Date createdDate, String coursewareIssued, String assignmentsIssued, String assignmentsSubmitted,
+			String reminderTypeId, Integer feeReminderCount) {
+		super();
+		this.userId = userId;
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.logoLocation = logoLocation;
+		this.courseTypeName = courseTypeName;
+		this.streamName = streamName;
+		this.batchId = batchId;
+		this.isFeedbackGiven = isFeedbackGiven;
+		this.isCertificateGiven = isCertificateGiven;
+		this.courseAggr = courseAggr;
+		this.gradeId = gradeId;
+		this.feeStatus = feeStatus;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		CoursewareIssued = coursewareIssued;
+		AssignmentsIssued = assignmentsIssued;
+		AssignmentsSubmitted = assignmentsSubmitted;
+		ReminderTypeId = reminderTypeId;
+		FeeReminderCount = feeReminderCount;
+	}
+
+	public String getCoursewareIssued() {
+		return CoursewareIssued;
+	}
+
+	public void setCoursewareIssued(String coursewareIssued) {
+		CoursewareIssued = coursewareIssued;
+	}
+
+	public String getAssignmentsIssued() {
+		return AssignmentsIssued;
+	}
+
+	public void setAssignmentsIssued(String assignmentsIssued) {
+		AssignmentsIssued = assignmentsIssued;
+	}
+
+	public String getAssignmentsSubmitted() {
+		return AssignmentsSubmitted;
+	}
+
+	public void setAssignmentsSubmitted(String assignmentsSubmitted) {
+		AssignmentsSubmitted = assignmentsSubmitted;
+	}
+
+	public String getReminderTypeId() {
+		return ReminderTypeId;
+	}
+
+	public void setReminderTypeId(String reminderTypeId) {
+		ReminderTypeId = reminderTypeId;
+	}
+
+	public Integer getFeeReminderCount() {
+		return FeeReminderCount;
+	}
+
+	public void setFeeReminderCount(Integer feeReminderCount) {
+		FeeReminderCount = feeReminderCount;
 	}
 
 	/**

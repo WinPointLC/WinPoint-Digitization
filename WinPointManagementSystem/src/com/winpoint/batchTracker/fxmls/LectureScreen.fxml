@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.LectureSceneController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.LectureScreenController">
    <top>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
          <children>
@@ -142,7 +142,7 @@
          <children>
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="145.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="progressTrackerButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getProgressTracker" prefHeight="57.0" prefWidth="130.0" text="Progress Tracker">
+                  <Button fx:id="progressTrackerButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToProgressTrackerScreen" prefHeight="57.0" prefWidth="130.0" text="Progress Tracker">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -151,7 +151,7 @@
                      </font>
                   </Button>
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="feesRecordsButton" layoutX="15.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getFeesRecords" prefHeight="57.0" prefWidth="130.0" text="Fees Records">
+                  <Button fx:id="feesRecordsButton" layoutX="15.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToFeeRecordsScreen" prefHeight="57.0" prefWidth="130.0" text="Fees Records">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -160,7 +160,7 @@
                      </font>
                   </Button>
                   <Region layoutX="10.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="attendanceRecordsButton" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getAttendanceRecords" prefHeight="57.0" prefWidth="130.0" text="Attendance Records">
+                  <Button fx:id="attendanceRecordsButton" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToAttendanceRecordsScreen" prefHeight="57.0" prefWidth="130.0" text="Attendance Records">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -169,7 +169,7 @@
                      </font>
                   </Button>
                   <Region layoutX="10.0" layoutY="147.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="assignmentsButton" layoutX="10.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getAssignments" prefHeight="57.0" prefWidth="130.0" text="Assignments">
+                  <Button fx:id="assignmentsButton" layoutX="10.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToAssignmentsScreen" prefHeight="57.0" prefWidth="130.0" text="Assignments">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -178,7 +178,7 @@
                      </font>
                   </Button>
                   <Region layoutX="10.0" layoutY="215.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="feedbackButton" layoutX="10.0" layoutY="170.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getFeedback" prefHeight="57.0" prefWidth="130.0" text="Feedback">
+                  <Button fx:id="feedbackButton" layoutX="10.0" layoutY="170.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchFeedbackScreen" prefHeight="57.0" prefWidth="130.0" text="Feedback">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -187,7 +187,7 @@
                      </font>
                   </Button>
                   <Region layoutX="10.0" layoutY="282.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="evaluationButton" layoutX="10.0" layoutY="220.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getEvaluation" prefHeight="57.0" prefWidth="130.0" text="Evaluation">
+                  <Button fx:id="evaluationButton" layoutX="10.0" layoutY="220.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToEvaluationScreen" prefHeight="57.0" prefWidth="130.0" text="Evaluation">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -196,7 +196,7 @@
                      </font>
                   </Button>
                   <Region layoutX="10.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="editBatchDetailsButton" layoutX="10.0" layoutY="270.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getEditBatchDetails" prefHeight="57.0" prefWidth="130.0" text="Edit Batch Details">
+                  <Button fx:id="editBatchDetailsButton" layoutX="10.0" layoutY="270.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToEditBatchDetailsScreen" prefHeight="57.0" prefWidth="130.0" text="Edit Batch Details">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>

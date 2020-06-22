@@ -76,13 +76,16 @@ public class AttendanceScreenController extends ParentFXMLController{
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage) backButton.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			myNewScene = loader.load();
+			//LectureScreenController lectureScreenController = loader.getController();
+			//lectureScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
