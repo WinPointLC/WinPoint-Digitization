@@ -1,5 +1,6 @@
 package com.winpoint.batchScheduler.fxmlsControllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,8 +8,12 @@ import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class PriorityListOfCoursesController extends ParentFXMLController{
     @FXML
@@ -19,7 +24,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 
     @FXML
     void cancelFrame(ActionEvent event) {
-    	System.out.println(event);
+   
     }
     
     @Override
