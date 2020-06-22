@@ -8,7 +8,7 @@ public class FeedbackQuestions {
 	private String feedbackQuestionType;
 	private Integer createdBy;
 	private Date createdDate;
-	
+	private Integer FeedbackCategoryId;
 	/**
 	 * @param feedbackQuestionId
 	 * @param feedbackQuestion

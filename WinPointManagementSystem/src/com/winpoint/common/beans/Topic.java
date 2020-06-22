@@ -9,7 +9,7 @@ public class Topic {
 	private Integer minimumNoOfQuestionsForTest;
 	private Integer createdBy;
 	private Date createdDate;
-	
+	private Integer TopicDuration;
 	/**
 	 * @param courseId
 	 * @param topicId

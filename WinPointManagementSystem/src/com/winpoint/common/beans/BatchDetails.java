@@ -15,7 +15,11 @@ public class BatchDetails {
 	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
-	
+	private String batchName;
+	private Date batchTime;
+	private Integer CurrentLectureNumber;
+	private Integer LectureDuration; 
+	private Integer UserId;
 	/**
 	 * @param batchId
 	 * @param courseId
@@ -25,7 +29,7 @@ public class BatchDetails {
 	 * @param createdBy
 	 * @param createdDate
 	 */
-	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
+	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
@@ -35,6 +39,64 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 	}
 	
+	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
+			Integer createdBy, Date createdDate, String batchName, Date batchTime, Integer currentLectureNumber,
+			Integer lectureDuration, Integer userId) {
+		super();
+		this.batchId = batchId;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.batchName = batchName;
+		this.batchTime = batchTime;
+		CurrentLectureNumber = currentLectureNumber;
+		LectureDuration = lectureDuration;
+		UserId = userId;
+	}
+
+	public String getBatchName() {
+		return batchName;
+	}
+
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
+	}
+
+	public Date getBatchTime() {
+		return batchTime;
+	}
+
+	public void setBatchTime(Date batchTime) {
+		this.batchTime = batchTime;
+	}
+
+	public Integer getCurrentLectureNumber() {
+		return CurrentLectureNumber;
+	}
+
+	public void setCurrentLectureNumber(Integer currentLectureNumber) {
+		CurrentLectureNumber = currentLectureNumber;
+	}
+
+	public Integer getLectureDuration() {
+		return LectureDuration;
+	}
+
+	public void setLectureDuration(Integer lectureDuration) {
+		LectureDuration = lectureDuration;
+	}
+
+	public Integer getUserId() {
+		return UserId;
+	}
+
+	public void setUserId(Integer userId) {
+		UserId = userId;
+	}
+
 	/**
 	 * @return the batchId of the batch.
 	 */
