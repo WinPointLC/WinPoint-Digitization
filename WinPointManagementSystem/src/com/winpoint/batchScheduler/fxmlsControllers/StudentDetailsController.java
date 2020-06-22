@@ -55,4 +55,5 @@ public class StudentDetailsController extends ParentFXMLController {
     	super.initialize(location, resources);
     	logo.setImage(logoImage);
     }
+    
 }
