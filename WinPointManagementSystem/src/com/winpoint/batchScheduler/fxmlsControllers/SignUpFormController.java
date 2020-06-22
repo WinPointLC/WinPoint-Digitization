@@ -61,17 +61,23 @@ public class SignUpFormController extends ParentFXMLController {
     }
 
     @FXML
-    void submitClick(ActionEvent event) throws IOException {
+    void submitClick(ActionEvent event){
     	
     	FXMLLoader loader = new FXMLLoader();
-    	Parent myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-    	StudentDetailsController studentDetailsController = loader.getController();
-    	studentDetailsController.setLabel(firstNameLabel.getText());
-    	Stage stage = (Stage) submitButton.getScene().getWindow();
-    	Scene scene = new Scene(myNewScene);
-    	stage.setScene(scene);
-    	stage.setTitle("My New Scene");
-    	stage.show();  
+    	Parent myNewScene;
+		try {
+			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
+			StudentDetailsController studentDetailsController = loader.getController();
+	    	studentDetailsController.setLabel(firstNameLabel.getText());
+	    	Stage stage = (Stage) submitButton.getScene().getWindow();
+	    	Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	 
     }
     
     @Override
