@@ -42,14 +42,14 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     private Button individualFeedback;
 
     @FXML
-    void getIndividualFeedback(ActionEvent event) {
+    void sendToIndividualFeedback(ActionEvent event) {
     	Stage stage = (Stage)individualFeedback.getScene().getWindow();
     	Parent myNewScene;
 		try {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/BatchIndividualFeedbackScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Individual Feedback");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -66,7 +66,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

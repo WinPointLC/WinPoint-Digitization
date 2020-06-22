@@ -120,7 +120,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <Button fx:id="individualFeedback" mnemonicParsing="false" onAction="#getIndividualFeedback" prefHeight="50.0" prefWidth="200.0" text="Individual Feedback" />
+                  <Button fx:id="individualFeedback" mnemonicParsing="false" onAction="#sendToIndividualFeedback" prefHeight="50.0" prefWidth="200.0" text="Individual Feedback" />
                </children>
             </HBox>
          </children>

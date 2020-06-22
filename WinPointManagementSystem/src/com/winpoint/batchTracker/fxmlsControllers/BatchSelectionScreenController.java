@@ -1,6 +1,8 @@
 package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
 
@@ -111,7 +113,7 @@ public class BatchSelectionScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -127,12 +129,19 @@ public class BatchSelectionScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/CourseSelectScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Course Select");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+    
+    @Override
+   	public void initialize(URL location, ResourceBundle resources) {
+   		// TODO Auto-generated method stub
+   		super.initialize(location, resources);
+   		logo.setImage(logoImage);
+   	}
 
 }

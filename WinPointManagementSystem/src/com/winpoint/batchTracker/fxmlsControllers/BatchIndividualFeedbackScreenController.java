@@ -98,7 +98,7 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/BatchFeedbackScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Batch Feedback");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

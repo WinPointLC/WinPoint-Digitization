@@ -176,19 +176,19 @@
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <DatePicker fx:id="lectureDate" onAction="#getLectureDate" promptText="Lecture Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                              <DatePicker fx:id="lectureDate" promptText="Lecture Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time :" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="lectureStartTime" maxWidth="175.0" minWidth="150.0" onAction="#getLectureStartTime" promptText="hh : mm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <TextField fx:id="lectureStartTime" maxWidth="175.0" minWidth="150.0" promptText="hh : mm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Session Duration :" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="lectureSessionDuration" maxWidth="175.0" minWidth="150.0" onAction="#getLectureSessionDuration" promptText="X hours" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <TextField fx:id="lectureSessionDuration" maxWidth="175.0" minWidth="150.0" promptText="X hours" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                         <HBox prefHeight="336.0" prefWidth="622.0" VBox.vgrow="ALWAYS">

@@ -60,7 +60,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

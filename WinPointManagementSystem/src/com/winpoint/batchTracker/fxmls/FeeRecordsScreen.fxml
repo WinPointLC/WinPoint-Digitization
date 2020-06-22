@@ -111,12 +111,12 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="FeeUniqueId" prefHeight="31.0" prefWidth="120.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="FeeName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="FeeEmailID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="FeeMobileNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="FeeReminderCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="FeeDueAmount" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="feeUniqueId" prefHeight="31.0" prefWidth="120.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="feeName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="feeEmailID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="feeMobileNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="feeReminderCount" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="feeDueAmount" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text="E Mail ID :" textFill="WHITE" GridPane.rowIndex="2">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />

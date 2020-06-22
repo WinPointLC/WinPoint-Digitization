@@ -68,36 +68,7 @@ public class EvaluationScreenController extends ParentFXMLController {
 
     @FXML
     private TableColumn<?, ?> evaluationTableCertificateIssuedColumn;
-
-    @FXML
-    void getAttendance(ActionEvent event) {
-    	System.out.println(event);
-    }
-
-    @FXML
-    void getCertificateStatus(ActionEvent event) {
-    	System.out.println(event);
-    }
-
-    @FXML
-    void getEvaluationStatus(ActionEvent event) {
-    	System.out.println(event);
-    }
-
-    @FXML
-    void getGrades(ActionEvent event) {
-    	System.out.println(event);
-    }
-
-    @FXML
-    void getMarks(ActionEvent event) {
-    	System.out.println(event);
-    }
-
-    @FXML
-    void getName(ActionEvent event) {
-    	System.out.println(event);
-    }
+   
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
@@ -107,17 +78,12 @@ public class EvaluationScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-
-    @FXML
-    void getUserID(ActionEvent event) {
-    	System.out.println(event);
     }
     
     @Override
