@@ -129,7 +129,7 @@ public class BatchSelectionScreenController extends ParentFXMLController {
 			dataForLectureScreen.add("StartDate");
 			dataForLectureScreen.add("EndDate");
 			
-			//lectureScreenLecture.setRecievedData(dataForLectureScreen);
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
