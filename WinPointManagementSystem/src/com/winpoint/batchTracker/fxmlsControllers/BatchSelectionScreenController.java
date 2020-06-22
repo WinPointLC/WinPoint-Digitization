@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -105,12 +107,30 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     	selectedCourseName.setText(s); 
     }
     
+    public void setRecievedData(ArrayList<String> recievedData) {
+    	for(String data:recievedData){
+    		System.out.println(data);
+    	}
+    }
+    
     @FXML
     void sendToLectureScreen(ActionEvent event) {
     	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			myNewScene = loader.load();
+			LectureScreenController lectureScreenLecture = loader.getController();
+			
+			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
+			dataForLectureScreen.add("BatchID");
+			dataForLectureScreen.add("BatchName");
+			dataForLectureScreen.add("CurrentLecture");
+			dataForLectureScreen.add("StartDate");
+			dataForLectureScreen.add("EndDate");
+			
+			//lectureScreenLecture.setRecievedData(dataForLectureScreen);
+			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");

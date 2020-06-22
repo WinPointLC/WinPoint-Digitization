@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -28,7 +29,28 @@ public class CourseSelectScreenController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private Button courseID;
+    private Button courseID1;
+    
+    @FXML
+    private Button courseID2;
+    
+    @FXML
+    private Button courseID3;
+    
+    @FXML
+    private Button courseID4;
+    
+    @FXML
+    private Button courseID5;
+    
+    @FXML
+    private Button courseID6;
+    
+    @FXML
+    private Button courseID7;
+    
+    @FXML
+    private Button courseID8;
 
     @FXML
     void getCourseType(ActionEvent event) {
@@ -49,6 +71,17 @@ public class CourseSelectScreenController extends ParentFXMLController{
 			myNewScene = loader.load();
 			BatchSelectionScreenController batchSelectionScreenController = loader.getController();
 			batchSelectionScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
+			
+			ArrayList<String> dataForBatchSelection = new ArrayList<String>();
+			dataForBatchSelection.add(((Button)event.getSource()).getText());
+			dataForBatchSelection.add(((Button)event.getSource()).getId());
+			dataForBatchSelection.add("StreamID");
+			dataForBatchSelection.add("CourseTypeID");
+			dataForBatchSelection.add("FacultyName");
+			dataForBatchSelection.add("FacultyImage");
+			
+			batchSelectionScreenController.setRecievedData(dataForBatchSelection);
+			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Batch Select");
