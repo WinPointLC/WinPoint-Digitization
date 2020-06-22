@@ -2,6 +2,10 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+/**
+ * @author shraddhapadalkar
+ *
+ */
 public class Course {
 	private Integer courseId;
 	private String courseName;
@@ -15,6 +19,7 @@ public class Course {
 	private Integer totalTests;
 	private Integer createdBy;
 	private Date createdDate;
+	private String preRequisite;
 	
 	/**
 	 * @param courseId
@@ -28,6 +33,7 @@ public class Course {
 	 * @param totalTests
 	 * @param createdBy
 	 * @param createdDate
+	 * @param preRequisite;
 	 */
 	public Course(Integer courseId, String courseName, Integer courseDuration, Integer courseFees, Integer streamId,
 			Integer courseTypeId, String coursewareExist, Integer evaluationTypeId, Integer totalTests,
@@ -52,6 +58,28 @@ public class Course {
 		this.streamId = streamId;
 		this.courseTypeId = courseTypeId;
 		this.iconLocation = iconLocation;
+	}
+	
+	
+	
+	
+	public Course(Integer courseId, String courseName, Integer courseDuration, Integer courseFees, Integer streamId,
+			Integer courseTypeId, String coursewareExist, Integer evaluationTypeId, String iconLocation,
+			Integer totalTests, Integer createdBy, Date createdDate, String preRequisite) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.courseDuration = courseDuration;
+		this.courseFees = courseFees;
+		this.streamId = streamId;
+		this.courseTypeId = courseTypeId;
+		this.coursewareExist = coursewareExist;
+		this.evaluationTypeId = evaluationTypeId;
+		this.iconLocation = iconLocation;
+		this.totalTests = totalTests;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.preRequisite = preRequisite;
 	}
 
 	/**
@@ -220,4 +248,21 @@ public class Course {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	/**
+	 * @return the PreRequisite
+	 */
+	
+	public String getPreRequisite() {
+		return preRequisite;
+	}
+
+	/**
+	 * @param  PreRequisite the PreRequisite to set
+	 */
+	public void setPreRequisite(String preRequisite) {
+		this.preRequisite = preRequisite;
+	}
+	
+	
 }

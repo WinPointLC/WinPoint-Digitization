@@ -29,7 +29,7 @@ public class NewBatchSchedularController extends ParentFXMLController {
 	    	Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Main scene");
 	    	stage.show();
 	    }
 	    @Override
@@ -37,5 +37,7 @@ public class NewBatchSchedularController extends ParentFXMLController {
 	   		// TODO Auto-generated method stub
 	   		super.initialize(location, resources);
 	   		logo.setImage(logoImage);
+	   		
+	   		
 	   	}
 }

@@ -13,6 +13,8 @@ public class FacultySkills {
 	private String skillSet;
 	private Integer createdBy;
 	private Date createdDate;
+	private Integer segmentTypeId;
+	private Integer timeSlotsId;
 	
 	/**
 	 * @param userId
@@ -28,6 +30,21 @@ public class FacultySkills {
 		this.createdDate = createdDate;
 	}
 	
+	
+	
+	public FacultySkills(Integer userId, String skillSet, Integer createdBy, Date createdDate, Integer segmentTypeId,
+			Integer timeSlotsId) {
+		super();
+		this.userId = userId;
+		this.skillSet = skillSet;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.segmentTypeId = segmentTypeId;
+		this.timeSlotsId = timeSlotsId;
+	}
+
+
+
 	/**
 	 * @return the userId
 	 */
@@ -83,4 +100,42 @@ public class FacultySkills {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+
+	/**
+	 * @return the segmentTypeId
+	 */
+	public Integer getSegmentTypeId() {
+		return segmentTypeId;
+	}
+
+
+	/**
+	 * @param segmentTypeId the segmentTypeId to set
+	 */
+	public void setSegmentTypeId(Integer segmentTypeId) {
+		this.segmentTypeId = segmentTypeId;
+	}
+
+
+	/**
+	 * @return the timeSlotsId;
+	 */
+	public Integer getTimeSlotsId() {
+		return timeSlotsId;
+	}
+
+
+	/**
+	 * @param timeSlotsId the timeSlotsId to set
+	 */
+	public void setTimeSlotsId(Integer timeSlotsId) {
+		this.timeSlotsId = timeSlotsId;
+	}
+
+
+
+	
+	
+	
 }
