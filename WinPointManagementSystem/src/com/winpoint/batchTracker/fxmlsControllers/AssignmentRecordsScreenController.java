@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -49,6 +50,15 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
 
     @FXML
     private TableColumn<?, ?> assignmentsTableAssignmentsSubmittedColumn;
+    
+    
+    public void setRecievedData(ArrayList<String> recievedData) {
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }
+    
+    
     public void setBackButton(String s) {
     	
     }

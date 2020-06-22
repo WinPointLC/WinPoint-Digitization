@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -40,13 +41,41 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 
     @FXML
     private Button individualFeedback;
+    
+    public void setRecievedData(ArrayList<String> recievedData) {
+    	for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }
 
     @FXML
     void sendToIndividualFeedback(ActionEvent event) {
-    	Stage stage = (Stage)individualFeedback.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/BatchIndividualFeedbackScreen.fxml"));
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/BatchIndividualFeedbackScreen.fxml"));
+			myNewScene = loader.load();
+			BatchIndividualFeedbackScreenController batchIndividualFeedbackScreenController = loader.getController();
+			
+			ArrayList<String> dataForBatchIndividualFeedbackScreen = new ArrayList<String>();
+			dataForBatchIndividualFeedbackScreen.add("BatchID");
+			dataForBatchIndividualFeedbackScreen.add("BatchName");
+			dataForBatchIndividualFeedbackScreen.add("StudentName");
+			dataForBatchIndividualFeedbackScreen.add("Instructor");
+			dataForBatchIndividualFeedbackScreen.add("Duration");
+			dataForBatchIndividualFeedbackScreen.add("StudentEmail");
+			dataForBatchIndividualFeedbackScreen.add("StudentMobile");
+			dataForBatchIndividualFeedbackScreen.add("Status");
+			dataForBatchIndividualFeedbackScreen.add("Q1");
+			dataForBatchIndividualFeedbackScreen.add("Q2");
+			dataForBatchIndividualFeedbackScreen.add("Q10");
+			dataForBatchIndividualFeedbackScreen.add("QA");
+			dataForBatchIndividualFeedbackScreen.add("QD");
+			
+			batchIndividualFeedbackScreenController.setRecievedData(dataForBatchIndividualFeedbackScreen);
+			
+			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Individual Feedback");

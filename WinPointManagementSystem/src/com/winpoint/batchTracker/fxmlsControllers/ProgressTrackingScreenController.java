@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -57,6 +58,12 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
 
     @FXML
     private PieChart processTrackingPieChart;
+    
+    public void setRecievedData(ArrayList<String> recievedData) {
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }
 
     @FXML
     void GoToPreviousScreen(ActionEvent event) {
