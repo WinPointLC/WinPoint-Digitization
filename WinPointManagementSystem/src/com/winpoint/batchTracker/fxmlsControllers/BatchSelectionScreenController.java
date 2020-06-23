@@ -101,6 +101,7 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     @FXML
     private Text facultyName8;
 
+    //author purva , suhasi , sarthak
 
     public void setSelectedCourseName(String s)
     {
