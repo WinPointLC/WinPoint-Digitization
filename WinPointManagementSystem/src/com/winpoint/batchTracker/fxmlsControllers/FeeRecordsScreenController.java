@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -31,22 +32,22 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private TextField FeeUniqueId;
+    private TextField feeUniqueId;
 
     @FXML
-    private TextField FeeName;
+    private TextField feeName;
 
     @FXML
-    private TextField FeeEmailID;
+    private TextField feeEmailID;
 
     @FXML
-    private TextField FeeMobileNumber;
+    private TextField feeMobileNumber;
 
     @FXML
-    private TextField FeeReminderCount;
+    private TextField feeReminderCount;
 
     @FXML
-    private TextField FeeDueAmount;
+    private TextField feeDueAmount;
 
     @FXML
     private TableView<?> feeTable;
@@ -80,6 +81,12 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 
     @FXML
     private TableColumn<?, ?> feeTableDueAmountColumn;
+    
+    public void setRecievedData(ArrayList<String> recievedData) {
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
@@ -89,7 +96,7 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

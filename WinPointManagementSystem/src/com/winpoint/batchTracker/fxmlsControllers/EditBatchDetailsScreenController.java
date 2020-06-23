@@ -2,6 +2,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -78,6 +79,12 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 
     @FXML
     private Button saveLecture;
+    
+    public void setRecievedData(ArrayList<String> recievedData) {
+    	for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }
 
     @FXML
     void addLectureToBatch(ActionEvent event) {
@@ -95,24 +102,10 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     }
 
     @FXML
-    void getLectureDate(ActionEvent event) {
-
-    }
-
-    @FXML
     void getLectureList(ActionEvent event) {
 
     }
 
-    @FXML
-    void getLectureSessionDuration(ActionEvent event) {
-
-    }
-
-    @FXML
-    void getLectureStartTime(ActionEvent event) {
-
-    }
 
     @FXML
     void goToPreviousScreen(ActionEvent event) {
@@ -122,7 +115,7 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -139,7 +132,7 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     void removeLectureFromBatch(ActionEvent event) {
 
     }
-
+    
     @FXML
     void resetLectureDetails(ActionEvent event) {
 

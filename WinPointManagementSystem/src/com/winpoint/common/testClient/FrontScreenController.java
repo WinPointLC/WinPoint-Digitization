@@ -46,7 +46,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/CourseSelectScreen.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Course Select");
 	    	stage.show();
 
 
@@ -58,7 +58,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/CategorisedCourseRecommender.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Categorised Course Recommender");
 	    	stage.show();
 
 
@@ -70,7 +70,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Enquiry Details");
 	    	stage.show();
 
 
@@ -82,7 +82,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/NewBatchSchedular.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("New Batch Scheduler");
 	    	stage.show();
 
 
@@ -94,7 +94,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/SignUpForm.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Sign Up Form");
 	    	stage.show();
 
 
