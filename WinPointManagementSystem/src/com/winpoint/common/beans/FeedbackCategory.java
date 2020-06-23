@@ -1,24 +1,25 @@
 package com.winpoint.common.beans;
 
 public class FeedbackCategory {
-private Integer FeedbackCategoryId;
-private String FeedbackCategoryDescription;
+private Integer feedbackCategoryId;
+private String feedbackCategoryDescription;
 public FeedbackCategory(Integer feedbackCategoryId, String feedbackCategoryDescription) {
 	super();
-	FeedbackCategoryId = feedbackCategoryId;
-	FeedbackCategoryDescription = feedbackCategoryDescription;
+	this.feedbackCategoryId = feedbackCategoryId;
+	this.feedbackCategoryDescription = feedbackCategoryDescription;
 }
 public Integer getFeedbackCategoryId() {
-	return FeedbackCategoryId;
+	return feedbackCategoryId;
 }
 public void setFeedbackCategoryId(Integer feedbackCategoryId) {
-	FeedbackCategoryId = feedbackCategoryId;
+	this.feedbackCategoryId = feedbackCategoryId;
 }
 public String getFeedbackCategoryDescription() {
-	return FeedbackCategoryDescription;
+	return feedbackCategoryDescription;
 }
 public void setFeedbackCategoryDescription(String feedbackCategoryDescription) {
-	FeedbackCategoryDescription = feedbackCategoryDescription;
+	this.feedbackCategoryDescription = feedbackCategoryDescription;
 }
+
 
 }

@@ -9,7 +9,7 @@ public class Topic {
 	private Integer minimumNoOfQuestionsForTest;
 	private Integer createdBy;
 	private Date createdDate;
-	private Integer TopicDuration;
+	private Integer topicDuration;
 	/**
 	 * @param courseId
 	 * @param topicId
@@ -26,13 +26,32 @@ public class Topic {
 		this.createdDate = createdDate;
 	}
 	
-	/**
-	 * @return the courseId
-	 */
+	public Integer getTopicDuration() {
+		return topicDuration;
+	}
+
+	public void setTopicDuration(Integer topicDuration) {
+		topicDuration = topicDuration;
+	}
+
+	
+	
+	public Topic(Integer courseId, Integer topicId, String topicName, Integer minimumNoOfQuestionsForTest,
+			Integer createdBy, Date createdDate, Integer topicDuration) {
+		super();
+		this.courseId = courseId;
+		this.topicId = topicId;
+		this.topicName = topicName;
+		this.minimumNoOfQuestionsForTest = minimumNoOfQuestionsForTest;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.topicDuration = topicDuration;
+	}
+
 	public Integer getCourseId() {
 		return courseId;
 	}
-	
+
 	/**
 	 * @param courseId the courseId to set
 	 */

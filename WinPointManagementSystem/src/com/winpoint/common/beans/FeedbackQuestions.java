@@ -64,6 +64,25 @@ public class FeedbackQuestions {
 		this.feedbackQuestionType = feedbackQuestionType;
 	}
 
+	public FeedbackQuestions(Integer feedbackQuestionId, String feedbackQuestion, String feedbackQuestionType,
+			Integer createdBy, Date createdDate, Integer feedbackCategoryId) {
+		super();
+		this.feedbackQuestionId = feedbackQuestionId;
+		this.feedbackQuestion = feedbackQuestion;
+		this.feedbackQuestionType = feedbackQuestionType;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		FeedbackCategoryId = feedbackCategoryId;
+	}
+
+	public Integer getFeedbackCategoryId() {
+		return FeedbackCategoryId;
+	}
+
+	public void setFeedbackCategoryId(Integer feedbackCategoryId) {
+		FeedbackCategoryId = feedbackCategoryId;
+	}
+
 	/**
 	 * @return the createdBy
 	 */
