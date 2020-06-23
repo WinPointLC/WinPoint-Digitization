@@ -20,13 +20,13 @@
          <content>
             <AnchorPane>
                <children>
-                  <TableView prefHeight="750.0" prefWidth="1230.0">
+                  <TableView fx:id="detailsTable" prefHeight="750.0" prefWidth="1230.0">
                     <columns>
-                      <TableColumn prefWidth="246.0" text="Name" />
-                      <TableColumn prefWidth="246.0" text="Course" />
-                        <TableColumn prefWidth="246.0" text="Eligibility" />
-                        <TableColumn prefWidth="246.0" text="Suggestion" />
-                        <TableColumn prefWidth="246.0" text="Update" />
+                      <TableColumn fx:id="nameCol" prefWidth="246.0" text="Name" />
+                      <TableColumn fx:id="courseCol" prefWidth="246.0" text="Course" />
+                        <TableColumn fx:id="eligibilityCol" prefWidth="246.0" text="Eligibility" />
+                        <TableColumn fx:id="suggestionCol" prefWidth="246.0" text="Suggestion" />
+                        <TableColumn fx:id="updateCol" prefWidth="246.0" text="Update" />
                     </columns>
                   </TableView>
                </children>
