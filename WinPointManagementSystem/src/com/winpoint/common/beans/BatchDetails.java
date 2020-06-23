@@ -16,10 +16,11 @@ public class BatchDetails {
 	private Integer createdBy;
 	private Date createdDate;
 	private String batchName;
-	private Date batchTime;
+	private Integer batchTime;
 	private Integer CurrentLectureNumber;
 	private Integer LectureDuration; 
 	private Integer UserId;
+	
 	/**
 	 * @param batchId
 	 * @param courseId
@@ -29,6 +30,14 @@ public class BatchDetails {
 	 * @param createdBy
 	 * @param createdDate
 	 */
+	
+	// this Constructor is Created for the testing purpose ~ Abhishek
+	public BatchDetails (String batchId, Integer facultyId) {
+		this.batchId = batchId;
+		this.facultyId = facultyId;
+		System.out.println(" Default Constructor ");
+	}
+	
 	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -40,7 +49,7 @@ public class BatchDetails {
 	}
 	
 	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
-			Integer createdBy, Date createdDate, String batchName, Date batchTime, Integer currentLectureNumber,
+			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
 			Integer lectureDuration, Integer userId) {
 		super();
 		this.batchId = batchId;
@@ -52,10 +61,13 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 		this.batchName = batchName;
 		this.batchTime = batchTime;
-		CurrentLectureNumber = currentLectureNumber;
+		this.CurrentLectureNumber = currentLectureNumber;
 		LectureDuration = lectureDuration;
 		UserId = userId;
-	}
+		
+}
+
+
 
 	public String getBatchName() {
 		return batchName;
@@ -65,11 +77,11 @@ public class BatchDetails {
 		this.batchName = batchName;
 	}
 
-	public Date getBatchTime() {
+	public Integer getBatchTime() {
 		return batchTime;
 	}
 
-	public void setBatchTime(Date batchTime) {
+	public void setBatchTime(Integer batchTime) {
 		this.batchTime = batchTime;
 	}
 
@@ -182,16 +194,17 @@ public class BatchDetails {
 	}
 	
 	/**
-	 * @return the createdDate which contains the timestamp of the batch
+	 * @return the createdDate which contains the time stamp of the batch
 	 */
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 	
 	/**
-	 * @param createdDate the timestamp of the batch you want to set
+	 * @param createdDate the time stamp of the batch you want to set
 	 */
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 }

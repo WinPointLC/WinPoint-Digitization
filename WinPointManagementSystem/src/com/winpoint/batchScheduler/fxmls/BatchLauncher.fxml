@@ -71,8 +71,8 @@
                   <TextField fx:id="lecturenumber" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="totalnumberoflecture" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="faculty" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="begindate" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <DatePicker fx:id="enddate" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="begindate" onAction="#beginDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <DatePicker fx:id="enddate" onAction="#endDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <CheckBox fx:id="morning" mnemonicParsing="false" text="Morning" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <CheckBox fx:id="evening" mnemonicParsing="false" text="Evening" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>

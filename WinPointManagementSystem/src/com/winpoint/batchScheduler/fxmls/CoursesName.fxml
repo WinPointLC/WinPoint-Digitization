@@ -42,17 +42,17 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane prefHeight="453.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane prefHeight="736.0" prefWidth="1400.0">
+            <AnchorPane prefHeight="750.0" prefWidth="1230.0">
                <children>
-                  <TableView prefHeight="730.0" prefWidth="1230.0">
+                  <TableView fx:id="courseName" prefHeight="750.0" prefWidth="1230.0">
                     <columns>
-                      <TableColumn prefWidth="243.0" text="Student" />
-                      <TableColumn prefWidth="275.0" text="Enquired" />
-                        <TableColumn prefWidth="214.0" text="Registered" />
-                        <TableColumn prefWidth="252.0" text="Check Box (Email to be Sent)" />
-                        <TableColumn prefWidth="252.0" text="Add Button" />
+                      <TableColumn fx:id="student" prefWidth="246.0" text="Student" />
+                      <TableColumn fx:id="enquired" prefWidth="246.0" text="Enquired" />
+                        <TableColumn fx:id="registered" prefWidth="246.0" text="Registered" />
+                        <TableColumn fx:id="checkBox" prefWidth="246.0" text="Check Box (Email to be Sent)" />
+                        <TableColumn fx:id="addButton" prefWidth="246.0" text="Add Button" />
                     </columns>
                   </TableView>
                </children>

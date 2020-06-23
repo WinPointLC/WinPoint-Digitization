@@ -1,10 +1,6 @@
 package com.winpoint.batchScheduler.fxmlsControllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,13 +8,33 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class CoursesNameController extends ParentFXMLController {
+public class CoursesNameController {
 
     @FXML
     private ImageView logo;
+
+    @FXML
+    private TableView<?> courseName;
+    
+    @FXML
+    private TableColumn<?, ?> student;
+
+    @FXML
+    private TableColumn<?, ?> enquired;
+
+    @FXML
+    private TableColumn<?, ?> registered;
+
+    @FXML
+    private TableColumn<?, ?> checkBox;
+
+    @FXML
+    private TableColumn<?, ?> addButton;
 
     @FXML
     private Button cancel;
@@ -37,21 +53,14 @@ public class CoursesNameController extends ParentFXMLController {
 	    	stage.setTitle("My New Scene");
 	    	stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
 
     @FXML
     void emailFrame(ActionEvent event) {
-    	System.out.println(event);
+
     }
-    @Override
-  	public void initialize(URL location, ResourceBundle resources) {
-  		// TODO Auto-generated method stub
-  		super.initialize(location, resources);
-  		logo.setImage(logoImage);
-  	}
-  	
 
 }
+
