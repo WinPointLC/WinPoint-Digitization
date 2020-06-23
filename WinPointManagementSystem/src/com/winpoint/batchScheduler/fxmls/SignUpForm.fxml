@@ -40,7 +40,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textTrial" layoutX="235.0" layoutY="13.0" prefHeight="27.0" prefWidth="410.0" />
+                        <TextField fx:id="firstNameLabel" layoutX="235.0" layoutY="13.0" prefHeight="27.0" prefWidth="410.0" />
                         <Label layoutX="40.0" layoutY="57.0" prefHeight="23.0" prefWidth="195.0" text="Last Name">
                            <font>
                               <Font size="18.0" />
@@ -92,14 +92,14 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox layoutX="235.0" layoutY="334.0" prefHeight="27.0" prefWidth="169.0" />
+                        <ChoiceBox fx:id="degreeChoice" layoutX="235.0" layoutY="334.0" prefHeight="27.0" prefWidth="169.0" />
                         <Label layoutX="40.0" layoutY="375.0" prefWidth="195.0" text="Branch">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <TextField fx:id="branchLabel" layoutX="235.0" layoutY="373.0" prefHeight="27.0" prefWidth="170.0" />
-                        <DatePicker layoutX="235.0" layoutY="139.0" />
+                        <DatePicker fx:id="dobBox" layoutX="235.0" layoutY="139.0" />
                         <Label layoutX="38.0" layoutY="412.0" prefHeight="23.0" prefWidth="195.0" text="Pass-out Year">
                            <font>
                               <Font size="17.0" />

@@ -114,6 +114,43 @@ public class EnquiryDetails {
 		this.activeStatus = activeStatus;
 	}
 
+	
+	
+	
+	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
+			String address, Date birthDate, String college, String degree, String branch, Integer createdBy,
+			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
+			Integer coursesInterestedIn, String reference, Integer timeSlotsId, Integer courseAlreadyDone,
+			Integer segmentTypeId, String suggestion, Boolean activeStatus) {
+		super();
+		this.enquiryId = enquiryId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.createdBy = createdBy;
+		this.dateofEnquiry = dateofEnquiry;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.recommendation = recommendation;
+		this.eligibility = eligibility;
+		this.coursesInterestedIn = coursesInterestedIn;
+		this.reference = reference;
+		this.timeSlotsId = timeSlotsId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.segmentTypeId = segmentTypeId;
+		this.suggestion = suggestion;
+		this.activeStatus = activeStatus;
+	}
+
+
+
+
 	/**
 	 * @return the enquiryId
 	 */

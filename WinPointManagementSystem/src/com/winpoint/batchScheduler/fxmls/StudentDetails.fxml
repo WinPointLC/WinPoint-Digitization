@@ -62,7 +62,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </TableView>
-                  <Label fx:id="labelTrial" prefHeight="17.0" prefWidth="128.0" GridPane.columnIndex="1" />
+                  <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="128.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
