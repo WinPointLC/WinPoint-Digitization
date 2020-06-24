@@ -62,13 +62,13 @@
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.46060606060606063" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="200.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <VBox prefHeight="628.0" prefWidth="294.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="628.0" prefWidth="294.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ComboBox fx:id="selectLectureNumber" onAction="#listOfLectureNumber" prefHeight="30.0" prefWidth="280.0" promptText="Select Lecture" />
+                        <ComboBox fx:id="selectLectureNumber" maxHeight="30.0" maxWidth="1800.0" onAction="#listOfLectureNumber" prefHeight="30.0" prefWidth="280.0" promptText="Select Lecture" />
                         <HBox prefHeight="27.0" prefWidth="280.0" spacing="5.0">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Date :">
@@ -91,9 +91,9 @@
                         </HBox>
                         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" VBox.vgrow="ALWAYS">
                           <content>
-                            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="264.0">
+                            <AnchorPane>
                                  <children>
-                                    <TableView fx:id="updateAttendanceRecordTable" editable="true" prefHeight="376.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="updateAttendanceRecordTable" editable="true" minHeight="400.0" minWidth="300.0" prefHeight="437.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
                                         <TableColumn fx:id="updateAttendanceRecordTableStudentColumn" prefWidth="75.0" text="Students" />
                                         <TableColumn fx:id="updateAttendanceRecordTableAttendanceColumn" prefWidth="75.0" text="Attendance" />
@@ -106,6 +106,7 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
+                        <Button fx:id="saveAttendance" maxHeight="-Infinity" minHeight="-Infinity" minWidth="50.0" mnemonicParsing="false" onAction="#saveAttendance" prefHeight="50.0" prefWidth="150.0" text="Save" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
