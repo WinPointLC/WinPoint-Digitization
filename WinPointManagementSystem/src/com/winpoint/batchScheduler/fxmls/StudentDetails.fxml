@@ -53,16 +53,24 @@
                   <Label text="Date  of Enquiry" GridPane.rowIndex="6" />
                   <Label text="Suggestion" GridPane.rowIndex="7" />
                   <Label prefHeight="17.0" prefWidth="116.0" text="Course Interested in" GridPane.rowIndex="8" />
-                  <TableView prefHeight="164.0" prefWidth="556.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <TableView fx:id="eligibilityTable" prefHeight="164.0" prefWidth="556.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                     <columns>
-                      <TableColumn prefWidth="181.0" text="Courses" />
-                      <TableColumn prefWidth="161.0" style="fx-border: #ADD8E6;" text="Eligibility" />
+                      <TableColumn fx:id="courseCol" prefWidth="181.0" text="Courses" />
+                      <TableColumn fx:id="eligiblityCol" prefWidth="161.0" style="fx-border: #ADD8E6;" text="Eligibility" />
                     </columns>
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>
                   </TableView>
-                  <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="128.0" GridPane.columnIndex="1" />
+                  <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="223.0" GridPane.columnIndex="1" />
+                  <Label fx:id="collegeLabel" prefHeight="17.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="yearLabel" prefHeight="17.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="branchLabel" prefHeight="17.0" prefWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="dateofEnquiryLabel" prefHeight="17.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="contactLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="suggestionLabel" prefHeight="17.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="coursesInterestedLabel" prefHeight="17.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>
