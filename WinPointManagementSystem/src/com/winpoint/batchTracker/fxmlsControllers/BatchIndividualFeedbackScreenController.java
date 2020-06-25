@@ -5,8 +5,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -29,10 +33,10 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     private ImageView logo;
 
     @FXML
-    private TableView<?> individualFeedbackTable;
+    private TableView<UserProfile> individualFeedbackTable;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableNameColumn;
+    private TableColumn<String, UserProfile> individualFeedbackTableNameColumn;
 
     @FXML
     private TableColumn<?, ?> individualFeedbackTableInstructorColumn;
@@ -41,10 +45,10 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     private TableColumn<?, ?> individualFeedbackTableDuration;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableEmailId;
+    private TableColumn<String, UserProfile> individualFeedbackTableEmailId;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableMobile;
+    private TableColumn<String, UserProfile> individualFeedbackTableMobile;
 
     @FXML
     private TableColumn<?, ?> individualFeedbackTableStatus;
@@ -116,6 +120,21 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     }
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	
+    	
+    	individualFeedbackTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    	//individualFeedbackTableInstructorColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+    	//individualFeedbackTableDuration.setCellValueFactory(new PropertyValueFactory<>(""));
+    	individualFeedbackTableEmailId.setCellValueFactory(new PropertyValueFactory<>("email")); 
+    	individualFeedbackTableMobile.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
+    	//individualFeedbackTableStatus.setCellValueFactory(new PropertyValueFactory<>("atualInstallment3Date")); 
+    	
+    	
+    	UserProfile obj=new UserProfile("Purva", "purvakhot@gmail.com", "9846738933");
+    		UserProfile obj1=new UserProfile("Suhasi", "suhasib@gmail.com", "9846778933");
+			ObservableList<UserProfile> data =FXCollections.observableArrayList(obj,obj1);
+			UserProfile.setItems((ObservableList<UserProfile>)data);
+    	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
