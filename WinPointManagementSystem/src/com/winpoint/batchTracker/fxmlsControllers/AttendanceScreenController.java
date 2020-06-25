@@ -31,13 +31,18 @@ public class AttendanceScreenController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private ComboBox<?> selectLectureNumber;
+    private ComboBox<String> selectLectureNumber = new ComboBox<>();
+    
+    String[] lectureno = {"Lecture1", "Lecture2","Lecture3"};
 
     @FXML
     private Text selectedLectureNumberDate;
 
     @FXML
     private TableView<?> updateAttendanceRecordTable;
+    
+    @FXML
+    private Button saveAttendance;
 
     @FXML
     private TableColumn<?, ?> updateAttendanceRecordTableStudentColumn;
@@ -105,8 +110,17 @@ public class AttendanceScreenController extends ParentFXMLController{
     	System.out.println(event);
     }
     
+    @FXML
+    void saveAttendance(ActionEvent event) {
+
+    }
+
+    
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	
+    	selectLectureNumber.getItems().addAll(lectureno);
+    	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

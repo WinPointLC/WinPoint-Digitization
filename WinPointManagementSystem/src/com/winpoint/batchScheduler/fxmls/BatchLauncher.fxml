@@ -67,19 +67,19 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <TextField fx:id="batchnumber" GridPane.columnIndex="1" />
-                  <TextField fx:id="lecturenumber" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="totalnumberoflecture" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="faculty" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="begindate" onAction="#beginDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <DatePicker fx:id="enddate" onAction="#endDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <CheckBox fx:id="morning" mnemonicParsing="false" text="Morning" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="evening" mnemonicParsing="false" text="Evening" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="batchNumber" GridPane.columnIndex="1" />
+                  <TextField fx:id="lectureNumber" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="totalNumberOfLecture" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="facultyId" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="beginDate" onAction="#beginDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <DatePicker fx:id="endDate" onAction="#endDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <CheckBox fx:id="morningBox" mnemonicParsing="false" text="Morning" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="eveningBox" mnemonicParsing="false" text="Evening" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="105.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <CheckBox fx:id="weekend" mnemonicParsing="false" text="Weekend" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <CheckBox fx:id="weekendBox" mnemonicParsing="false" text="Weekend" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="200.0" />
                      </GridPane.margin>

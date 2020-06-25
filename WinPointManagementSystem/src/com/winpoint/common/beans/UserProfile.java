@@ -3,6 +3,8 @@ package com.winpoint.common.beans;
 import java.awt.Image;
 import java.util.Date;
 
+import javafx.collections.ObservableList;
+
 public class UserProfile {
 	private Integer userId;
 	private String firstName;
@@ -67,6 +69,18 @@ public class UserProfile {
 	 * @param courseAlreadyDone
 	 * @param activeStatus
 	 */
+	
+	
+	
+	public UserProfile(String firstName,  String email, String mobileNumber) {
+		super();
+		
+		this.firstName = firstName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+	}
+	
+	
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, Integer securityQuestionId, String securityAnswer, Integer userCategoryId,
@@ -642,5 +656,12 @@ public class UserProfile {
 	public void setActiveStatus(Boolean activeStatus) {
 		this.activeStatus = activeStatus;
 	}
+
+
+	public static void setItems(ObservableList<UserProfile> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

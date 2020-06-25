@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 
@@ -31,7 +30,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
 
     @FXML
     private ImageView logo;
-    
+        
     @FXML
     private TableView<EnquiryDetails> detailsTable;
     
@@ -48,7 +47,11 @@ public class EnquiryDetailsController extends ParentFXMLController{
     private TableColumn<EnquiryDetails, String> suggestionCol;
 
     @FXML
-    private TableColumn<EnquiryDetails, Boolean> updateCol;
+    private TableColumn<EnquiryDetails, Boolean> updateCol= new TableColumn<>("Update");
+    
+   
+    
+    
 
 	
     @FXML
@@ -64,6 +67,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
+    	
     	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	courseCol.setCellValueFactory(new PropertyValueFactory<>("college"));
     	eligibilityCol.setCellValueFactory(new PropertyValueFactory<>("eligibility"));

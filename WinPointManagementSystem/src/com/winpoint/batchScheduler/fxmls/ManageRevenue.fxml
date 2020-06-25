@@ -28,7 +28,7 @@
                               <Insets top="25.0" />
                            </padding>
                            <children>
-                              <ChoiceBox prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                              <ChoiceBox accessibleHelp="eddede" accessibleText="ddde" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                               <Region prefHeight="50.0" prefWidth="200.0" />
                               <TextField prefHeight="25.0" prefWidth="250.0" text="Reciept No." HBox.hgrow="ALWAYS" />
                               <Region prefHeight="200.0" prefWidth="200.0" />
@@ -59,7 +59,7 @@
                               <TextField prefHeight="25.0" prefWidth="150.0" text="B. No." />
                            </children>
                         </HBox>
-                        <HBox prefHeight="75.0" prefWidth="600.0">
+                        <HBox accessibleText="Select" prefHeight="75.0" prefWidth="600.0">
                            <padding>
                               <Insets top="25.0" />
                            </padding>

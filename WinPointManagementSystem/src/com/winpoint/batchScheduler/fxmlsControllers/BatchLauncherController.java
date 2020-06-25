@@ -21,72 +21,56 @@ import javafx.stage.Stage;
 
 public class BatchLauncherController extends ParentFXMLController {
 
-	@FXML
-    private TextField batchnumber;
-    public void getbatchnumber() {
-     	String bd = batchnumber.getText();
-    	System.out.println(bd);
-    }
-    
-    @FXML
-    private TextField lecturenumber;
-    int ln;
-    public void getlecturenumber() {
-    	ln = Integer.parseInt(lecturenumber.getText());
-    }
+	 @FXML
+	    private TextField batchNumber;
 
-    @FXML
-    private TextField totalnumberoflecture;
-    public void gettotalnumberoflecture() {
-    	totalnumberoflecture.getText();
-    }
-    @FXML
-    private TextField faculty;
-    int facultyid;
-    public void getfaculty() {
-    	facultyid = Integer.parseInt(faculty.getText());
-    }
-    
-    @FXML
-    private DatePicker begindate = new DatePicker();
-    //begindate.setOnAction(new EventHandler());
-    public void getbegindate() {
-    	begindate.getValue();
-    }
-    
-    @FXML
-    private DatePicker enddate;
-    public void getenddate() {
-    	enddate.getValue();
-    }
+	    @FXML
+	    private TextField lectureNumber;
 
-    @FXML
-    private CheckBox morning;
-    
-    @FXML
-    private CheckBox evening;
+	    @FXML
+	    private TextField totalNumberOfLecture;
 
-    @FXML
-    private CheckBox weekend;
+	    @FXML
+	    private TextField faculty;
 
-    @FXML
-    private Button cancel;
+	    @FXML
+	    private DatePicker beginDate;
 
-    @FXML
-    private Button launch;
+	    @FXML
+	    private DatePicker endDate;
 
-    @FXML
-    private ImageView logo;
+	    @FXML
+	    private CheckBox morningBox;
 
-    @FXML
-    void beginDateFrame(ActionEvent event) {
-    	
-    }
-    
-    @FXML
-    void endDateFrame(ActionEvent event) {
+	    @FXML
+	    private CheckBox eveningBox;
 
-    }
+	    @FXML
+	    private CheckBox weekendBox;
+
+	    @FXML
+	    private Button cancel;
+
+	    @FXML
+	    private Button launch;
+
+	    @FXML
+	    private ImageView logo;
+	    
+	    int facultyId;
+
+	    @FXML
+	    void beginDateFrame(ActionEvent event) {
+
+	    }
+
+
+	    @FXML
+	    void endDateFrame(ActionEvent event) {
+
+	    }
+
+	 
     
     @FXML
     void cancelFrame(ActionEvent event) {
@@ -112,7 +96,7 @@ public class BatchLauncherController extends ParentFXMLController {
 			
 			myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/BatchDetails.fxml"));
 			//adds the data to the DataBase
-			BatchDetails obj = new BatchDetails(batchnumber.getText(),facultyid);
+			BatchDetails obj = new BatchDetails(batchNumber.getText(),facultyId);
 
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);

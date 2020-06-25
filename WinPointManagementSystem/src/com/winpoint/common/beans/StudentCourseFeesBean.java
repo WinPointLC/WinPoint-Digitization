@@ -9,6 +9,15 @@ public class StudentCourseFeesBean {
 	private String feeStatus;
 	private Integer fees;
 	
+	
+	public StudentCourseFeesBean( String fisrtName, String feeStatus) {
+		
+		this.fisrtName = fisrtName;
+		
+		this.feeStatus = feeStatus;
+		
+	}
+	
 	public StudentCourseFeesBean(Integer userId, String fisrtName, String lastName, Integer courseId, String courseName,
 			String feeStatus, Integer fees) {
 		this.userId = userId;
