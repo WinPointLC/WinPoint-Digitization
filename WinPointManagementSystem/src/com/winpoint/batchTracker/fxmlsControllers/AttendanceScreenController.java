@@ -40,6 +40,9 @@ public class AttendanceScreenController extends ParentFXMLController{
 
     @FXML
     private TableView<?> updateAttendanceRecordTable;
+    
+    @FXML
+    private Button saveAttendance;
 
     @FXML
     private TableColumn<?, ?> updateAttendanceRecordTableStudentColumn;
@@ -106,6 +109,12 @@ public class AttendanceScreenController extends ParentFXMLController{
     void listOfLectureNumber(ActionEvent event) {
     	System.out.println(event);
     }
+    
+    @FXML
+    void saveAttendance(ActionEvent event) {
+
+    }
+
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {

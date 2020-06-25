@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.Lecture;
 import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
@@ -20,70 +21,78 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LectureScreenController extends ParentFXMLController{
+	
+	Lecture dataObject;
+	
+ 	@FXML
+    private Button backButton;
 
-	 @FXML
-	    private Button backButton;
+    @FXML
+    private Text batchName;
 
-	    @FXML
-	    private Text batchName;
+    @FXML
+    private ImageView logo;
 
-	    @FXML
-	    private ImageView logo;
+    @FXML
+    private Text currentLectureNumber;
 
-	    @FXML
-	    private Text currentLectureNumber;
+    @FXML
+    private Text startDateDisplay;
 
-	    @FXML
-	    private Text startDateDisplay;
+    @FXML
+    private Slider lectureSelectionSlider;
 
-	    @FXML
-	    private Slider lectureSelectionSlider;
+    @FXML
+    private Text endDateDisplay;
 
-	    @FXML
-	    private Text endDateDisplay;
+    @FXML
+    private Button progressTrackerButton;
 
-	    @FXML
-	    private Button progressTrackerButton;
+    @FXML
+    private Button feesRecordsButton;
 
-	    @FXML
-	    private Button feesRecordsButton;
+    @FXML
+    private Button attendanceRecordsButton;
 
-	    @FXML
-	    private Button attendanceRecordsButton;
+    @FXML
+    private Button assignmentsButton;
 
-	    @FXML
-	    private Button assignmentsButton;
+    @FXML
+    private Button feedbackButton;
 
-	    @FXML
-	    private Button feedbackButton;
+    @FXML
+    private Button evaluationButton;
 
-	    @FXML
-	    private Button evaluationButton;
+    @FXML
+    private Button editBatchDetailsButton;
 
-	    @FXML
-	    private Button editBatchDetailsButton;
+    @FXML
+    private Text selectedLectureDate;
 
-	    @FXML
-	    private Text selectedLectureDate;
+    @FXML
+    private Text selectedLectureDuration;
 
-	    @FXML
-	    private Text selectedLectureDuration;
+    @FXML
+    private Text selectedLectureTime;
 
-	    @FXML
-	    private Text selectedLectureTime;
+    @FXML
+    private Text classStrengthNumber;
 
-	    @FXML
-	    private Text classStrengthNumber;
+    @FXML
+    private Text selectedLectureNumber;
 
-	    @FXML
-	    private Text selectedLectureNumber;
+    @FXML
+    private TextArea displayCoursePlan;
 
-	    @FXML
-	    private TextArea displayCoursePlan;
+    @FXML
+    private TextArea displayLectureCoverage;
 
-	    @FXML
-	    private TextArea displayLectureCoverage;
-
+    public void setRecievedData(ArrayList<String> recievedData) {
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
+    }    
+	    
     @FXML
     void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -101,12 +110,6 @@ public class LectureScreenController extends ParentFXMLController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-    
-    public void setRecievedData(ArrayList<String> recievedData) {
-        for(String data : recievedData) {
-            System.out.println(data);
-        }
     }
     
     @FXML
@@ -346,5 +349,7 @@ public class LectureScreenController extends ParentFXMLController{
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
+		
+		
 	}
 }
