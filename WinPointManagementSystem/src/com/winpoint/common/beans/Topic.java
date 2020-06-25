@@ -16,6 +16,7 @@ public class Topic {
 	 * @param topicName
 	 * @param minimumNoOfQuestionsForTest
 	 */
+	
 	public Topic(Integer topicId, Integer courseId, String topicName, Integer minimumNoOfQuestionsForTest) {
 		super();
 		this.courseId = courseId;
@@ -26,6 +27,14 @@ public class Topic {
 		this.createdDate = createdDate;
 	}
 	
+	public Topic(String topicName, Integer topicDuration) {
+		super();
+		this.topicName = topicName;
+		this.topicDuration = topicDuration;
+	}
+
+	
+
 	public Integer getTopicDuration() {
 		return topicDuration;
 	}

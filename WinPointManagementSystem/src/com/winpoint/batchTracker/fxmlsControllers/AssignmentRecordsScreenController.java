@@ -5,8 +5,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,22 +39,22 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     private ImageView logo;
 
     @FXML
-    private TableView<?> assignmentsTable;
+    private TableView<StudentCourseDetails> assignmentsTable;
 
     @FXML
     private TableColumn<?, ?> assignmentsTableNameColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableFeeStatusColumn;
+    private TableColumn<String, StudentCourseDetails> assignmentsTableFeeStatusColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableCoursewareColumn;
+    private TableColumn<String, StudentCourseDetails> assignmentsTableCoursewareColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableAssignmentsIssuedColumn;
+    private TableColumn<String, StudentCourseDetails> assignmentsTableAssignmentsIssuedColumn;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableAssignmentsSubmittedColumn;
+    private TableColumn<String, StudentCourseDetails> assignmentsTableAssignmentsSubmittedColumn;
     
     
     public void setRecievedData(ArrayList<String> recievedData) {
@@ -90,8 +95,20 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     }
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
-   		// TODO Auto-generated method stub
-   		super.initialize(location, resources);
+    	
+    	super.initialize(location, resources);
    		logo.setImage(logoImage);
+ 
+   		// Row Population logic
+   		//assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+   		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
+   		assignmentsTableCoursewareColumn.setCellValueFactory(new PropertyValueFactory<>("coursewareIssued"));
+   		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
+   		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
+	    //fx:ID : Column Name
+   		
+	    ObservableList<StudentCourseDetails> studentCourseDetailRecord = FXCollections.observableArrayList(new StudentCourseDetails("Paid","yes","yes","yes"));
+	    
+	    assignmentsTable.setItems((ObservableList<StudentCourseDetails>) studentCourseDetailRecord);
    	}
 }
