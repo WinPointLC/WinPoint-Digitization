@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,14 +83,18 @@ public class BatchDetailsController extends ParentFXMLController{
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
- 
-   		// Row Population logic
-	    batchId.setCellValueFactory(new PropertyValueFactory<>("batchId"));
-	    faculty.setCellValueFactory(new PropertyValueFactory<>("facultyId"));
-	    //fx:ID : Column Name
-	    ObservableList<BatchDetails> batchDetailRecords = FXCollections.observableArrayList(new BatchDetails(" 1 ",2),new BatchDetails(" 2 ",3));
-	    
-   		batchDetails.setItems((ObservableList<BatchDetails>) batchDetailRecords);
+
+   		BatchDetailsHelper batchDetailsObject = new BatchDetailsHelper(); 	 
+		// Row Population logic
+   		batchId.setCellValueFactory(new PropertyValueFactory<>("batchId"));
+   		faculty.setCellValueFactory(new PropertyValueFactory<>("facultyId"));
+   		//fx:ID : Column Name
+   		ObservableList<BatchDetails> batchDetailRecords = FXCollections.observableArrayList(batchDetailsObject.getBatchDetailsList());
+    
+		batchDetails.setItems((ObservableList<BatchDetails>) batchDetailRecords);
+   		
+   		
+   		
    	}
 }
 

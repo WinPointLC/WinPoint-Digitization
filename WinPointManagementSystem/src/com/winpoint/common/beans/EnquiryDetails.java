@@ -7,7 +7,7 @@ import java.util.Date;
  *
  */
 
-public class EnquiryDetails {
+public class EnquiryDetails extends UserProfile {
 	
 	private Integer enquiryId;
 	private String firstName;
@@ -30,7 +30,7 @@ public class EnquiryDetails {
 	private String gender;
 	private Integer yearOfGraduation;
 	private String recommendation;
-	private  Boolean eligibility;
+	private Boolean eligibility;
 	private Integer coursesInterestedIn;
 	private String reference;
 	private Integer timeSlotsId;
@@ -40,6 +40,7 @@ public class EnquiryDetails {
 	private String suggestion;
 	private Boolean activeStatus;
 	
+	private String student;
 	
 	/**
 	@param enquiryId;
@@ -74,6 +75,9 @@ public class EnquiryDetails {
 	@param activeStatus;
 	*/
 	
+	public EnquiryDetails(String student) {
+		this.setStudent(student);
+	}
 	
 	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
@@ -579,6 +583,16 @@ public class EnquiryDetails {
 	 */
 	public void setActiveStatus(Boolean activeStatus) {
 		this.activeStatus = activeStatus;
+	}
+
+
+	public String getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(String student) {
+		this.student = student;
 	}
 	
 	
