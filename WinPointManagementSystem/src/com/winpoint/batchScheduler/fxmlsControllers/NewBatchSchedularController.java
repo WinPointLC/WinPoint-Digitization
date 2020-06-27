@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -21,6 +22,11 @@ public class NewBatchSchedularController extends ParentFXMLController {
 
 	    @FXML
 	    private Button cancel;
+	    
+	    @FXML
+	    private ChoiceBox<String> engagementTypeDropBox;
+	    
+	    String[] choices= {"Student","Organization","Individual", "Weekends"};
 
 	    @FXML
 	    void cancelFrame(ActionEvent event) throws IOException {
@@ -35,6 +41,7 @@ public class NewBatchSchedularController extends ParentFXMLController {
 	    @Override
 	   	public void initialize(URL location, ResourceBundle resources) {
 	   		// TODO Auto-generated method stub
+	    	engagementTypeDropBox.getItems().addAll(choices);
 	   		super.initialize(location, resources);
 	   		logo.setImage(logoImage);
 	   		

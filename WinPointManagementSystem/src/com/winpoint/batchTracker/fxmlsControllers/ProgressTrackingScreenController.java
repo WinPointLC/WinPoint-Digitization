@@ -5,8 +5,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.StudentCourseDetails;
+import com.winpoint.common.beans.Topic;
 import com.winpoint.common.controllers.ParentFXMLController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -48,13 +53,13 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
     private TextField progressTrackingRemainingTopics;
 
     @FXML
-    private TableView<?> topicsTable;
+    private TableView<Topic> topicsTable;
 
     @FXML
-    private TableColumn<?, ?> topicsTableTopicNameColumn;
+    private TableColumn<String, Topic> topicsTableTopicNameColumn;
 
     @FXML
-    private TableColumn<?, ?> topicsTableTopicDurationColumn;
+    private TableColumn<Integer, Topic> topicsTableTopicDurationColumn;
 
     @FXML
     private PieChart processTrackingPieChart;
@@ -85,5 +90,13 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
+   		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
+   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
+   		
+	    //fx:ID : Column Name
+	    ObservableList<Topic> topic = FXCollections.observableArrayList(new Topic("Functions",20));
+	    
+	    topicsTable.setItems((ObservableList<Topic>) topic);
    	}
+   	
 }

@@ -48,7 +48,7 @@
             <Insets bottom="25.0" left="25.0" right="25.0" />
          </BorderPane.margin>
          <children>
-            <ChoiceBox prefHeight="25.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            <ChoiceBox fx:id="engagementTypeDropBox" prefHeight="25.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="25.0" prefWidth="100.0" text="Cancel" HBox.hgrow="ALWAYS" />
          </children>

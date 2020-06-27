@@ -57,7 +57,10 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     private Button saveBatchDetails;
 
     @FXML
-    private ComboBox<?> selectlecture;
+    
+    private ComboBox<String> selectLecture = new ComboBox<>();
+    
+    String[] lecture = {"Lecture1", "Lecture2","Lecture3"};
 
     @FXML
     private DatePicker lectureDate;
@@ -72,7 +75,9 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     private TextArea lectureComments;
 
     @FXML
-    private ComboBox<?> lectureTopics;
+    private ComboBox<String> lectureTopics = new ComboBox<>();
+    
+    String[] topics = {"Operators", "Arrays","Pointers", "Structures"};
 
     @FXML
     private Button resetLecture;
@@ -149,6 +154,10 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     }
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
+    	
+    	selectLecture.getItems().addAll(lecture);
+    	lectureTopics.getItems().addAll(topics);
+    	
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);

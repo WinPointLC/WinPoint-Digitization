@@ -71,7 +71,7 @@ public class SignUpFormController extends ParentFXMLController {
     private DatePicker dobBox;
     
     @FXML
-    private ChoiceBox<String> degreeChoice = new ChoiceBox<>();
+    private ChoiceBox<String> degreeChoice = new ChoiceBox<>(); 
     
     String[] choices= {"First Year","Second Year","Third Year", "B. Tech"};
 

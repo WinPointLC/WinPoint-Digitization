@@ -33,6 +33,16 @@ public class StudentCourseDetails {
 	 * @param createdBy
 	 * @param createdDate
 	 */
+	
+	
+	public StudentCourseDetails( String feeStatus, String coursewareIssued, String assignmentsIssued, String assignmentsSubmitted) {
+		super();
+		
+		this.feeStatus = feeStatus;
+		this.coursewareIssued = coursewareIssued;
+		this.assignmentsIssued = assignmentsIssued;
+		this.assignmentsSubmitted = assignmentsSubmitted;
+	}
 	public StudentCourseDetails(Integer userId, Integer courseId, Integer batchId, String isFeedbackGiven, String isCertificateGiven,
 			Integer courseAggr, String gradeId, String feeStatus, Integer createdBy, Date createdDate) {
 		super();

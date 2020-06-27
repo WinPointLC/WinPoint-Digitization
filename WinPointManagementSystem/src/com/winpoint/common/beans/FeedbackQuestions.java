@@ -8,7 +8,7 @@ public class FeedbackQuestions {
 	private String feedbackQuestionType;
 	private Integer createdBy;
 	private Date createdDate;
-	private Integer FeedbackCategoryId;
+	private Integer feedbackCategoryId;
 	/**
 	 * @param feedbackQuestionId
 	 * @param feedbackQuestion
@@ -64,6 +64,7 @@ public class FeedbackQuestions {
 		this.feedbackQuestionType = feedbackQuestionType;
 	}
 
+	
 	public FeedbackQuestions(Integer feedbackQuestionId, String feedbackQuestion, String feedbackQuestionType,
 			Integer createdBy, Date createdDate, Integer feedbackCategoryId) {
 		super();
@@ -72,15 +73,15 @@ public class FeedbackQuestions {
 		this.feedbackQuestionType = feedbackQuestionType;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
-		FeedbackCategoryId = feedbackCategoryId;
+		this.feedbackCategoryId = feedbackCategoryId;
 	}
 
 	public Integer getFeedbackCategoryId() {
-		return FeedbackCategoryId;
+		return feedbackCategoryId;
 	}
 
 	public void setFeedbackCategoryId(Integer feedbackCategoryId) {
-		FeedbackCategoryId = feedbackCategoryId;
+		this.feedbackCategoryId = feedbackCategoryId;
 	}
 
 	/**

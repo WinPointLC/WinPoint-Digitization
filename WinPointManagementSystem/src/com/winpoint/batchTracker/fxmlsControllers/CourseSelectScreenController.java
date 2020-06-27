@@ -20,10 +20,15 @@ import javafx.stage.Stage;
 public class CourseSelectScreenController extends ParentFXMLController{
 
     @FXML
-    private ComboBox<?> selectStream;
+    private ComboBox<String> selectStream = new ComboBox<>();
+    
+    String[] streams = {"Technical", "Soft Skills","Behavioural Skills"};
+
 
     @FXML
-    private ComboBox<?> selectCourseType;
+    private ComboBox<String> selectCourseType = new ComboBox<>();
+    
+    String[] courses = {"Modular", "CRT","TBC"};
 
     @FXML
     private ImageView logo;
@@ -59,7 +64,8 @@ public class CourseSelectScreenController extends ParentFXMLController{
 
     @FXML
     void getStream(ActionEvent event) {
-    	System.out.println(event);
+    	
+
     }
     
     @FXML
@@ -95,6 +101,9 @@ public class CourseSelectScreenController extends ParentFXMLController{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	  
+    	selectCourseType.getItems().addAll(courses);
+    	selectStream.getItems().addAll(streams);
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

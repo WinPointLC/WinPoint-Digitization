@@ -159,7 +159,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="623.0" prefWidth="698.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ComboBox fx:id="selectlecture" onAction="#getLectureList" prefHeight="30.0" prefWidth="400.0" promptText="Select Lecture" />
+                        <ComboBox fx:id="selectLecture" onAction="#getLectureList" prefHeight="30.0" prefWidth="400.0" promptText="Select Lecture" />
                         <GridPane prefHeight="158.0" prefWidth="378.0" VBox.vgrow="ALWAYS">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

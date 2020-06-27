@@ -149,7 +149,22 @@ public class EnquiryDetails extends UserProfile {
 		this.courseAlreadyDone = courseAlreadyDone;
 		this.segmentTypeId = segmentTypeId;
 		this.suggestion = suggestion;
-		this.activeStatus = activeStatus;
+		this.activeStatus = activeStatus; 
+	}
+	
+	
+	
+
+
+
+
+	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String address) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
 	}
 
 
