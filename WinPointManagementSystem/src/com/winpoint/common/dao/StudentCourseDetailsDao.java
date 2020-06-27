@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+//import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+//import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Rules;
 import com.winpoint.common.beans.SecurityQuestions;
 import com.winpoint.common.beans.Stream;
@@ -18,8 +18,7 @@ import com.winpoint.common.util.sql.ConnectionManager;
 public class StudentCourseDetailsDao {
 
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId) {
-		
-		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<>();
+		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<>();		
 		
 		ResultSet resultSet = null;
 		
@@ -59,11 +58,14 @@ public class StudentCourseDetailsDao {
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		} 
+		
+		
 		return studentCourseDetailsList;
+		
 		
 	}
 	
-public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId) {
+	public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId) {
 		
 		ArrayList<StudentCourseDetails> studentGACourseDetailsList = new ArrayList<>();
 		
@@ -137,5 +139,25 @@ public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId)
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	
+	
+	public ArrayList<StudentCourseDetails> getStudentCourseDetails() {		
+		ArrayList<StudentCourseDetails> studentCourseDetails = new ArrayList<StudentCourseDetails>();
+		StudentCourseDetails studentCourseDetails1,studentCourseDetails2,studentCourseDetails3;
+		
+		studentCourseDetails1 = new StudentCourseDetails(10, null, null, null, null, null, 10, null, null, null, null, 
+				"partialy paid", null, null, null, null, null, null, null);
+		studentCourseDetails2 = new StudentCourseDetails(11, null, null, null, null, null, 20, null, null, null, null, 
+				"paid", null, null, null, null, null, null, null);
+		studentCourseDetails3 = new StudentCourseDetails(12, null, null, null, null, null, 50, null, null, null, null, 
+				"not paid", null, null, null, null, null, null, null);
+		
+		studentCourseDetails.add(studentCourseDetails1);
+		studentCourseDetails.add(studentCourseDetails2);
+		studentCourseDetails.add(studentCourseDetails3);
+		
+		return studentCourseDetails;
 	}
 }

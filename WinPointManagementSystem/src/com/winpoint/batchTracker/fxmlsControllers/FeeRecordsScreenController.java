@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.FeeRecordsHelper;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 //import javafx.beans.property.ObjectProperty;
@@ -150,28 +151,14 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     	feeTableActualInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("actualInstallment3Date"));
     	feeTableDueAmountColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("dueAmount"));
     	
-   
-    		/*
-    		StudentCourseInstallmentDetails obj=new StudentCourseInstallmentDetails(2000, null, 
-    				3000, null,
-    				5999, null,5000);
-    		StudentCourseInstallmentDetails obj1=new StudentCourseInstallmentDetails(5000, null, 
-    				6750, null,
-    				8099, null, 5000);
-    		
-			ObservableList<StudentCourseInstallmentDetails> data =FXCollections.observableArrayList(obj,obj1);
-			
-			feeTable.setItems(data);
-			*/
-    	Date d1 = new Date(0);
-    	FeeRecordsScreenWrapper record1 = new FeeRecordsScreenWrapper(10, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
-    	FeeRecordsScreenWrapper record2 = new FeeRecordsScreenWrapper(11, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
-		
-    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(record1, record2);
-    	feeTable.setItems((ObservableList<FeeRecordsScreenWrapper>)data);
+//    	Date d1 = new Date(0);
+//    	FeeRecordsScreenWrapper record1 = new FeeRecordsScreenWrapper(10, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
+//    	FeeRecordsScreenWrapper record2 = new FeeRecordsScreenWrapper(11, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
+//		
+//    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(record1, record2);
+//    	feeTable.setItems((ObservableList<FeeRecordsScreenWrapper>)data);
     	
-//    	StudentCourseDetails studentCourseDetails;
-//    	studentCourseDetails = record1.getStudentCourseDetails();
+    	feeTable.setItems(new FeeRecordsHelper().getFeeRecordsScreenWrapper());
 
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
