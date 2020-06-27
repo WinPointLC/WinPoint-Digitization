@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.wrappers.CoursesNameWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,22 +27,22 @@ public class CoursesNameController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private TableView<EnquiryDetails> courseName;
+    private TableView<CoursesNameWrapper> courseName;
     
     @FXML
-    private TableColumn<String, EnquiryDetails> student;
+    private TableColumn<String, CoursesNameWrapper> student;
 
     @FXML
-    private TableColumn<?, ?> enquired;
+    private TableColumn<String, CoursesNameWrapper> enquired;
 
     @FXML
-    private TableColumn<?, ?> registered;
+    private TableColumn<String, CoursesNameWrapper> registered;
 
     @FXML
-    private TableColumn<?, ?> checkBox;
+    private TableColumn<?, CoursesNameWrapper> checkBox;
 
     @FXML
-    private TableColumn<?, ?> addButton;
+    private TableColumn<?, CoursesNameWrapper> addButton;
 
     @FXML
     private Button cancel;
@@ -76,11 +76,18 @@ public class CoursesNameController extends ParentFXMLController{
    		logo.setImage(logoImage);
  
    		// Row Population logic
-   		student.setCellValueFactory(new PropertyValueFactory<>("Student"));
-	    //fx:ID : Column Name.
-	    ObservableList<EnquiryDetails> courseNameRecords = FXCollections.observableArrayList(new EnquiryDetails("Aayush"));
+   		student.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Name"));
+   		enquired.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Enquired"));
+   		registered.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Registered"));
+	    //fx:ID : getter name without writting the get.
+   		
+   		CoursesNameWrapper record1 = new CoursesNameWrapper("Aayush", "Agarwal", "No", "Yes");
+   		CoursesNameWrapper record2 = new CoursesNameWrapper("Abhishek", "Dixit", "No", "Yes");
+   		CoursesNameWrapper record3 = new CoursesNameWrapper("Soham", "Shotri", "Yes", "No");
+   		
+   		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(record1, record2, record3);
 	    
-	    courseName.setItems((ObservableList<EnquiryDetails>) courseNameRecords);
+	    courseName.setItems((ObservableList<CoursesNameWrapper>) courseNameRecords);
    	}
 
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class EnquiryDetails extends UserProfile {
 	
-	private Integer enquiryId;
+	public Integer enquiryId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -42,6 +42,27 @@ public class EnquiryDetails extends UserProfile {
 	
 	private String student;
 	
+	private String enquired;
+	private String registered;
+	
+	
+	
+	public String getEnquired() {
+		return enquired;
+	}
+
+	public void setEnquired(String enquired) {
+		this.enquired = enquired;
+	}
+
+	public String getRegistered() {
+		return registered;
+	}
+
+	public void setRegistered(String registered) {
+		this.registered = registered;
+	}
+
 	/**
 	@param enquiryId;
 	@param firstName;
@@ -166,8 +187,6 @@ public class EnquiryDetails extends UserProfile {
 		this.mobileNumber = mobileNumber;
 		this.address = address;
 	}
-
-
 
 
 	/**
