@@ -6,10 +6,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.winpoint.common.beans.StudentCourseDetails;
-import com.winpoint.common.beans.StudentCourseFeesBean;
-import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.testClient.Wrapper;
+import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 //import javafx.beans.property.ObjectProperty;
 //import javafx.beans.property.SimpleObjectProperty;
@@ -59,55 +58,55 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     private TextField feeDueAmount;
 
     @FXML
-    private TableView<Wrapper> feeTable;
+    private TableView<FeeRecordsScreenWrapper> feeTable;
 
     @FXML
-    private TableColumn<Wrapper, String> feeTableNameColumn;
+    private TableColumn<FeeRecordsScreenWrapper, String> feeTableNameColumn;
 
     @FXML
-    private TableColumn<Wrapper, String> feeTableFeeStatusColumn;
+    private TableColumn<FeeRecordsScreenWrapper, String> feeTableFeeStatusColumn;
 
     @FXML
-    private TableColumn<Wrapper, String> feeTablePaymentModeColumn;
+    private TableColumn<FeeRecordsScreenWrapper, String> feeTablePaymentModeColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTablePlannedInstallment1Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTablePlannedInstallment1Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTablePlannedInstallment1DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTablePlannedInstallment1DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTableActualInstallment1Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTableActualInstallment1Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTableActualInstallment1DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTableActualInstallment1DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTablePlannedInstallment2Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTablePlannedInstallment2Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTablePlannedInstallment2DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTablePlannedInstallment2DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTableActualInstallment2Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTableActualInstallment2Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTableActualInstallment2DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTableActualInstallment2DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTablePlannedInstallment3Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTablePlannedInstallment3Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTablePlannedInstallment3DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTablePlannedInstallment3DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTableActualInstallment3Column;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTableActualInstallment3Column;
 
     @FXML
-    private TableColumn<Wrapper, Date> feeTableActualInstallment3DateColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Date> feeTableActualInstallment3DateColumn;
 
     @FXML
-    private TableColumn<Wrapper, Integer> feeTableDueAmountColumn;
+    private TableColumn<FeeRecordsScreenWrapper, Integer> feeTableDueAmountColumn;
     
     public void setRecievedData(ArrayList<String> recievedData) {
         for(String data : recievedData) {
@@ -135,22 +134,22 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
     	
-    	feeTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName")); 
-    	feeTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
-    	feeTablePaymentModeColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, String>("paymentMode"));
-    	feeTablePlannedInstallment1Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("plannedInstallment1"));
-    	feeTablePlannedInstallment1DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("plannedInstallment1Date"));
-    	feeTableActualInstallment1Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("actualInstallment1"));
-    	feeTableActualInstallment1DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("actualInstallment1Date"));
-    	feeTablePlannedInstallment2Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("plannedInstallment2"));
-    	feeTablePlannedInstallment2DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("plannedInstallment2Date"));
-    	feeTableActualInstallment2Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("actualInstallment2"));
-    	feeTableActualInstallment2DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("actualInstallment2Date"));
-    	feeTablePlannedInstallment3Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("plannedInstallment3"));
-    	feeTablePlannedInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("plannedInstallment3Date"));
-    	feeTableActualInstallment3Column.setCellValueFactory(new PropertyValueFactory<Wrapper, Integer>("actualInstallment3"));
-    	feeTableActualInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<Wrapper, Date>("actualInstallment3Date"));
-    	feeTableDueAmountColumn.setCellValueFactory(new PropertyValueFactory<>("dueAmount"));
+    	feeTableNameColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("name")); 
+    	feeTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("feeStatus"));
+    	feeTablePaymentModeColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("paymentMode"));
+    	feeTablePlannedInstallment1Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("plannedInstallment1"));
+    	feeTablePlannedInstallment1DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("plannedInstallment1Date"));
+    	feeTableActualInstallment1Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("actualInstallment1"));
+    	feeTableActualInstallment1DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("actualInstallment1Date"));
+    	feeTablePlannedInstallment2Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("plannedInstallment2"));
+    	feeTablePlannedInstallment2DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("plannedInstallment2Date"));
+    	feeTableActualInstallment2Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("actualInstallment2"));
+    	feeTableActualInstallment2DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("actualInstallment2Date"));
+    	feeTablePlannedInstallment3Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("plannedInstallment3"));
+    	feeTablePlannedInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("plannedInstallment3Date"));
+    	feeTableActualInstallment3Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("actualInstallment3"));
+    	feeTableActualInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("actualInstallment3Date"));
+    	feeTableDueAmountColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("dueAmount"));
     	
    
     		/*
@@ -165,37 +164,18 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 			
 			feeTable.setItems(data);
 			*/
-    	Wrapper record1 = new Wrapper(10, 5, "cash", 5000, null, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
-    	Wrapper record2 = new Wrapper(11, 5, "cash", 5000, null, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
+    	Date d1 = new Date(0);
+    	FeeRecordsScreenWrapper record1 = new FeeRecordsScreenWrapper(10, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
+    	FeeRecordsScreenWrapper record2 = new FeeRecordsScreenWrapper(11, 5, "paid", "cash", 5000, d1, 5000, null, 4000, null, 3500, null, 1000, null, 0, null, 1500);
 		
-    	ObservableList<Wrapper> data = FXCollections.observableArrayList(record1, record2);
+    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(record1, record2);
+    	feeTable.setItems((ObservableList<FeeRecordsScreenWrapper>)data);
     	
-    	feeTable.setItems(data);
-    	
+//    	StudentCourseDetails studentCourseDetails;
+//    	studentCourseDetails = record1.getStudentCourseDetails();
+
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 	}
 
-}
-
-class Wrapper{
-	StudentCourseInstallmentDetails studentCourseInstallmentDetailsObject;
-	StudentCourseDetails studentCourseDetailsObject;
-	
-	public Wrapper(Integer userId, Integer batchId, String feeStatus,
-			Integer plannedInstallment1, Date plannedInstallment1Date, Integer actualInstallment1, Date actualInstallment1Date,
-			Integer plannedInstallment2, Date plannedInstallment2Date, Integer actualInstallment2, Date actualInstallment2Date,
-			Integer plannedInstallment3, Date plannedInstallment3Date, Integer actualInstallment3, Date actualInstallment3Date,
-			Integer dueAmount) {
-		studentCourseDetailsObject = new StudentCourseDetails(userId, null, null, null, 
-				null, null, batchId, null, null, null, null, 
-				feeStatus, null, null, null, null, null, 
-				null, null);
-		
-		studentCourseInstallmentDetailsObject = new StudentCourseInstallmentDetails(userId, null, 
-				plannedInstallment1, plannedInstallment1Date, actualInstallment1, actualInstallment1Date, 
-				plannedInstallment2, plannedInstallment2Date, actualInstallment2, actualInstallment2Date, 
-				plannedInstallment3, plannedInstallment3Date, actualInstallment3, actualInstallment3Date, dueAmount);
-	}
-	
 }

@@ -118,8 +118,8 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     void sendToLectureScreen(ActionEvent event) {
     	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			myNewScene = loader.load();
 			LectureScreenController lectureScreenLecture = loader.getController();
 			
