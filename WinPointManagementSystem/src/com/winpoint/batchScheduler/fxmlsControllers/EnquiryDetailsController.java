@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
+import com.winpoint.common.helpers.EnquiryDetailsHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,24 +70,22 @@ public class EnquiryDetailsController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
     	
+    	EnquiryDetailsHelper enquiryDetailsObject = new EnquiryDetailsHelper(); 	
+    	
     	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	courseCol.setCellValueFactory(new PropertyValueFactory<>("college"));
     	eligibilityCol.setCellValueFactory(new PropertyValueFactory<>("eligibility"));
     	suggestionCol.setCellValueFactory(new PropertyValueFactory<>("suggestion")); 
     	updateCol.setCellValueFactory(new PropertyValueFactory<>(" activeStatus"));
-    	try {
-			EnquiryDetails eg=new EnquiryDetails(10, "Aayush ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
-					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
-					12, 1, "Passed", true);
-			EnquiryDetails eg2=new EnquiryDetails(10, "Shraddha  ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
-					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
-					12, 1, "Passed", true);
-			ObservableList<EnquiryDetails> data =FXCollections.observableArrayList(eg,eg2);
+    	
+//			EnquiryDetails eg=new EnquiryDetails();
+//			EnquiryDetails eg2=new EnquiryDetails(10, "Shraddha  ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
+//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
+//					12, 1, "Passed", true);
+				
+    		ObservableList<EnquiryDetails> data =FXCollections.observableArrayList(enquiryDetailsObject.getEnquiryDetailsList());
 			detailsTable.setItems(data);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
    
 			
 			 
