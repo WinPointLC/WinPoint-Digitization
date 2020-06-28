@@ -1,6 +1,5 @@
 package com.winpoint.common.beans;
 
-import java.awt.Image;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
@@ -32,7 +31,7 @@ public class UserProfile {
 	private Integer experience;
 	private Integer createdBy;
 	private Date createDate;
-	private String timeSlotsId;
+	private Integer timeSlotsId;
 	private Integer segmentTypeId;
 	private Integer courseAlreadyDone;
 	private Boolean activeStatus;
@@ -117,7 +116,7 @@ public class UserProfile {
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
-			String domain, String role, Integer experience) {//, Integer createdBy, Date createDate) {
+			String domain, String role, Integer experience) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -181,7 +180,7 @@ public class UserProfile {
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
-			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
+			String domain, String role, Integer experience, Integer createdBy, Date createDate, Integer timeSlotsId,
 			Integer segmentTypeId, Integer courseAlreadyDone, Boolean activeStatus) {
 		super();
 		this.userId = userId;
@@ -219,6 +218,14 @@ public class UserProfile {
 	public UserProfile() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public UserProfile(String firstName2, String lastName2, String enquired, String registered) {
+		// TODO Auto-generated constructor stub
+		String fullName = firstName2 + lastName2;
+		String enquiredStatus = enquired;
+		String registeredStatus = registered;
+	}
+
 
 	/**
 	 * @return the userId
@@ -599,7 +606,7 @@ public class UserProfile {
 	 * @return the timeSlotsId
 	 */
 	
-	public String getTimeSlotsId() {
+	public Integer getTimeSlotsId() {
 		return timeSlotsId;
 	}
 
@@ -608,7 +615,7 @@ public class UserProfile {
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
 	
-	public void setTimeSlotsId(String timeSlotsId) {
+	public void setTimeSlotsId(Integer timeSlotsId) {
 		this.timeSlotsId = timeSlotsId;
 	}
 

@@ -54,7 +54,7 @@ public class StudentCourseInstallmentDetails {
 		this.plannedInstallment3Date = plannedInstallment3Date;
 		this.actualInstallment3 = actualInstallment3;
 		this.actualInstallment3Date = actualInstallment3Date;
-		this.setDueAmount(dueAmount);
+		this.dueAmount = dueAmount;
 	}
 
 

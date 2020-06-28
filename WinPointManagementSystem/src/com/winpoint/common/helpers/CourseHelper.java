@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.dao.CourseDao;
@@ -17,4 +18,6 @@ public class CourseHelper {
 	public List<Test> getTestsList(int userId, int streamId, int courseTypeId, int courseId) {
 		return new CourseDao().getTestList(userId, courseId);
 	}
+	
 }
+
