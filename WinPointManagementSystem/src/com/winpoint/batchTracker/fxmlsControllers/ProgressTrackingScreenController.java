@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.TopicsHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,11 +91,12 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
+   		TopicsHelper topicsHelper = new TopicsHelper();
    		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
    		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
    		
 	    //fx:ID : Column Name
-	    ObservableList<Topic> topic = FXCollections.observableArrayList(new Topic("Functions",20));
+	    ObservableList<Topic> topic = FXCollections.observableArrayList(topicsHelper.getTopicsList(1));
 	    
 	    topicsTable.setItems((ObservableList<Topic>) topic);
    	}

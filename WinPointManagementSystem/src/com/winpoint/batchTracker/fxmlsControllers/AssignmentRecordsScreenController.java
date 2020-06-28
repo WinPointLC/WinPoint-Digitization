@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,7 +99,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
- 
+   		StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
    		// Row Population logic
    		//assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
    		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
@@ -107,7 +108,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
 	    //fx:ID : Column Name
    		
-	    ObservableList<StudentCourseDetails> studentCourseDetailRecord = FXCollections.observableArrayList(new StudentCourseDetails("Paid","yes","yes","yes"));
+	    ObservableList<StudentCourseDetails> studentCourseDetailRecord = FXCollections.observableArrayList(studentCourseDetailsHelper.getStudentCourseDetailsList(1));
 	    
 	    assignmentsTable.setItems((ObservableList<StudentCourseDetails>) studentCourseDetailRecord);
    	}

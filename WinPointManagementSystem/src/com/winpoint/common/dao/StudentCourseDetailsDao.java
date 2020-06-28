@@ -19,9 +19,9 @@ public class StudentCourseDetailsDao {
 
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId) {
 		
-		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<>();
-		
-		ResultSet resultSet = null;
+		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<StudentCourseDetails>();
+		studentCourseDetailsList.add(new StudentCourseDetails("Paid","Yes","Yes","Yes"));
+		/*ResultSet resultSet = null;
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -58,11 +58,16 @@ public class StudentCourseDetailsDao {
 		} 
 		catch (SQLException e1) {
 			e1.printStackTrace();
-		} 
+		}*/ 
 		return studentCourseDetailsList;
 		
 	}
 	
+	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList1(int userId) {
+		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<StudentCourseDetails>();
+		studentCourseDetailsList.add(new StudentCourseDetails("A+","Yes"));
+		return studentCourseDetailsList;
+	}
 public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId) {
 		
 		ArrayList<StudentCourseDetails> studentGACourseDetailsList = new ArrayList<>();
