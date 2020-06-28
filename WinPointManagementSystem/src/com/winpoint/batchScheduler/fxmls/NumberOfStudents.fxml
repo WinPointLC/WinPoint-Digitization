@@ -25,11 +25,11 @@
                <children>
                   <TableView fx:id="addToBatchTable" prefHeight="750.0" prefWidth="1230.0" AnchorPane.bottomAnchor="-57.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-311.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="studentCol" prefWidth="120.0" text="Student" />
-                      <TableColumn fx:id="enquiredCol" prefWidth="120.0" text="Enquired" />
-                      <TableColumn fx:id="registeredCol" prefWidth="120.0" text="Registered" />
-                        <TableColumn fx:id="startDateCol" prefWidth="120.0" text="Start Date" />
-                        <TableColumn fx:id="prefferedBatchCol" prefWidth="120.0" text="Preferred  Batch" />
+                        <TableColumn fx:id="student" prefWidth="120.0" text="Student" />
+                      <TableColumn fx:id="enquired" prefWidth="120.0" text="Enquired" />
+                      <TableColumn fx:id="registered" prefWidth="120.0" text="Registered" />
+                        <TableColumn fx:id="startDate" prefWidth="120.0" text="Start Date" />
+                        <TableColumn fx:id="preferredBatch" prefWidth="120.0" text="Preferred  Batch" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

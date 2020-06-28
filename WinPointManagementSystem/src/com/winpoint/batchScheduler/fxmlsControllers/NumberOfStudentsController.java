@@ -2,10 +2,18 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 
 	import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.EnquiryDetailsHelper;
+import com.winpoint.common.helpers.UserProfileHelper;
+
+import com.winpoint.common.wrappers.NumberOfStudentWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,22 +41,22 @@ import javafx.stage.Stage;
 	    private ImageView logo;
 	    
 	    @FXML
-	    private TableView<EnquiryDetails> addToBatchTable;
+	    private TableView<NumberOfStudentWrapper> addToBatchTable;
 	    
 	    @FXML
-	    private TableColumn<EnquiryDetails, String> studentCol;
+	    private TableColumn<NumberOfStudentWrapper, String> student;
 
 	    @FXML
-	    private TableColumn<EnquiryDetails, String> enquiredCol;
+	    private TableColumn<NumberOfStudentWrapper, String> enquired;
 
 	    @FXML
-	    private TableColumn<EnquiryDetails, String> registeredCol;
+	    private TableColumn<NumberOfStudentWrapper, String> registered;
 
 	    @FXML
-	    private TableColumn<EnquiryDetails, String> startDateCol;
+	    private TableColumn<NumberOfStudentWrapper, String> startDate;
 
 	    @FXML
-	    private TableColumn<EnquiryDetails, String> prefferedBatchCol;
+	    private TableColumn<NumberOfStudentWrapper, String> preferredBatch;
 
 	    @FXML
 	    void cancelFrame(ActionEvent event) throws IOException {
@@ -68,15 +76,31 @@ import javafx.stage.Stage;
 	    @Override
 		public void initialize(URL location, ResourceBundle resources) {
 	    	
-	    	studentCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-	    	enquiredCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-	    	registeredCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-	    	startDateCol.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
-	    	prefferedBatchCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-	    	ObservableList<EnquiryDetails>lists=FXCollections.observableArrayList(new EnquiryDetails("Aayush Agarwal", "Java Script", "No", "August", "2"),
-	    			new EnquiryDetails("Abhishek Dixit", "Java Script", "Yes", "August", "5"));
-	    	addToBatchTable.setItems(lists);
-			super.initialize(location, resources);
+	    	List<UserProfile> userProfileList = new UserProfileHelper().getEligibleUsers();
+	   		List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
+	    	
+	    	student.setCellValueFactory(new PropertyValueFactory<>("Name"));	
+	    	enquired.setCellValueFactory(new PropertyValueFactory<>("Enquired"));
+	   		registered.setCellValueFactory(new PropertyValueFactory<>("Registered"));
+	   		startDate.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
+	   	    preferredBatch.setCellValueFactory(new PropertyValueFactory<>("PreferredBatch"));
+	   	    
+	   	    List<NumberOfStudentWrapper> noOfStudentWrapperList = new ArrayList<NumberOfStudentWrapper>();
+	   	    Date d1 = new Date(0);
+	   		
+	   	    for( UserProfile userProfile: userProfileList ) {
+	   			noOfStudentWrapperList.add(new NumberOfStudentWrapper(userProfile.getFirstName(), userProfile.getLastName(),false, true, d1,"B1"));
+	   		}
+	   		
+	   		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
+	   			noOfStudentWrapperList.add(new NumberOfStudentWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false,d1,"B2"));
+	   		}
+	   		
+	   		ObservableList<NumberOfStudentWrapper> noOfStudentRecords = FXCollections.observableArrayList(noOfStudentWrapperList);
+		    
+	   		addToBatchTable.setItems((ObservableList<NumberOfStudentWrapper>) noOfStudentRecords);
+	    	
+	    	super.initialize(location, resources);
 			logo.setImage(logoImage);
 		}
 		
