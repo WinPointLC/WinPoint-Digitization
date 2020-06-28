@@ -16,10 +16,10 @@ public class TopicsDao {
 
 	public List<Topic> getTopicsList(int courseId) {
 		List<Topic> topicsList = new ArrayList<Topic>();
+		topicsList.add(new Topic("Functions",20));
+		//ResultSet resultSet = null;
 		
-		ResultSet resultSet = null;
-		
-		try(Connection connection = ConnectionManager.getConnection()){
+		/*try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
 			String query = "SELECT * FROM TOPICS WHERE COURSE_ID = " + courseId;
@@ -38,7 +38,7 @@ public class TopicsDao {
 		} 
 		catch (SQLException e1) {
 			e1.printStackTrace();
-		} 
+		}*/ 
 		return topicsList;
 	}
 }

@@ -5,8 +5,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,20 +59,20 @@ public class EvaluationScreenController extends ParentFXMLController {
     private TextField evaluationCertificateIssued;
 
     @FXML
-    private TableView<?> evaluationTable;
+    private TableView<StudentCourseDetails> evaluationTable;
 
     @FXML
-    private TableColumn<?, ?> evaluationTableNameColumn;
+    private TableColumn<?, StudentCourseDetails> evaluationTableNameColumn;
 
 
     @FXML
-    private TableColumn<?, ?> evaluationTableEvaluationDoneColumn;
+    private TableColumn<?, StudentCourseDetails> evaluationTableEvaluationDoneColumn;
 
     @FXML
-    private TableColumn<?, ?> evaluationTableGradeColumn;
+    private TableColumn<String,StudentCourseDetails> evaluationTableGradeColumn;
 
     @FXML
-    private TableColumn<?, ?> evaluationTableCertificateIssuedColumn;
+    private TableColumn<String, StudentCourseDetails> evaluationTableCertificateIssuedColumn;
     
     public void setRecievedData(ArrayList<String> recievedData) {
         for(String data : recievedData) {
@@ -100,13 +102,14 @@ public class EvaluationScreenController extends ParentFXMLController {
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
-   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
-   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
-   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
+   		StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
+   		//evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
+   		//evaluationTableEvaluationDoneColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
+   		evaluationTableGradeColumn.setCellValueFactory(new PropertyValueFactory<>("gradeId"));
+   		evaluationTableCertificateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("isCertificateGiven"));
 	    //fx:ID : Column Name
-	    ObservableList<Topic> topic = FXCollections.observableArrayList(new Topic("Functions",20));
+	    ObservableList<StudentCourseDetails> studentCourseDetails = FXCollections.observableArrayList(studentCourseDetailsHelper.getStudentCourseDetailsList1(1));
 	    
-	    topicsTable.setItems((ObservableList<Topic>) topic);
+	    evaluationTable.setItems((ObservableList<StudentCourseDetails>) studentCourseDetails);
    	}
 }

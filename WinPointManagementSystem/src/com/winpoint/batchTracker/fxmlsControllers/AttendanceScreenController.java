@@ -59,26 +59,7 @@ public class AttendanceScreenController extends ParentFXMLController{
     @FXML
     private TableColumn<?, ?> displayStudentAttendanceTableLecture1;
 
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture2;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture3;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture4;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture5;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture6;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture7;
-
-    @FXML
-    private TableColumn<?, ?> displayStudentAttendanceTableLecture8;
+    
     
     public void setRecievedData(ArrayList<String> recievedData) {
     	for(String data : recievedData) {
