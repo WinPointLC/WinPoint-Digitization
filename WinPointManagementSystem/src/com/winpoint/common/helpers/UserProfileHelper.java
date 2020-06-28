@@ -23,4 +23,20 @@ public class UserProfileHelper {
 	public String getCoursesList(Integer userId) {
 		return new UserProfileDao().getCoursesList(userId);
 	}
+	
+	
+	//
+	
+	public ArrayList<UserProfile> getEligibleUsers(){
+		List<UserProfile> userProfileList = new UserProfileDao().getEligibleUsers();
+		
+		for( UserProfile userProfile : userProfileList ) {
+			
+			System.out.println(userProfile.getFirstName());
+			
+		}
+		
+		return (ArrayList<UserProfile>) userProfileList;		
+	}
+	
 }

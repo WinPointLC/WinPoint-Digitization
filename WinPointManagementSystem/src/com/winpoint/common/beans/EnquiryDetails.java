@@ -189,6 +189,12 @@ public class EnquiryDetails extends UserProfile {
 	}
 
 
+	public EnquiryDetails(String firstName, String lastName) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	/**
 	 * @return the enquiryId
 	 */

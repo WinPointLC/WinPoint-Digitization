@@ -7,7 +7,13 @@ import com.winpoint.common.dao.EnquiryDetailsDao;
 
 
 public class EnquiryDetailsHelper {
+	
 	public List<EnquiryDetails> getEnquiryDetailsList() {
 		return new EnquiryDetailsDao().getEnquiryDetailsList();
 	}
+	
+	public List<EnquiryDetails> getEligibleUsers(){
+		return new EnquiryDetailsDao().getEligibleUsers();
+	}
+	
 }

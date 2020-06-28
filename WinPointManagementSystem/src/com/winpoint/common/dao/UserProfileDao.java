@@ -174,4 +174,27 @@ public ArrayList<UserProfile> getUsers() {
 		
 		return coursesString.toString();
 	}
+	
+	
+	// 
+	
+	public ArrayList<UserProfile> getEligibleUsers(){
+		
+		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
+		
+		userProfileList.add(new UserProfile("Aayush", "Agarwal"));
+		userProfileList.add(new UserProfile("Abhishek", "Dixit"));
+		userProfileList.add(new UserProfile("Soham", "Shotri"));
+		
+		return  (ArrayList<UserProfile>) userProfileList;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

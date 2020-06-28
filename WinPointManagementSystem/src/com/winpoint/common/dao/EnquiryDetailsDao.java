@@ -7,9 +7,11 @@ import java.util.List;
 
 
 import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.UserProfile;
 
 public class EnquiryDetailsDao {
-public List<EnquiryDetails> getEnquiryDetailsList() {
+
+	public List<EnquiryDetails> getEnquiryDetailsList() {
 		
 		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
 				
@@ -30,5 +32,20 @@ public List<EnquiryDetails> getEnquiryDetailsList() {
 		return enquiryDetailsList;
 
 	}
+
+	public ArrayList<EnquiryDetails> getEligibleUsers(){
+	
+		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
+	
+		enquiryDetailsList.add(new EnquiryDetails("Shraddha", "Padalkar"));
+		enquiryDetailsList.add(new EnquiryDetails("Purva", "Khot"));
+		enquiryDetailsList.add(new EnquiryDetails("Suhasi", "Buche"));
+		enquiryDetailsList.add(new EnquiryDetails("Sarthak", "Bapte"));
+		
+		return  (ArrayList<EnquiryDetails>) enquiryDetailsList;
+	
+	}
+
+
 
 }

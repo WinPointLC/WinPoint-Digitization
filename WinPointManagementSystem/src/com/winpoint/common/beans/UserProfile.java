@@ -146,11 +146,11 @@ public class UserProfile {
 		this.createDate = createDate;*/
 	}
 
-	public UserProfile(String email, String password) {
-		// TODO Auto-generated constructor stub
-		this.email = email;
-		this.password = password;
-	}
+//	public UserProfile(String email, String password) {
+//		// TODO Auto-generated constructor stub
+//		this.email = email;
+//		this.password = password;
+//	}
 
 	public UserProfile(int userId, String firstName, String lastName, String email, int userCategoryId, String photoLocation) {
 		// TODO Auto-generated constructor stub
@@ -219,11 +219,10 @@ public class UserProfile {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserProfile(String firstName2, String lastName2, String enquired, String registered) {
+	public UserProfile(String firstName, String lastName) {
 		// TODO Auto-generated constructor stub
-		String fullName = firstName2 + lastName2;
-		String enquiredStatus = enquired;
-		String registeredStatus = registered;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 
