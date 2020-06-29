@@ -107,7 +107,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
    		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForAssignmentScreen();
-   		ArrayList<StudentCourseDetails> studentCourseDetailsList = (ArrayList<StudentCourseDetails>) new StudentCourseDetailsHelper().getStudentCourseDetailsList();
+   		ArrayList<StudentCourseDetails> studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList();
    		
    		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
    		// Row Population logic
@@ -117,10 +117,13 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
    		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
 	    //fx:ID : Column Name
-   		List<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
+   		ArrayList<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
    		int i=0;
    		while(userProfileList.size()>i) {
-   			AssignmentsScreenWrapper assignmentsScreenWrapper= new AssignmentsScreenWrapper(userProfileList.get(i).getFirstName(),userProfileList.get(i).getLastName(),studentCourseDetailsList.get(i).getFeeStatus(), 
+   			AssignmentsScreenWrapper assignmentsScreenWrapper= new AssignmentsScreenWrapper(
+   					userProfileList.get(i).getFirstName(),
+   					userProfileList.get(i).getLastName(),
+   					studentCourseDetailsList.get(i).getFeeStatus(), 
    					studentCourseDetailsList.get(i).getCoursewareIssued(),
    					studentCourseDetailsList.get(i).getAssignmentsIssued(), 
    					studentCourseDetailsList.get(i).getAssignmentsSubmitted());
@@ -130,8 +133,8 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
    		}
    		
    		
-	    ObservableList<AssignmentsScreenWrapper> studentCourseDetailList = FXCollections.observableArrayList(assignmentsScreenWrapperList);
+	    ObservableList<AssignmentsScreenWrapper> assignmentDetailsList = FXCollections.observableArrayList(assignmentsScreenWrapperList);
 	    
-	    assignmentsTable.setItems(studentCourseDetailList);
+	    assignmentsTable.setItems(assignmentDetailsList);
    	}
 }

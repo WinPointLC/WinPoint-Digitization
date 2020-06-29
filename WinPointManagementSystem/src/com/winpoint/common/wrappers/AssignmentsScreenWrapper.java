@@ -28,15 +28,26 @@ public class AssignmentsScreenWrapper {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	public void setFeeStatus(String feeStatus) {
+		 this.feeStatus=feeStatus;	
+	}
 	public String getFeeStatus() {
 		return this.feeStatus;	
 	}
-	
+	public void setCoursewareIssued(String coursewareIssued) {
+		 this.coursewareIssued=coursewareIssued;	
+	}
 	public String getCoursewareIssued() {
 		return this.coursewareIssued;	
 	}
+	public void setAssignmentsIssued(String assignmentsIssued) {
+		 this.assignmentsIssued=assignmentsIssued;	
+	}
 	public String getAssignmentsIssued() {
 		return this.assignmentsIssued;	
+	}
+	public void setAssignmentsSubmitted(String assignmentsSubmitted) {
+		 this.assignmentsSubmitted=assignmentsSubmitted;	
 	}
 	public String getAssignmentsSubmitted() {
 		return this.assignmentsSubmitted;	
