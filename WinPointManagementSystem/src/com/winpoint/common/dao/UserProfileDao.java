@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.UserProfile;
@@ -182,9 +180,26 @@ public ArrayList<UserProfile> getUsers() {
 		
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
 		
-		userProfileList.add(new UserProfile("Aayush", "Agarwal"));
-		userProfileList.add(new UserProfile("Abhishek", "Dixit"));
-		userProfileList.add(new UserProfile("Soham", "Shotri"));
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM USER_PROFILE\n" + 
+					"";
+			
+			ResultSet rs = statement.executeQuery(query1);
+			
+			while(rs.next()) {
+				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
+			}
+
+		} 
+		catch (SQLException e) {
+			userProfileList = null;
+			e.printStackTrace();
+		}
+//		userProfileList.add(new UserProfile("Aayush", "Agarwal"));
+//		userProfileList.add(new UserProfile("Abhishek", "Dixit"));
+//		userProfileList.add(new UserProfile("Soham", "Shotri"));
 		
 		return  (ArrayList<UserProfile>) userProfileList;
 		
