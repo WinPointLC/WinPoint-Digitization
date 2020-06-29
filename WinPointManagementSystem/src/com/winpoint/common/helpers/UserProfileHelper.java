@@ -38,5 +38,11 @@ public class UserProfileHelper {
 		
 		return (ArrayList<UserProfile>) userProfileList;		
 	}
-	
+	//Assignment
+	public ArrayList<UserProfile> getUsersForAssignmentScreen(){
+		
+		return new UserProfileDao().getUsersForAssignmentScreen(); 
+		
+		
+	}	
 }

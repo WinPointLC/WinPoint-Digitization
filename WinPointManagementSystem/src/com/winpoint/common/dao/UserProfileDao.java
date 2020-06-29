@@ -190,7 +190,15 @@ public ArrayList<UserProfile> getUsers() {
 		
 	}
 	
-	
+	//Batch Tracker-Assignment
+	public ArrayList<UserProfile> getUsersForAssignmentScreen(){
+		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
+		userProfileList.add(new UserProfile("Purva","Khot"));
+		userProfileList.add(new UserProfile("Sarthak","Bapte"));
+		userProfileList.add(new UserProfile("Suhasi","Buche"));
+		return (ArrayList<UserProfile>) userProfileList;
+		
+	}
 	
 	
 	

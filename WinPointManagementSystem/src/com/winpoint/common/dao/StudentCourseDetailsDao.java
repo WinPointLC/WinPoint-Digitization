@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 //import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Rules;
@@ -148,11 +149,11 @@ public class StudentCourseDetailsDao {
 		StudentCourseDetails studentCourseDetails1,studentCourseDetails2,studentCourseDetails3;
 		
 		studentCourseDetails1 = new StudentCourseDetails(10, null, null, null, null, null, 10, null, null, null, null, 
-				"partialy paid", null, null, null, null, null, null, null);
+				"partially paid", null, null, "Yes", "Yes","Yes", null, null);
 		studentCourseDetails2 = new StudentCourseDetails(11, null, null, null, null, null, 20, null, null, null, null, 
-				"paid", null, null, null, null, null, null, null);
+				"paid", null, null,"Yes", "Yes","Yes", null, null);
 		studentCourseDetails3 = new StudentCourseDetails(12, null, null, null, null, null, 50, null, null, null, null, 
-				"not paid", null, null, null, null, null, null, null);
+				"not paid", null, null,"Yes", "Yes","Yes", null, null);
 		
 		studentCourseDetails.add(studentCourseDetails1);
 		studentCourseDetails.add(studentCourseDetails2);
@@ -160,4 +161,8 @@ public class StudentCourseDetailsDao {
 		
 		return studentCourseDetails;
 	}
+	
+	
+
+		
 }

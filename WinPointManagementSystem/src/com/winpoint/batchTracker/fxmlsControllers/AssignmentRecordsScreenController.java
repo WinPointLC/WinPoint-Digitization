@@ -3,12 +3,19 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.StudentCourseDetails;
+import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
+import com.winpoint.common.helpers.UserProfileHelper;
+import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.CoursesNameWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,22 +47,22 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     private ImageView logo;
 
     @FXML
-    private TableView<StudentCourseDetails> assignmentsTable;
+    private TableView<AssignmentsScreenWrapper> assignmentsTable;
 
     @FXML
-    private TableColumn<?, ?> assignmentsTableNameColumn;
+    private TableColumn<String, AssignmentsScreenWrapper> assignmentsTableNameColumn;
 
     @FXML
-    private TableColumn<String, StudentCourseDetails> assignmentsTableFeeStatusColumn;
+    private TableColumn<String, AssignmentsScreenWrapper> assignmentsTableFeeStatusColumn;
 
     @FXML
-    private TableColumn<String, StudentCourseDetails> assignmentsTableCoursewareColumn;
+    private TableColumn<String, AssignmentsScreenWrapper> assignmentsTableCoursewareColumn;
 
     @FXML
-    private TableColumn<String, StudentCourseDetails> assignmentsTableAssignmentsIssuedColumn;
+    private TableColumn<String, AssignmentsScreenWrapper> assignmentsTableAssignmentsIssuedColumn;
 
     @FXML
-    private TableColumn<String, StudentCourseDetails> assignmentsTableAssignmentsSubmittedColumn;
+    private TableColumn<String, AssignmentsScreenWrapper> assignmentsTableAssignmentsSubmittedColumn;
     
     
     public void setRecievedData(ArrayList<String> recievedData) {
@@ -99,17 +106,32 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
+   		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForAssignmentScreen();
+   		ArrayList<StudentCourseDetails> studentCourseDetailsList = (ArrayList<StudentCourseDetails>) new StudentCourseDetailsHelper().getStudentCourseDetailsList();
+   		
+   		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
    		// Row Population logic
-   		//assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+   		assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
    		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
    		assignmentsTableCoursewareColumn.setCellValueFactory(new PropertyValueFactory<>("coursewareIssued"));
    		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
 	    //fx:ID : Column Name
+   		List<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
+   		int i=0;
+   		while(userProfileList.size()>i) {
+   			AssignmentsScreenWrapper assignmentsScreenWrapper= new AssignmentsScreenWrapper(userProfileList.get(i).getFirstName(),userProfileList.get(i).getLastName(),studentCourseDetailsList.get(i).getFeeStatus(), 
+   					studentCourseDetailsList.get(i).getCoursewareIssued(),
+   					studentCourseDetailsList.get(i).getAssignmentsIssued(), 
+   					studentCourseDetailsList.get(i).getAssignmentsSubmitted());
+   				i++;
+   			assignmentsScreenWrapperList.add(assignmentsScreenWrapper);
+   			
+   		}
    		
-	    ObservableList<StudentCourseDetails> studentCourseDetailRecord = FXCollections.observableArrayList(studentCourseDetailsHelper.getStudentCourseDetailsList(1));
+   		
+	    ObservableList<AssignmentsScreenWrapper> studentCourseDetailList = FXCollections.observableArrayList(assignmentsScreenWrapperList);
 	    
-	    assignmentsTable.setItems((ObservableList<StudentCourseDetails>) studentCourseDetailRecord);
+	    assignmentsTable.setItems(studentCourseDetailList);
    	}
 }
