@@ -1,5 +1,9 @@
 package com.winpoint.common.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +12,7 @@ import java.util.List;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.UserProfile;
+import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EnquiryDetailsDao {
 
@@ -36,11 +41,27 @@ public class EnquiryDetailsDao {
 	public ArrayList<EnquiryDetails> getEligibleUsers(){
 	
 		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
-	
-		enquiryDetailsList.add(new EnquiryDetails("Shraddha", "Padalkar"));
-		enquiryDetailsList.add(new EnquiryDetails("Purva", "Khot"));
-		enquiryDetailsList.add(new EnquiryDetails("Suhasi", "Buche"));
-		enquiryDetailsList.add(new EnquiryDetails("Sarthak", "Bapte"));
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM ENQUIRY";
+			
+			ResultSet rs = statement.executeQuery(query1);
+			
+			while(rs.next()) {
+				enquiryDetailsList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
+			}
+
+		} 
+		catch (SQLException e) {
+			enquiryDetailsList = null;
+			e.printStackTrace();
+		}
+//		enquiryDetailsList.add(new EnquiryDetails("Shraddha", "Padalkar"));
+//		enquiryDetailsList.add(new EnquiryDetails("Purva", "Khot"));
+//		enquiryDetailsList.add(new EnquiryDetails("Suhasi", "Buche"));
+//		enquiryDetailsList.add(new EnquiryDetails("Sarthak", "Bapte"));
 		
 		return  (ArrayList<EnquiryDetails>) enquiryDetailsList;
 	
