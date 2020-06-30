@@ -11,7 +11,7 @@ import com.winpoint.common.util.sql.ConnectionManager;
 
 public class FeeDetailsDao {
 	public ArrayList<StudentCourseFeesBean> getFeeDetails() {
-		ArrayList<StudentCourseFeesBean> studentCourseFeesList = new ArrayList();
+		ArrayList<StudentCourseFeesBean> studentCourseFeesList = new ArrayList<StudentCourseFeesBean>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();

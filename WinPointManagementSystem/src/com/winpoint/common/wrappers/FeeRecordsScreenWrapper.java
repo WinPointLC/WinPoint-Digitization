@@ -8,46 +8,22 @@ import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 public class FeeRecordsScreenWrapper {
 	private String paymentMode;
 	private String name;
+	private String feeStatus;
+	private Integer userId;
+	private String mobile;
+	private String emailId;
 	
-	StudentCourseInstallmentDetails studentCourseInstallmentDetails;
-	StudentCourseDetails studentCourseDetails;
+	private StudentCourseInstallmentDetails studentCourseInstallmentDetails;
 	
-	//** This commented section is for test purpose only.
-	/*
-	public FeeRecordsScreenWrapper(Integer userId, Integer batchId, String feeStatus, String paymentMode,
-			Integer plannedInstallment1, Date plannedInstallment1Date, Integer actualInstallment1, Date actualInstallment1Date,
-			Integer plannedInstallment2, Date plannedInstallment2Date, Integer actualInstallment2, Date actualInstallment2Date,
-			Integer plannedInstallment3, Date plannedInstallment3Date, Integer actualInstallment3, Date actualInstallment3Date,
-			Integer dueAmount) {
-		studentCourseDetails = new StudentCourseDetails(userId, null, null, null, 
-				null, null, batchId, null, null, null, null, 
-				feeStatus, null, null, null, null, null, 
-				null, null);
-		
-		studentCourseInstallmentDetails = new StudentCourseInstallmentDetails(userId, null, 
-				plannedInstallment1, plannedInstallment1Date, actualInstallment1, actualInstallment1Date, 
-				plannedInstallment2, plannedInstallment2Date, actualInstallment2, actualInstallment2Date, 
-				plannedInstallment3, plannedInstallment3Date, actualInstallment3, actualInstallment3Date, dueAmount);
-		
-		this.paymentMode = paymentMode;
-		this.name = "User" + userId.toString(); //A dummy name(will be retrived from DB later)
-	}
-	*/
-	
-	public FeeRecordsScreenWrapper(StudentCourseDetails studentCourseDetails, StudentCourseInstallmentDetails studentCourseInstallmentDetails) {
+	public FeeRecordsScreenWrapper(Integer userId, String name, String feeStatus, String paymentMode, 
+			String emailId, String mobile, StudentCourseInstallmentDetails studentCourseInstallmentDetails) {
 		this.studentCourseInstallmentDetails = studentCourseInstallmentDetails;
-		this.studentCourseDetails= studentCourseDetails;
-		
-		this.paymentMode = "Cash";
-		this.name = "User" + studentCourseDetails.getUserId().toString();
-	}
-	
-	public StudentCourseDetails getStudentCourseDetails() {
-		return studentCourseDetails;
-	}
-
-	public void setStudentCourseDetails(StudentCourseDetails studentCourseDetails) {
-		this.studentCourseDetails = studentCourseDetails;
+		this.feeStatus = feeStatus;
+		this.paymentMode = paymentMode;
+		this.name = name;
+		this.userId = userId;
+		this.mobile = mobile;
+		this.emailId = emailId;
 	}
 	
 	public String getPaymentMode() {
@@ -66,17 +42,44 @@ public class FeeRecordsScreenWrapper {
 		this.name = name;
 	}
 	
+	public String getEmailId() {
+		return emailId;
+	}
+	
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	
+	public String getMobile() {
+		return mobile;
+	}
+	
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	
 	public String getFeeStatus() {
-		return studentCourseDetails.getFeeStatus();
+		return feeStatus;
+	}
+	
+	public void setFeeStatus(String feeStatus) {
+		this.feeStatus = feeStatus;
 	}
 	
 	public Integer getUserId() {
-		return studentCourseDetails.getUserId();
+		return userId;
 	}
 	
 	public void setUserId(Integer userId) {
-		studentCourseDetails.setUserId(userId);
+		this.userId = userId;
+	}
+	
+	public StudentCourseInstallmentDetails getStudentCourseInstallmentDetails() {
+		return studentCourseInstallmentDetails;
+	}
+	
+	public void setStudentCourseInstallmentDetails(StudentCourseInstallmentDetails studentCourseInstallmentDetails) {
+		this.studentCourseInstallmentDetails = studentCourseInstallmentDetails;
 	}
 	
 	public Integer getPlannedInstallment1() {

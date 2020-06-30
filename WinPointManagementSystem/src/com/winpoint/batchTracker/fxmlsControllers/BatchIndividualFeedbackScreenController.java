@@ -133,9 +133,7 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
 	public void initialize(URL location, ResourceBundle resources) {
     	
     	
-    	ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
-		
-		
+    	ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();		
 		ArrayList<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchInstructorList();
 		ArrayList<Course> courseList =  new CourseHelper().getBatchCourseDurationList();
    		ArrayList<StudentCourseDetails> CourseDetailsList= new StudentCourseDetailsHelper().getBatchFeedback();
@@ -164,19 +162,10 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
    					batchWrapperList.add(batchFeedbackScreenWrapper);
    			
    		}
-   		
-   		
 	    ObservableList<BatchIndividualFeedbackScreenWrapper> batchIndividualList = FXCollections.observableArrayList(batchWrapperList);
 	    
 	    individualFeedbackTable.setItems(batchIndividualList);
-    	
-    	
-    	
-   	
-    	
-    	
-
-    	
+	    
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

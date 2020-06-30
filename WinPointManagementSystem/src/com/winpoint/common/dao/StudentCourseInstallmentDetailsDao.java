@@ -3,7 +3,6 @@ package com.winpoint.common.dao;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 
 public class StudentCourseInstallmentDetailsDao {

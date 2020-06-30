@@ -201,9 +201,7 @@ public ArrayList<UserProfile> getUsers() {
 		return  (ArrayList<UserProfile>) userProfileList;
 		
 	}
-	
 
-	
 	public ArrayList<UserProfile> getUsersForBatchTracker() {
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
 		userProfileList.add(new UserProfile(10, "Purva","Khot", "purva@gmail.com", "9922956789", null));
