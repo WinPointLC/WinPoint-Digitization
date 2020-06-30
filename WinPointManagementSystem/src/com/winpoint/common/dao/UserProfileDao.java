@@ -197,9 +197,6 @@ public ArrayList<UserProfile> getUsers() {
 			userProfileList = null;
 			e.printStackTrace();
 		}
-//		userProfileList.add(new UserProfile("Aayush", "Agarwal"));
-//		userProfileList.add(new UserProfile("Abhishek", "Dixit"));
-//		userProfileList.add(new UserProfile("Soham", "Shotri"));
 		
 		return  (ArrayList<UserProfile>) userProfileList;
 		

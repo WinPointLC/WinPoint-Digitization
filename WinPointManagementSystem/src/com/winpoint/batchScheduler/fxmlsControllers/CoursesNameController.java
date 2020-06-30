@@ -82,7 +82,7 @@ public class CoursesNameController extends ParentFXMLController{
    		logo.setImage(logoImage);
    		
    		List<UserProfile> userProfileList = new UserProfileHelper().getEligibleUsers();
-   		//List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
+   		List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
  
    		// Row Population logic
    		student.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Name"));
@@ -96,9 +96,9 @@ public class CoursesNameController extends ParentFXMLController{
    			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true));
    		}
    		
-//   		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
-//   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false));
-//   		}
+   		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
+   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false));
+   		}
    		
    		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);
 	    

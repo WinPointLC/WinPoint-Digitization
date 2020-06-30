@@ -29,9 +29,7 @@ public class EnquiryDetailsDao {
 					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "FEMALE", 2021, "Shraddha", true, 3, "Purva", 7,
 					12, 1, "Passed", true));
 			
-			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return enquiryDetailsList;
@@ -45,7 +43,7 @@ public class EnquiryDetailsDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM ENQUIRY";
+			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM ENQUIRY_DETAILS";
 			
 			ResultSet rs = statement.executeQuery(query1);
 			
@@ -58,10 +56,6 @@ public class EnquiryDetailsDao {
 			enquiryDetailsList = null;
 			e.printStackTrace();
 		}
-//		enquiryDetailsList.add(new EnquiryDetails("Shraddha", "Padalkar"));
-//		enquiryDetailsList.add(new EnquiryDetails("Purva", "Khot"));
-//		enquiryDetailsList.add(new EnquiryDetails("Suhasi", "Buche"));
-//		enquiryDetailsList.add(new EnquiryDetails("Sarthak", "Bapte"));
 		
 		return  (ArrayList<EnquiryDetails>) enquiryDetailsList;
 	
