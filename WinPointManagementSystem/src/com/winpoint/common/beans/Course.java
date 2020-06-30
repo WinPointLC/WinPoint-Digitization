@@ -35,6 +35,12 @@ public class Course {
 	 * @param createdDate
 	 * @param preRequisite;
 	 */
+	
+	//created by purva for batchIndividualScreen
+	public Course(Integer courseDuration) {
+		this.courseDuration = courseDuration;
+	}
+	
 	public Course(Integer courseId, String courseName, Integer courseDuration, Integer courseFees, Integer streamId,
 			Integer courseTypeId, String coursewareExist, Integer evaluationTypeId, Integer totalTests,
 			Integer createdBy, Date createdDate) {

@@ -14,6 +14,9 @@ public class StudentCourseDetailsHelper {
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(){
 		return new StudentCourseDetailsDao().getStudentCourseDetails();
 	}
+	public ArrayList<StudentCourseDetails> getBatchFeedback(){
+		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();
+	}
 	
 
 	/*public void createStudentCourseDetails(int userId, int courseId, String courseName, int streamId, int courseTypeId, String feeStatus) {

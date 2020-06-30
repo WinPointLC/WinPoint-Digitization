@@ -34,6 +34,13 @@ public class StudentCourseDetails {
 	 * @param createdDate
 	 */
 	
+	
+	public StudentCourseDetails(String isFeedbackGiven) {
+		super();
+		this.isFeedbackGiven = isFeedbackGiven;
+	}
+	
+	
 	public StudentCourseDetails(String gradeId,String isCertificateGiven ) {
 		super();
 		this.isCertificateGiven = isCertificateGiven;

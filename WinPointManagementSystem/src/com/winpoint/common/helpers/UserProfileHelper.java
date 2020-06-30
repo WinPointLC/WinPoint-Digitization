@@ -38,11 +38,14 @@ public class UserProfileHelper {
 		
 		return (ArrayList<UserProfile>) userProfileList;		
 	}
-	//Assignment
-	public ArrayList<UserProfile> getUsersForAssignmentScreen(){
+	
+	
+	//BatchIndividual
+	public ArrayList<UserProfile> getUsersForBatchTracker(){
 		
-		return new UserProfileDao().getUsersForAssignmentScreen(); 
+		return new UserProfileDao().getUsersForBatchTracker(); 
 		
 		
 	}	
+	
 }
