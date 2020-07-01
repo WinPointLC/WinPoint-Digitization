@@ -174,9 +174,6 @@ public class EnquiryDetails extends UserProfile {
 	}
 	
 	
-	
-
-
 
 
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String address) {
@@ -195,6 +192,16 @@ public class EnquiryDetails extends UserProfile {
 		this.lastName = lastName;
 	}
 
+	public EnquiryDetails(String firstName, String lastName, int coursesInterestedIn,boolean eligibility,String suggestion) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.coursesInterestedIn = coursesInterestedIn;
+		this.eligibility = eligibility;
+		this.suggestion = suggestion;
+	} 
+
+	
 	/**
 	 * @return the enquiryId
 	 */
