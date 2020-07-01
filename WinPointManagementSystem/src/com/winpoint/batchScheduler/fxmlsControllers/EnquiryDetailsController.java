@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
+import com.winpoint.common.wrappers.EnquiryDetailsWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,27 +37,25 @@ public class EnquiryDetailsController extends ParentFXMLController{
     private ImageView logo;
         
     @FXML
-    private TableView<EnquiryDetails> detailsTable;
+    private TableView<EnquiryDetailsWrapper> detailsTable;
     
     @FXML
-    private TableColumn<EnquiryDetails, String> nameCol;
+    private TableColumn<EnquiryDetailsWrapper, String> nameCol;
 
     @FXML
-    private TableColumn<EnquiryDetails, String> courseCol;
+    private TableColumn<EnquiryDetailsWrapper, String> courseCol;
 
     @FXML
-    private TableColumn<EnquiryDetails, Boolean> eligibilityCol;
+    private TableColumn<EnquiryDetailsWrapper, Boolean> eligibilityCol;
 
     @FXML
-    private TableColumn<EnquiryDetails, String> suggestionCol;
+    private TableColumn<EnquiryDetailsWrapper, String> suggestionCol;
 
     @FXML
-    private TableColumn<EnquiryDetails, Boolean> updateCol= new TableColumn<>("Update");
+    private TableColumn<EnquiryDetailsWrapper, Boolean> updateCol= new TableColumn<>("Update");
     
    
     
-    
-
 	
     @FXML
     void CancelClick(ActionEvent event) throws IOException {
@@ -70,26 +71,28 @@ public class EnquiryDetailsController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
     	
-    	EnquiryDetailsHelper enquiryDetailsObject = new EnquiryDetailsHelper(); 	
+    	//EnquiryDetailsHelper enquiryDetailsObject = new EnquiryDetailsHelper(); 	
     	
-    	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	courseCol.setCellValueFactory(new PropertyValueFactory<>("college"));
-    	eligibilityCol.setCellValueFactory(new PropertyValueFactory<>("eligibility"));
-    	suggestionCol.setCellValueFactory(new PropertyValueFactory<>("suggestion")); 
-    	updateCol.setCellValueFactory(new PropertyValueFactory<>(" activeStatus"));
+    	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();
     	
-//			EnquiryDetails eg=new EnquiryDetails();
-//			EnquiryDetails eg2=new EnquiryDetails(10, "Shraddha  ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
-//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
-//					12, 1, "Passed", true);
-				
-    		ObservableList<EnquiryDetails> data =FXCollections.observableArrayList(enquiryDetailsObject.getEnquiryDetailsList());
-			detailsTable.setItems(data);
+  
+    	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Name"));
+    	courseCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("CoursesInterestedIn"));
+    	eligibilityCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Boolean>("Eligibility"));
+    	suggestionCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Suggestion")); 
+    	//updateCol.setCellValueFactory(new PropertyValueFactory<>("update"));
+ 
 		
-   
-			
-			 
+    	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	
+    	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
+    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion()));
+    	}
+    	
+    	ObservableList<EnquiryDetailsWrapper> data =FXCollections.observableArrayList(enquiryDetailsWrapperList);
+		detailsTable.setItems(data);
+		
+ 
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 	}
