@@ -8,6 +8,7 @@ import java.util.Date;
  * 
  */
 public class BatchDetails {
+	
 	private String batchId;
 	private Integer courseId;	
 	private Integer facultyId;
@@ -38,10 +39,11 @@ public class BatchDetails {
 		System.out.println(" Default Constructor ");
 	}
 	
-	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
+	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
+		this.batchTime = batchTime;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.createdBy = createdBy;
@@ -67,7 +69,17 @@ public class BatchDetails {
 		
 }
 
-
+	public BatchDetails(String string, String string2, String string3, String string4, String string5, String string6,
+			String string7, String string8) {
+		this.batchId = batchId;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.batchTime = batchTime;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+	}
 
 	public String getBatchName() {
 		return batchName;

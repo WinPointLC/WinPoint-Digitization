@@ -191,7 +191,7 @@ public ArrayList<UserProfile> getUsers() {
 			while(rs.next()) {
 				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
 			}
-
+			
 		} 
 		catch (SQLException e) {
 			userProfileList = null;
