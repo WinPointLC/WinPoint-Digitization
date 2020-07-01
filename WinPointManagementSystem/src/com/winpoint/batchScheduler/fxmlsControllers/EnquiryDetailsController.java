@@ -76,7 +76,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();
     	
   
-    	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Name"));
+    	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("FullName"));
     	courseCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("CoursesInterestedIn"));
     	eligibilityCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Boolean>("Eligibility"));
     	suggestionCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Suggestion")); 
@@ -86,6 +86,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
+    		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
     		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion()));
     	}
     	

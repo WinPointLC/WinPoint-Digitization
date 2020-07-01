@@ -68,7 +68,8 @@ public class EnquiryDetailsDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query2 = "SELECT FIRST_NAME,LAST_NAME,COURSE_INTERESTED_IN,ELIGIBILITY,SUGGESTION FROM ENQUIRY_DETAILS";
+			String query2 = "SELECT FIRST_NAME,LAST_NAME,COURSE_INTERESTED_IN,ELIGIBILITY,SUGGESTION FROM ENQUIRY_DETAILS"+
+					"";
 			
 			ResultSet rs = statement.executeQuery(query2);
 			
