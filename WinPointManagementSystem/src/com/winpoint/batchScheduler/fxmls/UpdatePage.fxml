@@ -52,7 +52,7 @@
             <Insets left="50.0" right="50.0" top="25.0" />
          </padding>
          <children>
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#canelFrame" prefHeight="24.0" prefWidth="150.0" text="Cancel" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="24.0" prefWidth="150.0" text="Cancel" HBox.hgrow="ALWAYS" />
             <Region prefHeight="50.0" prefWidth="128.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="reset" mnemonicParsing="false" onAction="#resetFrame" prefHeight="25.0" prefWidth="150.0" text="Reset" HBox.hgrow="ALWAYS" />
             <Region prefHeight="50.0" prefWidth="108.0" HBox.hgrow="ALWAYS" />

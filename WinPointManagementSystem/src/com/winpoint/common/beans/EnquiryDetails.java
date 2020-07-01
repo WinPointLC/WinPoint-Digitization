@@ -26,7 +26,7 @@ public class EnquiryDetails extends UserProfile {
 	private String role;
 	private Integer experience;
 	private Integer createdBy;
-	private Date dateofEnquiry;
+	private Date dateOfEnquiry;
 	private String gender;
 	private Integer yearOfGraduation;
 	private String recommendation;
@@ -124,7 +124,7 @@ public class EnquiryDetails extends UserProfile {
 		this.role = role;
 		this.experience = experience;
 		this.createdBy = createdBy;
-		this.dateofEnquiry = dateofEnquiry;
+		this.dateOfEnquiry = dateofEnquiry;
 		this.gender = gender;
 		this.yearOfGraduation = yearOfGraduation;
 		this.recommendation = recommendation;
@@ -159,7 +159,7 @@ public class EnquiryDetails extends UserProfile {
 		this.degree = degree;
 		this.branch = branch;
 		this.createdBy = createdBy;
-		this.dateofEnquiry = dateofEnquiry;
+		this.dateOfEnquiry = dateofEnquiry;
 		this.gender = gender;
 		this.yearOfGraduation = yearOfGraduation;
 		this.recommendation = recommendation;
@@ -174,9 +174,6 @@ public class EnquiryDetails extends UserProfile {
 	}
 	
 	
-	
-
-
 
 
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String address) {
@@ -195,6 +192,16 @@ public class EnquiryDetails extends UserProfile {
 		this.lastName = lastName;
 	}
 
+	public EnquiryDetails(String firstName, String lastName, int coursesInterestedIn,boolean eligibility,String suggestion) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.coursesInterestedIn = coursesInterestedIn;
+		this.eligibility = eligibility;
+		this.suggestion = suggestion;
+	} 
+
+	
 	/**
 	 * @return the enquiryId
 	 */
@@ -443,14 +450,14 @@ public class EnquiryDetails extends UserProfile {
 	 * @return the dateofEnquiry
 	 */
 	public Date getDateofEnquiry() {
-		return dateofEnquiry;
+		return dateOfEnquiry;
 	}
 
 	/**
 	 * @param dateofEnquiry the dateofEnquiry to set
 	 */
 	public void setDateofEnquiry(Date dateofEnquiry) {
-		this.dateofEnquiry = dateofEnquiry;
+		this.dateOfEnquiry = dateofEnquiry;
 	}
 
 	/**

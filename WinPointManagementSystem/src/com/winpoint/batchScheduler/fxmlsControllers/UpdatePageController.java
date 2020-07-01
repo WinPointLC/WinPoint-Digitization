@@ -21,7 +21,7 @@ public class UpdatePageController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private Button cancelButton;
+    private Button cancel;
 
     @FXML
     private Button reset;
@@ -30,12 +30,12 @@ public class UpdatePageController extends ParentFXMLController{
     private Button submit;
 
     @FXML
-    void cancelClick(ActionEvent event) {
+    void cancelFrame(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
 			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-			Stage stage = (Stage) cancelButton.getScene().getWindow();
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("My New Scene");
@@ -51,12 +51,12 @@ public class UpdatePageController extends ParentFXMLController{
     }
 
     @FXML
-    void submitClick(ActionEvent event) {
+    void submitFrame(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
 			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-			Stage stage = (Stage) cancelButton.getScene().getWindow();
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("My New Scene");

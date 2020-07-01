@@ -16,4 +16,8 @@ public class EnquiryDetailsHelper {
 		return new EnquiryDetailsDao().getEligibleUsers();
 	}
 	
+	public List<EnquiryDetails> getEnquiryDetails(){
+		return new EnquiryDetailsDao().getEnquiryDetails();
+	}
+	
 }
