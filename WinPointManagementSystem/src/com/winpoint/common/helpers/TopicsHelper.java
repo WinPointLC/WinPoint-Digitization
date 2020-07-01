@@ -10,4 +10,7 @@ public class TopicsHelper {
 	public List<Topic> getTopicsList(int courseId) {
 		return new TopicsDao().getTopicsList(courseId);
 	}
+	public List<Topic> getTopicsList1(int courseId) {
+		return new TopicsDao().getTopicsList1(courseId);
+	}
 }
