@@ -11,10 +11,9 @@ public class ConnectionManager {
 		Connection connection = null;
 		SQLServerDataSource dataSource = new SQLServerDataSource();
 		dataSource.setUser("sa");
-		dataSource.setPassword("@Shradz8888");
+		dataSource.setPassword("winpoint");
 //		dataSource.setServerName("SHRIRANGMHALGI\\SQLEXPRESS");
-		dataSource.setServerName("localhost");
-//		dataSource.setServerName("DESKTOP-ARN90J1");
+		dataSource.setServerName("DESKTOP-8PA8OIH");
 		dataSource.setPortNumber(Integer.parseInt("1433"));
 		dataSource.setDatabaseName("WinPoint-Digitization");
 		try {
