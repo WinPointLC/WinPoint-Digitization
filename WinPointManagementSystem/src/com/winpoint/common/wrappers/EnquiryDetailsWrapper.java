@@ -11,7 +11,7 @@ public class EnquiryDetailsWrapper {
 	public EnquiryDetailsWrapper(String firstName, String lastName, int coursesInterestedIn,boolean eligibility, String suggestion) {
 		// TODO Auto-generated constructor stub
 		
-		fullName = firstName+" "+lastName;
+		this.fullName = firstName + " " + lastName;
 		this.coursesInterestedIn = coursesInterestedIn;
 		this.eligibility = eligibility;
 		this.suggestion = suggestion;
