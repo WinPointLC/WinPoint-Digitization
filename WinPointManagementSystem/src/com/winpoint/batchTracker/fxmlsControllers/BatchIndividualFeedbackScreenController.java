@@ -3,10 +3,21 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
+import com.winpoint.common.helpers.CourseHelper;
+import com.winpoint.common.helpers.StudentCourseDetailsHelper;
+import com.winpoint.common.helpers.UserProfileHelper;
+import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,25 +44,25 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     private ImageView logo;
 
     @FXML
-    private TableView<UserProfile> individualFeedbackTable;
+    private TableView<BatchIndividualFeedbackScreenWrapper> individualFeedbackTable;
 
     @FXML
-    private TableColumn<String, UserProfile> individualFeedbackTableNameColumn;
+    private TableColumn<String, BatchIndividualFeedbackScreenWrapper> individualFeedbackTableNameColumn;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableInstructorColumn;
+    private TableColumn<Integer, BatchIndividualFeedbackScreenWrapper> individualFeedbackTableInstructorColumn;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableDuration;
+    private TableColumn<Integer, BatchIndividualFeedbackScreenWrapper> individualFeedbackTableDuration;
 
     @FXML
-    private TableColumn<String, UserProfile> individualFeedbackTableEmailId;
+    private TableColumn<String, BatchIndividualFeedbackScreenWrapper> individualFeedbackTableEmailId;
 
     @FXML
-    private TableColumn<String, UserProfile> individualFeedbackTableMobile;
+    private TableColumn<String, BatchIndividualFeedbackScreenWrapper> individualFeedbackTableMobile;
 
     @FXML
-    private TableColumn<?, ?> individualFeedbackTableStatus;
+    private TableColumn<Boolean,BatchIndividualFeedbackScreenWrapper > individualFeedbackTableStatus;
 
     @FXML
     private TextField individualFeedbackQuestion1;
@@ -122,19 +133,39 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
 	public void initialize(URL location, ResourceBundle resources) {
     	
     	
-    	individualFeedbackTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	//individualFeedbackTableInstructorColumn.setCellValueFactory(new PropertyValueFactory<>(""));
-    	//individualFeedbackTableDuration.setCellValueFactory(new PropertyValueFactory<>(""));
-    	individualFeedbackTableEmailId.setCellValueFactory(new PropertyValueFactory<>("email")); 
-    	individualFeedbackTableMobile.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
-    	//individualFeedbackTableStatus.setCellValueFactory(new PropertyValueFactory<>("atualInstallment3Date")); 
-    	
-    	
-    	UserProfile obj=new UserProfile("Purva", "purvakhot@gmail.com", "9846738933");
-    		UserProfile obj1=new UserProfile("Suhasi", "suhasib@gmail.com", "9846778933");
-			ObservableList<UserProfile> data =FXCollections.observableArrayList(obj,obj1);
-			UserProfile.setItems((ObservableList<UserProfile>)data);
-    	
+    	ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();		
+		ArrayList<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchInstructorList();
+		ArrayList<Course> courseList =  new CourseHelper().getBatchCourseDurationList();
+   		ArrayList<StudentCourseDetails> CourseDetailsList= new StudentCourseDetailsHelper().getBatchFeedback();
+   		// Row Population logic
+   		individualFeedbackTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+    	individualFeedbackTableInstructorColumn.setCellValueFactory(new PropertyValueFactory<>("instructor"));
+    	individualFeedbackTableDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+    	individualFeedbackTableEmailId.setCellValueFactory(new PropertyValueFactory<>("email"));
+    	individualFeedbackTableMobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+    	individualFeedbackTableStatus.setCellValueFactory(new PropertyValueFactory<>("status")); 
+	    //fx:ID : Column Name
+   		ArrayList<BatchIndividualFeedbackScreenWrapper> batchWrapperList = new ArrayList<BatchIndividualFeedbackScreenWrapper>();
+   		int i=0;
+   		
+   		while(userProfileList.size()>i) {
+   			BatchIndividualFeedbackScreenWrapper batchFeedbackScreenWrapper= new BatchIndividualFeedbackScreenWrapper(
+   					userProfileList.get(i).getFirstName() + " " +
+   					userProfileList.get(i).getLastName(),
+   					batchDetailsList.get(i).getFacultyId(),
+   					courseList.get(i).getCourseDuration(),
+   					userProfileList.get(i).getEmail(),
+   					userProfileList.get(i).getMobileNumber(),
+   					CourseDetailsList.get(i).getIsFeedbackGiven());
+   			
+   			i++;
+   					batchWrapperList.add(batchFeedbackScreenWrapper);
+   			
+   		}
+	    ObservableList<BatchIndividualFeedbackScreenWrapper> batchIndividualList = FXCollections.observableArrayList(batchWrapperList);
+	    
+	    individualFeedbackTable.setItems(batchIndividualList);
+	    
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

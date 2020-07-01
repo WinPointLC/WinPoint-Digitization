@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.winpoint.common.beans.Stream;
-import com.winpoint.common.beans.TestFeedback;
 import com.winpoint.common.beans.UserProfile;
-import com.winpoint.common.dao.StreamDao;
-import com.winpoint.common.dao.TestFeedbackDao;
 import com.winpoint.common.dao.UserProfileDao;
 
 public class UserProfileHelper {
@@ -38,11 +34,14 @@ public class UserProfileHelper {
 		
 		return (ArrayList<UserProfile>) userProfileList;		
 	}
-	//Assignment
-	public ArrayList<UserProfile> getUsersForAssignmentScreen(){
+	
+	
+	//BatchIndividual
+	public ArrayList<UserProfile> getUsersForBatchTracker(){
 		
-		return new UserProfileDao().getUsersForAssignmentScreen(); 
+		return new UserProfileDao().getUsersForBatchTracker(); 
 		
 		
 	}	
+	
 }

@@ -15,6 +15,21 @@ import com.winpoint.common.util.sql.ConnectionManager;
 
 
 public class CourseDao {
+	
+	
+public ArrayList<Course> getBatchCourseDurationList() {
+		
+		ArrayList<Course> getBatchCourseDurationList = new ArrayList<Course>();
+				
+		getBatchCourseDurationList.add(new Course(2));
+		getBatchCourseDurationList.add(new Course(3));
+		getBatchCourseDurationList.add(new Course(4));
+		
+		return getBatchCourseDurationList;
+		
+
+	}
+	
 
 	public List<Course> getCourseList(int streamId, int courseTypeId) {
 		

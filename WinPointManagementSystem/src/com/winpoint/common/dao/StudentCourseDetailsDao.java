@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 //import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.winpoint.common.beans.Rules;
-import com.winpoint.common.beans.SecurityQuestions;
-import com.winpoint.common.beans.Stream;
+
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 
@@ -162,7 +161,18 @@ public class StudentCourseDetailsDao {
 		return studentCourseDetails;
 	}
 	
-	
+public ArrayList<StudentCourseDetails> getBatchFeedback() {
+		
+		ArrayList<StudentCourseDetails> getBatchFeedback = new ArrayList<StudentCourseDetails>();
+				
+		getBatchFeedback.add(new StudentCourseDetails("yes"));
+		getBatchFeedback.add(new StudentCourseDetails("yes"));
+		getBatchFeedback.add(new StudentCourseDetails("yes"));
+		
+		return  getBatchFeedback;
+		
+
+	}
 
 		
 }

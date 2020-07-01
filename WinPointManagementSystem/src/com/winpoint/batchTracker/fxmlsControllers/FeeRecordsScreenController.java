@@ -6,8 +6,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.StudentCourseDetails;
+import com.winpoint.common.beans.StudentCourseInstallmentDetails;
+import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
-import com.winpoint.common.helpers.FeeRecordsHelper;
+import com.winpoint.common.dao.StudentCourseDetailsDao;
+import com.winpoint.common.dao.StudentCourseInstallmentDetailsDao;
+import com.winpoint.common.helpers.StudentCourseDetailsHelper;
+import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
+import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 //import javafx.beans.property.ObjectProperty;
@@ -158,7 +165,24 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 //    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(record1, record2);
 //    	feeTable.setItems((ObservableList<FeeRecordsScreenWrapper>)data);
     	
-    	feeTable.setItems(new FeeRecordsHelper().getFeeRecordsScreenWrapper());
+    	ArrayList<StudentCourseDetails> studentCourseDetailsList = new StudentCourseDetailsHelper().getStudentCourseDetailsList();
+		ArrayList<StudentCourseInstallmentDetails> studentCourseInstallmentDetailsList = new StudentCourseInstallmentHelper().getStudentCourseInstallmentDetailsList();
+		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
+		
+		int i = 0;
+		ArrayList<FeeRecordsScreenWrapper> feeRecordsScreenWrapperList = new ArrayList<FeeRecordsScreenWrapper>();
+		while(userProfileList.size() > i) {
+			FeeRecordsScreenWrapper feeRecordsScreenWrapper = new FeeRecordsScreenWrapper(userProfileList.get(i).getUserId(), 
+					userProfileList.get(i).getFirstName()+" "+userProfileList.get(i).getLastName(), studentCourseDetailsList.get(i).getFeeStatus(),
+					"Cash", userProfileList.get(i).getEmail(), userProfileList.get(i).getMobileNumber(), studentCourseInstallmentDetailsList.get(i));
+			
+			i++;
+			feeRecordsScreenWrapperList.add(feeRecordsScreenWrapper);
+		}
+		
+		ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(feeRecordsScreenWrapperList);
+		feeTable.setItems(data);
+    	
 
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

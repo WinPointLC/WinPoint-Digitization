@@ -201,18 +201,14 @@ public ArrayList<UserProfile> getUsers() {
 		return  (ArrayList<UserProfile>) userProfileList;
 		
 	}
-	
-	//Batch Tracker-Assignment
-	public ArrayList<UserProfile> getUsersForAssignmentScreen(){
+
+	public ArrayList<UserProfile> getUsersForBatchTracker() {
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
-		userProfileList.add(new UserProfile("Purva","Khot"));
-		userProfileList.add(new UserProfile("Sarthak","Bapte"));
-		userProfileList.add(new UserProfile("Suhasi","Buche"));
+		userProfileList.add(new UserProfile(10, "Purva","Khot", "purva@gmail.com", "9922956789", null));
+		userProfileList.add(new UserProfile(11, "Sarthak","Bapte", "sarthak@gmail.com", "9922956789", null));
+		userProfileList.add(new UserProfile(12, "Suhasi","Buche", "suhasi@gmail.com", "9922956789", null));
 		return (ArrayList<UserProfile>) userProfileList;
-		
 	}
-	
-	
 	
 	
 	

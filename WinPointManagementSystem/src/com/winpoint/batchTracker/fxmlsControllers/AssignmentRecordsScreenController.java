@@ -106,7 +106,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForAssignmentScreen();
+   		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
    		ArrayList<StudentCourseDetails> studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList();
    		
    		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
