@@ -106,20 +106,24 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
+   		System.out.println("Assignment Screen");
    		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
    		ArrayList<StudentCourseDetails> studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList();
    		
    		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
    		// Row Population logic
-   		assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+   		//assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
    		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
    		assignmentsTableCoursewareColumn.setCellValueFactory(new PropertyValueFactory<>("coursewareIssued"));
    		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
 	    //fx:ID : Column Name
    		ArrayList<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
-   		int i=0;
-   		while(userProfileList.size()>i) {
+     	//	int i=0;
+   		for(StudentCourseDetails studentCourseDetails : studentCourseDetailsList) {
+   			assignmentsScreenWrapperList.add(new AssignmentsScreenWrapper(studentCourseDetails.getFeeStatus(),studentCourseDetails.getCoursewareIssued(),studentCourseDetails.getAssignmentsIssued(),studentCourseDetails.getAssignmentsSubmitted()));
+   		}
+   		/*while(userProfileList.size()>i) {
    			AssignmentsScreenWrapper assignmentsScreenWrapper= new AssignmentsScreenWrapper(
    					userProfileList.get(i).getFirstName(),
    					userProfileList.get(i).getLastName(),
@@ -130,7 +134,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
    				i++;
    			assignmentsScreenWrapperList.add(assignmentsScreenWrapper);
    			
-   		}
+   		}*/
    		
    		
 	    ObservableList<AssignmentsScreenWrapper> assignmentDetailsList = FXCollections.observableArrayList(assignmentsScreenWrapperList);

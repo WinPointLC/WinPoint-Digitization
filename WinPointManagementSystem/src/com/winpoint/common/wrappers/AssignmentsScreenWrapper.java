@@ -17,6 +17,16 @@ public class AssignmentsScreenWrapper {
 		this.assignmentsSubmitted=assignmentsSubmitted;
 	}
 	
+	//For Assignments Screen
+	public AssignmentsScreenWrapper(String feeStatus, String coursewareIssued, String assignmentsIssued,
+			String assignmentsSubmitted) {
+		super();
+		this.feeStatus = feeStatus;
+		this.coursewareIssued = coursewareIssued;
+		this.assignmentsIssued = assignmentsIssued;
+		this.assignmentsSubmitted = assignmentsSubmitted;
+	}
+
 
 	public String getName() {
 		return fullName;
