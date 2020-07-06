@@ -80,7 +80,7 @@ public class EnquiryDetailsDao {
 			ResultSet rs = statement.executeQuery(query2);
 			
 			while(rs.next()) {
-				enquiryDetailList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getInt("COURSE_INTERESTED_IN"),rs.getBoolean("ELIGIBILITY"),rs.getString("SUGGESTION")));
+				enquiryDetailList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getString("COURSE_INTERESTED_IN"),rs.getBoolean("ELIGIBILITY"),rs.getString("SUGGESTION")));
 			}
 
 		} 

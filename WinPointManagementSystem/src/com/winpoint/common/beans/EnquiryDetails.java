@@ -31,10 +31,10 @@ public class EnquiryDetails extends UserProfile {
 	private Integer yearOfGraduation;
 	private String recommendation;
 	private Boolean eligibility;
-	private Integer coursesInterestedIn;
+	private String coursesInterestedIn;
 	private String reference;
 	private Integer timeSlotsId;
-	private Integer courseAlreadyDone;
+	private String courseAlreadyDone;
 	private Date startDate;
 	private Integer segmentTypeId;
 	private String suggestion;
@@ -105,7 +105,7 @@ public class EnquiryDetails extends UserProfile {
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,
 			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
-			Integer coursesInterestedIn, String reference, Integer timeSlotsId, Integer courseAlreadyDone,
+			String coursesInterestedIn, String reference, Integer timeSlotsId, String courseAlreadyDone,
 			Date startDate, Integer segmentTypeId, String suggestion, Boolean activeStatus) {
 		super();
 		this.enquiryId = enquiryId;
@@ -157,7 +157,7 @@ public class EnquiryDetails extends UserProfile {
 		this.lastName = lastName;
 	}
 
-	public EnquiryDetails(String firstName, String lastName, int coursesInterestedIn,boolean eligibility,String suggestion) {
+	public EnquiryDetails(String firstName, String lastName, String coursesInterestedIn,boolean eligibility,String suggestion) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -486,14 +486,14 @@ public class EnquiryDetails extends UserProfile {
 	/**
 	 * @return the coursesInterestedIn
 	 */
-	public Integer getCoursesInterestedIn() {
+	public String getCoursesInterestedIn() {
 		return coursesInterestedIn;
 	}
 
 	/**
 	 * @param coursesInterestedIn the coursesInterestedIn to set
 	 */
-	public void setCoursesInterestedIn(Integer coursesInterestedIn) {
+	public void setCoursesInterestedIn(String coursesInterestedIn) {
 		this.coursesInterestedIn = coursesInterestedIn;
 	}
 
@@ -529,14 +529,14 @@ public class EnquiryDetails extends UserProfile {
 	/**
 	 * @return the courseAlreadyDone
 	 */
-	public Integer getCourseAlreadyDone() {
+	public String getCourseAlreadyDone() {
 		return courseAlreadyDone;
 	}
 
 	/**
 	 * @param courseAlreadyDone the courseAlreadyDone to set
 	 */
-	public void setCourseAlreadyDone(Integer courseAlreadyDone) {
+	public void setCourseAlreadyDone(String courseAlreadyDone) {
 		this.courseAlreadyDone = courseAlreadyDone;
 	}
 

@@ -283,13 +283,8 @@ public class SignUpFormController extends ParentFXMLController {
     	stage.show();
     }
     
-    @FXML
-    ToggleGroup radioEligibility = new ToggleGroup();
-    
-    RadioButton eligibility1 = new RadioButton("Eligibility");
-  
-   
-   // eligibility.setToggleGroup(radioEligibility);
+//    @FXML
+//    ToggleGroup radioEligibility = new ToggleGroup();
     
     @FXML
     void submitClick(ActionEvent event) throws ParseException,IOException, SQLException{
@@ -359,10 +354,10 @@ public class SignUpFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String recommendation1 = recommendation.getText(); 
 		Boolean eligibility1 = Boolean.parseBoolean(eligibility.getText());
-		Integer coursesInterestedIn1 = Integer.parseInt(courseInterestedIn.getText());
+		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String reference1 = referance.getText();
 		Integer timeSlotsId1 = timeSlotId;//Integer.parseInt(availableTime.getValue());
-		Integer courseAlreadyDone1 = Integer.parseInt(courseAlreadyDone.getText());
+		String courseAlreadyDone1 = courseAlreadyDone.getText();
 		Date startDate1 = dateStartDate;
 		Integer segmentTypeId1 = segmentTypeId;//Integer.parseInt(segmentType.getValue()); 
 		String suggestion1 = suggestion.getText(); 

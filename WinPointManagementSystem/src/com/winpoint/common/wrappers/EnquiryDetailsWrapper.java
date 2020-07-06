@@ -6,15 +6,15 @@ public class EnquiryDetailsWrapper {
 	
 	private String fullName;
 	private Boolean eligibility;
-	private Integer coursesInterestedIn;
+	private String coursesInterestedIn;
 	private String suggestion;
 	
 	
 
-	public EnquiryDetailsWrapper(String firstName, String lastName, int coursesInterestedIn,boolean eligibility, String suggestion) {
+	public EnquiryDetailsWrapper(String firstName, String lastName, String courseInterestedIn,boolean eligibility, String suggestion) {
 		
 		this.fullName = firstName + " " + lastName;
-		this.coursesInterestedIn = coursesInterestedIn;
+		this.coursesInterestedIn = courseInterestedIn;
 		this.eligibility = eligibility;
 		this.suggestion = suggestion;
 	}
@@ -38,11 +38,11 @@ public class EnquiryDetailsWrapper {
 		this.eligibility = eligibility;
 	}
 
-	public Integer getCoursesInterestedIn() {
+	public String getCoursesInterestedIn() {
 		return coursesInterestedIn;
 	}
 
-	public void setCoursesInterestedIn(Integer coursesInterestedIn) {
+	public void setCoursesInterestedIn(String coursesInterestedIn) {
 		this.coursesInterestedIn = coursesInterestedIn;
 	}
 
