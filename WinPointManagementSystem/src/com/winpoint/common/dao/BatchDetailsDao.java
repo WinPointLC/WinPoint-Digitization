@@ -38,4 +38,32 @@ public class BatchDetailsDao {
 		
 	}
 	
+public List<BatchDetails> getBatchInstructorList() {
+		
+		List<BatchDetails> batchInstructorList = new ArrayList<BatchDetails>();
+		
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "select FACULTY_USER_ID from BATCH_DETAILS";
+			
+			resultSet  = statement.executeQuery(query1);
+			
+			while(resultSet.next()) {
+				batchInstructorList.add(new BatchDetails(resultSet.getInt("FACULTY_USER_ID")));
+			}
+			
+		} 
+		catch (SQLException e) {
+			batchInstructorList = null;
+			e.printStackTrace();
+		}
+		
+		return  (ArrayList<BatchDetails>) batchInstructorList;
+		
+	}
+	
+	
 }

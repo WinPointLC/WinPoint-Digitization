@@ -12,6 +12,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.util.sql.DateConverter;
+import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
 
 public class UserProfileDao {
 	public boolean updateUserProfile(UserProfile userProfile){
@@ -191,7 +192,7 @@ public ArrayList<UserProfile> getUsers() {
 			while(rs.next()) {
 				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
 			}
-			
+
 		} 
 		catch (SQLException e) {
 			userProfileList = null;
@@ -202,12 +203,53 @@ public ArrayList<UserProfile> getUsers() {
 		
 	}
 
-	public ArrayList<UserProfile> getUsersForBatchTracker() {
-		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
-		userProfileList.add(new UserProfile(10, "Purva","Khot", "purva@gmail.com", "9922956789", null));
+	public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId) {
+		//List<UserProfile> userProfileList = new ArrayList<UserProfile>();
+		
+		ArrayList<BatchIndividualFeedbackScreenWrapper> batchWrapperList = new ArrayList<BatchIndividualFeedbackScreenWrapper>();
+		BatchIndividualFeedbackScreenWrapper batchIndividualFeedbackScreenWrapper;
+		ResultSet resultSet = null;
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT up1.FIRST_NAME, up1.LAST_NAME, up2.FIRST_NAME + ' ' + up2.LAST_NAME AS INSTRUCTOR_NAME, up1.EMAIL_ID, up1.MOBILE_NUMBER, c.DURATION, scd1.FEEDBACK_GIVEN \r\n" + 
+					"FROM USER_PROFILE AS up1 \r\n" + 
+					"INNER JOIN\r\n" + 
+					"STUDENT_COURSE_DETAILS AS scd1\r\n" + 
+					"ON up1.USER_ID = scd1.USER_ID\r\n" + 
+					"INNER JOIN\r\n" + 
+					"COURSES AS c\r\n" + 
+					"ON c.COURSE_ID = scd1.COURSE_ID\r\n" + 
+					"INNER JOIN\r\n" + 
+					"USER_PROFILE AS up2\r\n" + 
+					"ON up2.USER_ID = (SELECT FACULTY_USER_ID FROM BATCH_DETAILS WHERE BATCH_ID = "+ batchId + ")\r\n" + 
+					"WHERE scd1.BATCH_ID = " + batchId;
+			
+			
+			resultSet  = statement.executeQuery(query1);
+			String feedbackGiven;
+			
+			while(resultSet.next()) {
+				feedbackGiven = (resultSet.getString("FEEDBACK_GIVEN")==null)?"NO":"YES";
+				batchIndividualFeedbackScreenWrapper = new BatchIndividualFeedbackScreenWrapper(resultSet.getString("FIRST_NAME"),
+						resultSet.getString("LAST_NAME"),resultSet.getString("INSTRUCTOR_NAME"), 
+						resultSet.getInt("DURATION"),resultSet.getString("EMAIL_ID"), 
+						resultSet.getString("MOBILE_NUMBER"), feedbackGiven);
+				batchWrapperList.add(batchIndividualFeedbackScreenWrapper);			}
+
+		} 
+		catch (SQLException e) {
+			batchWrapperList = null;
+			e.printStackTrace();
+		}
+		
+		return  batchWrapperList;
+		
+		
+		/*userProfileList.add(new UserProfile(10, "Purva","Khot", "purva@gmail.com", "9922956789", null));
 		userProfileList.add(new UserProfile(11, "Sarthak","Bapte", "sarthak@gmail.com", "9922956789", null));
 		userProfileList.add(new UserProfile(12, "Suhasi","Buche", "suhasi@gmail.com", "9922956789", null));
-		return (ArrayList<UserProfile>) userProfileList;
+		return (ArrayList<UserProfile>) userProfileList;*/
 	}
 	
 	
