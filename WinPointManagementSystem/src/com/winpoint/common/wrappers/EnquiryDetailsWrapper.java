@@ -1,4 +1,7 @@
 package com.winpoint.common.wrappers;
+
+import java.util.Date;
+
 public class EnquiryDetailsWrapper {
 	
 	private String fullName;
@@ -9,7 +12,6 @@ public class EnquiryDetailsWrapper {
 	
 
 	public EnquiryDetailsWrapper(String firstName, String lastName, int coursesInterestedIn,boolean eligibility, String suggestion) {
-		// TODO Auto-generated constructor stub
 		
 		this.fullName = firstName + " " + lastName;
 		this.coursesInterestedIn = coursesInterestedIn;
@@ -51,6 +53,15 @@ public class EnquiryDetailsWrapper {
 	public void setSuggestion(String suggestion) {
 		this.suggestion = suggestion;
 	} 
+	
+	// Function to data the data to database
+	public void setDataToTable(String firstName, String lastName, String email, Date birthDate, String address, String gender, String mobileNumber, String college, String degree, String branch, Integer yearOfGraduation, Integer coursesInterestedIn, Integer courseAlreadyDone,  Integer timeSlotsId, String reference) {
+		
+	}
+	
+	
+	
+	
 	
 	
 	

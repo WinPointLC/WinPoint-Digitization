@@ -12,8 +12,8 @@ public class EnquiryDetails extends UserProfile {
 	public Integer enquiryId;
 	private String firstName;
 	private String lastName;
-	private String email;
-	private String mobileNumber;
+	private String emailId;
+	private String mobileNo;
 	private String address;
 	private Date birthDate;
 	private String college;
@@ -100,6 +100,7 @@ public class EnquiryDetails extends UserProfile {
 		this.setStudent(student);
 	}
 	
+
 	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,
@@ -110,8 +111,8 @@ public class EnquiryDetails extends UserProfile {
 		this.enquiryId = enquiryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.emailId = email;
+		this.mobileNo = mobileNumber;
 		this.address = address;
 		this.birthDate = birthDate;
 		this.college = college;
@@ -137,51 +138,15 @@ public class EnquiryDetails extends UserProfile {
 		this.segmentTypeId = segmentTypeId;
 		this.suggestion = suggestion;
 		this.activeStatus = activeStatus;
-	}
-
-	
-	
-	
-	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
-			String address, Date birthDate, String college, String degree, String branch, Integer createdBy,
-			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
-			Integer coursesInterestedIn, String reference, Integer timeSlotsId, Integer courseAlreadyDone,
-			Integer segmentTypeId, String suggestion, Boolean activeStatus) {
-		super();
-		this.enquiryId = enquiryId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
-		this.birthDate = birthDate;
-		this.college = college;
-		this.degree = degree;
-		this.branch = branch;
-		this.createdBy = createdBy;
-		this.dateOfEnquiry = dateofEnquiry;
-		this.gender = gender;
-		this.yearOfGraduation = yearOfGraduation;
-		this.recommendation = recommendation;
-		this.eligibility = eligibility;
-		this.coursesInterestedIn = coursesInterestedIn;
-		this.reference = reference;
-		this.timeSlotsId = timeSlotsId;
-		this.courseAlreadyDone = courseAlreadyDone;
-		this.segmentTypeId = segmentTypeId;
-		this.suggestion = suggestion;
-		this.activeStatus = activeStatus; 
-	}
-	
-	
+	}	
 
 
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.emailId = email;
+		this.mobileNo = mobileNumber;
 		this.address = address;
 	}
 
@@ -201,7 +166,6 @@ public class EnquiryDetails extends UserProfile {
 		this.suggestion = suggestion;
 	} 
 
-	
 	/**
 	 * @return the enquiryId
 	 */
@@ -249,14 +213,14 @@ public class EnquiryDetails extends UserProfile {
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return emailId;
 	}
 
 	/**
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.emailId = email;
 	}
 
 
@@ -264,7 +228,7 @@ public class EnquiryDetails extends UserProfile {
 	 * @return the mobileNumber
 	 */
 	public String getMobileNumber() {
-		return mobileNumber;
+		return mobileNo;
 	}
 
 
@@ -272,7 +236,7 @@ public class EnquiryDetails extends UserProfile {
 	 * @param mobileNumber the mobileNumber to set
 	 */
 	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+		this.mobileNo = mobileNumber;
 	}
 
 	/**

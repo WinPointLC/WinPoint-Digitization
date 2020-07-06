@@ -186,7 +186,13 @@ public ArrayList<UserProfile> getUsers() {
 			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM USER_PROFILE\n" + 
 					"";
 			
-			ResultSet rs = statement.executeQuery(query1);
+			// we have to access the course name from the previous screen
+			String q2 = "SELECT U.FIRST_NAME, U.LAST_NAME\n" + 
+					"FROM USER_PROFILE AS U\n" + 
+					"JOIN COURSES AS C\n" + 
+					"ON CAST(U.COURSE_ALREADY_DONE AS VARCHAR(30)) = C.PRE_REQUISITE\n" + 
+					"WHERE C.COURSE_NAME = 'writing skills'";
+			ResultSet rs = statement.executeQuery(q2);
 			
 			while(rs.next()) {
 				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
