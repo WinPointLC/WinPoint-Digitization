@@ -26,7 +26,7 @@ public class CourseFeedbackDao {
 			Statement statement = connection.createStatement();
 			
 			String query1 = "SELECT * FROM COURSE_FEEDBACK\r\n" + 
-					"WHERE USER_ID =1 AND COURSE_ID =1";
+					"WHERE USER_ID =2 AND COURSE_ID =1";
 			
 			
 			resultSet  = statement.executeQuery(query1);

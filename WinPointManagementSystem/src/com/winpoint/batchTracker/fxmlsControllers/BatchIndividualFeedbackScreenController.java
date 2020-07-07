@@ -3,7 +3,7 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
@@ -139,10 +139,41 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     	//individualFeedbackQuestion1.setText("3");
     	
     	ArrayList<CourseFeedback> feedBackResponses1 =  new ArrayList<>();
+    	HashMap<Integer, String> responses = new HashMap<>();
     	feedBackResponses1 = (ArrayList<CourseFeedback>) new CourseFeedbackHelper().getResponses();
     	for (CourseFeedback courseFeedback : feedBackResponses1) {
-			System.out.println(courseFeedback.getStudentResponse());
+			responses.put(courseFeedback.getFeedbackId(), courseFeedback.getStudentResponse());
+			
 		}
+    	
+	/*int i=0;
+   		
+   		while(feedBackResponses1.size()>i) {
+   			
+   			
+   			i++;
+   					batchWrapperList.add(batchFeedbackScreenWrapper);
+   			
+   		}*/
+    	
+    	
+    	individualFeedbackQuestion1.setText(responses.get(1));
+    	individualFeedbackQuestion2.setText(responses.get(2));
+    	//System.out.println(responses.get(2));
+    	individualFeedbackQuestion3.setText(responses.get(3));
+    	individualFeedbackQuestion4.setText(responses.get(4));
+    	individualFeedbackQuestion5.setText(responses.get(5));
+    	individualFeedbackQuestion6.setText(responses.get(6));
+    	individualFeedbackQuestion7.setText(responses.get(7));
+    	individualFeedbackQuestion8.setText(responses.get(8));
+    	individualFeedbackQuestion9.setText(responses.get(9));
+    	individualFeedbackQuestion10.setText(responses.get(10));
+    	individualFeedbackQuestionA.setText(responses.get(11));
+    	individualFeedbackQuestionB.setText(responses.get(12));
+    	individualFeedbackQuestionC.setText(responses.get(13));
+    	individualFeedbackQuestionD.setText(responses.get(14));
+    	
+    	
     	
 		ArrayList<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchInstructorList();
 		ArrayList<Course> courseList =  new CourseHelper().getBatchCourseDurationList();
