@@ -30,10 +30,12 @@ public class UserTestDetails {
 		this.attempted = attempted;
 		this.evaluationDone = evaluationDone;
 	}
+	
 	public UserTestDetails(String evaluationDone) {
 		super();
 		this.evaluationDone = evaluationDone;
 	}
+
 	public Integer getUserTestId() {
 		return userTestId;
 	}

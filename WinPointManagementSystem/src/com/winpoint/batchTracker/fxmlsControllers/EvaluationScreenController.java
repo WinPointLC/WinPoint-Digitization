@@ -127,7 +127,7 @@ public class EvaluationScreenController extends ParentFXMLController {
    				evaluationScreenWrapperList.add(evaluationScreenWrapper);
    			
    		}
-   	  ObservableList<EvaluationScreenWrapper> evaluationdetailsList = FXCollections.observableArrayList(evaluationScreenWrapperList);
+   	  ObservableList<EvaluationScreenWrapper> evaluationdetailsList = FXCollections.observableArrayList( new StudentCourseDetailsHelper().getStudentCourseDetailsList());
 	    
    	evaluationTable.setItems( evaluationdetailsList);
    	}

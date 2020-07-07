@@ -7,7 +7,7 @@ public class EvaluationScreenWrapper {
 	private String isCertificateGiven;
 	public EvaluationScreenWrapper(String firstName,String lastName, String evaluationDone, String gradeId, String isCertificateGiven) {
 		super();
-		this.fullName =firstName + " " + lastName;
+		this.fullName =firstName + " " +lastName;
 		this.evaluationDone = evaluationDone;
 		this.gradeId = gradeId;
 		this.isCertificateGiven = isCertificateGiven;

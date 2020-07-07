@@ -96,16 +96,16 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
    		
-   		ArrayList<Topic> topicList = (ArrayList<Topic>) new TopicsHelper().getTopicsList1(1);
+   		
    		
    		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<String, ProgressTrackingWrapper>("topicName"));
    		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<Integer,ProgressTrackingWrapper>("topicDuration"));
    		List<ProgressTrackingWrapper> progressTrackingWrapperList= new ArrayList<ProgressTrackingWrapper>();
 	    //fx:ID : Column Name
-   		for(Topic topic : topicList) {
+   		/*for(Topic topic : topicList) {
    			progressTrackingWrapperList.add(new ProgressTrackingWrapper(topic.getTopicName(),topic.getTopicDuration()));
-   		}
-	    ObservableList<ProgressTrackingWrapper> topic = FXCollections.observableArrayList(progressTrackingWrapperList);
+   		}*/
+	    ObservableList<ProgressTrackingWrapper> topic = FXCollections.observableArrayList(new TopicsHelper().getProgressTrackingWrapper1(1,1));
 	    
 	    topicsTable.setItems((ObservableList<ProgressTrackingWrapper>) topic);
    	}
