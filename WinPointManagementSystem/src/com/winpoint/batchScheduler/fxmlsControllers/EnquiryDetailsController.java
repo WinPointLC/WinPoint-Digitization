@@ -2,15 +2,12 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
-import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.wrappers.EnquiryDetailsWrapper;
 
