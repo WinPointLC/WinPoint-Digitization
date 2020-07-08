@@ -3,6 +3,7 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -196,7 +197,7 @@ public class UpdateFormController extends ParentFXMLController {
 
     }
     @FXML
-    void validateSubmitFrame(ActionEvent event) {
+    void validateSubmitFrame(ActionEvent event) throws SQLException {
     	
     	
     	System.out.println(degree.getValue());
@@ -219,15 +220,15 @@ public class UpdateFormController extends ParentFXMLController {
 		Integer experience1 = Integer.parseInt(experience.getText());
 		String gender1 = gender.getText();
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
-		Integer coursesInterestedIn1 = Integer.parseInt(courseInterestedIn.getText());
-		Integer coursesAlreadyDone1 = Integer.parseInt(coursesAlreadyDone.getText());
+		String coursesInterestedIn1 = courseInterestedIn.getText();
+		String coursesAlreadyDone1 = coursesAlreadyDone.getText();
 		Boolean activeStatus1 = Boolean.parseBoolean(activeStatus.getText());
     	
     	
 		EnquiryDetails enquiryDetailsObject = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
 				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,activeStatus1);
     	
-    	new EnquiryDetailsHelper().create(enquiryDetailsObject);
+    	new EnquiryDetailsHelper().update(enquiryDetailsObject);
 
     	
     	FXMLLoader loader = new FXMLLoader();

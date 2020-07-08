@@ -14,10 +14,9 @@ public class BatchDetailsHelper {
 	}
 
 
-	public ArrayList<BatchDetails> getBatchInstructorList() {
-		return (ArrayList<BatchDetails>) new BatchDetailsDao().getBatchInstructorList();
-		
-	}
+//	public ArrayList<BatchDetails> getBatchInstructorList() {
+//		return (ArrayList<BatchDetails>) new BatchDetailsDao().getBatchInstructorList();	
+//	}
 	
 }
 

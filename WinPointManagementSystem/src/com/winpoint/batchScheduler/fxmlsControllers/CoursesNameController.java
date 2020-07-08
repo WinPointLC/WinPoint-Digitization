@@ -94,7 +94,7 @@ public class CoursesNameController extends ParentFXMLController{
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
    		
    		for( UserProfile userProfile: userProfileList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true,userProfile.getAdd()));
+   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true));
    		}
    		
    		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
@@ -107,4 +107,3 @@ public class CoursesNameController extends ParentFXMLController{
    	}
 
 }
-

@@ -9,7 +9,7 @@ public class CoursesNameWrapper {
 	private boolean registered;
 	private Button add;
 	
-	public CoursesNameWrapper(String firstName, String lastName, boolean enquired, boolean registered,Button add){
+	public CoursesNameWrapper(String firstName, String lastName, boolean enquired, boolean registered){
 		
 		fullName = firstName + " " + lastName;
 		this.enquired = enquired;
