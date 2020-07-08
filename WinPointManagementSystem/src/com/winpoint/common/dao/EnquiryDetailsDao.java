@@ -126,7 +126,7 @@ public class EnquiryDetailsDao {
 					"SEGMENT_TYPE_ID, \n" + 
 					"ACTIVE_STATUS)\n" + 
 					"VALUES("+
-					123+",'"+
+					113+",'"+
 					enquiryDetails.getFirstName()+"','"+
 					enquiryDetails.getLastName()+"','"+
 					enquiryDetails.getEmail()+"','"+

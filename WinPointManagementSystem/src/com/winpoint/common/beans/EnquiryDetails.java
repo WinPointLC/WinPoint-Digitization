@@ -2,6 +2,8 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+import javafx.scene.control.Button;
+
 /**
  * @author shraddhapadalkar
  *
@@ -40,12 +42,20 @@ public class EnquiryDetails extends UserProfile {
 	private String suggestion;
 	private Boolean activeStatus;
 	
+//	private Button update;
 	private String student;
 	
 	private String enquired;
 	private String registered;
 	
 	
+//	public Button getUpdate() {
+//		return update;
+//	}
+//	
+//	public void setUpdate(Button Update){
+//		this.update = Update;
+//	}
 	
 	public String getEnquired() {
 		return enquired;

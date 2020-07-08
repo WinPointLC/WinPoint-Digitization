@@ -49,8 +49,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     private TableColumn<EnquiryDetailsWrapper, String> suggestionCol;
 
     @FXML
-    private TableColumn<EnquiryDetailsWrapper, Boolean> updateCol= new TableColumn<>("Update");
-    
+    private TableColumn<EnquiryDetailsWrapper, Button> updateCol;
    
     
 	
@@ -67,24 +66,21 @@ public class EnquiryDetailsController extends ParentFXMLController{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
-    	
-    	//EnquiryDetailsHelper enquiryDetailsObject = new EnquiryDetailsHelper(); 	
-    	
-    	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();
-    	
+
+    	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();    	
   
     	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("FullName"));
     	courseCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("CoursesInterestedIn"));
     	eligibilityCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Boolean>("Eligibility"));
     	suggestionCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Suggestion")); 
-    	//updateCol.setCellValueFactory(new PropertyValueFactory<>("update"));
+    	updateCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Button>("update"));
  
 		
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
     		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
-    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion()));
+    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),enquiryDetail.getUpdate()));
     	}
     	
     	ObservableList<EnquiryDetailsWrapper> data =FXCollections.observableArrayList(enquiryDetailsWrapperList);
