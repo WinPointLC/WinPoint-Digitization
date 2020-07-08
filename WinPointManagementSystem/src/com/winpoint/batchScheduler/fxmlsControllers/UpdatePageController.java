@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
@@ -13,65 +12,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class UpdatePageController extends ParentFXMLController{
 
-	   @FXML
-       private TextField firstName;
-	
-	   @FXML
-	    private TextField college;
+    @FXML
+    private ImageView logo;
 
-	    @FXML
-	    private TextField role;
+    @FXML
+    private Button cancel;
 
-	    @FXML
-	    private TextField domain;
+    @FXML
+    private Button reset;
 
-	    @FXML
-	    private TextField experience;
-
-	    @FXML
-	    private TextField company;
-
-	    @FXML
-	    private TextField designation;
-
-	    @FXML
-	    private TextField suggestion;
-
-	    @FXML
-	    private TextField coursesInterestedIn;
-
-	    @FXML
-	    private TextField email;
-	    
-	    @FXML
-	    private ChoiceBox<String> yearChoice = new ChoiceBox<>();
-	    String[] choices= {"2019","2020","2021","2022"};    
-		
-	    
-
-	    @FXML
-	    private DatePicker dateOfEnquiry;
-	    
-	    @FXML
-	    private ImageView logo;
-
-	    @FXML
-	    private Button cancelButton;
-
-	    @FXML
-	    private Button reset;
-
-	    @FXML
-	    private Button submit;
+    @FXML
+    private Button submit;
 
     @FXML
     void cancelFrame(ActionEvent event) {
@@ -79,7 +35,7 @@ public class UpdatePageController extends ParentFXMLController{
     	Parent myNewScene;
 		try {
 			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-			Stage stage = (Stage) cancelButton.getScene().getWindow();
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("My New Scene");
@@ -91,33 +47,27 @@ public class UpdatePageController extends ParentFXMLController{
 
     @FXML
     void resetFrame(ActionEvent event) {
-    	//System.out.println(event);
-    	firstName.clear();
-    	college.clear();
-    	yearChoice.setValue(null);
-    	email.clear();
-    	dateOfEnquiry.setValue(null);
-    	role.clear();
-    	domain.clear();
-    	experience.clear();
-    	company.clear();
-    	designation.clear();
-    	suggestion.clear();
-    	coursesInterestedIn.clear();
-    	
+    	System.out.println(event);
     }
 
     @FXML
     void submitFrame(ActionEvent event) {
-    
-    	
+    	FXMLLoader loader = new FXMLLoader();
+    	Parent myNewScene;
+		try {
+			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
+			Stage stage = (Stage) cancel.getScene().getWindow();
+	    	Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();  
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
-    	yearChoice.getItems().addAll(choices);
-    	
     	super.initialize(location, resources);
     	logo.setImage(logoImage);
     }

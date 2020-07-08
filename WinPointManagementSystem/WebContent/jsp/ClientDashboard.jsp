@@ -164,6 +164,15 @@
 	   window.location.href = jspURL + "Analytics.jsp?varid="+ encodeURIComponent('${studentCourseDetails}') + encodeURIComponent('${studentGACourseDetails}');
 	    //encodeURIComponent(strResJSON);
   }
+  function sendToUserFeedback(){
+	  //var studentCourseDetails = '<c:out value="${studentCourseDetails}"/>';
+
+	  //alert('${studentCourseDetails}');
+	  //alert('${studentGACourseDetails}');
+	  // window.location.href = jspURL + "Analytics.jsp?varid="+ encodeURIComponent('${studentCourseDetails}') + encodeURIComponent('${studentGACourseDetails}');
+	   window.location.href = jspURL + "CourseFeedbackForm.jsp"
+	    //encodeURIComponent(strResJSON);
+  }
   function sendToMainCoursePage(){
     $.ajax({
       type: 'POST',
@@ -300,6 +309,12 @@ function LogoutSession() {
               <a class="nav-link" >
             <i class="material-icons">subject</i>
             <p>Result</p>
+          </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#" onclick="FeedbackForm_link();">
+            <i class="material-icons">assessment</i>
+            <p>Feedback</p>
           </a>
         </li>
 
@@ -597,6 +612,7 @@ function LogoutSession() {
   var frame;
   var Analyticsframe;
   var userframe;
+  var feedbackframe
   var resultframe;
   var courseframe;
 
@@ -644,6 +660,9 @@ function LogoutSession() {
       else if(userframe!=null){
         document.getElementById('User-frame').style.display="none";
       }
+      else if(feedbackframe!=null){
+          document.getElementById('User-frame').style.display="none";
+        }
       else{
       }
 
@@ -719,8 +738,36 @@ function LogoutSession() {
       }
 
     }
+    function FeedbackForm_link(){
+    	Removeframes();
+        feedbackframe = document.createElement('iframe');
+        feedbackframe.setAttribute('src',jspURL + "CourseFeedbackForm.jsp?varid=");
+        feedbackframe.setAttribute('width', 1100);
+        feedbackframe.setAttribute('height', 1000);
+        feedbackframe.id = 'Feedback-frame';
+        feedbackframe.setAttribute('style',"margin-top:10%;");
+        document.getElementById('iframediv').appendChild(feedbackframe);
 
+        ShowHideFeedback();
+    }
+    function ShowHideFeedback() {
+        document.getElementById('Tech-content').style.display="none";
+        document.getElementById('GA-content').style.display="none";
+        document.getElementById('Feedback-frame').style.display="block";
+        if(document.getElementById('Result-frame')!=null){
+          document.getElementById('Result-frame').style.display="none";
+        }
+         if(document.getElementById('CourseRegistration-frame')!=null){
+          document.getElementById('CourseRegistration-frame').style.display="none";
+        }
+         if(document.getElementById('MainCoursePage-frame')!=null){
+          document.getElementById('MainCoursePage-frame').style.display="none";
+        }
+         if(document.getElementById('Analytics-frame')!=null){
+          document.getElementById('Analytics-frame').style.display="none";
+        }
 
+    }
     function Result_link() {
       Removeframes();
       resultframe = document.createElement('iframe');
@@ -749,7 +796,9 @@ function LogoutSession() {
        if(document.getElementById('User-frame')!=null){
         document.getElementById('User-frame').style.display="none";
       }
-
+       if(document.getElementById('Feedback-frame')!=null){
+           document.getElementById('Feedback-frame').style.display="none";
+         }
     }
 
 
@@ -781,7 +830,9 @@ function LogoutSession() {
        if(document.getElementById('User-frame')!=null){
         document.getElementById('User-frame').style.display="none";
       }
-
+       if(document.getElementById('Feedback-frame')!=null){
+           document.getElementById('Feedback-frame').style.display="none";
+         }
     }
 
     function MainCourse_link() {
@@ -813,7 +864,9 @@ function LogoutSession() {
          if(document.getElementById('User-frame')!=null){
           document.getElementById('User-frame').style.display="none";
         }
-
+         if(document.getElementById('Feedback-frame')!=null){
+             document.getElementById('Feedback-frame').style.display="none";
+           }
       }
 
   </script>

@@ -32,6 +32,13 @@ public class BatchDetails {
 	 * @param createdDate
 	 */
 	
+	
+	public BatchDetails(Integer facultyId ) {
+		this.facultyId = facultyId;
+	}
+	
+	
+	
 	// this Constructor is Created for the testing purpose ~ Abhishek
 	public BatchDetails (String batchId, Integer facultyId) {
 		this.batchId = batchId;

@@ -124,6 +124,8 @@ public class StudentCourseDetails {
 		this.coursewareIssued = coursewareIssued;
 	}
 
+	
+
 	public String getAssignmentsIssued() {
 		return assignmentsIssued;
 	}

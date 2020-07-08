@@ -24,6 +24,12 @@ public class Lecture {
 		LectureDate = lectureDate;
 		Comments = comments;
 	}
+	
+	public Lecture(String lectureCoverage) {
+		super();
+		LectureCoverage = lectureCoverage;
+	}
+
 	public Integer getLectureId() {
 		return LectureId;
 	}
