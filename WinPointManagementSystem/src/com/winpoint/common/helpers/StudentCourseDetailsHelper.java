@@ -5,15 +5,14 @@ import java.util.List;
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
-import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
 
 public class StudentCourseDetailsHelper {
 	/*public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){
 		return new StudentCourseDetailsDao().getStudentCourseDetailsList(userId);
 	}*/
 	
-	public ArrayList<AssignmentsScreenWrapper> getAssignmentsScreenWrapperList(Integer batchId){
-		return new StudentCourseDetailsDao().getAssignmentsScreenWrapperList(batchId);
+	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(){
+		return new StudentCourseDetailsDao().getStudentCourseDetails();
 	}
 	public ArrayList<StudentCourseDetails> getBatchFeedback(){
 		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();

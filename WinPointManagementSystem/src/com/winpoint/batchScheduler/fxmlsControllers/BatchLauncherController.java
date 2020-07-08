@@ -106,9 +106,6 @@ public class BatchLauncherController extends ParentFXMLController {
 			e.printStackTrace();
 		}
 
-		
-		
-		
     }
     
     @Override

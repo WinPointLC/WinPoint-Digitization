@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1159.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.SignUpFormController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.SignUpFormController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -29,9 +28,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane prefHeight="1500.0" prefWidth="550.0">
+            <ScrollPane prefHeight="314.0" prefWidth="600.0">
               <content>
-                <AnchorPane prefHeight="936.0" prefWidth="646.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="646.0" prefWidth="619.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="195.0" text="First Name ">
                            <padding>
@@ -41,181 +40,96 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstName" layoutX="235.0" layoutY="13.0" onAction="#validateFirstName" prefHeight="27.0" prefWidth="410.0" />
-                        <Label layoutX="40.0" layoutY="41.0" prefHeight="23.0" prefWidth="195.0" text="Last Name">
+                        <TextField fx:id="firstNameLabel" layoutX="235.0" layoutY="13.0" prefHeight="27.0" prefWidth="410.0" />
+                        <Label layoutX="40.0" layoutY="57.0" prefHeight="23.0" prefWidth="195.0" text="Last Name">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lastName" layoutX="235.0" layoutY="39.0" onAction="#validateLastframe" prefHeight="27.0" prefWidth="410.0" />
-                        <Label layoutX="40.0" layoutY="69.0" prefHeight="23.0" prefWidth="197.0" text="Email ID">
+                        <TextField fx:id="lastNameLabel" layoutX="235.0" layoutY="55.0" prefHeight="27.0" prefWidth="410.0" />
+                        <Label layoutX="40.0" layoutY="98.0" prefHeight="17.0" prefWidth="195.0" text="Email ID">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailId" layoutX="235.0" layoutY="67.0" onAction="#validateEmailId" prefHeight="27.0" prefWidth="411.0" />
-                        <Label layoutX="42.0" layoutY="153.0" prefHeight="23.0" prefWidth="192.0" text="DOB">
+                        <TextField fx:id="emailidLabel" layoutX="235.0" layoutY="96.0" prefHeight="27.0" prefWidth="411.0" />
+                        <Label layoutX="40.0" layoutY="141.0" prefHeight="23.0" prefWidth="195.0" text="DOB">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="41.0" layoutY="126.0" prefHeight="23.0" prefWidth="196.0" text="Address">
+                        <Label layoutX="40.0" layoutY="181.0" prefHeight="23.0" prefWidth="195.0" text="Address">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="address" layoutX="235.0" layoutY="124.0" onAction="#validateAddress" prefHeight="27.0" prefWidth="411.0" />
-                        <Label layoutX="39.0" layoutY="181.0" prefHeight="23.0" prefWidth="195.0" text="Gender">
+                        <TextField fx:id="adressLabel" layoutX="235.0" layoutY="179.0" prefHeight="27.0" prefWidth="411.0" />
+                        <Label layoutX="39.0" layoutY="221.0" prefHeight="23.0" prefWidth="195.0" text="Gender">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="gender" layoutX="232.0" layoutY="179.0" onAction="#validateGender" prefHeight="27.0" prefWidth="169.0" />
-                        <Label layoutX="40.0" layoutY="99.0" prefHeight="23.0" prefWidth="195.0" text="Mobile No.">
+                        <TextField fx:id="genderLabel" layoutX="235.0" layoutY="219.0" prefHeight="27.0" prefWidth="169.0" />
+                        <Label layoutX="40.0" layoutY="259.0" prefHeight="23.0" prefWidth="195.0" text="Mobile No.">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mobileNumber" layoutX="235.0" layoutY="96.0" onAction="#validateMobileNumber" prefHeight="28.0" prefWidth="220.0" />
-                        <Label layoutX="39.0" layoutY="209.0" prefHeight="17.0" prefWidth="195.0" text="College">
+                        <TextField fx:id="mobileLabel" layoutX="236.0" layoutY="257.0" prefHeight="28.0" prefWidth="167.0" />
+                        <Label layoutX="37.0" layoutY="299.0" prefHeight="17.0" prefWidth="195.0" text="College">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="college" layoutX="233.0" layoutY="207.0" onAction="#validateCollege" />
+                        <TextField fx:id="collegeLabel" layoutX="236.0" layoutY="297.0" />
                         <Label layoutX="37.0" layoutY="336.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="43.0" layoutY="236.0" prefHeight="23.0" prefWidth="191.0" text="Degree">
+                        <Label layoutX="39.0" layoutY="336.0" prefHeight="23.0" prefWidth="195.0" text="Degree">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="degreeChoice" layoutX="232.0" layoutY="234.0" onDragDetected="#validateDegreeChoice" prefHeight="27.0" prefWidth="169.0" />
-                        <Label layoutX="43.0" layoutY="261.0" prefHeight="23.0" prefWidth="187.0" text="Branch">
+                        <ChoiceBox fx:id="degreeChoice" layoutX="235.0" layoutY="334.0" prefHeight="27.0" prefWidth="169.0" />
+                        <Label layoutX="40.0" layoutY="375.0" prefWidth="195.0" text="Branch">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="branch" layoutX="232.0" layoutY="259.0" onAction="#validateBranch" prefHeight="27.0" prefWidth="170.0" />
-                        <DatePicker fx:id="dobBox" layoutX="232.0" layoutY="151.0" onAction="#validateDob" />
-                        <Label layoutX="40.0" layoutY="400.0" prefHeight="23.0" prefWidth="190.0" text="Year Of Graduation :">
+                        <TextField fx:id="branchLabel" layoutX="235.0" layoutY="373.0" prefHeight="27.0" prefWidth="170.0" />
+                        <DatePicker fx:id="dobBox" layoutX="235.0" layoutY="139.0" />
+                        <Label layoutX="38.0" layoutY="412.0" prefHeight="23.0" prefWidth="195.0" text="Pass-out Year">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="yearOfGraduation" layoutX="233.0" layoutY="398.0" onAction="#validateYearOfGraduation" />
-                        <Label layoutX="42.0" layoutY="515.0" prefHeight="23.0" prefWidth="172.0" text="Courses Interested In">
+                        <TextField fx:id="passOutLabel" layoutX="236.0" layoutY="410.0" />
+                        <Label layoutX="37.0" layoutY="449.0" prefHeight="23.0" prefWidth="188.0" text="Courses Interested In">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="courseInterestedIn" layoutX="233.0" layoutY="513.0" onAction="#validateCourseInterestedIn" />
-                        <Label layoutX="43.0" layoutY="609.0" prefHeight="23.0" prefWidth="167.0" text="Available Time">
+                        <TextField layoutX="236.0" layoutY="447.0" />
+                        <Label layoutX="37.0" layoutY="486.0" text="Courses Done">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="availableTime" layoutX="233.0" layoutY="607.0" onDragDetected="#validateAvailableTime" prefHeight="25.0" prefWidth="156.0" />
-                        <TextField fx:id="courseAlreadyDone" layoutX="233.0" layoutY="578.0" onAction="#validatecourseAlreadyDone" />
-                        <Label layoutX="46.0" layoutY="638.0" prefHeight="23.0" prefWidth="148.0" text="Reference :">
+                        <Label layoutX="35.0" layoutY="521.0" text="Available Time">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="referance" layoutX="233.0" layoutY="636.0" onAction="#validateReferance" prefHeight="26.0" prefWidth="161.0" />
-                        <Label layoutX="41.0" layoutY="288.0" prefHeight="23.0" prefWidth="192.0" text="Occupation">
+                        <ChoiceBox layoutX="235.0" layoutY="519.0" prefWidth="150.0" />
+                        <TextField layoutX="236.0" layoutY="484.0" />
+                        <Label layoutX="36.0" layoutY="558.0" prefHeight="17.0" prefWidth="152.0" text="Reference">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="41.0" layoutY="315.0" prefHeight="23.0" prefWidth="192.0" text="Organization">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="42.0" layoutY="346.0" prefHeight="23.0" prefWidth="189.0" text="designation">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="42.0" layoutY="375.0" prefHeight="23.0" prefWidth="189.0" text="Domain">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="42.0" layoutY="428.0" prefHeight="23.0" prefWidth="189.0" text="Role">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="42.0" layoutY="457.0" prefHeight="23.0" prefWidth="192.0" text="Experiance ">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="43.0" layoutY="486.0" prefHeight="23.0" prefWidth="190.0" text="Created by">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="39.0" layoutY="821.0" prefHeight="23.0" prefWidth="188.0" text="Active Status :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="39.0" layoutY="779.0" prefHeight="23.0" prefWidth="184.0" text="Suggestions : ">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="38.0" layoutY="751.0" prefHeight="23.0" prefWidth="187.0" text="Segment Type :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="41.0" layoutY="580.0" prefHeight="23.0" prefWidth="186.0" text="Course Already Done :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="48.0" layoutY="773.0" />
-                        <Label layoutX="44.0" layoutY="549.0" prefHeight="23.0" prefWidth="165.0" text="Eligibility : ">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="occupation" layoutX="233.0" layoutY="286.0" onAction="#validatrOccupation" />
-                        <TextField fx:id="organization" layoutX="233.0" layoutY="313.0" onAction="#validateOrganization" />
-                        <TextField fx:id="designation" layoutX="233.0" layoutY="342.0" onAction="#validateDesignation" prefHeight="31.0" prefWidth="161.0" />
-                        <TextField fx:id="domain" layoutX="233.0" layoutY="373.0" onAction="#validationDomain" />
-                        <RadioButton fx:id="activeStatus" layoutX="235.0" layoutY="824.0" mnemonicParsing="false" onAction="#validateActiveStatus" text="Active" />
-                        <TextField fx:id="suggestion" layoutX="233.0" layoutY="777.0" onAction="#validateSuggestion" />
-                        <ChoiceBox fx:id="segmentType" layoutX="230.0" layoutY="748.0" onDragDetected="#validateSegmentType" prefHeight="28.0" prefWidth="150.0" />
-                        <TextField fx:id="role" layoutX="233.0" layoutY="426.0" onAction="#validateRole" />
-                        <TextField fx:id="experience" layoutX="233.0" layoutY="454.0" onAction="#validateExperience" />
-                        <TextField fx:id="createdBy" layoutX="233.0" layoutY="482.0" onAction="#validateCreatedBy" prefHeight="31.0" prefWidth="161.0" />
-                        <RadioButton fx:id="eligibility" layoutX="235.0" layoutY="552.0" mnemonicParsing="false" onAction="#validateEligibility" text="Eligible" />
-                        <Label layoutX="41.0" layoutY="664.0" prefHeight="23.0" prefWidth="189.0" text="Date Of Enquiry :">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <DatePicker fx:id="dateOfEnquiry" layoutX="232.0" layoutY="662.0" />
-                        <DatePicker fx:id="startDate" layoutX="231.0" layoutY="719.0" onAction="#validateStartDate" />
-                        <Label layoutX="39.0" layoutY="721.0" prefHeight="23.0" prefWidth="190.0" text="Start Date : ">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="42.0" layoutY="694.0" prefHeight="23.0" prefWidth="178.0" text="Recommendation : ">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="recommendation" layoutX="233.0" layoutY="691.0" onAction="#validateRecommendation" prefHeight="28.0" prefWidth="161.0" />
+                        <TextField layoutX="236.0" layoutY="556.0" />
                      </children>
                   </AnchorPane>
               </content>

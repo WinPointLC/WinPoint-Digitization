@@ -2,12 +2,15 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.wrappers.EnquiryDetailsWrapper;
 
@@ -49,7 +52,8 @@ public class EnquiryDetailsController extends ParentFXMLController{
     private TableColumn<EnquiryDetailsWrapper, String> suggestionCol;
 
     @FXML
-    private TableColumn<EnquiryDetailsWrapper, Button> updateCol;
+    private TableColumn<EnquiryDetailsWrapper, Boolean> updateCol= new TableColumn<>("Update");
+    
    
     
 	
@@ -66,21 +70,23 @@ public class EnquiryDetailsController extends ParentFXMLController{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
-
-    	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();    	
+    	
+    	//EnquiryDetailsHelper enquiryDetailsObject = new EnquiryDetailsHelper(); 	
+    	
+    	List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEnquiryDetails();
+    	
   
-    	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("FullName"));
+    	nameCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Name"));
     	courseCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("CoursesInterestedIn"));
     	eligibilityCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Boolean>("Eligibility"));
     	suggestionCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, String>("Suggestion")); 
-    	updateCol.setCellValueFactory(new PropertyValueFactory<EnquiryDetailsWrapper, Button>("update"));
+    	//updateCol.setCellValueFactory(new PropertyValueFactory<>("update"));
  
 		
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
-    		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
-    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),enquiryDetail.getUpdate()));
+    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion()));
     	}
     	
     	ObservableList<EnquiryDetailsWrapper> data =FXCollections.observableArrayList(enquiryDetailsWrapperList);

@@ -13,7 +13,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import com.winpoint.common.beans.StudentCourseDetails;
-import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class StudentCourseDetailsDao {
@@ -165,36 +164,12 @@ public class StudentCourseDetailsDao {
 public ArrayList<StudentCourseDetails> getBatchFeedback() {
 		
 		ArrayList<StudentCourseDetails> getBatchFeedback = new ArrayList<StudentCourseDetails>();
-		
-		
-		ResultSet resultSet = null;
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-			
-			String query1 = "select FEEDBACK_GIVEN from STUDENT_COURSE_DETAILS";
-			
-			
-			resultSet  = statement.executeQuery(query1);
-			
-			while(resultSet.next()) {
-				getBatchFeedback.add(new StudentCourseDetails(resultSet.getString("FEEDBACK_GIVEN")));
 				
-			}
-
-		} 
-		catch (SQLException e) {
-			getBatchFeedback = null;
-			e.printStackTrace();
-		}
-		
-		return  (ArrayList<StudentCourseDetails>) getBatchFeedback;
-		
-				
-		/*getBatchFeedback.add(new StudentCourseDetails("yes"));
+		getBatchFeedback.add(new StudentCourseDetails("yes"));
 		getBatchFeedback.add(new StudentCourseDetails("yes"));
 		getBatchFeedback.add(new StudentCourseDetails("yes"));
 		
-		return  getBatchFeedback;*/
+		return  getBatchFeedback;
 		
 
 	}

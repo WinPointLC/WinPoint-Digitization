@@ -19,9 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BatchSelectionScreenController extends ParentFXMLController {
-	private static Integer courseId;
-	private static String courseName;
-	
+
     @FXML
     private Button backButton;
 
@@ -104,14 +102,16 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     private Text facultyName8;
 
     //author purva , suhasi , sarthak
+
+    public void setSelectedCourseName(String s)
+    {
+    	selectedCourseName.setText(s); 
+    }
+    
     public void setRecievedData(ArrayList<String> recievedData) {
-    	courseId = Integer.parseInt(recievedData.get(0));
-    	courseName = recievedData.get(1);
-    	
-    	selectedCourseName.setText(courseName);
-//    	for(String data:recievedData){
-//    		System.out.println(data);
-//    	}
+    	for(String data:recievedData){
+    		System.out.println(data);
+    	}
     }
     
     @FXML
@@ -122,10 +122,13 @@ public class BatchSelectionScreenController extends ParentFXMLController {
 		try {
 			myNewScene = loader.load();
 			LectureScreenController lectureScreenLecture = loader.getController();
-			//System.out.println("Batch Id = "+((Button)event.getSource()).getId().substring(7));
+			
 			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
-			dataForLectureScreen.add(((Button)event.getSource()).getId().substring(7));
-			dataForLectureScreen.add(((Button)event.getSource()).getText());
+			dataForLectureScreen.add("BatchID");
+			dataForLectureScreen.add("BatchName");
+			dataForLectureScreen.add("CurrentLecture");
+			dataForLectureScreen.add("StartDate");
+			dataForLectureScreen.add("EndDate");
 			
 			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			

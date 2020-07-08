@@ -1,6 +1,5 @@
 package com.winpoint.common.helpers;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.winpoint.common.beans.EnquiryDetails;
@@ -21,15 +20,10 @@ public class EnquiryDetailsHelper {
 		return new EnquiryDetailsDao().getEnquiryDetails();
 	}
 
-	public void update(EnquiryDetails enquiryDetailsObject) {
+	public void create(EnquiryDetails enquiryDetailsObject) {
 		// TODO Auto-generated method stub
-		new EnquiryDetailsDao().update(enquiryDetailsObject);
+		new EnquiryDetailsDao().create(enquiryDetailsObject);
 		
-	}
-	
-	// Insertion of the data
-	public void create(EnquiryDetails enquiryDetails) throws SQLException {
-		new EnquiryDetailsDao().create(enquiryDetails);		
 	}
 	
 }

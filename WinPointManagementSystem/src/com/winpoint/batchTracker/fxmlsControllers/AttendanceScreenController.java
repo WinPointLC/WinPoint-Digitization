@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
-import com.winpoint.common.wrappers.AttendanceScreenWrapper;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,13 +51,13 @@ public class AttendanceScreenController extends ParentFXMLController{
     private TableColumn<?, ?> updateAttendanceRecordTableAttendanceColumn;
 
     @FXML
-    private TableView<AttendanceScreenWrapper> displayStudentAttendanceTable;
+    private TableView<?> displayStudentAttendanceTable;
 
     @FXML
-    private TableColumn<AttendanceScreenWrapper, String> displayStudentAttendanceTableName;
+    private TableColumn<?, ?> displayStudentAttendanceTableName;
 
     @FXML
-    private TableColumn<AttendanceScreenWrapper, String> displayStudentAttendanceTableLecture1;
+    private TableColumn<?, ?> displayStudentAttendanceTableLecture1;
 
     
     

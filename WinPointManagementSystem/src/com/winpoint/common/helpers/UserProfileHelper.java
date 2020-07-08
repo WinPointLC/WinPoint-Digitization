@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.dao.UserProfileDao;
-import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
 
 public class UserProfileHelper {
 	public boolean updateUserProfile(UserProfile userProfile){
@@ -22,7 +21,7 @@ public class UserProfileHelper {
 	}
 	
 	
-	
+	//
 	
 	public ArrayList<UserProfile> getEligibleUsers(){
 		List<UserProfile> userProfileList = new UserProfileDao().getEligibleUsers();
@@ -38,9 +37,9 @@ public class UserProfileHelper {
 	
 	
 	//BatchIndividual
-	
-	public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId){
-		return new UserProfileDao().getBatchIndividualFeedbackScreenWrapperList(batchId); 
+	public ArrayList<UserProfile> getUsersForBatchTracker(){
+		
+		return new UserProfileDao().getUsersForBatchTracker(); 
 		
 		
 	}

@@ -34,7 +34,7 @@ public class UserProfile {
 	private Date createDate;
 	private Integer timeSlotsId;
 	private Integer segmentTypeId;
-	private String courseAlreadyDone;
+	private Integer courseAlreadyDone;
 	private Boolean activeStatus;
 	private Button add;
 	
@@ -183,7 +183,7 @@ public class UserProfile {
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
 			String domain, String role, Integer experience, Integer createdBy, Date createDate, Integer timeSlotsId,
-			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
+			Integer segmentTypeId, Integer courseAlreadyDone, Boolean activeStatus) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -641,13 +641,13 @@ public class UserProfile {
 	/**
 	 * @return the courseAlreadyDone
 	 */
-	public String getCourseAlreadyDone() {
+	public Integer getCourseAlreadyDone() {
 		return courseAlreadyDone;
 	}
 	/**
 	 * @param courseAlreadyDone the courseAlreadyDone to set
 	 */
-	public void setCourseAlreadyDone(String courseAlreadyDone) {
+	public void setCourseAlreadyDone(Integer courseAlreadyDone) {
 		this.courseAlreadyDone = courseAlreadyDone;
 	}
 

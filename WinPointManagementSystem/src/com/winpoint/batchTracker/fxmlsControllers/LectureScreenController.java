@@ -21,8 +21,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LectureScreenController extends ParentFXMLController{
-	private static Integer batchId;
-	private static String batchNameValue;
 	
 	Lecture dataObject;
 	
@@ -90,13 +88,9 @@ public class LectureScreenController extends ParentFXMLController{
     private TextArea displayLectureCoverage;
 
     public void setRecievedData(ArrayList<String> recievedData) {
-    	batchId = Integer.parseInt(recievedData.get(0));
-    	System.out.println(batchId);
-    	batchNameValue = recievedData.get(1);
-    	batchName.setText(batchNameValue);
-//        for(String data : recievedData) {
-//            System.out.println(data);
-//        }
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
     }    
 	    
     @FXML
@@ -195,8 +189,8 @@ public class LectureScreenController extends ParentFXMLController{
 			//editBatchDetailsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForEditBatchDetailsScreen = new ArrayList<String>();
+			dataForEditBatchDetailsScreen.add("BatchName");
 			dataForEditBatchDetailsScreen.add("BatchID");
-			dataForEditBatchDetailsScreen.add(batchNameValue);
 			dataForEditBatchDetailsScreen.add("LectureName");
 			dataForEditBatchDetailsScreen.add("LectureStartDate");
 			dataForEditBatchDetailsScreen.add("LectureEndDate");
@@ -230,7 +224,7 @@ public class LectureScreenController extends ParentFXMLController{
 			
 			ArrayList<String> dataForEvaluationScreen = new ArrayList<String>();
 			dataForEvaluationScreen.add("BatchID");
-			dataForEvaluationScreen.add(batchNameValue);
+			dataForEvaluationScreen.add("BatchName");
 			dataForEvaluationScreen.add("StudentName");
 			dataForEvaluationScreen.add("StudentUserID");
 			dataForEvaluationScreen.add("StudentEvaluationDone");
@@ -261,8 +255,18 @@ public class LectureScreenController extends ParentFXMLController{
 			//feeRecordsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForFeeRecordsScreen = new ArrayList<String>();
-			dataForFeeRecordsScreen.add(batchId.toString());
-			dataForFeeRecordsScreen.add(batchNameValue);
+			dataForFeeRecordsScreen.add("BatchID");
+			dataForFeeRecordsScreen.add("BatchName");
+			dataForFeeRecordsScreen.add("StudentUserID");
+			dataForFeeRecordsScreen.add("StudentName");
+			dataForFeeRecordsScreen.add("StudentEmail");
+			dataForFeeRecordsScreen.add("StudentMobile");
+			dataForFeeRecordsScreen.add("NoOfReminders");
+			dataForFeeRecordsScreen.add("StudentDueAmount");
+			dataForFeeRecordsScreen.add("StudentFeeStatus");
+			dataForFeeRecordsScreen.add("StudentPaymentMode");
+			dataForFeeRecordsScreen.add("StudentInstallment1");
+			dataForFeeRecordsScreen.add("StudentDueDate1");
 			
 			feeRecordsScreenController.setRecievedData(dataForFeeRecordsScreen);
 			
@@ -288,7 +292,7 @@ public class LectureScreenController extends ParentFXMLController{
 			
 			ArrayList<String> dataForProgressTrackerScreen = new ArrayList<String>();
 			dataForProgressTrackerScreen.add("BatchID");
-			dataForProgressTrackerScreen.add(batchNameValue);
+			dataForProgressTrackerScreen.add("BatchName");
 			dataForProgressTrackerScreen.add("TotalLectures");
 			dataForProgressTrackerScreen.add("TotalCourseDuration");
 			dataForProgressTrackerScreen.add("ElapsedDuration");
@@ -321,7 +325,7 @@ public class LectureScreenController extends ParentFXMLController{
 			
 			ArrayList<String> dataForAssignmentRecordsScreen = new ArrayList<String>();
 			dataForAssignmentRecordsScreen.add("BatchID");
-			dataForAssignmentRecordsScreen.add(batchNameValue);
+			dataForAssignmentRecordsScreen.add("BatchName");
 			dataForAssignmentRecordsScreen.add("StudentName");
 			dataForAssignmentRecordsScreen.add("StudentFeeStatus");
 			dataForAssignmentRecordsScreen.add("CourseWare");
@@ -343,7 +347,6 @@ public class LectureScreenController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-    	
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 		

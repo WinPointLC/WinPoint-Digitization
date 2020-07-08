@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
@@ -21,31 +20,12 @@ public class CourseDao {
 public ArrayList<Course> getBatchCourseDurationList() {
 		
 		ArrayList<Course> getBatchCourseDurationList = new ArrayList<Course>();
-		
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = null;
-			String query1 = "select DURATION from COURSES";
-			
-			resultSet = statement.executeQuery(query1);
-			
-			while(resultSet.next()) {
-				getBatchCourseDurationList.add(new Course(resultSet.getInt("DURATION")));
-			}
-			
-		} 
-		catch (SQLException e) {
-			getBatchCourseDurationList = null;
-			e.printStackTrace();
-		}
-		
-		return  (ArrayList<Course>) getBatchCourseDurationList;
 				
-		/*getBatchCourseDurationList.add(new Course(2));
+		getBatchCourseDurationList.add(new Course(2));
 		getBatchCourseDurationList.add(new Course(3));
 		getBatchCourseDurationList.add(new Course(4));
 		
-		return getBatchCourseDurationList;*/
+		return getBatchCourseDurationList;
 		
 
 	}

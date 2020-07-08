@@ -36,9 +36,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FeeRecordsScreenController extends ParentFXMLController{
-	private static Integer batchId;
-	private static String batchNameValue;
-	
+
 	@FXML
     private Button backButton;
 
@@ -118,30 +116,17 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     private TableColumn<FeeRecordsScreenWrapper, Integer> feeTableDueAmountColumn;
     
     public void setRecievedData(ArrayList<String> recievedData) {
-    	batchId = Integer.parseInt(recievedData.get(0));
-    	batchNameValue = recievedData.get(1);
-    	batchName.setText(batchNameValue);
-//        for(String data : recievedData) {
-//            System.out.println(data);
-//        }
+        for(String data : recievedData) {
+            System.out.println(data);
+        }
     }
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage)backButton.getScene().getWindow();
     	Parent myNewScene;
-    	LectureScreenController lectureScreenController = new LectureScreenController();
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
-			myNewScene = loader.load();
-			lectureScreenController = loader.getController();
-			
-			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
-			dataForLectureScreen.add(batchId.toString());
-			dataForLectureScreen.add(batchNameValue);
-			
-			lectureScreenController.setRecievedData(dataForLectureScreen);
-			
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");
@@ -180,24 +165,25 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 //    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(record1, record2);
 //    	feeTable.setItems((ObservableList<FeeRecordsScreenWrapper>)data);
     	
-    	//ArrayList<StudentCourseDetails> studentCourseDetailsList = new StudentCourseDetailsHelper().getStudentCourseDetailsList();
-		//ArrayList<StudentCourseInstallmentDetails> studentCourseInstallmentDetailsList = new StudentCourseInstallmentHelper().getStudentCourseInstallmentDetailsList();
-		//ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
+    	ArrayList<StudentCourseDetails> studentCourseDetailsList = new StudentCourseDetailsHelper().getStudentCourseDetailsList();
+		ArrayList<StudentCourseInstallmentDetails> studentCourseInstallmentDetailsList = new StudentCourseInstallmentHelper().getStudentCourseInstallmentDetailsList();
+		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
 		
-//		int i = 0;
-//		ArrayList<FeeRecordsScreenWrapper> feeRecordsScreenWrapperList = new ArrayList<FeeRecordsScreenWrapper>();
-//		while(userProfileList.size() > i) {
-//			FeeRecordsScreenWrapper feeRecordsScreenWrapper = new FeeRecordsScreenWrapper(userProfileList.get(i).getUserId(), 
-//					userProfileList.get(i).getFirstName()+" "+userProfileList.get(i).getLastName(), studentCourseDetailsList.get(i).getFeeStatus(),
-//					"Cash", userProfileList.get(i).getEmail(), userProfileList.get(i).getMobileNumber(), studentCourseInstallmentDetailsList.get(i));
-//			
-//			i++;
-//			feeRecordsScreenWrapperList.add(feeRecordsScreenWrapper);
-//		}
+		int i = 0;
+		ArrayList<FeeRecordsScreenWrapper> feeRecordsScreenWrapperList = new ArrayList<FeeRecordsScreenWrapper>();
+		while(userProfileList.size() > i) {
+			FeeRecordsScreenWrapper feeRecordsScreenWrapper = new FeeRecordsScreenWrapper(userProfileList.get(i).getUserId(), 
+					userProfileList.get(i).getFirstName()+" "+userProfileList.get(i).getLastName(), studentCourseDetailsList.get(i).getFeeStatus(),
+					"Cash", userProfileList.get(i).getEmail(), userProfileList.get(i).getMobileNumber(), studentCourseInstallmentDetailsList.get(i));
+			
+			i++;
+			feeRecordsScreenWrapperList.add(feeRecordsScreenWrapper);
+		}
 		
-		ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(new StudentCourseInstallmentHelper().getFeeRecordsScreenWrapperList(batchId));
+		ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(feeRecordsScreenWrapperList);
 		feeTable.setItems(data);
     	
+
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 	}

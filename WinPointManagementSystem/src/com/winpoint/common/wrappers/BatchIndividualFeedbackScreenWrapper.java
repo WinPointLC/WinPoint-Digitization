@@ -4,7 +4,7 @@ package com.winpoint.common.wrappers;
 public class BatchIndividualFeedbackScreenWrapper {
 	
 	private String fullName;
-	private String instructorName;
+	private Integer instructor;
 	private Integer duration;
 	private String email ;
 	private String mobile;
@@ -12,11 +12,11 @@ public class BatchIndividualFeedbackScreenWrapper {
 	
 	
 	
-	public BatchIndividualFeedbackScreenWrapper(String firstName, String lastName, String instructorName, Integer duration, String email,
+	public BatchIndividualFeedbackScreenWrapper(String fullName, Integer instructor, Integer duration, String email,
 			String mobile, String status) {
 		//super();
-		this.fullName = firstName + " " + lastName;
-		this.instructorName = instructorName;
+		this.fullName = fullName;
+		this.instructor = instructor;
 		this.duration = duration;
 		this.email = email;
 		this.mobile = mobile;
@@ -32,11 +32,11 @@ public class BatchIndividualFeedbackScreenWrapper {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public String getInstructorName() {
-		return instructorName;
+	public Integer getInstructor() {
+		return instructor;
 	}
-	public void setInstructorName(String instructorName) {
-		this.instructorName = instructorName;
+	public void setInstructor(Integer instructor) {
+		this.instructor = instructor;
 	}
 	public Integer getDuration() {
 		return duration;

@@ -9,12 +9,12 @@ public class CoursesNameWrapper {
 	private boolean registered;
 	private Button add;
 	
-	public CoursesNameWrapper(String firstName, String lastName, boolean enquired, boolean registered){
+	public CoursesNameWrapper(String firstName, String lastName, boolean enquired, boolean registered,Button add){
 		
 		fullName = firstName + " " + lastName;
 		this.enquired = enquired;
 		this.registered = registered;
-		//this.setAdd(new Button("Add"));
+		this.setAdd(new Button("Add"));
 		
 	}
 	

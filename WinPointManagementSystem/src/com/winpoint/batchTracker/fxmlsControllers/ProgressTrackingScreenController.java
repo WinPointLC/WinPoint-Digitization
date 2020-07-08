@@ -3,16 +3,12 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Topic;
-import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.TopicsHelper;
-import com.winpoint.common.helpers.UserProfileHelper;
-import com.winpoint.common.wrappers.ProgressTrackingWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,13 +54,13 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
     private TextField progressTrackingRemainingTopics;
 
     @FXML
-    private TableView<ProgressTrackingWrapper> topicsTable;
+    private TableView<Topic> topicsTable;
 
     @FXML
-    private TableColumn<String, ProgressTrackingWrapper> topicsTableTopicNameColumn;
+    private TableColumn<String, Topic> topicsTableTopicNameColumn;
 
     @FXML
-    private TableColumn<Integer,ProgressTrackingWrapper> topicsTableTopicDurationColumn;
+    private TableColumn<Integer, Topic> topicsTableTopicDurationColumn;
 
     @FXML
     private PieChart processTrackingPieChart;
@@ -95,19 +91,14 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
+   		TopicsHelper topicsHelper = new TopicsHelper();
+   		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
+   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
    		
-   		
-   		
-   		topicsTableTopicNameColumn.setCellValueFactory(new PropertyValueFactory<String, ProgressTrackingWrapper>("topicName"));
-   		topicsTableTopicDurationColumn.setCellValueFactory(new PropertyValueFactory<Integer,ProgressTrackingWrapper>("topicDuration"));
-   		List<ProgressTrackingWrapper> progressTrackingWrapperList= new ArrayList<ProgressTrackingWrapper>();
 	    //fx:ID : Column Name
-   		/*for(Topic topic : topicList) {
-   			progressTrackingWrapperList.add(new ProgressTrackingWrapper(topic.getTopicName(),topic.getTopicDuration()));
-   		}*/
-	    ObservableList<ProgressTrackingWrapper> topic = FXCollections.observableArrayList(new TopicsHelper().getProgressTrackingWrapper1(1,1));
+	    ObservableList<Topic> topic = FXCollections.observableArrayList(topicsHelper.getTopicsList(1));
 	    
-	    topicsTable.setItems((ObservableList<ProgressTrackingWrapper>) topic);
+	    topicsTable.setItems((ObservableList<Topic>) topic);
    	}
    	
 }
