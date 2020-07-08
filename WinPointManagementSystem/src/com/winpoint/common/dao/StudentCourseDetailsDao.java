@@ -14,6 +14,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
+import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
 
 public class StudentCourseDetailsDao {
 
@@ -160,6 +161,34 @@ public class StudentCourseDetailsDao {
 		
 		return studentCourseDetails;
 	}
+	
+	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId) {		
+		ArrayList<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
+			ResultSet resultSet1 = null;
+			try(Connection connection = ConnectionManager.getConnection()){
+				Statement statement = connection.createStatement();
+				
+				String query1="SELECT FIRST_NAME,LAST_NAME,FEE_STATUS,COURSEWARE_ISSUED,ASSIGNMENTS_ISSUED,ASSIGNMENTS_SUBMITTED\r\n" + 
+						"FROM USER_PROFILE u,STUDENT_COURSE_DETAILS s,BATCH_DETAILS b\r\n" + 
+						"WHERE u.USER_ID=s.USER_ID AND b.BATCH_ID="+batchId+" AND b.COURSE_ID=s.COURSE_ID";
+				resultSet1=statement.executeQuery(query1);
+				while(resultSet1.next()) {
+					String coursewareIssued=(resultSet1.getBoolean("COURSEWARE_ISSUED"))? "YES" : "NO";
+					String assignmentsIssued=(resultSet1.getBoolean("ASSIGNMENTS_ISSUED"))? "YES" : "NO";
+					String assignmentsSubmitted=(resultSet1.getBoolean("ASSIGNMENTS_SUBMITTED"))? "YES" : "NO";;
+					assignmentsScreenWrapperList.add(new AssignmentsScreenWrapper(resultSet1.getString("FIRST_NAME"),
+							resultSet1.getString("LAST_NAME"),
+							resultSet1.getString("FEE_STATUS"),
+							coursewareIssued,assignmentsIssued,assignmentsSubmitted));
+					
+				}
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return  assignmentsScreenWrapperList;
+	}
+	
 	
 public ArrayList<StudentCourseDetails> getBatchFeedback() {
 		
