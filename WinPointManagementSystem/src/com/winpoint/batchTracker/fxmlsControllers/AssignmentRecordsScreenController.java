@@ -33,7 +33,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AssignmentRecordsScreenController extends ParentFXMLController {
-
+	private  Integer batchId;
+	private  String batchNameValue;
     @FXML
     private Button back;
 
@@ -66,9 +67,13 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     
     
     public void setRecievedData(ArrayList<String> recievedData) {
-        for(String data : recievedData) {
-            System.out.println(data);
-        }
+//       for(String data : recievedData) {
+//            System.out.println(data);
+//        }
+    	batchId = Integer.parseInt(recievedData.get(0));
+    	System.out.println(batchId);
+    	batchNameValue = recievedData.get(1);
+    	batchName.setText(batchNameValue);
     }
     
     
