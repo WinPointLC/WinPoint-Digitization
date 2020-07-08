@@ -4,13 +4,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01fa1a49deaf5d62d570ba920894d1aa08fac0bd
 import java.util.ArrayList;
 import java.util.List;
 	
 
 import com.winpoint.common.beans.EnquiryDetails;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01fa1a49deaf5d62d570ba920894d1aa08fac0bd
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EnquiryDetailsDao {
@@ -18,7 +24,6 @@ public class EnquiryDetailsDao {
 	public List<EnquiryDetails> getEnquiryDetailsList() {
 
 		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
-
 
 //		try {
 //			enquiryDetailsList.add(new EnquiryDetails(10, "Aayush ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
@@ -32,7 +37,6 @@ public class EnquiryDetailsDao {
 //		} catch (ParseException e) {
 //			e.printStackTrace();
 //		}
-
 		return enquiryDetailsList;
 
 	}
@@ -97,9 +101,9 @@ public class EnquiryDetailsDao {
 
 	}
 
+<<<<<<< HEAD
 
-
-	public void update(EnquiryDetails enquiryDetailsObject) {
+	public void create(EnquiryDetails enquiryDetailsObject) {
 		// TODO Auto-generated method stub
 
 
@@ -140,7 +144,7 @@ public class EnquiryDetailsDao {
 
 	}
 
-
+=======
 	// group B - for inserting the values in the table.
 	public void create(EnquiryDetails enquiryDetails) throws SQLException {
 		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
@@ -200,25 +204,6 @@ public class EnquiryDetailsDao {
 			statement.executeUpdate(query);
 		}
 	}
-
-	
-
+>>>>>>> 01fa1a49deaf5d62d570ba920894d1aa08fac0bd
 
 }
-
-
-
-
-
-//try {
-//enquiryDetailsList.add(new EnquiryDetails(10, "Aayush ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
-//	new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
-//	12, 1, "Passed", true));
-//
-//enquiryDetailsList.add(new EnquiryDetails(11, "Shraddha ", "Padalkar", "shraddha8888@gmail.com", "9820910220", "MUMBAI",
-//	new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "FEMALE", 2021, "Shraddha", true, 3, "Purva", 7,
-//	12, 1, "Passed", true));
-//
-//} catch (ParseException e) {
-//e.printStackTrace();
-//}
