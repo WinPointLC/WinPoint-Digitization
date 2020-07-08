@@ -33,7 +33,7 @@ public class UserProfile {
 	private Date createDate;
 	private Integer timeSlotsId;
 	private Integer segmentTypeId;
-	private Integer courseAlreadyDone;
+	private String courseAlreadyDone;
 	private Boolean activeStatus;
 	
 	/**
@@ -181,7 +181,7 @@ public class UserProfile {
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
 			String domain, String role, Integer experience, Integer createdBy, Date createDate, Integer timeSlotsId,
-			Integer segmentTypeId, Integer courseAlreadyDone, Boolean activeStatus) {
+			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -639,13 +639,13 @@ public class UserProfile {
 	/**
 	 * @return the courseAlreadyDone
 	 */
-	public Integer getCourseAlreadyDone() {
+	public String getCourseAlreadyDone() {
 		return courseAlreadyDone;
 	}
 	/**
 	 * @param courseAlreadyDone the courseAlreadyDone to set
 	 */
-	public void setCourseAlreadyDone(Integer courseAlreadyDone) {
+	public void setCourseAlreadyDone(String courseAlreadyDone) {
 		this.courseAlreadyDone = courseAlreadyDone;
 	}
 
