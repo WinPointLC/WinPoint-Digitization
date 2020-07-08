@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.PriorityCoursesListHelper;
+import com.winpoint.common.wrappers.PriorityListOfCoursesWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -51,6 +55,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
+   		List<PriorityListOfCoursesWrapper>priorityCoursesList = new PriorityCoursesListHelper().getPriorityCoursesList();
    	}
 
 }
