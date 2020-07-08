@@ -320,7 +320,7 @@ public class LectureScreenController extends ParentFXMLController{
 			//assignmentRecordsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForAssignmentRecordsScreen = new ArrayList<String>();
-			dataForAssignmentRecordsScreen.add(batchId.toString());
+			dataForAssignmentRecordsScreen.add("BatchID");
 			dataForAssignmentRecordsScreen.add(batchNameValue);
 			dataForAssignmentRecordsScreen.add("StudentName");
 			dataForAssignmentRecordsScreen.add("StudentFeeStatus");
