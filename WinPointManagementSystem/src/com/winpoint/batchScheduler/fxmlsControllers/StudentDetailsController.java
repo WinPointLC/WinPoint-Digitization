@@ -101,7 +101,10 @@ public class StudentDetailsController extends ParentFXMLController {
     	dateofEnquiryLabel.setText("10.05.20");
     	contactLabel.setText("9004628901");
     	suggestionLabel.setText("none");
-    	coursesInterestedLabel.setText("Java Script");
+    	coursesInterestedLabel.setText("Java");
+    	
+    	
+    	
     	
     	courseCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	eligiblityCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));

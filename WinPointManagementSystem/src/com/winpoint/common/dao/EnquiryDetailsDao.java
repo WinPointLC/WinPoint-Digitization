@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 import com.winpoint.common.beans.EnquiryDetails;
-import com.winpoint.common.beans.UserProfile;
+
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EnquiryDetailsDao {
@@ -85,5 +84,48 @@ public class EnquiryDetailsDao {
 		return  (ArrayList<EnquiryDetails>) enquiryDetailList;
 	
 	}
+	
+	
+	public void create(EnquiryDetails enquiryDetailsObject) {
+		// TODO Auto-generated method stub
+		
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "UPDATE ENQUIRY_DETAILS \n" + 
+					"        SET FIRST_NAME='"+enquiryDetailsObject.getFirstName()+"',\n" + 
+					"        LAST_NAME='"+ enquiryDetailsObject.getLastName()+"',\n" + 
+					"        EMAIL_ID='"+ enquiryDetailsObject.getEmail()+"',\n" +  
+					"        MOBILE_NO='"+ enquiryDetailsObject.getMobileNumber()+"',\n" + 
+					"        COLLEGE='"+ enquiryDetailsObject.getCollege()+"',\n" +  
+					"        DEGREE='"+ enquiryDetailsObject.getDegree()+"',\n" + 
+					"        BRANCH='"+ enquiryDetailsObject.getBranch()+"',\n" + 
+					"        OCCUPATION='"+ enquiryDetailsObject.getOccupation()+"',\n" + 
+					"        ORGANISATION='"+ enquiryDetailsObject.getOrganisation()+"',\n" + 
+					"        DESIGNATION='"+ enquiryDetailsObject.getDesignation()+"',\n" + 
+					"        DOMAIN='"+ enquiryDetailsObject.getDomain()+"',\n" +  
+					"        ROLE='"+ enquiryDetailsObject.getRole()+"',\n" +  
+					"        EXPERIENCE='"+ enquiryDetailsObject.getExperience()+"',\n" + 
+					"        GENDER='"+ enquiryDetailsObject.getGender()+"',\n" + 
+					"        YEAR_OF_GRADUATION='"+ enquiryDetailsObject. getYearOfGraduation()+"',\n" +
+					"        COURSE_ALREADY_DONE='"+ enquiryDetailsObject.getCourseAlreadyDone()+"',\n" +
+					"        ACTIVE_STATUS='"+ enquiryDetailsObject. getActiveStatus()+"'\n" +
+					"        WHERE ENQUIRY_ID='"+ 112+"'\n" +
+					"        " + 
+					"";
+			
+				statement.executeUpdate(query1);
+			
+			
+		} 
+		catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 
 }

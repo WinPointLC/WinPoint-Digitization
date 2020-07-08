@@ -19,5 +19,11 @@ public class EnquiryDetailsHelper {
 	public List<EnquiryDetails> getEnquiryDetails(){
 		return new EnquiryDetailsDao().getEnquiryDetails();
 	}
+
+	public void create(EnquiryDetails enquiryDetailsObject) {
+		// TODO Auto-generated method stub
+		new EnquiryDetailsDao().create(enquiryDetailsObject);
+		
+	}
 	
 }

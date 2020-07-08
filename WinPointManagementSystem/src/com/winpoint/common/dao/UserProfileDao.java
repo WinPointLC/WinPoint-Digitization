@@ -63,6 +63,11 @@ public class UserProfileDao {
 		
 	}
 	
+	
+	
+	
+	
+	
 public ArrayList<UserProfile> getUsers() {
 	ArrayList<UserProfile> allUsersList = new ArrayList<UserProfile>();
 		
@@ -209,8 +214,6 @@ public ArrayList<UserProfile> getUsers() {
 		userProfileList.add(new UserProfile(12, "Suhasi","Buche", "suhasi@gmail.com", "9922956789", null));
 		return (ArrayList<UserProfile>) userProfileList;
 	}
-	
-	
-	
+
 	
 }

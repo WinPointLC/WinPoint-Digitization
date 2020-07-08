@@ -3,6 +3,7 @@ package com.winpoint.common.beans;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 public class UserProfile {
 	private Integer userId;
@@ -35,6 +36,7 @@ public class UserProfile {
 	private Integer segmentTypeId;
 	private Integer courseAlreadyDone;
 	private Boolean activeStatus;
+	private Button add;
 	
 	/**
 	 * @param userId
@@ -667,6 +669,16 @@ public class UserProfile {
 	public static void setItems(ObservableList<UserProfile> data) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public Button getAdd() {
+		return add;
+	}
+
+
+	public void setAdd(Button add) {
+		this.add = add;
 	}
 
 }

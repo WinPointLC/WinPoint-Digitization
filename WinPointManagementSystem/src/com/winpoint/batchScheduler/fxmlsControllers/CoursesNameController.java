@@ -48,7 +48,7 @@ public class CoursesNameController extends ParentFXMLController{
     private TableColumn<?, CoursesNameWrapper> checkBox;
 
     @FXML
-    private TableColumn<?, CoursesNameWrapper> addButton;
+    private TableColumn<Button, CoursesNameWrapper> addButton;
 
     @FXML
     private Button cancel;
@@ -88,12 +88,13 @@ public class CoursesNameController extends ParentFXMLController{
    		student.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Name"));
    		enquired.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Enquired"));
    		registered.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Registered"));
+   		addButton.setCellValueFactory(new PropertyValueFactory<Button, CoursesNameWrapper>("Add"));
 	    //fx:ID : getter name without writting the get.
    		
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
    		
    		for( UserProfile userProfile: userProfileList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true));
+   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true,userProfile.getAdd()));
    		}
    		
    		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {

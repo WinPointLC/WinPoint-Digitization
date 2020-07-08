@@ -202,6 +202,34 @@ public class EnquiryDetails extends UserProfile {
 	} 
 
 	
+	
+	public EnquiryDetails(String firstName, String lastName, String emailId, String mobileNo, String college,
+			String degree, String branch, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
+			Integer coursesInterestedIn, Integer coursesAlreadyDone, Boolean activeStatus) {
+		
+		// TODO Auto-generated constructor stub
+	
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = emailId;
+		this.mobileNumber = mobileNo;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.courseAlreadyDone = coursesAlreadyDone;
+		this.activeStatus = activeStatus;
+	
+	}
+	
 	/**
 	 * @return the enquiryId
 	 */
