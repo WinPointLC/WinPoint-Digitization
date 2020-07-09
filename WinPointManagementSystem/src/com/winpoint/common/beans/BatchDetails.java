@@ -18,10 +18,10 @@ public class BatchDetails {
 	private Date createdDate;
 	private String batchName;
 	private Integer batchTime;
-	private Integer CurrentLectureNumber;
-	private Integer LectureDuration; 
-	private Integer UserId;
-	
+	private Integer currentLectureNumber;
+	private Integer lectureDuration; 
+	private Integer userId;
+	private String facultyName;
 	/**
 	 * @param batchId
 	 * @param courseId
@@ -45,6 +45,26 @@ public class BatchDetails {
 		
 	}
 	
+	
+	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
+			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
+			Integer lectureDuration, Integer userId, String facultyName) {
+		super();
+		this.batchId = batchId;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.batchName = batchName;
+		this.batchTime = batchTime;
+		this.currentLectureNumber = currentLectureNumber;
+		this.lectureDuration = lectureDuration;
+		this.userId = userId;
+		this.facultyName = facultyName;
+	}
+
 	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -55,7 +75,17 @@ public class BatchDetails {
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
-	
+	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate,String facultyName) {
+		this.batchId = batchId;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.batchTime = batchTime;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.facultyName=facultyName;
+	}
 	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
 			Integer lectureDuration, Integer userId) {
@@ -69,9 +99,9 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 		this.batchName = batchName;
 		this.batchTime = batchTime;
-		this.CurrentLectureNumber = currentLectureNumber;
-		LectureDuration = lectureDuration;
-		UserId = userId;
+		this.currentLectureNumber = currentLectureNumber;
+		this.lectureDuration = lectureDuration;
+		this.userId = userId;
 		
 }
 
@@ -104,27 +134,27 @@ public class BatchDetails {
 	}
 
 	public Integer getCurrentLectureNumber() {
-		return CurrentLectureNumber;
+		return currentLectureNumber;
 	}
 
 	public void setCurrentLectureNumber(Integer currentLectureNumber) {
-		CurrentLectureNumber = currentLectureNumber;
+		currentLectureNumber = currentLectureNumber;
 	}
 
 	public Integer getLectureDuration() {
-		return LectureDuration;
+		return lectureDuration;
 	}
 
 	public void setLectureDuration(Integer lectureDuration) {
-		LectureDuration = lectureDuration;
+		lectureDuration = lectureDuration;
 	}
 
 	public Integer getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(Integer userId) {
-		UserId = userId;
+		userId = userId;
 	}
 
 	/**
@@ -225,4 +255,12 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 	}
 
+	public String getFacultyName() {
+		return facultyName;
+	}
+
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+	
 }

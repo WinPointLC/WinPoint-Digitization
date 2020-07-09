@@ -37,6 +37,37 @@ public class BatchDetailsDao {
 		return  (ArrayList<BatchDetails>) batchDetailsList;
 		
 	}
+	
+	//GroupB
+public List<BatchDetails> getBatchDetailsList1() {
+		
+		List<BatchDetails> batchDetailsList1 = new ArrayList<BatchDetails>();
+				
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "select bd.BATCH_ID, bd.COURSE_ID,bd.FACULTY_USER_ID,(up.FIRST_NAME+' '+up.LAST_NAME) AS FACULTY_NAME, \r\n" + 
+					"bd.BATCH_TIME, bd.BEGIN_DATE, bd.END_DATE, bd.CREATED_BY, bd.CREATED_DATE \r\n" + 
+					"FROM BATCH_DETAILS bd, USER_PROFILE up\r\n" + 
+					"WHERE bd.FACULTY_USER_ID=up.USER_ID ";
+			
+			ResultSet rs = statement.executeQuery(query1);
+			
+			while(rs.next()) {
+				batchDetailsList1.add(new BatchDetails(rs.getString("BATCH_ID"), rs.getInt("COURSE_ID"), rs.getInt("FACULTY_USER_ID"), rs.getInt("BATCH_TIME"), rs.getDate("BEGIN_DATE"), rs.getDate("END_DATE"), rs.getInt("CREATED_BY"), rs.getDate("CREATED_DATE"),rs.getNString("FACULTY_NAME")));
+			}
+			
+		} 
+		catch (SQLException e) {
+			batchDetailsList1 = null;
+			e.printStackTrace();
+		}
+		
+		return  (ArrayList<BatchDetails>) batchDetailsList1;
+		
+	}
+
+	
 
 	
 }

@@ -12,7 +12,9 @@ public class BatchDetailsHelper {
 	public List<BatchDetails> getBatchDetailsList() {
 		return new BatchDetailsDao().getBatchDetailsList();
 	}
-	
+	public List<BatchDetails> getBatchDetailsList1() {
+		return new BatchDetailsDao().getBatchDetailsList1();
+	}
 }
 
 

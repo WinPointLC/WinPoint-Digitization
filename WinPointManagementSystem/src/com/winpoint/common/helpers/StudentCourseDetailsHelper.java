@@ -1,11 +1,12 @@
 package com.winpoint.common.helpers;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 
 public class StudentCourseDetailsHelper {
 	/*public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){
@@ -17,6 +18,9 @@ public class StudentCourseDetailsHelper {
 	}
 	public ArrayList<StudentCourseDetails> getBatchFeedback(){
 		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();
+	} 
+	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId){
+		return new StudentCourseDetailsDao().getStudentEvaluationDetails(batchId);
 	}
 	
 
