@@ -37,5 +37,6 @@ public class BatchDetailsDao {
 		return  (ArrayList<BatchDetails>) batchDetailsList;
 		
 	}
+
 	
 }

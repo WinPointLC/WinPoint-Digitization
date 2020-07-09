@@ -106,31 +106,14 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();
    		
-   		
-   		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
    		// Row Population logic
    		assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
    		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
    		assignmentsTableCoursewareColumn.setCellValueFactory(new PropertyValueFactory<>("coursewareIssued"));
    		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
-	    //fx:ID : Column Name
-//   		ArrayList<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
-//   		int i=0;
-//   		while(userProfileList.size()>i) {
-//   			AssignmentsScreenWrapper assignmentsScreenWrapper= new AssignmentsScreenWrapper(
-//   					userProfileList.get(i).getFirstName(),
-//   					userProfileList.get(i).getLastName(),
-//   					studentCourseDetailsList.get(i).getFeeStatus(), 
-//   					studentCourseDetailsList.get(i).getCoursewareIssued(),
-//   					studentCourseDetailsList.get(i).getAssignmentsIssued(), 
-//   					studentCourseDetailsList.get(i).getAssignmentsSubmitted());
-//   				i++;
-//   			assignmentsScreenWrapperList.add(assignmentsScreenWrapper);
-//   			
-//   		}
+
    		
    		
 	    ObservableList<AssignmentsScreenWrapper> assignmentDetailsList = FXCollections.observableArrayList(new StudentCourseDetailsHelper().getAssignmentScreenWrapperList(1));

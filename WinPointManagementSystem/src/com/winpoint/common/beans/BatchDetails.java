@@ -39,6 +39,12 @@ public class BatchDetails {
 		System.out.println(" Default Constructor ");
 	}
 	
+	public BatchDetails ( Integer facultyId) {
+		
+		this.facultyId = facultyId;
+		
+	}
+	
 	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
