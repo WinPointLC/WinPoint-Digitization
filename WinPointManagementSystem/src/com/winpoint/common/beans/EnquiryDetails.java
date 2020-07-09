@@ -41,22 +41,13 @@ public class EnquiryDetails extends UserProfile {
 	private Integer segmentTypeId;
 	private String suggestion;
 	private Boolean activeStatus;
-	
-	private Button update;
+
 	private String student;
 	
 	private String enquired;
 	private String registered;
 	
-	
-	public Button getUpdate() {
-		return update;
-	}
-	
-	public void setUpdate(Button Update){
-		this.update = Update;
-	}
-	
+
 	public String getEnquired() {
 		return enquired;
 	}

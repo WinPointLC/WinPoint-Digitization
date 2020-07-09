@@ -51,7 +51,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     @FXML
     private TableColumn<EnquiryDetailsWrapper, Button> updateCol;
    
-    
+    private Button update = new Button();
 	
     @FXML
     void CancelClick(ActionEvent event) throws IOException {
@@ -80,7 +80,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
     		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
-    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),enquiryDetail.getUpdate()));
+    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
     	}
     	
     	ObservableList<EnquiryDetailsWrapper> data =FXCollections.observableArrayList(enquiryDetailsWrapperList);

@@ -25,7 +25,7 @@ public class EnquiryDetailsWrapper {
 		this.coursesInterestedIn = courseInterestedIn;
 		this.eligibility = eligibility;
 		this.suggestion = suggestion;
-		this.setUpdate(new Button("Update"));
+		this.update = update;
 	}
 
 	
