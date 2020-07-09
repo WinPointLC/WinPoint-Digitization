@@ -23,6 +23,10 @@ public class StudentCourseDetailsHelper {
 		return new StudentCourseDetailsDao().getStudentEvaluationDetails(batchId);
 	}
 	
+	
+	public ArrayList<StudentCourseDetails> getStudentCountInCourse(Integer courseId){
+		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getStudentCountInCourse(courseId);
+	}
 
 	/*public void createStudentCourseDetails(int userId, int courseId, String courseName, int streamId, int courseTypeId, String feeStatus) {
 		new StudentCourseDetailsDao().createStudentCourseDetails(userId, courseId, courseName, streamId, feeStatus);

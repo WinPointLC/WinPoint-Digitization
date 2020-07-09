@@ -3,16 +3,23 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.CourseFeedbackHelper;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Axis;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -31,7 +38,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     private ImageView logo;
 
     @FXML
-    private BarChart<?, ?> weightedResponsesGraph;
+    private BarChart<Axis , Axis> weightedResponsesGraph;
 
     @FXML
     private TextField overallExperience;
@@ -106,6 +113,30 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	
+//    	Axis xAxis = new CategoryAxis();   
+//        
+//    	xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Average"))); 
+//    	xAxis.setLabel("Questions");  
+//
+//    	Axis<Number> yAxis = new NumberAxis(); 
+//    	yAxis.setLabel("Average");
+//    	ArrayList<Float> averageResponseList =  new CourseFeedbackHelper().getAverageResponses(1);
+//    	weightedResponsesGraph = new BarChart<Axis,Axis>(xAxis, yAxis);
+//    	weightedResponsesGraph.setTitle("Average Feedback");
+//    	XYChart.Series<String, Float> q1 = new XYChart.Series<>();
+//    	q1.setName("Q1");
+//    	q1.getData().add(new XYChart.Data<>("Average",averageResponseList.get(0)));
+//    	
+//    	XYChart.Series<String, Float> q2 = new XYChart.Series<>();
+//    	q2.setName("Q2");
+//    	q2.getData().add(new XYChart.Data<>("Average",averageResponseList.get(1)));
+////		for(Float avg: averageResponseList) {
+////			System.out.println(avg);
+////		}
+//    	weightedResponsesGraph.getData().addAll(q1,q2);
+    	
+    	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

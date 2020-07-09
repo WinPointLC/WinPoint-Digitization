@@ -223,6 +223,32 @@ public class StudentCourseDetailsDao {
 			return evaluationScreenWrapperList;
 	}
 	
+	public ArrayList<StudentCourseDetails> getStudentCountInCourse(Integer courseId){ 
+		ArrayList<StudentCourseDetails> batchCount =  new ArrayList<>();
+		
+		
+		ResultSet resultSet = null;
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT COUNT(USER_ID) AS STUDENT_COUNT_PER_BATCH, BATCH_ID FROM STUDENT_COURSE_DETAILS WHERE COURSE_ID ="+ courseId + "GROUP BY BATCH_ID";
+			
+			
+			resultSet  = statement.executeQuery(query1);
+			
+			
+			while(resultSet.next()) {
+				batchCount.add(new StudentCourseDetails(resultSet.getInt("STUDENT_COUNT_PER_BATCH"),resultSet.getInt("BATCH_ID")));
+			}
+
+		} 
+		catch (SQLException e) {
+			batchCount = null;
+			e.printStackTrace();
+		}
+		
+		return  batchCount;
+	}
 
 	
 public ArrayList<StudentCourseDetails> getBatchFeedback() {

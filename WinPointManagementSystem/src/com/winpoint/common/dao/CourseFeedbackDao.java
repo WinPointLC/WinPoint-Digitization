@@ -44,9 +44,52 @@ public class CourseFeedbackDao {
 	}
 	 
 	 
-	 
+	public ArrayList<Float> getAverageResponses(Integer courseId){
+		
+		ArrayList<Float> averageResponseList =  new ArrayList<>();
+		
+		Float sum=0.0f;
+		Integer i= 0;
+		Float average=0.0f;
+		ResultSet resultSet = null;
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			for(int j=1;j<=14;j++) {
+				
+				if(j == 11 || j == 12) {
+					continue;
+				}
+			
+					String query1 = "SELECT user_id, RESPONSE from COURSE_FEEDBACK where COURSE_ID=" + courseId + "and FEEDBACK_QUESTION_ID ="+ j;
+			
+			
+					resultSet  = statement.executeQuery(query1);
+					sum=0.0f;
+					average = 0.0f;
+					i=0;
+					while(resultSet.next()) {
+						sum += Float.parseFloat(resultSet.getString("RESPONSE"));
 
+						i++;
+				
+					}
+					average = (float) (sum/i);
+			
+					averageResponseList.add(average);
+				
+			}
+			averageResponseList.add(new Float(i));
+		} 
+		catch (SQLException e) {
+			averageResponseList = null;
+			e.printStackTrace();
+		}
+		
+		return  averageResponseList;
+	}
 }
+
+	 
 	 
 	 
 	 
