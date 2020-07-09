@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,11 +46,15 @@ public class CoursesNameController extends ParentFXMLController{
     private TableColumn<Boolean, CoursesNameWrapper> registered;
 
     @FXML
-    private TableColumn<?, CoursesNameWrapper> checkBox;
+    private TableColumn<CheckBox, CoursesNameWrapper> checkBox;
 
     @FXML
-    private TableColumn<Button, CoursesNameWrapper> addButton;
-
+    private TableColumn<Button, CoursesNameWrapper> add;
+   
+	private Button addStudent;
+    
+	private CheckBox checkbox;
+	
     @FXML
     private Button cancel;
 
@@ -88,17 +93,22 @@ public class CoursesNameController extends ParentFXMLController{
    		student.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Name"));
    		enquired.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Enquired"));
    		registered.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Registered"));
-   		addButton.setCellValueFactory(new PropertyValueFactory<Button, CoursesNameWrapper>("Add"));
+   		checkBox.setCellValueFactory(new PropertyValueFactory<CheckBox, CoursesNameWrapper>("CheckBox"));
+   		add.setCellValueFactory(new PropertyValueFactory<Button, CoursesNameWrapper>("AddStudent"));
 	    //fx:ID : getter name without writting the get.
    		
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
    		
    		for( UserProfile userProfile: userProfileList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true));
+   			addStudent = new Button("Add Student");
+   			checkbox = new CheckBox();
+   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true, checkbox, addStudent));
    		}
    		
    		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false));
+   			addStudent = new Button("Add Student");
+   			checkbox = new CheckBox();
+   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false, checkbox, addStudent));
    		}
    		
    		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);

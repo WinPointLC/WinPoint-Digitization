@@ -206,7 +206,7 @@ public class EnquiryDetails extends UserProfile {
 		this.emailId = email;
 		this.mobileNo = mobileNumber;
 		this.college = college;
-		this.degree = degree;
+		this.degree = degree; 
 		this.branch = branch;
 		this.occupation = occupation;
 		this.organisation = organisation;

@@ -51,7 +51,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     @FXML
     private TableColumn<EnquiryDetailsWrapper, Button> updateCol;
    
-    private Button update = new Button();
+    private Button update;  
 	
     @FXML
     void CancelClick(ActionEvent event) throws IOException {
@@ -63,7 +63,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	stage.setTitle("Main Scene");
     	stage.show();
     }
-    
+   
     @Override
 	public void initialize(URL location, ResourceBundle resources)  {
 
@@ -79,6 +79,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
+    		update = new Button("Update");
     		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
     		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
     	}

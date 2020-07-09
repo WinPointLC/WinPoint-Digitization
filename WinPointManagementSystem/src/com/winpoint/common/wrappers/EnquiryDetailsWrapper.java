@@ -71,6 +71,7 @@ public class EnquiryDetailsWrapper {
 
 
 	public Button getUpdate() {
+		System.out.println("Getter of the Update Button");
 		return update;
 	}
 

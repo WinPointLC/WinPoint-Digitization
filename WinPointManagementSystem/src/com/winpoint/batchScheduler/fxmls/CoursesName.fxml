@@ -52,7 +52,7 @@
                       <TableColumn fx:id="enquired" prefWidth="246.0" text="Enquired" />
                         <TableColumn fx:id="registered" prefWidth="246.0" text="Registered" />
                         <TableColumn fx:id="checkBox" prefWidth="246.0" text="Check Box (Email to be Sent)" />
-                        <TableColumn fx:id="addButton" prefWidth="246.0" text="Add Button" />
+                        <TableColumn fx:id="add" prefWidth="246.0" text="Add" />
                     </columns>
                   </TableView>
                </children>
