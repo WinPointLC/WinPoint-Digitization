@@ -76,15 +76,11 @@ public class CourseSelectScreenController extends ParentFXMLController{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/BatchSelectionScreen.fxml"));
 			myNewScene = loader.load();
 			BatchSelectionScreenController batchSelectionScreenController = loader.getController();
-			batchSelectionScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForBatchSelection = new ArrayList<String>();
+			//System.out.println("CourseId = " +((Button)event.getSource()).getId().substring(8));
+			dataForBatchSelection.add(((Button)event.getSource()).getId().substring(8));
 			dataForBatchSelection.add(((Button)event.getSource()).getText());
-			dataForBatchSelection.add(((Button)event.getSource()).getId());
-			dataForBatchSelection.add("StreamID");
-			dataForBatchSelection.add("CourseTypeID");
-			dataForBatchSelection.add("FacultyName");
-			dataForBatchSelection.add("FacultyImage");
 			
 			batchSelectionScreenController.setRecievedData(dataForBatchSelection);
 			
@@ -101,7 +97,7 @@ public class CourseSelectScreenController extends ParentFXMLController{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	  
+    	
     	selectCourseType.getItems().addAll(courses);
     	selectStream.getItems().addAll(streams);
 		// TODO Auto-generated method stub
