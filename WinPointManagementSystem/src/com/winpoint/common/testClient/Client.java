@@ -12,11 +12,8 @@ public class Client extends Application {
 		//System.out.println("Hello");
 		try {			
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/AttendanceScreen.fxml"));
-<<<<<<< HEAD
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/NumberOfStudents.fxml"));
-=======
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
->>>>>>> d6636d8a128611c7a6fbb66ccaad44a18a5cf04b
 			BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("FrontScreenFxml.fxml"));
 		    Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

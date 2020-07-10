@@ -7,10 +7,13 @@ import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 
 public class StudentCourseDetailsHelper {
-	/*public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){
+	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){
 		return new StudentCourseDetailsDao().getStudentCourseDetailsList(userId);
-	}*/
+	}
 	
+	public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId){
+		return new StudentCourseDetailsDao().getStudentGACourseDetailsList(userId);
+	}
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(){
 		return new StudentCourseDetailsDao().getStudentCourseDetails();
 	}
@@ -19,13 +22,13 @@ public class StudentCourseDetailsHelper {
 	}
 	
 
-	/*public void createStudentCourseDetails(int userId, int courseId, String courseName, int streamId, int courseTypeId, String feeStatus) {
+	public void createStudentCourseDetails(int userId, int courseId, String courseName, int streamId, int courseTypeId, String feeStatus) {
 		new StudentCourseDetailsDao().createStudentCourseDetails(userId, courseId, courseName, streamId, feeStatus);
-	}*/
+	}
 	
-	/*public void updateStudentCourseDetails(int userId, int courseId) {
+	public void updateStudentCourseDetails(int userId, int courseId) {
 		new StudentCourseDetailsDao().updateStudentCourseDetails(userId, courseId);
-	}*/
+	}
 
 	
 
