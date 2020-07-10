@@ -2,6 +2,8 @@ package com.winpoint.common.wrappers;
 
 import java.util.Date;
 
+import javafx.scene.control.Button;
+
 public class BatchDetailsWrapper {
 	private String batchId;
 	private Integer courseId;
@@ -11,9 +13,10 @@ public class BatchDetailsWrapper {
 	private Date endDate;
 	private Integer createdBy;
 	private Date createdDate;
+	private Button add;
 
 	public BatchDetailsWrapper(String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate,
-			Date endDate, Integer createdBy, Date createdDate) {
+			Date endDate, Integer createdBy, Date createdDate, Button add) {
 		this.batchId = batchId;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
@@ -22,6 +25,15 @@ public class BatchDetailsWrapper {
 		this.endDate = endDate;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
+		this.add=add;
+	}
+
+	public Button getAdd() {
+		return add;
+	}
+
+	public void setAdd(Button add) {
+		this.add = add;
 	}
 
 	public String getBatchId() {
