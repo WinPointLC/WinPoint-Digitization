@@ -31,6 +31,13 @@ public class CourseFeedback {
 		this.createdDate = createdDate;
 	}
 	
+	public CourseFeedback(Integer userId, Integer courseId, Integer feedbackId, String studentResponse) {
+		this.userId = userId;
+		this.courseId = courseId;
+		this.feedbackId = feedbackId;
+		this.studentResponse = studentResponse;
+	}
+	
 	/**
 	 * @return the userId
 	 */

@@ -5,8 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.CourseFeedback;
 
 import com.winpoint.common.util.sql.ConnectionManager;
@@ -78,7 +80,7 @@ public class CourseFeedbackDao {
 					averageResponseList.add(average);
 				
 			}
-			averageResponseList.add(new Float(i));
+			averageResponseList.add(new Float(i)); 
 		} 
 		catch (SQLException e) {
 			averageResponseList = null;
@@ -87,10 +89,27 @@ public class CourseFeedbackDao {
 		
 		return  averageResponseList;
 	}
+
+
+	public void createUserCourseFeedback(CourseFeedback userCourseFeedback) {
+		try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();			
+		String query = "INSERT INTO STUDENT_COURSE_DETAILS (USER_ID, COURSE_ID, FEEDBACK_QUESTION_ID, RESPONSE) "
+				+ "VALUES (" + userCourseFeedback.getUserId() + ","+ userCourseFeedback.getCourseId() + "," + userCourseFeedback.getFeedbackId() + "," + userCourseFeedback.getStudentResponse() +")" ;
+		System.out.println(query);
+		statement.executeUpdate(query);
+		
+	} 
+	catch (SQLServerException e) {
+		e.printStackTrace();
+	} 
+	catch (SQLException e1) {
+		e1.printStackTrace();
+	} 
 }
 
 	 
-	 
+}	 
 	 
 	 
 

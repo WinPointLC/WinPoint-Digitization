@@ -7,7 +7,6 @@ import java.util.List;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.dao.UserProfileDao;
 import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
-
 import javafx.util.Callback;
 
 public class UserProfileHelper {
@@ -22,8 +21,6 @@ public class UserProfileHelper {
     public String getCoursesList(Integer userId) {
         return new UserProfileDao().getCoursesList(userId);
     }
-
-
 
 
     public ArrayList<UserProfile> getEligibleUsers(){
@@ -43,8 +40,5 @@ public class UserProfileHelper {
 
     public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId){
         return new UserProfileDao().getBatchIndividualFeedbackScreenWrapperList(batchId); 
-
-
     }
-
 }
