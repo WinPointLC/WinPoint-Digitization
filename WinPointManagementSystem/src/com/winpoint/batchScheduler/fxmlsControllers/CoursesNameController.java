@@ -16,11 +16,14 @@ import com.winpoint.common.wrappers.CoursesNameWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,11 +48,15 @@ public class CoursesNameController extends ParentFXMLController{
     private TableColumn<Boolean, CoursesNameWrapper> registered;
 
     @FXML
-    private TableColumn<?, CoursesNameWrapper> checkBox;
+    private TableColumn<CheckBox, CoursesNameWrapper> checkBox;
 
     @FXML
-    private TableColumn<?, CoursesNameWrapper> addButton;
-
+    private TableColumn<Button, CoursesNameWrapper> add;
+   
+	private Button addStudent;
+    
+	private CheckBox checkbox;
+	
     @FXML
     private Button cancel;
 
@@ -78,9 +85,6 @@ public class CoursesNameController extends ParentFXMLController{
     
     public void initialize(URL location, ResourceBundle resources) {
     	
-    	super.initialize(location, resources);
-   		logo.setImage(logoImage);
-   		
    		List<UserProfile> userProfileList = new UserProfileHelper().getEligibleUsers();
    		List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
  
@@ -88,22 +92,57 @@ public class CoursesNameController extends ParentFXMLController{
    		student.setCellValueFactory(new PropertyValueFactory<String, CoursesNameWrapper>("Name"));
    		enquired.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Enquired"));
    		registered.setCellValueFactory(new PropertyValueFactory<Boolean, CoursesNameWrapper>("Registered"));
+   		checkBox.setCellValueFactory(new PropertyValueFactory<CheckBox, CoursesNameWrapper>("CheckBox"));
+   		add.setCellValueFactory(new PropertyValueFactory<Button, CoursesNameWrapper>("AddStudent"));
 	    //fx:ID : getter name without writting the get.
    		
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
    		
+   		
+   		Label l = new Label("button not selected");
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+               l.setText("button selected"); 
+               FXMLLoader loader = new FXMLLoader();
+            	Parent myNewScene = null;
+				try {
+					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            	Stage stage = (Stage) cancel.getScene().getWindow();
+            	Scene scene = new Scene(myNewScene);
+            	stage.setScene(scene);
+            	stage.setTitle("Main Scene");
+            	stage.show();
+            } 
+        }; 
+            
+   		
+   		
    		for( UserProfile userProfile: userProfileList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true));
+   			addStudent = new Button("Add Student");
+   			addStudent.setOnAction(event);
+   			checkbox = new CheckBox();
+   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true, checkbox, addStudent));
    		}
    		
    		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
-   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false));
+   			addStudent = new Button("Add Student");
+   			addStudent.setOnAction(event);
+   			checkbox = new CheckBox();
+   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false, checkbox, addStudent));
    		}
    		
    		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);
 	    
 	    courseName.setItems((ObservableList<CoursesNameWrapper>) courseNameRecords);
+	    
+	    
+    	super.initialize(location, resources);
+   		logo.setImage(logoImage);
    	}
 
 }
-

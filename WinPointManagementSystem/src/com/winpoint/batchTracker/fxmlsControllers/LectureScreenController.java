@@ -21,8 +21,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LectureScreenController extends ParentFXMLController{
-	
-	Lecture dataObject;
+	private Integer batchId;
+	private String batchNameValue;
+	private Integer courseId;
+	private String courseName;
 	
  	@FXML
     private Button backButton;
@@ -88,9 +90,11 @@ public class LectureScreenController extends ParentFXMLController{
     private TextArea displayLectureCoverage;
 
     public void setRecievedData(ArrayList<String> recievedData) {
-        for(String data : recievedData) {
-            System.out.println(data);
-        }
+    	batchId = Integer.parseInt(recievedData.get(0));
+    	batchNameValue = recievedData.get(1);
+    	batchName.setText(batchNameValue);
+    	courseId = Integer.parseInt(recievedData.get(2));
+    	courseName = recievedData.get(3);
     }    
 	    
     @FXML
@@ -100,8 +104,13 @@ public class LectureScreenController extends ParentFXMLController{
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/BatchSelectionScreen.fxml"));
 			myNewScene = loader.load();
-			//BatchSelectionScreenController batchSelectionScreenController = loader.getController();
-			//batchSelectionScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
+			BatchSelectionScreenController batchSelectionScreenController = loader.getController();
+			ArrayList<String> dataForBatchSelection = new ArrayList<String>();
+			dataForBatchSelection.add(courseId.toString());
+			dataForBatchSelection.add(courseName);
+			
+			batchSelectionScreenController.setRecievedData(dataForBatchSelection);
+			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Batch Select");
@@ -119,19 +128,13 @@ public class LectureScreenController extends ParentFXMLController{
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/AttendanceScreen.fxml"));
 			myNewScene = loader.load();
-			AttendanceScreenController attendanceScreenController = loader.getController();
-			//attendanceScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
-			
+			AttendanceScreenController attendanceScreenController = loader.getController();			
 			
 			ArrayList<String> dataForAttendanceScreen = new ArrayList<String>();
-			dataForAttendanceScreen.add("BatchID");
-			dataForAttendanceScreen.add("BatchName");
-			dataForAttendanceScreen.add("LectureName");
-			dataForAttendanceScreen.add("LectureDate");
-			dataForAttendanceScreen.add("LectureID");
-			dataForAttendanceScreen.add("Lecture1Absentee");
-			dataForAttendanceScreen.add("Lecture2Absentee");
-			dataForAttendanceScreen.add("LectureNAbsentee");
+			dataForAttendanceScreen.add(batchId.toString());
+			dataForAttendanceScreen.add(batchNameValue);
+			dataForAttendanceScreen.add(courseId.toString());
+			dataForAttendanceScreen.add(courseName);
 			
 			attendanceScreenController.setRecievedData(dataForAttendanceScreen);
 			
@@ -154,17 +157,13 @@ public class LectureScreenController extends ParentFXMLController{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/BatchFeedbackScreen.fxml"));
 			myNewScene = loader.load();
 			BatchFeedbackScreenController batchFeedbackScreenController = loader.getController();
-			//batchFeedbackScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForBatchFeedbackScreen = new ArrayList<String>();
-			dataForBatchFeedbackScreen.add("BatchName");
-			dataForBatchFeedbackScreen.add("BatchID");
-			dataForBatchFeedbackScreen.add("LectureName");
-			dataForBatchFeedbackScreen.add("WeightedAverageQ1");
-			dataForBatchFeedbackScreen.add("WeightedAverageQ2");
-			dataForBatchFeedbackScreen.add("WeightedAverageQ10");
-			dataForBatchFeedbackScreen.add("OverallFeedback");
-			dataForBatchFeedbackScreen.add("FeedbackCount");
+			dataForBatchFeedbackScreen.add(batchId.toString());
+			dataForBatchFeedbackScreen.add(batchNameValue);
+			dataForBatchFeedbackScreen.add(courseId.toString());
+			dataForBatchFeedbackScreen.add(courseName);
+
 			
 			batchFeedbackScreenController.setRecievedData(dataForBatchFeedbackScreen);
 			
@@ -189,16 +188,11 @@ public class LectureScreenController extends ParentFXMLController{
 			//editBatchDetailsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForEditBatchDetailsScreen = new ArrayList<String>();
-			dataForEditBatchDetailsScreen.add("BatchName");
-			dataForEditBatchDetailsScreen.add("BatchID");
-			dataForEditBatchDetailsScreen.add("LectureName");
-			dataForEditBatchDetailsScreen.add("LectureStartDate");
-			dataForEditBatchDetailsScreen.add("LectureEndDate");
-			dataForEditBatchDetailsScreen.add("LectureDuration");
-			dataForEditBatchDetailsScreen.add("LectureDate");
-			dataForEditBatchDetailsScreen.add("LectureStartTime");
-			dataForEditBatchDetailsScreen.add("LectureList");
-			
+			dataForEditBatchDetailsScreen.add(batchId.toString());
+			dataForEditBatchDetailsScreen.add(batchNameValue);
+			dataForEditBatchDetailsScreen.add(courseId.toString());
+			dataForEditBatchDetailsScreen.add(courseName);
+
 			
 			editBatchDetailsScreenController.setRecievedData(dataForEditBatchDetailsScreen);
 			
@@ -223,14 +217,10 @@ public class LectureScreenController extends ParentFXMLController{
 			//evaluationScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForEvaluationScreen = new ArrayList<String>();
-			dataForEvaluationScreen.add("BatchID");
-			dataForEvaluationScreen.add("BatchName");
-			dataForEvaluationScreen.add("StudentName");
-			dataForEvaluationScreen.add("StudentUserID");
-			dataForEvaluationScreen.add("StudentEvaluationDone");
-			dataForEvaluationScreen.add("StudentGrade");
-			dataForEvaluationScreen.add("StudentCertificateIssued");
-			dataForEvaluationScreen.add("StudentAttendancePercentage");
+			dataForEvaluationScreen.add(batchId.toString());
+			dataForEvaluationScreen.add(batchNameValue);
+			dataForEvaluationScreen.add(courseId.toString());
+			dataForEvaluationScreen.add(courseName);
 			
 			evaluationScreenController.setRecievedData(dataForEvaluationScreen);
 			
@@ -255,18 +245,10 @@ public class LectureScreenController extends ParentFXMLController{
 			//feeRecordsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForFeeRecordsScreen = new ArrayList<String>();
-			dataForFeeRecordsScreen.add("BatchID");
-			dataForFeeRecordsScreen.add("BatchName");
-			dataForFeeRecordsScreen.add("StudentUserID");
-			dataForFeeRecordsScreen.add("StudentName");
-			dataForFeeRecordsScreen.add("StudentEmail");
-			dataForFeeRecordsScreen.add("StudentMobile");
-			dataForFeeRecordsScreen.add("NoOfReminders");
-			dataForFeeRecordsScreen.add("StudentDueAmount");
-			dataForFeeRecordsScreen.add("StudentFeeStatus");
-			dataForFeeRecordsScreen.add("StudentPaymentMode");
-			dataForFeeRecordsScreen.add("StudentInstallment1");
-			dataForFeeRecordsScreen.add("StudentDueDate1");
+			dataForFeeRecordsScreen.add(batchId.toString());
+			dataForFeeRecordsScreen.add(batchNameValue);
+			dataForFeeRecordsScreen.add(courseId.toString());
+			dataForFeeRecordsScreen.add(courseName);
 			
 			feeRecordsScreenController.setRecievedData(dataForFeeRecordsScreen);
 			
@@ -291,15 +273,10 @@ public class LectureScreenController extends ParentFXMLController{
 			//progressTrackingScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForProgressTrackerScreen = new ArrayList<String>();
-			dataForProgressTrackerScreen.add("BatchID");
-			dataForProgressTrackerScreen.add("BatchName");
-			dataForProgressTrackerScreen.add("TotalLectures");
-			dataForProgressTrackerScreen.add("TotalCourseDuration");
-			dataForProgressTrackerScreen.add("ElapsedDuration");
-			dataForProgressTrackerScreen.add("TotalTopics");
-			dataForProgressTrackerScreen.add("RemainingTopic");
-			dataForProgressTrackerScreen.add("RemainingTopicsName");
-			dataForProgressTrackerScreen.add("RemainingTopicsDuration");
+			dataForProgressTrackerScreen.add(batchId.toString());
+			dataForProgressTrackerScreen.add(batchNameValue);
+			dataForProgressTrackerScreen.add(courseId.toString());
+			dataForProgressTrackerScreen.add(courseName);
 			
 			progressTrackingScreenController.setRecievedData(dataForProgressTrackerScreen);
 			
@@ -324,13 +301,10 @@ public class LectureScreenController extends ParentFXMLController{
 			//assignmentRecordsScreenController.setSelectedCourseName(((Button)event.getSource()).getText());
 			
 			ArrayList<String> dataForAssignmentRecordsScreen = new ArrayList<String>();
-			dataForAssignmentRecordsScreen.add("BatchID");
-			dataForAssignmentRecordsScreen.add("BatchName");
-			dataForAssignmentRecordsScreen.add("StudentName");
-			dataForAssignmentRecordsScreen.add("StudentFeeStatus");
-			dataForAssignmentRecordsScreen.add("CourseWare");
-			dataForAssignmentRecordsScreen.add("AssignmentIssued");
-			dataForAssignmentRecordsScreen.add("AssignmentSubmitted");
+			dataForAssignmentRecordsScreen.add(batchId.toString());
+			dataForAssignmentRecordsScreen.add(batchNameValue);
+			dataForAssignmentRecordsScreen.add(courseId.toString());
+			dataForAssignmentRecordsScreen.add(courseName);
 			
 			assignmentRecordsScreenController.setRecievedData(dataForAssignmentRecordsScreen);
 			
@@ -347,6 +321,7 @@ public class LectureScreenController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+    	
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 		

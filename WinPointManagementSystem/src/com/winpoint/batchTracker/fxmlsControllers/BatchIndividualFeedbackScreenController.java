@@ -3,15 +3,18 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.CourseFeedback;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.BatchDetailsHelper;
+import com.winpoint.common.helpers.CourseFeedbackHelper;
 import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
@@ -36,6 +39,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class BatchIndividualFeedbackScreenController extends ParentFXMLController {
+	
+	ArrayList<TextField> individualFeedbackQuestionList;
+	 
+	 private Integer batchId;
+	 private String batchName;
+	 private Integer courseId;
+	 private String courseName;
 
     @FXML
     private Button backButton;
@@ -68,7 +78,7 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     private TextField individualFeedbackQuestion1;
 
     @FXML
-    private TextField indiindividualFeedbackQuestion2idualFeedbackQ2;
+    private TextField individualFeedbackQuestion2;
 
     @FXML
     private TextField individualFeedbackQuestion3;
@@ -95,18 +105,22 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
     private TextField individualFeedbackQuestion10;
 
     @FXML
-    private TextArea individualFeedbackQuestionA;
+    private TextField individualFeedbackQuestion11;
 
     @FXML
-    private TextArea individualFeedbackQuestionB;
+    private TextField individualFeedbackQuestion12;
 
     @FXML
-    private TextField individualFeedbackQuestionC;
+    private TextField individualFeedbackQuestion13;
 
     @FXML
-    private TextField individualFeedbackQuestionD;
+    private TextField individualFeedbackQuestion14;
     
     public void setRecievedData(ArrayList<String> recievedData) {
+//    	batchId =  Integer.parseInt(recievedData.get(0));
+//    	batchName =  recievedData.get(1);
+//    	courseId =  Integer.parseInt(recievedData.get(2));
+//    	courseName =  recievedData.get(3);
         for(String data : recievedData) {
             System.out.println(data);
         }
@@ -126,49 +140,68 @@ public class BatchIndividualFeedbackScreenController extends ParentFXMLControlle
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-    }
-    @Override
-	public void initialize(URL location, ResourceBundle resources) {
+		
+}
+    
+    public void getStudentFeedback(Integer userId, Integer courseId) {
+    	ArrayList<CourseFeedback> feedBackResponses =  new ArrayList<>();
     	
+    	feedBackResponses = (ArrayList<CourseFeedback>) new CourseFeedbackHelper().getResponses(userId,courseId);
     	
-    	ArrayList<UserProfile> userProfileList = new UserProfileHelper().getUsersForBatchTracker();		
-		ArrayList<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchInstructorList();
-		ArrayList<Course> courseList =  new CourseHelper().getBatchCourseDurationList();
-   		ArrayList<StudentCourseDetails> CourseDetailsList= new StudentCourseDetailsHelper().getBatchFeedback();
-   		// Row Population logic
-   		individualFeedbackTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-    	individualFeedbackTableInstructorColumn.setCellValueFactory(new PropertyValueFactory<>("instructor"));
-    	individualFeedbackTableDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
-    	individualFeedbackTableEmailId.setCellValueFactory(new PropertyValueFactory<>("email"));
-    	individualFeedbackTableMobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-    	individualFeedbackTableStatus.setCellValueFactory(new PropertyValueFactory<>("status")); 
-	    //fx:ID : Column Name
-   		ArrayList<BatchIndividualFeedbackScreenWrapper> batchWrapperList = new ArrayList<BatchIndividualFeedbackScreenWrapper>();
-   		int i=0;
-   		
-   		while(userProfileList.size()>i) {
-   			BatchIndividualFeedbackScreenWrapper batchFeedbackScreenWrapper= new BatchIndividualFeedbackScreenWrapper(
-   					userProfileList.get(i).getFirstName() + " " +
-   					userProfileList.get(i).getLastName(),
-   					batchDetailsList.get(i).getFacultyId(),
-   					courseList.get(i).getCourseDuration(),
-   					userProfileList.get(i).getEmail(),
-   					userProfileList.get(i).getMobileNumber(),
-   					CourseDetailsList.get(i).getIsFeedbackGiven());
-   			
-   			i++;
-   					batchWrapperList.add(batchFeedbackScreenWrapper);
-   			
-   		}
-	    ObservableList<BatchIndividualFeedbackScreenWrapper> batchIndividualList = FXCollections.observableArrayList(batchWrapperList);
+    	int i=0;
+    	for (CourseFeedback courseFeedback : feedBackResponses) {
+    		System.out.println(courseFeedback.getStudentResponse());
+			individualFeedbackQuestionList.get(i).setText(courseFeedback.getStudentResponse());
+			
+			i++;
+		}
+    	
+    	ObservableList<BatchIndividualFeedbackScreenWrapper> batchIndividualList = FXCollections.observableArrayList(new UserProfileHelper().getBatchIndividualFeedbackScreenWrapperList(1));
 	    
 	    individualFeedbackTable.setItems(batchIndividualList);
-	    
-		// TODO Auto-generated method stub
-		super.initialize(location, resources);
-		logo.setImage(logoImage);
-	}
+    	
+    }
+    
+    
+    
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
+	    	
+	    	
+	    	individualFeedbackQuestionList = new ArrayList<TextField>();
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion1);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion2);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion3);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion4);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion5);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion6);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion7);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion8);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion9);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion10);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion11);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion12);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion13);
+	        individualFeedbackQuestionList.add(individualFeedbackQuestion14);
+        	
+        
+       		// Row Population logic
+       		individualFeedbackTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        	individualFeedbackTableInstructorColumn.setCellValueFactory(new PropertyValueFactory<>("instructorName"));
+        	individualFeedbackTableDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        	individualFeedbackTableEmailId.setCellValueFactory(new PropertyValueFactory<>("email"));
+        	individualFeedbackTableMobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        	individualFeedbackTableStatus.setCellValueFactory(new PropertyValueFactory<>("status")); 
+        	
+        	
+        	getStudentFeedback(22,1);
+        	
+        	
+    	    
+    		// TODO Auto-generated method stub
+    		super.initialize(location, resources);
+    		logo.setImage(logoImage);
+    	}
+
 
 }

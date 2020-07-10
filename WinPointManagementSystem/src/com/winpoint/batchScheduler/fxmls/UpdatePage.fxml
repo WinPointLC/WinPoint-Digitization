@@ -52,7 +52,7 @@
             <Insets left="50.0" right="50.0" top="25.0" />
          </padding>
          <children>
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#canelFrame" prefHeight="24.0" prefWidth="150.0" text="Cancel" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="24.0" prefWidth="150.0" text="Cancel" HBox.hgrow="ALWAYS" />
             <Region prefHeight="50.0" prefWidth="128.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="reset" mnemonicParsing="false" onAction="#resetFrame" prefHeight="25.0" prefWidth="150.0" text="Reset" HBox.hgrow="ALWAYS" />
             <Region prefHeight="50.0" prefWidth="108.0" HBox.hgrow="ALWAYS" />
@@ -106,18 +106,18 @@
                             <TableColumn maxWidth="150.0" prefWidth="150.0" text="Eligility" />
                           </columns>
                         </TableView>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="firstName" GridPane.columnIndex="1" />
+                        <TextField fx:id="college" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="yearChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dateOfEnquiry" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="role" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="domain" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="experience" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="company" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="designation" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="suggestion" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <TextField fx:id="coursesInterestedIn" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>

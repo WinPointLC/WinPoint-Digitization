@@ -6,7 +6,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.BatchIndividualFeedbackScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.BatchIndividualFeedbackScreenController">
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -102,7 +101,7 @@
                                     <Font name="Calibri Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="indiindividualFeedbackQuestion2idualFeedbackQ2" layoutX="38.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
+                              <TextField fx:id="individualFeedbackQuestion2" layoutX="38.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
                               <Region layoutX="521.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                               <Text fill="WHITE" layoutX="192.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Q3.">
                                  <font>
@@ -179,7 +178,7 @@
                                     <Font name="Calibri Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextArea fx:id="individualFeedbackQuestionA" editable="false" maxHeight="300.0" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="100.0" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="individualFeedbackQuestion11" prefHeight="242.0" prefWidth="686.0" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -192,7 +191,7 @@
                                     <Font name="Calibri Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextArea fx:id="individualFeedbackQuestionB" editable="false" maxHeight="300.0" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="100.0" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="individualFeedbackQuestion12" prefHeight="199.0" prefWidth="736.0" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -205,14 +204,14 @@
                                     <Font name="Calibri Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="individualFeedbackQuestionC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
+                              <TextField fx:id="individualFeedbackQuestion13" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                               <Text fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D.">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="individualFeedbackQuestionD" layoutX="38.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
+                              <TextField fx:id="individualFeedbackQuestion14" layoutX="38.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" />
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                            </children>
                            <padding>

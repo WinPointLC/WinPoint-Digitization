@@ -19,7 +19,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BatchSelectionScreenController extends ParentFXMLController {
-
+	private Integer courseId;
+	private String courseName;
+	
     @FXML
     private Button backButton;
 
@@ -102,16 +104,12 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     private Text facultyName8;
 
     //author purva , suhasi , sarthak
-
-    public void setSelectedCourseName(String s)
-    {
-    	selectedCourseName.setText(s); 
-    }
     
     public void setRecievedData(ArrayList<String> recievedData) {
-    	for(String data:recievedData){
-    		System.out.println(data);
-    	}
+    	courseId = Integer.parseInt(recievedData.get(0));
+    	courseName = recievedData.get(1);
+    	
+    	selectedCourseName.setText(courseName);
     }
     
     @FXML
@@ -122,14 +120,12 @@ public class BatchSelectionScreenController extends ParentFXMLController {
 		try {
 			myNewScene = loader.load();
 			LectureScreenController lectureScreenLecture = loader.getController();
-			
+			//System.out.println("Batch Id = "+((Button)event.getSource()).getId().substring(7));
 			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
-			dataForLectureScreen.add("BatchID");
-			dataForLectureScreen.add("BatchName");
-			dataForLectureScreen.add("CurrentLecture");
-			dataForLectureScreen.add("StartDate");
-			dataForLectureScreen.add("EndDate");
-			
+			dataForLectureScreen.add(((Button)event.getSource()).getId().substring(7));
+			dataForLectureScreen.add(((Button)event.getSource()).getText());
+			dataForLectureScreen.add(courseId.toString());
+			dataForLectureScreen.add(courseName);
 			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			
 			Scene scene = new Scene(myNewScene);
@@ -146,8 +142,9 @@ public class BatchSelectionScreenController extends ParentFXMLController {
     void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage) backButton.getScene().getWindow();
     	Parent myNewScene;
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/CourseSelectScreen.fxml"));
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/CourseSelectScreen.fxml"));
+			myNewScene = loader.load();
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Course Select");

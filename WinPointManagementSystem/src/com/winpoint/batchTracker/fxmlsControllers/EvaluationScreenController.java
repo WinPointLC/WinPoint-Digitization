@@ -9,6 +9,8 @@ import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
+import com.winpoint.common.helpers.UserTestDetailsHelper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +29,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EvaluationScreenController extends ParentFXMLController {
-
+	private Integer batchId;
+	private String batchNameValue;
+	private Integer courseId;
+	private String courseName;
     @FXML
     private Button backButton;
 
@@ -59,25 +64,32 @@ public class EvaluationScreenController extends ParentFXMLController {
     private TextField evaluationCertificateIssued;
 
     @FXML
-    private TableView<StudentCourseDetails> evaluationTable;
+    private TableView<EvaluationScreenWrapper> evaluationTable;
 
     @FXML
-    private TableColumn<?, StudentCourseDetails> evaluationTableNameColumn;
+    private TableColumn<String, EvaluationScreenWrapper> evaluationTableNameColumn;
 
 
     @FXML
-    private TableColumn<?, StudentCourseDetails> evaluationTableEvaluationDoneColumn;
+    private TableColumn<String,EvaluationScreenWrapper> evaluationTableEvaluationDoneColumn;
 
     @FXML
-    private TableColumn<String,StudentCourseDetails> evaluationTableGradeColumn;
+    private TableColumn<String,EvaluationScreenWrapper> evaluationTableGradeColumn;
 
     @FXML
     private TableColumn<String, StudentCourseDetails> evaluationTableCertificateIssuedColumn;
     
     public void setRecievedData(ArrayList<String> recievedData) {
-        for(String data : recievedData) {
-            System.out.println(data);
-        }
+    	batchId = Integer.parseInt(recievedData.get(0));
+    	batchNameValue = recievedData.get(1);
+    	batchName.setText(batchNameValue);
+    	courseId = Integer.parseInt(recievedData.get(2));
+//        for(String data : recievedData) {
+//            System.out.println(data);
+//        }
+    	 ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId));
+ 	    
+ 	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
     }
    
 
@@ -102,14 +114,14 @@ public class EvaluationScreenController extends ParentFXMLController {
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
-   		//evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("topicName"));
-   		//evaluationTableEvaluationDoneColumn.setCellValueFactory(new PropertyValueFactory<>("topicDuration"));
+   		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
+   		evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+   		evaluationTableEvaluationDoneColumn.setCellValueFactory(new PropertyValueFactory<>("evaluationDone"));
    		evaluationTableGradeColumn.setCellValueFactory(new PropertyValueFactory<>("gradeId"));
    		evaluationTableCertificateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("isCertificateGiven"));
 	    //fx:ID : Column Name
-	    ObservableList<StudentCourseDetails> studentCourseDetails = FXCollections.observableArrayList(studentCourseDetailsHelper.getStudentCourseDetailsList1(1));
-	    
-	    evaluationTable.setItems((ObservableList<StudentCourseDetails>) studentCourseDetails);
+//	    ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId));
+//	    
+//	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
    	}
 }

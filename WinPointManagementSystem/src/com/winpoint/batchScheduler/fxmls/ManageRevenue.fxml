@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -102,9 +101,6 @@
             </Label>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-               <image>
-                  <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />
-               </image>
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>

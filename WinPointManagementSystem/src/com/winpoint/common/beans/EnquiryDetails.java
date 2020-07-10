@@ -2,6 +2,8 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+import javafx.scene.control.Button;
+
 /**
  * @author shraddhapadalkar
  *
@@ -12,8 +14,8 @@ public class EnquiryDetails extends UserProfile {
 	public Integer enquiryId;
 	private String firstName;
 	private String lastName;
-	private String email;
-	private String mobileNumber;
+	private String emailId;
+	private String mobileNo;
 	private String address;
 	private Date birthDate;
 	private String college;
@@ -31,22 +33,21 @@ public class EnquiryDetails extends UserProfile {
 	private Integer yearOfGraduation;
 	private String recommendation;
 	private Boolean eligibility;
-	private Integer coursesInterestedIn;
+	private String coursesInterestedIn;
 	private String reference;
 	private Integer timeSlotsId;
-	private Integer courseAlreadyDone;
+	private String courseAlreadyDone;
 	private Date startDate;
 	private Integer segmentTypeId;
 	private String suggestion;
 	private Boolean activeStatus;
-	
+
 	private String student;
 	
 	private String enquired;
 	private String registered;
 	
-	
-	
+
 	public String getEnquired() {
 		return enquired;
 	}
@@ -100,18 +101,19 @@ public class EnquiryDetails extends UserProfile {
 		this.setStudent(student);
 	}
 	
+
 	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,
 			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
-			Integer coursesInterestedIn, String reference, Integer timeSlotsId, Integer courseAlreadyDone,
+			String coursesInterestedIn, String reference, Integer timeSlotsId, String courseAlreadyDone,
 			Date startDate, Integer segmentTypeId, String suggestion, Boolean activeStatus) {
 		super();
 		this.enquiryId = enquiryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.emailId = email;
+		this.mobileNo = mobileNumber;
 		this.address = address;
 		this.birthDate = birthDate;
 		this.college = college;
@@ -137,51 +139,15 @@ public class EnquiryDetails extends UserProfile {
 		this.segmentTypeId = segmentTypeId;
 		this.suggestion = suggestion;
 		this.activeStatus = activeStatus;
-	}
-
-	
-	
-	
-	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
-			String address, Date birthDate, String college, String degree, String branch, Integer createdBy,
-			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
-			Integer coursesInterestedIn, String reference, Integer timeSlotsId, Integer courseAlreadyDone,
-			Integer segmentTypeId, String suggestion, Boolean activeStatus) {
-		super();
-		this.enquiryId = enquiryId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
-		this.birthDate = birthDate;
-		this.college = college;
-		this.degree = degree;
-		this.branch = branch;
-		this.createdBy = createdBy;
-		this.dateOfEnquiry = dateofEnquiry;
-		this.gender = gender;
-		this.yearOfGraduation = yearOfGraduation;
-		this.recommendation = recommendation;
-		this.eligibility = eligibility;
-		this.coursesInterestedIn = coursesInterestedIn;
-		this.reference = reference;
-		this.timeSlotsId = timeSlotsId;
-		this.courseAlreadyDone = courseAlreadyDone;
-		this.segmentTypeId = segmentTypeId;
-		this.suggestion = suggestion;
-		this.activeStatus = activeStatus; 
-	}
-	
-	
+	}	
 
 
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.emailId = email;
+		this.mobileNo = mobileNumber;
 		this.address = address;
 	}
 
@@ -192,7 +158,7 @@ public class EnquiryDetails extends UserProfile {
 		this.lastName = lastName;
 	}
 
-	public EnquiryDetails(String firstName, String lastName, int coursesInterestedIn,boolean eligibility,String suggestion) {
+	public EnquiryDetails(String firstName, String lastName, String coursesInterestedIn,boolean eligibility,String suggestion) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -202,6 +168,58 @@ public class EnquiryDetails extends UserProfile {
 	} 
 
 	
+	public EnquiryDetails(String firstName, String lastName, String emailId, String mobileNo, String college,
+			String degree, String branch, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
+			Integer coursesInterestedIn, String courseAlreadyDone, Boolean activeStatus) {
+		
+		// TODO Auto-generated constructor stub
+	
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.activeStatus = activeStatus;
+	
+	}
+
+	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber, String college,
+			String degree, String branch, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
+			String coursesInterestedIn, String coursesAlreadyDone, Boolean activeStatus) {
+		
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = email;
+		this.mobileNo = mobileNumber;
+		this.college = college;
+		this.degree = degree; 
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.coursesInterestedIn = coursesInterestedIn;
+		this.activeStatus = activeStatus;
+	}
+
 	/**
 	 * @return the enquiryId
 	 */
@@ -249,14 +267,14 @@ public class EnquiryDetails extends UserProfile {
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return emailId;
 	}
 
 	/**
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.emailId = email;
 	}
 
 
@@ -264,7 +282,7 @@ public class EnquiryDetails extends UserProfile {
 	 * @return the mobileNumber
 	 */
 	public String getMobileNumber() {
-		return mobileNumber;
+		return mobileNo;
 	}
 
 
@@ -272,7 +290,7 @@ public class EnquiryDetails extends UserProfile {
 	 * @param mobileNumber the mobileNumber to set
 	 */
 	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+		this.mobileNo = mobileNumber;
 	}
 
 	/**
@@ -522,14 +540,14 @@ public class EnquiryDetails extends UserProfile {
 	/**
 	 * @return the coursesInterestedIn
 	 */
-	public Integer getCoursesInterestedIn() {
+	public String getCoursesInterestedIn() {
 		return coursesInterestedIn;
 	}
 
 	/**
 	 * @param coursesInterestedIn the coursesInterestedIn to set
 	 */
-	public void setCoursesInterestedIn(Integer coursesInterestedIn) {
+	public void setCoursesInterestedIn(String coursesInterestedIn) {
 		this.coursesInterestedIn = coursesInterestedIn;
 	}
 
@@ -565,14 +583,14 @@ public class EnquiryDetails extends UserProfile {
 	/**
 	 * @return the courseAlreadyDone
 	 */
-	public Integer getCourseAlreadyDone() {
+	public String getCourseAlreadyDone() {
 		return courseAlreadyDone;
 	}
 
 	/**
 	 * @param courseAlreadyDone the courseAlreadyDone to set
 	 */
-	public void setCourseAlreadyDone(Integer courseAlreadyDone) {
+	public void setCourseAlreadyDone(String courseAlreadyDone) {
 		this.courseAlreadyDone = courseAlreadyDone;
 	}
 
@@ -641,6 +659,7 @@ public class EnquiryDetails extends UserProfile {
 	public void setStudent(String student) {
 		this.student = student;
 	}
+
 	
 	
 	

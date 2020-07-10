@@ -22,6 +22,7 @@ public class StudentCourseDetails {
 	private String assignmentsSubmitted="NO";
 	private String reminderTypeId;
 	private Integer feeReminderCount;
+	private Integer studentCount;
 	/**
 	 * @param userId
 	 * @param batchId
@@ -39,6 +40,14 @@ public class StudentCourseDetails {
 		super();
 		this.isFeedbackGiven = isFeedbackGiven;
 	}
+	
+
+	public StudentCourseDetails(Integer studentCount,Integer batchId) {
+		super();
+		this.studentCount= studentCount;
+		this.batchId = batchId;
+	}
+	
 	
 	
 	public StudentCourseDetails(String gradeId,String isCertificateGiven ) {
@@ -320,5 +329,15 @@ public class StudentCourseDetails {
 
 	public void setStreamName(String streamName) {
 		this.streamName = streamName;
+	}
+
+
+	public Integer getStudentCount() {
+		return studentCount;
+	}
+
+
+	public void setStudentCount(Integer studentCount) {
+		this.studentCount = studentCount;
 	}
 }
