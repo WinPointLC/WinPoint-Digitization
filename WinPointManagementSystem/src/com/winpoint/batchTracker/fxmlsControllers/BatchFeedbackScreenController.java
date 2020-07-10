@@ -131,10 +131,10 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 //    	XYChart.Series<String, Float> q2 = new XYChart.Series<>();
 //    	q2.setName("Q2");
 //    	q2.getData().add(new XYChart.Data<>("Average",averageResponseList.get(1)));
-////		for(Float avg: averageResponseList) {
-////			System.out.println(avg);
-////		}
-//    	weightedResponsesGraph.getData().addAll(q1,q2);
+//		for(Float avg: averageResponseList) {
+//			System.out.println(avg);
+//		}
+//    	weightedResponsesGraph.getData().add(q1,q2);
     	
     	
 		// TODO Auto-generated method stub

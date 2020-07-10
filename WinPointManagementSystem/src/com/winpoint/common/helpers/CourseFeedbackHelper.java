@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.winpoint.common.beans.CourseFeedback;
 import com.winpoint.common.dao.CourseFeedbackDao;
+import com.winpoint.common.dao.StudentCourseDetailsDao;
 
 public class CourseFeedbackHelper {
 	
@@ -15,6 +16,10 @@ public class CourseFeedbackHelper {
 	
 	public ArrayList<Float> getAverageResponses(Integer courseId){
 		return new CourseFeedbackDao().getAverageResponses(courseId);
+	}
+	
+	public void createUserCourseFeedback(CourseFeedback userCourseFeedback) {
+		new CourseFeedbackDao().createUserCourseFeedback(userCourseFeedback);
 	}
 
 }
