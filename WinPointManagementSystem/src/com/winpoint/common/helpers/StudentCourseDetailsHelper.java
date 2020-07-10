@@ -13,16 +13,14 @@ public class StudentCourseDetailsHelper {
 		return new StudentCourseDetailsDao().getStudentCourseDetailsList(userId);
 	}
 	
-<<<<<<< HEAD
 	public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId){
 		return new StudentCourseDetailsDao().getStudentGACourseDetailsList(userId);
 	}
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(){
 		return new StudentCourseDetailsDao().getStudentCourseDetails();
-=======
+	}
 	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId){
 		return new StudentCourseDetailsDao().getAssignmentScreenWrapperList(batchId);
->>>>>>> 62d63d13b282f6b4845cfa0ce0e0fb1c25375f95
 	}
 	public ArrayList<StudentCourseDetails> getBatchFeedback(){
 		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();
