@@ -23,7 +23,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -97,13 +96,10 @@ public class CoursesNameController extends ParentFXMLController{
 	    //fx:ID : getter name without writting the get.
    		
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
-   		
-   		
-   		Label l = new Label("button not selected");
+
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
             public void handle(ActionEvent e) 
             { 
-               l.setText("button selected"); 
                FXMLLoader loader = new FXMLLoader();
             	Parent myNewScene = null;
 				try {

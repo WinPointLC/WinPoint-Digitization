@@ -30,7 +30,6 @@ public class StudentDetailsController extends ParentFXMLController {
     @FXML
     private Button cancelButton;
     
-
     @FXML
     private Label nameLabel;
     
@@ -42,8 +41,6 @@ public class StudentDetailsController extends ParentFXMLController {
 
     @FXML
     private TableColumn<EnquiryDetails, String> eligiblityCol;
-
-    
 
     @FXML
     private Label collegeLabel;
@@ -68,7 +65,6 @@ public class StudentDetailsController extends ParentFXMLController {
 
     @FXML
     private Label coursesInterestedLabel;
-
     
     public void setLabel(String s){ 
     	nameLabel.setText(s);
@@ -87,7 +83,6 @@ public class StudentDetailsController extends ParentFXMLController {
 	    	stage.setTitle("My New Scene");
 	    	stage.show();  
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -102,18 +97,13 @@ public class StudentDetailsController extends ParentFXMLController {
     	contactLabel.setText("9004628901");
     	suggestionLabel.setText("none");
     	coursesInterestedLabel.setText("Java");
-    	
-    	
-    	
-    	
+    	   	
     	courseCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	eligiblityCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     	ObservableList<EnquiryDetails>list=FXCollections.observableArrayList(new EnquiryDetails("C", "YES", "", "", ""), new EnquiryDetails("CPP", "YES", "", "", ""));
     	eligibilityTable.setItems(list);
     	
-    	// TODO Auto-generated method stub
     	super.initialize(location, resources);
     	logo.setImage(logoImage);
-    }
-    
+    }    
 }

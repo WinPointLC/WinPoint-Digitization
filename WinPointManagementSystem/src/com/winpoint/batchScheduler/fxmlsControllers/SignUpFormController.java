@@ -14,11 +14,13 @@ import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -38,10 +40,6 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     private TextField emailId;
 
-    @FXML
-    private RadioButton eligibility;
-    
-    
     @FXML
     private TextField address;
 
@@ -85,9 +83,6 @@ public class SignUpFormController extends ParentFXMLController {
     private TextField domain;
 
     @FXML
-    private RadioButton activeStatus;
-
-    @FXML
     private TextField suggestion;
 
     @FXML
@@ -113,6 +108,12 @@ public class SignUpFormController extends ParentFXMLController {
 
     @FXML
     private Button submitButton;
+    
+    @FXML
+    private CheckBox eligible = new CheckBox();
+
+    @FXML
+    private CheckBox active = new CheckBox();
 
     @FXML
     private ImageView logo;
@@ -258,6 +259,16 @@ public class SignUpFormController extends ParentFXMLController {
     }
     
     @FXML
+    void validateEligible(ActionEvent event) {
+
+    }
+
+    @FXML
+    void validateActive(ActionEvent event) {
+
+    }
+    
+    @FXML
     private ChoiceBox<String> availableTime = new ChoiceBox<>();
     String[] choiceBoxOfAvailableTime = {"Morning","Evening","Weekend"};
 
@@ -282,16 +293,10 @@ public class SignUpFormController extends ParentFXMLController {
     	stage.setTitle("Main Scene");
     	stage.show();
     }
-    
-//    @FXML
-//    ToggleGroup radioEligibility = new ToggleGroup();
-    
+  
     @FXML
     void submitClick(ActionEvent event) throws ParseException,IOException, SQLException{
-    	
-//    	RadioButton selectedRadioButton = (RadioButton) right.getSelectedToggle();
-//    	String toogleGroupValue = selectedRadioButton.getText();
-    	
+  	
     	System.out.println(degreeChoice.getValue());
     	System.out.println(availableTime.getValue());
     	
@@ -316,6 +321,20 @@ public class SignUpFormController extends ParentFXMLController {
     	else if(segmentType.getValue().equals("Working Professionals")) {
     		segmentTypeId = 3;
     	}
+    	
+
+
+        if (eligible.isSelected()) 
+        	eligible.setSelected(true);
+        else
+            eligible.setSelected(false); 
+
+        if (active.isSelected()) 
+            active.setSelected(true);
+        else
+            active.setSelected(false); 
+
+    	
     	
     	LocalDate ldDobBox = dobBox.getValue();
     	Calendar cDobBox =  Calendar.getInstance();
@@ -353,7 +372,7 @@ public class SignUpFormController extends ParentFXMLController {
 		String gender1 = gender.getText();
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String recommendation1 = recommendation.getText(); 
-		Boolean eligibility1 = Boolean.parseBoolean(eligibility.getText());
+		Boolean eligibility1 = eligible.isSelected();
 		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String reference1 = referance.getText();
 		Integer timeSlotsId1 = timeSlotId;//Integer.parseInt(availableTime.getValue());
@@ -361,7 +380,7 @@ public class SignUpFormController extends ParentFXMLController {
 		Date startDate1 = dateStartDate;
 		Integer segmentTypeId1 = segmentTypeId;//Integer.parseInt(segmentType.getValue()); 
 		String suggestion1 = suggestion.getText(); 
-		Boolean activeStatus1 = Boolean.parseBoolean(activeStatus.getText());
+		Boolean activeStatus1 = active.isSelected();
 				
 		
     	EnquiryDetails enquiryDetails1 = new EnquiryDetails(enquiryId,firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,timeSlotsId1,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
@@ -393,6 +412,5 @@ public class SignUpFormController extends ParentFXMLController {
     	logo.setImage(logoImage);
     	  	
     }
-    
-    
+      
 }
