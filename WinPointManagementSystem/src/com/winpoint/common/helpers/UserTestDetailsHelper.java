@@ -7,7 +7,5 @@ import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 
 
 public class UserTestDetailsHelper {
-	public static List<EvaluationScreenWrapper> getEvaluationScreenWrapperDetails(Integer batchId) {
-	return new UserTestDetailsDao().getEvaluationScreenWrapperDetails(batchId);
-	}
+	
 }

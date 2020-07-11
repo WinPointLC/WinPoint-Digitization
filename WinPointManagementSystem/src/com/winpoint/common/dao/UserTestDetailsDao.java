@@ -87,38 +87,5 @@ public class UserTestDetailsDao {
 			e1.printStackTrace();
 		} 
 	}
-	public ArrayList<EvaluationScreenWrapper> getEvaluationScreenWrapperDetails(Integer batchId) {		
-		ArrayList<EvaluationScreenWrapper> evaluationScreenWrapperList = new ArrayList<EvaluationScreenWrapper>();
-			ResultSet resultSet = null;
-			try(Connection connection = ConnectionManager.getConnection()){
-				Statement statement = connection.createStatement();
-				
-				String query1="SELECT up.USER_ID,up.FIRST_NAME,up.LAST_NAME,scd1.GRADE_ID,scd1.CERTIFICATE_GIVEN,utd.EVALUATION_DONE\r\n" + 
-						"FROM USER_PROFILE AS up \r\n" + 
-						"INNER JOIN \r\n" + 
-						"STUDENT_COURSE_DETAILS AS scd1\r\n" + 
-						"ON up.USER_ID=scd1.USER_ID \r\n" + 
-						"INNER JOIN \r\n" + 
-						"USER_TEST_DETAILS AS utd\r\n" + 
-						"ON utd.USER_ID=scd1.USER_ID\r\n" + 
-						"WHERE utd.TEST_DETAIL_ID=(SELECT TEST_DETAIL_ID FROM TEST_DETAILS AS td\r\n" + 
-						"WHERE scd1.COURSE_ID= td.COURSE_ID AND td.COURSE_ID=(SELECT COURSE_ID FROM BATCH_DETAILS \r\n" + 
-						"WHERE BATCH_ID="+batchId+"))";
-				resultSet=statement.executeQuery(query1);
-				while(resultSet.next()) {
-					String evaluationDone=(resultSet.getString("EVALUATION_DONE"));
-					String gradeId=(resultSet.getString("GRADE_ID"));
-					String assignmentsSubmitted=(resultSet.getString("CERTIFICATE_GIVEN"));
-					evaluationScreenWrapperList.add(new EvaluationScreenWrapper(resultSet.getString("FIRST_NAME"),
-							resultSet.getString("LAST_NAME"),
-							evaluationDone,gradeId,assignmentsSubmitted));
-					
-				}
-			} 
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return evaluationScreenWrapperList;
-	}
-	
+
 }

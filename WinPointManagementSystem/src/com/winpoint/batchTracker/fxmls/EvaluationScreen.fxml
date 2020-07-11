@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.EvaluationScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.EvaluationScreenController">
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -73,7 +73,6 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -97,30 +96,24 @@
                            </font>
                         </Text>
                         <TextField fx:id="evaluationAttendance" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Evaluation Done :" GridPane.rowIndex="3">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marks :" GridPane.rowIndex="3">
                            <font>
                               <Font name="Calibri Bold Italic" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="evaluationStatus" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marks :" GridPane.rowIndex="4">
+                        <TextField fx:id="evaluationMarks" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grade :" GridPane.rowIndex="4">
                            <font>
                               <Font name="Calibri Bold Italic" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="evaluationMarks" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grade :" GridPane.rowIndex="5">
+                        <TextField fx:id="evaluationGrade" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Certificate Issued :" GridPane.rowIndex="5">
                            <font>
                               <Font name="Calibri Bold Italic" size="24.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="evaluationGrade" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Certificate Issued :" GridPane.rowIndex="6">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="24.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="evaluationCertificateIssued" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <TextField fx:id="evaluationCertificateIssued" editable="false" maxWidth="300.0" minWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -140,7 +133,6 @@
                               <TableView fx:id="evaluationTable" prefHeight="600.0" prefWidth="1497.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn fx:id="evaluationTableNameColumn" prefWidth="75.0" text="Name" />
-                                    <TableColumn fx:id="evaluationTableEvaluationDoneColumn" prefWidth="75.0" text="Evaluation Done" />
                                     <TableColumn fx:id="evaluationTableGradeColumn" prefWidth="75.0" text="Grade" />
                                     <TableColumn fx:id="evaluationTableCertificateIssuedColumn" prefWidth="75.0" text="Certificate Issued" />
                                 </columns>

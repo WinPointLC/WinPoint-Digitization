@@ -33,51 +33,45 @@ public class EvaluationScreenController extends ParentFXMLController {
 	private String batchNameValue;
 	private Integer courseId;
 	private String courseName;
-    @FXML
-    private Button backButton;
+	  @FXML
+	    private Button backButton;
 
-    @FXML
-    private Text batchName;
+	    @FXML
+	    private Text batchName;
 
-    @FXML
-    private ImageView logo;
+	    @FXML
+	    private ImageView logo;
 
-    @FXML
-    private TextField evaluationName;
+	    @FXML
+	    private TextField evaluationName;
 
-    @FXML
-    private TextField evaluationUserID;
+	    @FXML
+	    private TextField evaluationUserID;
 
-    @FXML
-    private TextField evaluationAttendance;
+	    @FXML
+	    private TextField evaluationAttendance;
 
-    @FXML
-    private TextField evaluationStatus;
+	    @FXML
+	    private TextField evaluationMarks;
 
-    @FXML
-    private TextField evaluationMarks;
+	    @FXML
+	    private TextField evaluationGrade;
 
-    @FXML
-    private TextField evaluationGrade;
+	    @FXML
+	    private TextField evaluationCertificateIssued;
 
-    @FXML
-    private TextField evaluationCertificateIssued;
+	    @FXML
+	    private TableView<EvaluationScreenWrapper> evaluationTable;
 
-    @FXML
-    private TableView<EvaluationScreenWrapper> evaluationTable;
+	    @FXML
+	    private TableColumn<String, EvaluationScreenWrapper> evaluationTableNameColumn;
 
-    @FXML
-    private TableColumn<String, EvaluationScreenWrapper> evaluationTableNameColumn;
+	    @FXML
+	    private TableColumn<String,EvaluationScreenWrapper> evaluationTableGradeColumn;
 
+	    @FXML
+	    private TableColumn<String, EvaluationScreenWrapper> evaluationTableCertificateIssuedColumn;
 
-    @FXML
-    private TableColumn<String,EvaluationScreenWrapper> evaluationTableEvaluationDoneColumn;
-
-    @FXML
-    private TableColumn<String,EvaluationScreenWrapper> evaluationTableGradeColumn;
-
-    @FXML
-    private TableColumn<String, StudentCourseDetails> evaluationTableCertificateIssuedColumn;
     
     public void setRecievedData(ArrayList<String> recievedData) {
     	batchId = Integer.parseInt(recievedData.get(0));
@@ -87,12 +81,12 @@ public class EvaluationScreenController extends ParentFXMLController {
 //        for(String data : recievedData) {
 //            System.out.println(data);
 //        }
-    	 ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId));
+    	 
  	    
- 	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
+// 	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
     }
    
-
+   
     @FXML
     void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage)backButton.getScene().getWindow();
@@ -114,14 +108,24 @@ public class EvaluationScreenController extends ParentFXMLController {
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		//StudentCourseDetailsHelper studentCourseDetailsHelper= new StudentCourseDetailsHelper();
+   		ArrayList<EvaluationScreenWrapper>  evaluationWrapper= new StudentCourseDetailsHelper().getStudentEvaluationDetails(1);
+   	
+   		//ArrayList<EvaluationScreenWrapper> studentCourseDetailsHelper1= new StudentCourseDetailsHelper().getEvaluationScreenValues(1,1);
    		evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-   		evaluationTableEvaluationDoneColumn.setCellValueFactory(new PropertyValueFactory<>("evaluationDone"));
    		evaluationTableGradeColumn.setCellValueFactory(new PropertyValueFactory<>("gradeId"));
    		evaluationTableCertificateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("isCertificateGiven"));
+   		evaluationUserID.setText(evaluationWrapper.get(0).getUserId().toString());
+   		evaluationName.setText(evaluationWrapper.get(0).getFullName());
+   		evaluationMarks.setText(evaluationWrapper.get(0).getMarks().toString());
+   		evaluationGrade.setText(evaluationWrapper.get(0).getGradeId());
+   		evaluationCertificateIssued.setText(evaluationWrapper.get(0).getIsCertificateGiven());
 	    //fx:ID : Column Name
-//	    ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId));
-//	    
-//	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
+   		//evaluationUserID.setText(studentCourseDetailsHelper1.get(0).getUserId().toString());
+//   		for(EvaluationScreenWrapper a :studentCourseDetailsHelper1 ) {
+//   			System.out.println(a.getUserId());
+//   		}
+   		ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( evaluationWrapper);
+	    
+	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
    	}
 }
