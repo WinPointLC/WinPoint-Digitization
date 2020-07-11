@@ -24,7 +24,7 @@ import com.winpoint.common.wrappers.AttendanceScreenWrapper;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 public class AttendanceDao {
-	public ArrayList<AttendanceScreenWrapper> getAttendance(Integer batchId){
+	public ArrayList<AttendanceScreenWrapper> getStudentAttendanceForBatch(Integer batchId){
 		ArrayList<AttendanceScreenWrapper> attendanceScreenWrapperList = new ArrayList<AttendanceScreenWrapper>();
 		
 		ResultSet resultSet1 = null;

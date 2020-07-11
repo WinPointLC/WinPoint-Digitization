@@ -65,8 +65,6 @@ public class AttendanceScreenController extends ParentFXMLController{
 
     @FXML
     private TableColumn<?, ?> displayStudentAttendanceTableLecture1;
-
-    
     
     public void setRecievedData(ArrayList<String> recievedData) {
     	batchId = Integer.parseInt(recievedData.get(0));
@@ -109,7 +107,7 @@ public class AttendanceScreenController extends ParentFXMLController{
     
     @FXML
     void saveAttendance(ActionEvent event) {
-    	ArrayList<AttendanceScreenWrapper> attendanceScreenWrapperList = new AttendanceHelper().getAttendance(1);
+    	ArrayList<AttendanceScreenWrapper> attendanceScreenWrapperList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
     	
     	/*
     	System.out.println("\n");
@@ -125,6 +123,13 @@ public class AttendanceScreenController extends ParentFXMLController{
         	System.out.println();        	
     	}
     	*/
+    }
+    
+    void displayTable() {
+    	ArrayList<AttendanceScreenWrapper> attendanceScreenWrapperList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
+    	Integer lectureCount = attendanceScreenWrapperList.get(0).getAttendanceMap().size();
+    	TableColumn[] tableColumns = new TableColumn[lectureCount+1];
+    	
     }
 
     

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.EditBatchDetailsScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.EditBatchDetailsScreenController">
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +33,10 @@
                   <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
-                     </font></Button>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <Text fx:id="batchName" fill="WHITE" layoutX="323.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
                      <font>
                         <Font name="Calibri Bold Italic" size="18.0" />
@@ -86,37 +90,52 @@
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <DatePicker fx:id="batchStartDate" promptText="Batch Start Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                              <DatePicker fx:id="batchStartDate" promptText="Batch Start Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date :" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <DatePicker fx:id="batchEndDate" promptText="Batch End Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <DatePicker fx:id="batchEndDate" promptText="Batch End Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Duration :" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="estimateLectureDuration" maxWidth="175.0" minWidth="150.0" prefHeight="25.0" prefWidth="147.0" promptText="Estimate Lecture Duration" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                              <TextField fx:id="estimateLectureDuration" maxWidth="175.0" minWidth="150.0" prefHeight="25.0" prefWidth="147.0" promptText="Estimate Lecture Duration" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: orange;">
                            <children>
-                              <Button fx:id="removeLecture" layoutX="81.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeLectureFromBatch" prefHeight="50.0" prefWidth="50.0" text="-">
+                              <Button fx:id="removeLecture" layoutX="81.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#removeLectureFromBatch" prefHeight="50.0" prefWidth="50.0" text="-" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Calibri Bold" size="27.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="addLecture" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addLectureToBatch" prefHeight="50.0" prefWidth="50.0" text="+">
+                              <Button fx:id="addLecture" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addLectureToBatch" prefHeight="50.0" prefWidth="50.0" text="+" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Calibri Bold" size="27.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                            <VBox.margin>
@@ -128,9 +147,15 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <Button fx:id="addStudent" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#addStudentToLecture" prefHeight="50.0" prefWidth="150.0" text="Add Student" />
+                              <Button fx:id="addStudent" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#addStudentToLecture" prefHeight="50.0" prefWidth="150.0" text="Add Student">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                               <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="editStudent" layoutX="15.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#editStudentInLecture" prefHeight="50.0" prefWidth="150.0" text="Edit Student" />
+                              <Button fx:id="editStudent" layoutX="15.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#editStudentInLecture" prefHeight="50.0" prefWidth="150.0" text="Edit Student">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                            </children>
                         </HBox>
                         <AnchorPane VBox.vgrow="ALWAYS">
@@ -140,7 +165,10 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                  <children>
-                                    <Button fx:id="saveBatchDetails" minWidth="100.0" mnemonicParsing="false" onAction="#saveUpdatedBatchDetails" prefHeight="50.0" prefWidth="150.0" text="Save" />
+                                    <Button fx:id="saveBatchDetails" minWidth="100.0" mnemonicParsing="false" onAction="#saveUpdatedBatchDetails" prefHeight="50.0" prefWidth="150.0" text="Save">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                  </children>
                               </HBox>
                            </children>
@@ -159,7 +187,10 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="623.0" prefWidth="698.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ComboBox fx:id="selectLecture" onAction="#getLectureList" prefHeight="30.0" prefWidth="400.0" promptText="Select Lecture" />
+                        <ComboBox fx:id="selectLecture" onAction="#getLectureList" prefHeight="30.0" prefWidth="400.0" promptText="Select Lecture">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ComboBox>
                         <GridPane prefHeight="158.0" prefWidth="378.0" VBox.vgrow="ALWAYS">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -171,24 +202,33 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Date :">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Date :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <DatePicker fx:id="lectureDate" promptText="Lecture Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time :" GridPane.rowIndex="1">
+                              <DatePicker fx:id="lectureDate" promptText="Lecture Date" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time :" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="lectureStartTime" maxWidth="175.0" minWidth="150.0" promptText="hh : mm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Session Duration :" GridPane.rowIndex="2">
+                              <TextField fx:id="lectureStartTime" maxWidth="175.0" minWidth="150.0" promptText="hh : mm" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Session Duration :" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Calibri Bold Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="lectureSessionDuration" maxWidth="175.0" minWidth="150.0" promptText="X hours" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <TextField fx:id="lectureSessionDuration" maxWidth="175.0" minWidth="150.0" promptText="X hours" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
                            </children>
                         </GridPane>
                         <HBox prefHeight="336.0" prefWidth="622.0" VBox.vgrow="ALWAYS">
@@ -200,7 +240,10 @@
                                           <Font name="Calibri Bold Italic" size="24.0" />
                                        </font>
                                     </Text>
-                                    <TextArea fx:id="lectureComments" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+                                    <TextArea fx:id="lectureComments" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></TextArea>
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
@@ -213,7 +256,10 @@
                                           <Font name="Calibri Bold Italic" size="24.0" />
                                        </font>
                                     </Text>
-                                    <ComboBox fx:id="lectureTopics" maxWidth="600.0" minHeight="25.0" minWidth="270.0" onAction="#listOfLectureTopics" prefHeight="25.0" prefWidth="270.0" promptText="List of Topics" VBox.vgrow="ALWAYS" />
+                                    <ComboBox fx:id="lectureTopics" maxWidth="600.0" minHeight="25.0" minWidth="270.0" onAction="#listOfLectureTopics" prefHeight="25.0" prefWidth="270.0" promptText="List of Topics" VBox.vgrow="ALWAYS">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></ComboBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
@@ -225,9 +271,15 @@
                            <children>
                               <HBox alignment="BOTTOM_CENTER" fillHeight="false" maxHeight="100.0" minHeight="50.0" prefHeight="50.0" prefWidth="683.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="resetLecture" minWidth="100.0" mnemonicParsing="false" onAction="#resetLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Reset" />
+                                    <Button fx:id="resetLecture" minWidth="100.0" mnemonicParsing="false" onAction="#resetLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Reset">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                     <Region layoutX="310.0" layoutY="10.0" prefHeight="6.0" prefWidth="308.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="saveLecture" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Save" />
+                                    <Button fx:id="saveLecture" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveLectureDetails" prefHeight="50.0" prefWidth="150.0" text="Save">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></Button>
                                  </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

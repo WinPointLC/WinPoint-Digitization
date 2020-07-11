@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
@@ -27,6 +28,9 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Text fx:id="batchName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
                      <font>
@@ -64,11 +68,14 @@
    <center>
       <SplitPane dividerPositions="0.46060606060606063" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="200.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+          <AnchorPane maxWidth="500.0" minHeight="400.0" minWidth="300.0" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <VBox alignment="CENTER_RIGHT" prefHeight="628.0" prefWidth="294.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ComboBox fx:id="selectLectureNumber" maxHeight="30.0" maxWidth="1800.0" onAction="#listOfLectureNumber" prefHeight="30.0" prefWidth="280.0" promptText="Select Lecture" />
+                        <ComboBox fx:id="selectLectureNumber" maxHeight="30.0" maxWidth="1800.0" onAction="#listOfLectureNumber" prefHeight="30.0" prefWidth="280.0" promptText="Select Lecture">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ComboBox>
                         <HBox prefHeight="27.0" prefWidth="280.0" spacing="5.0">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Date :">
@@ -106,7 +113,10 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <Button fx:id="saveAttendance" maxHeight="-Infinity" minHeight="-Infinity" minWidth="50.0" mnemonicParsing="false" onAction="#saveAttendance" prefHeight="50.0" prefWidth="150.0" text="Save" />
+                        <Button fx:id="saveAttendance" maxHeight="-Infinity" minHeight="-Infinity" minWidth="50.0" mnemonicParsing="false" onAction="#saveAttendance" prefHeight="50.0" prefWidth="150.0" text="Save">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -116,11 +126,11 @@
             </AnchorPane>
           <AnchorPane minHeight="200.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" prefHeight="628.0" prefWidth="698.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="620.0" prefWidth="531.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
                       <AnchorPane>
                            <children>
-                              <TableView fx:id="displayStudentAttendanceTable" prefHeight="954.0" prefWidth="1794.0">
+                              <TableView fx:id="displayStudentAttendanceTable" prefHeight="1313.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn fx:id="displayStudentAttendanceTableName" minWidth="20.0" prefWidth="100.0" text="Name" />
                                   <TableColumn fx:id="displayStudentAttendanceTableLecture1" minWidth="20.0" prefWidth="100.0" text="Lecture1" />

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.LectureScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="700.0" minWidth="100.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.LectureScreenController">
    <top>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
          <children>
@@ -29,6 +31,9 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Text fx:id="batchName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
                            <font>
@@ -100,7 +105,13 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <Slider fx:id="lectureSelectionSlider" majorTickUnit="1.0" max="60.0" minorTickCount="0" prefHeight="135.0" prefWidth="656.0" showTickMarks="true" snapToTicks="true" value="10.0" HBox.hgrow="ALWAYS" />
+                        <Slider fx:id="lectureSelectionSlider" majorTickUnit="5.0" max="60.0" minorTickCount="4" onDragDropped="#updateLectureDetails" prefHeight="135.0" prefWidth="656.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" HBox.hgrow="ALWAYS">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" />
+                           </effect></Slider>
                         <VBox alignment="CENTER" fillWidth="false" prefHeight="123.0" prefWidth="140.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="NEVER">
                            <HBox.margin>
                               <Insets />
@@ -138,73 +149,91 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="470.0" prefWidth="140.0" style="-fx-background-color: white;" BorderPane.alignment="BOTTOM_LEFT">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="145.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="145.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox minHeight="-Infinity" prefHeight="465.0" prefWidth="155.0" spacing="10.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="progressTrackerButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToProgressTrackerScreen" prefHeight="57.0" prefWidth="130.0" text="Progress Tracker">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="feesRecordsButton" layoutX="15.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToFeeRecordsScreen" prefHeight="57.0" prefWidth="130.0" text="Fees Records">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region layoutX="10.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="attendanceRecordsButton" layoutX="10.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToAttendanceRecordsScreen" prefHeight="57.0" prefWidth="130.0" text="Attendance Records">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region layoutX="10.0" layoutY="147.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="assignmentsButton" layoutX="10.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToAssignmentsScreen" prefHeight="57.0" prefWidth="130.0" text="Assignments">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region layoutX="10.0" layoutY="215.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="feedbackButton" layoutX="10.0" layoutY="170.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchFeedbackScreen" prefHeight="57.0" prefWidth="130.0" text="Feedback">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region layoutX="10.0" layoutY="282.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="evaluationButton" layoutX="10.0" layoutY="220.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToEvaluationScreen" prefHeight="57.0" prefWidth="130.0" text="Evaluation">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Region layoutX="10.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Button fx:id="editBatchDetailsButton" layoutX="10.0" layoutY="270.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToEditBatchDetailsScreen" prefHeight="57.0" prefWidth="130.0" text="Edit Batch Details">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
             </VBox>
          </children>
          <padding>
@@ -213,7 +242,7 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="470.0" prefWidth="250.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="250.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="470.0" prefWidth="220.0" spacing="10.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -302,7 +331,7 @@
       </AnchorPane>
    </right>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="708.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="605.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="470.0" prefWidth="605.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -325,13 +354,19 @@
                         <Font name="Calibri Bold Italic" size="20.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="displayCoursePlan" maxHeight="300.0" minHeight="150.0" minWidth="100.0" prefHeight="170.0" prefWidth="250.0" VBox.vgrow="SOMETIMES" />
+                  <TextArea fx:id="displayCoursePlan" editable="false" minHeight="150.0" minWidth="100.0" prefHeight="170.0" prefWidth="250.0" wrapText="true" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri" size="20.0" />
+                     </font></TextArea>
                   <Text fill="WHITE" layoutX="10.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Coverage :">
                      <font>
                         <Font name="Calibri Bold Italic" size="20.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="displayLectureCoverage" layoutX="10.0" layoutY="42.0" maxHeight="300.0" minHeight="150.0" minWidth="100.0" prefHeight="170.0" prefWidth="250.0" VBox.vgrow="SOMETIMES" />
+                  <TextArea fx:id="displayLectureCoverage" editable="false" layoutX="10.0" layoutY="42.0" minHeight="150.0" minWidth="100.0" prefHeight="170.0" prefWidth="250.0" wrapText="true" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri" size="20.0" />
+                     </font></TextArea>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
