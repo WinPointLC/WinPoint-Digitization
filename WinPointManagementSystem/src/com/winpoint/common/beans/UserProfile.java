@@ -36,8 +36,6 @@ public class UserProfile {
 	private Integer segmentTypeId;
 	private String courseAlreadyDone;
 	private Boolean activeStatus;
-	private Button add;
-	
 	/**
 	 * @param userId
 	 * @param firstName
@@ -64,24 +62,22 @@ public class UserProfile {
 	 * @param experience
 	 * @param createdBy
 	 * @param createDate
-	 * @param photoLocation 
+	 * @param photoLocation
 	 * @param timeSlotsId
 	 * @param segmentTypeId
 	 * @param courseAlreadyDone
 	 * @param activeStatus
 	 */
-	
-	
-	
+
 	public UserProfile(String firstName,  String email, String mobileNumber) {
 		super();
-		
+
 		this.firstName = firstName;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
 	}
-	
-	
+
+
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, Integer securityQuestionId, String securityAnswer, Integer userCategoryId,
@@ -148,11 +144,11 @@ public class UserProfile {
 		this.createDate = createDate;*/
 	}
 
-//	public UserProfile(String email, String password) {
-//		// TODO Auto-generated constructor stub
-//		this.email = email;
-//		this.password = password;
-//	}
+	public UserProfile(String email, String password) {
+		// TODO Auto-generated constructor stub
+		this.email = email;
+		this.password = password;
+	}
 
 	public UserProfile(int userId, String firstName, String lastName, String email, int userCategoryId, String photoLocation) {
 		// TODO Auto-generated constructor stub
@@ -163,10 +159,8 @@ public class UserProfile {
 		this.userCategoryId = userCategoryId;
 		this.photoLocation = photoLocation;
 	}
-	
-	
 
-	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String college) {
 		super();
 		this.userId = userId;
@@ -176,8 +170,7 @@ public class UserProfile {
 		this.mobileNumber = mobileNumber;
 		this.college = college;
 	}
-	
-	
+
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
@@ -221,11 +214,11 @@ public class UserProfile {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserProfile(String firstName, String lastName) {
+/*	public UserProfile(String firstName, String lastName) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
+	}*/
 
 
 	/**
@@ -563,7 +556,7 @@ public class UserProfile {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	
+
 	/**
 	 * @return the gender
 	 */
@@ -575,12 +568,12 @@ public class UserProfile {
 	/**
 	 * @param gender the gender to set
 	 */
-	
+
 	public void setGender(String gender) {
 		// TODO Auto-generated method stub
 		this.gender = gender;
 	}
-	
+
 	/**
 	 * @return the securityQuestion
 	 */
@@ -588,16 +581,16 @@ public class UserProfile {
 		return securityQuestion;
 	}
 
-	
+
 
 	/**
 	 * @param securityQuestion the securityQuestion to set
 	 */
-	
+
 	public void setSecurityQuestion(String securityQuestion) {
 		this.securityQuestion = securityQuestion;
 	}
-	
+
 
 	public void setPhotoLocation(String photoLocation) {
 		this.photoLocation = photoLocation;
@@ -606,30 +599,30 @@ public class UserProfile {
 	/**
 	 * @return the timeSlotsId
 	 */
-	
+
 	public Integer getTimeSlotsId() {
 		return timeSlotsId;
 	}
 
-	
+
 	/**
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
-	
+
 	public void setTimeSlotsId(Integer timeSlotsId) {
 		this.timeSlotsId = timeSlotsId;
 	}
 
-	
+
 	/**
 	 * @return the segmentTypeId
 	 */
-	
+
 	public Integer getSegmentTypeId() {
 		return segmentTypeId;
 	}
 
-	
+
 	/**
 	 * @param segmentTypeId the segmentTypeId to set
 	 */
@@ -637,7 +630,7 @@ public class UserProfile {
 		this.segmentTypeId = segmentTypeId;
 	}
 
-	
+
 	/**
 	 * @return the courseAlreadyDone
 	 */
@@ -651,7 +644,7 @@ public class UserProfile {
 		this.courseAlreadyDone = courseAlreadyDone;
 	}
 
-	
+
 	/**
 	 * @return the activeStatus
 	 */
@@ -668,17 +661,6 @@ public class UserProfile {
 
 	public static void setItems(ObservableList<UserProfile> data) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
-	public Button getAdd() {
-		return add;
-	}
-
-
-	public void setAdd(Button add) {
-		this.add = add;
-	}
-
 }

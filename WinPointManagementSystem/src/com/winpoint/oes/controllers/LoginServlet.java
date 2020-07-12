@@ -52,13 +52,15 @@ public class LoginServlet extends ParentWEBController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("From LoginServlet");
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		
 	    String json = "";
 	    if(br != null){
 	    	json = br.readLine();
 	    }
-
+	    
 		Gson gson = new Gson();
 		UserProfile userProfile = gson.fromJson(json, UserProfile.class);
+		
 		if(userProfile != null) {
 			String email = userProfile.getEmail();
 			String password = userProfile.getPassword();
@@ -80,13 +82,13 @@ public class LoginServlet extends ParentWEBController {
 				PrintWriter writer = response.getWriter();
 				userCategoryId =  userProfileRecd.getUserCategoryId();
 				if (userCategoryId == 1) {
-				   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ClientDashboard.jsp'}");
+				   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ClientDashboard-New.jsp'}");
 				   jsonString = "[" + json1 + "," + json2 + "]";
 				}
 				else if(userCategoryId == 2) {
 					List<Stream> streamList = new StreamHelper().getStreamList();
 					String json3 = gson.toJson(streamList);
-					json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard.jsp'}");
+					json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard-New.jsp'}");
 					jsonString = "[" + json1 + "," + json2 + "," + json3 + "]";
 				}
 				
