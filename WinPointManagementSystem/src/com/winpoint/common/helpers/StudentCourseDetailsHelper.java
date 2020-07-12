@@ -21,7 +21,6 @@ public class StudentCourseDetailsHelper {
 	}
 	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId){
 		return new StudentCourseDetailsDao().getAssignmentScreenWrapperList(batchId);
-
 	}
 	public ArrayList<StudentCourseDetails> getBatchFeedback(){
 		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();

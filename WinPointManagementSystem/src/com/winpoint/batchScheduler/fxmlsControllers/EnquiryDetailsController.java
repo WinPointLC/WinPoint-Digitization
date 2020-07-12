@@ -20,7 +20,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -66,7 +65,8 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	stage.show();
     }
    
-    void UpdateClick(ActionEvent event) throws IOException {
+    void UpdateClick(ActionEvent event) throws IOException {   	
+    	
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene = loader.load(getClass().getResource("../../common/testClient/FrontScreenFxml.fxml").openStream());
     	Stage stage = (Stage) CancelButton.getScene().getWindow();
@@ -108,8 +108,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
              	stage.setTitle("Main Scene");
              	stage.show();
              } 
-         }; 
-             	
+         }; 	
     	
     	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
     		update = new Button("Update");

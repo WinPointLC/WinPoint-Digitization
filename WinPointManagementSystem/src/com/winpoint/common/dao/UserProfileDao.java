@@ -1,6 +1,9 @@
 package com.winpoint.common.dao;
 
 import java.util.List;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,14 +66,10 @@ public class UserProfileDao {
 		return true;
 		
 	}
+
 	
-	
-	
-	
-	
-	
-public ArrayList<UserProfile> getUsers() {
-	ArrayList<UserProfile> allUsersList = new ArrayList<UserProfile>();
+	public ArrayList<UserProfile> getUsers() {
+		ArrayList<UserProfile> allUsersList = new ArrayList<UserProfile>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -208,7 +207,7 @@ public ArrayList<UserProfile> getUsers() {
 		
 	}
 
-public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId) {
+	public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId) {
 		
 		ArrayList<BatchIndividualFeedbackScreenWrapper> batchWrapperList = new ArrayList<BatchIndividualFeedbackScreenWrapper>();
 		BatchIndividualFeedbackScreenWrapper batchIndividualFeedbackScreenWrapper;
@@ -248,7 +247,5 @@ public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbac
 		}
 		
 		return  batchWrapperList;
-	}
-
-	
+	}	
 }

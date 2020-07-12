@@ -51,7 +51,7 @@ public class ResultDao {
 				courseTypeName = resultSet.getString("COURSE_TYPE_NAME");
 			}
 			
-			int totalMarks = result.getMarks();
+			int totalMarks = result.getTotalMarks();
 			PreparedStatement preparedStatement = connection.prepareStatement("UPDATE STUDENT_COURSE_DETAILS SET COURSE_AGGR=?, " + 
 					"	   GRADE_ID=(SELECT GRADE_ID FROM GRADING_SYSTEM \r\n" + 
 					"				 WHERE LOWER_LIMIT<=? AND ?<=HIGHER_LIMIT)\r\n" + 

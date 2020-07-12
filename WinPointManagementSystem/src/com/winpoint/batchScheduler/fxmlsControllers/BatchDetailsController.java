@@ -64,7 +64,9 @@ public class BatchDetailsController extends ParentFXMLController{
 	    private TableColumn<Date, BatchDetailsWrapper> createDate;
 
 	    @FXML
-	    private TableColumn<?, ?> addStudent;
+	    private TableColumn<Button, BatchDetailsWrapper> addStudent;
+	    
+	    private Button add;
 
 	    @FXML
 	    void cancelFrame(ActionEvent event) {
@@ -98,12 +100,14 @@ public class BatchDetailsController extends ParentFXMLController{
    		endDate.setCellValueFactory(new PropertyValueFactory<Date, BatchDetailsWrapper>("EndDate"));
    		createdBy.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("CreatedBy"));
    		createDate.setCellValueFactory(new PropertyValueFactory<Date, BatchDetailsWrapper>("CreatedDate"));
+   		addStudent.setCellValueFactory(new PropertyValueFactory<Button, BatchDetailsWrapper>("add"));
    		//fx:ID : Column Name
    		
    		List<BatchDetailsWrapper> batchDetailsWrapperList = new ArrayList<BatchDetailsWrapper>();
    		
    		for( BatchDetails batchDetail : batchDetailsList ) {
-   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchId(), batchDetail.getCourseId(), batchDetail.getFacultyId(), batchDetail.getBatchTime(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate()));
+   			add= new Button("Add");
+   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchId(), batchDetail.getCourseId(), batchDetail.getFacultyId(), batchDetail.getBatchTime(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
    		}
    		
    		ObservableList<BatchDetailsWrapper> batchDetailRecords = FXCollections.observableArrayList(batchDetailsWrapperList);

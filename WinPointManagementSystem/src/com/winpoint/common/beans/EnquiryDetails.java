@@ -2,8 +2,6 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
-import javafx.scene.control.Button;
-
 /**
  * @author shraddhapadalkar
  *
@@ -219,6 +217,8 @@ public class EnquiryDetails extends UserProfile {
 		this.coursesInterestedIn = coursesInterestedIn;
 		this.activeStatus = activeStatus;
 	}
+
+	public EnquiryDetails() {	}
 
 	/**
 	 * @return the enquiryId
@@ -650,18 +650,12 @@ public class EnquiryDetails extends UserProfile {
 		this.activeStatus = activeStatus;
 	}
 
-
 	public String getStudent() {
 		return student;
 	}
 
-
 	public void setStudent(String student) {
 		this.student = student;
 	}
-
-	
-	
-	
 
 }
