@@ -15,6 +15,14 @@ public class CourseTypeHelper {
 	public List<CourseType> getCourseTypeList(int streamId){
 		return new CourseTypeDao().getCourseTypeList(streamId);
 	}
+	
+	public List<CourseType> getCourseTypeList(){
+		return new CourseTypeDao().getCourseTypeList();
+	}
+	
+	public Integer getCourseTypeId(String courseTypeName) {
+		return new CourseTypeDao().getCourseTypeId(courseTypeName);
+	}
 
 	public List<Test> getTestsList(int userId, int streamId, int courseTypeId, int courseId) {
 		return new CourseDao().getTestList(streamId, courseTypeId);

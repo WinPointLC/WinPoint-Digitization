@@ -47,6 +47,62 @@ public class CourseTypeDao {
 		return courseTypeList;
 		
 	}
+	
+	public List<CourseType> getCourseTypeList() {
+		
+		List<CourseType> courseTypeList = new ArrayList<CourseType>();
+		
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			String query = "SELECT COURSE_TYPE_ID, COURSE_TYPE_NAME \r\n" + 
+					"		FROM COURSE_TYPE";
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				int courseTypeId = resultSet.getInt("COURSE_TYPE_ID");
+				String courseTypeName = resultSet.getString("COURSE_TYPE_NAME");
+				CourseType courseType = new CourseType(courseTypeId, courseTypeName);
+				courseTypeList.add(courseType);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return courseTypeList;
+		
+	}
+	
+	public Integer getCourseTypeId(String courseTypeName) {
+		Integer courseTypeId = null;
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			String query = "SELECT COURSE_TYPE_ID \r\n" + 
+					"FROM COURSE_TYPE \r\n" + 
+					"WHERE COURSE_TYPE_NAME = '" + courseTypeName + "'";
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				courseTypeId = resultSet.getInt("COURSE_TYPE_ID");
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
+		return courseTypeId;
+	}
 
 	public List<Test> getTestList(int userId, int courseId) {
 		List<Test> testList = new ArrayList<Test>();
