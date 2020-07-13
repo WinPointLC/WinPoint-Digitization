@@ -1,5 +1,7 @@
 package com.winpoint.common.wrappers;
 
+import javafx.scene.control.Hyperlink;
+
 public class EvaluationScreenWrapper {
 	private String fullName;
 	private String gradeId;
@@ -7,7 +9,7 @@ public class EvaluationScreenWrapper {
 	private Integer userId;
 	private Integer attendance;
 	private Integer marks;
-	
+	private Hyperlink hpl;
 	public EvaluationScreenWrapper(String firstName,String lastName,Integer userId,
 			Integer attendance,Integer marks, String gradeId, String isCertificateGiven) {
 		super();
@@ -69,6 +71,14 @@ public class EvaluationScreenWrapper {
 
 	public void setAttendance(Integer attendance) {
 		this.attendance = attendance;
+	}
+
+	public Hyperlink getHpl() {
+		return hpl;
+	}
+
+	public void setHpl(Hyperlink hpl) {
+		this.hpl = hpl;
 	}
 	
 }

@@ -16,15 +16,6 @@ public class StudentCourseDetailsHelper {
 	public ArrayList<StudentCourseDetails> getStudentGACourseDetailsList(int userId){
 		return new StudentCourseDetailsDao().getStudentGACourseDetailsList(userId);
 	}
-	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(){
-		return new StudentCourseDetailsDao().getStudentCourseDetails();
-	}
-	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId){
-		return new StudentCourseDetailsDao().getAssignmentScreenWrapperList(batchId);
-	}
-	public ArrayList<StudentCourseDetails> getBatchFeedback(){
-		return (ArrayList<StudentCourseDetails>)new StudentCourseDetailsDao().getBatchFeedback();
-	}
 	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId){
 		return new StudentCourseDetailsDao().getStudentEvaluationDetails(batchId);
 	}

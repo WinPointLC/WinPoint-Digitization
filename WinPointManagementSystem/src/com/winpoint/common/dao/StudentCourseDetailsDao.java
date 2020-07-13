@@ -144,25 +144,6 @@ public class StudentCourseDetailsDao {
 	}
 	
 	
-	
-	public ArrayList<StudentCourseDetails> getStudentCourseDetails() {		
-		ArrayList<StudentCourseDetails> studentCourseDetails = new ArrayList<StudentCourseDetails>();
-		StudentCourseDetails studentCourseDetails1,studentCourseDetails2,studentCourseDetails3;
-		
-		studentCourseDetails1 = new StudentCourseDetails(10, null, null, null, null, null, 10, null, null, null, null, 
-				"partially paid", null, null, "Yes", "Yes","Yes", null, null);
-		studentCourseDetails2 = new StudentCourseDetails(11, null, null, null, null, null, 20, null, null, null, null, 
-				"paid", null, null,"Yes", "Yes","Yes", null, null);
-		studentCourseDetails3 = new StudentCourseDetails(12, null, null, null, null, null, 50, null, null, null, null, 
-				"not paid", null, null,"Yes", "Yes","Yes", null, null);
-		
-		studentCourseDetails.add(studentCourseDetails1);
-		studentCourseDetails.add(studentCourseDetails2);
-		studentCourseDetails.add(studentCourseDetails3);
-		
-		return studentCourseDetails;
-	}
-	
 	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId) {		
 		ArrayList<AssignmentsScreenWrapper> assignmentsScreenWrapperList = new ArrayList<AssignmentsScreenWrapper>();
 			ResultSet resultSet1 = null;

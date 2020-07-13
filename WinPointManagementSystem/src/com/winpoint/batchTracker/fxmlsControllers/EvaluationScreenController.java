@@ -2,8 +2,11 @@ package com.winpoint.batchTracker.fxmlsControllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.SelectableChannel;
+import java.nio.channels.SelectionKey;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Topic;
@@ -15,11 +18,13 @@ import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,6 +38,7 @@ public class EvaluationScreenController extends ParentFXMLController {
 	private String batchNameValue;
 	private Integer courseId;
 	private String courseName;
+	private String Name;
 	  @FXML
 	    private Button backButton;
 
@@ -108,24 +114,34 @@ public class EvaluationScreenController extends ParentFXMLController {
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		ArrayList<EvaluationScreenWrapper>  evaluationWrapper= new StudentCourseDetailsHelper().getStudentEvaluationDetails(1);
-   	
+   		ArrayList<EvaluationScreenWrapper>  evaluationWrapperList= new StudentCourseDetailsHelper().getStudentEvaluationDetails(1);
    		//ArrayList<EvaluationScreenWrapper> studentCourseDetailsHelper1= new StudentCourseDetailsHelper().getEvaluationScreenValues(1,1);
-   		evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+   	 for (EvaluationScreenWrapper evaluationScreenWrapper : evaluationWrapperList) {
+ 		   String fullName=evaluationScreenWrapper.getFullName();	   
+        Hyperlink hpl= new Hyperlink(fullName);
+        hpl.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+              	evaluationUserID.setText(evaluationScreenWrapper.getUserId().toString());
+           		evaluationName.setText(evaluationScreenWrapper.getFullName());
+           		evaluationMarks.setText(evaluationScreenWrapper.getMarks().toString());
+           		evaluationGrade.setText(evaluationScreenWrapper.getGradeId());
+           		evaluationCertificateIssued.setText(evaluationScreenWrapper.getIsCertificateGiven());
+           	
+               }
+              });
+        evaluationScreenWrapper.setHpl(hpl);
+    }
+   		evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("hpl"));
    		evaluationTableGradeColumn.setCellValueFactory(new PropertyValueFactory<>("gradeId"));
    		evaluationTableCertificateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("isCertificateGiven"));
-   		evaluationUserID.setText(evaluationWrapper.get(0).getUserId().toString());
-   		evaluationName.setText(evaluationWrapper.get(0).getFullName());
-   		evaluationMarks.setText(evaluationWrapper.get(0).getMarks().toString());
-   		evaluationGrade.setText(evaluationWrapper.get(0).getGradeId());
-   		evaluationCertificateIssued.setText(evaluationWrapper.get(0).getIsCertificateGiven());
-	    //fx:ID : Column Name
-   		//evaluationUserID.setText(studentCourseDetailsHelper1.get(0).getUserId().toString());
-//   		for(EvaluationScreenWrapper a :studentCourseDetailsHelper1 ) {
-//   			System.out.println(a.getUserId());
-//   		}
-   		ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( evaluationWrapper);
+   		
+   		
+   	 
+   		ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( evaluationWrapperList);
 	    
 	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
    	}
+
+
+
 }
