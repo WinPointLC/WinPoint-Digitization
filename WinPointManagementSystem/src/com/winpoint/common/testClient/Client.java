@@ -12,16 +12,12 @@ public class Client extends Application {
 		//System.out.println("Hello");
 		try {			
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/AttendanceScreen.fxml"));
-<<<<<<< HEAD
-		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/NumberOfStudents.fxml"));
-		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
+		   
 			BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("FrontScreenFxml.fxml"));
-=======
-		    BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
-			//BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("FrontScreenFxml.fxml"));
->>>>>>> 62d63d13b282f6b4845cfa0ce0e0fb1c25375f95
+//		    BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
 		    Scene scene = new Scene(root);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//			BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("FrontScreenFxml.fxml"));
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
