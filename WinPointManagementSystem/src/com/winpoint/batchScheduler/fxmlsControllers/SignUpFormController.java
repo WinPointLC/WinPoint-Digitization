@@ -14,7 +14,6 @@ import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,9 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -312,7 +309,7 @@ public class SignUpFormController extends ParentFXMLController {
     	}
     	
     	int segmentTypeId = 0;
-    	if(segmentType.getValue().equals("Student")) {
+    	if(segmentType.getValue().equals("Indivi")) {
     		segmentTypeId = 1;
     	}
     	else if(segmentType.getValue().equals("College")) {
@@ -351,8 +348,7 @@ public class SignUpFormController extends ParentFXMLController {
     	cStartDate.set(ldStartDate.getYear(), ldStartDate.getMonthValue(), ldStartDate.getDayOfMonth());
     	Date dateStartDate = cDateOfEnquiry.getTime();
     	
-    	Integer enquiryId = 123;
-		String firstName1 = firstName.getText();
+   		String firstName1 = firstName.getText();
 		String lastName1 = lastName.getText();
 		String emailId1 = emailId.getText();
 		String mobileNo1 = mobileNumber.getText();
@@ -375,15 +371,15 @@ public class SignUpFormController extends ParentFXMLController {
 		Boolean eligibility1 = eligible.isSelected();
 		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String reference1 = referance.getText();
-		Integer timeSlotsId1 = timeSlotId;//Integer.parseInt(availableTime.getValue());
+		Integer timeSlotsId1 = timeSlotId;
 		String courseAlreadyDone1 = courseAlreadyDone.getText();
 		Date startDate1 = dateStartDate;
-		Integer segmentTypeId1 = segmentTypeId;//Integer.parseInt(segmentType.getValue()); 
+		Integer segmentTypeId1 = segmentTypeId; 
 		String suggestion1 = suggestion.getText(); 
 		Boolean activeStatus1 = active.isSelected();
 				
 		
-    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(enquiryId,firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,timeSlotsId1,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
+    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,timeSlotsId1,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
     
     	new EnquiryDetailsHelper().create(enquiryDetails1);
     	

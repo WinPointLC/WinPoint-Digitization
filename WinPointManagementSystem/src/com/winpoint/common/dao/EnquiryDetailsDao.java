@@ -73,11 +73,41 @@ public class EnquiryDetailsDao {
 
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			String query2 = "SELECT FIRST_NAME,LAST_NAME,COURSE_INTERESTED_IN,ELIGIBILITY,SUGGESTION FROM ENQUIRY_DETAILS"+
+			String query2 = "SELECT * FROM ENQUIRY_DETAILS"+
 					"";
 			ResultSet rs = statement.executeQuery(query2);
 			while(rs.next()) {
-				enquiryDetailList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getString("COURSE_INTERESTED_IN"),rs.getBoolean("ELIGIBILITY"),rs.getString("SUGGESTION")));
+				enquiryDetailList.add(new EnquiryDetails(
+						rs.getInt("ENQUIRY_ID"), 
+						rs.getString("FIRST_NAME"),
+						rs.getString("LAST_NAME"),
+						rs.getString("EMAIL_ID"),
+						rs.getString("MOBILE_NO"),
+						rs.getString("ADDRESS"),
+						rs.getDate("BIRTH_DATE"),
+						rs.getString("COLLEGE"),
+						rs.getString("DEGREE"),
+						rs.getString("BRANCH"),
+						rs.getString("OCCUPATION"),
+						rs.getString("ORGANISATION"),
+						rs.getString("DESIGNATION"),
+						rs.getString("DOMAIN"),
+						rs.getString("ROLE"),
+						rs.getInt("EXPERIENCE"),
+						rs.getInt("CREATED_BY"),
+						rs.getDate("DATE_OF_ENQUIRY"),
+						rs.getString("GENDER"),
+						rs.getInt("YEAR_OF_GRADUATION"),
+						rs.getString("RECOMMENDATION"),
+						rs.getBoolean("ELIGIBILITY"),
+						rs.getString("COURSE_INTERESTED_IN"),
+						rs.getString("REFERENCE"),
+						rs.getInt("TIME_SLOTS_ID"),
+						rs.getString("COURSE_ALREADY_DONE"),
+						rs.getDate("START_DATE"),
+						rs.getInt("SEGMENT_TYPE_ID"),
+						rs.getString("SUGGESTION"),
+						rs.getBoolean("ACTIVE_STATUS")));
 			}
 		}
 		catch (SQLException e) {
@@ -86,7 +116,79 @@ public class EnquiryDetailsDao {
 		}
 		return  (ArrayList<EnquiryDetails>) enquiryDetailList;
 	}
+	// group A - for inserting the values in the table. ~ Abhishek
+	public void create(EnquiryDetails enquiryDetails) throws SQLException {
+		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
+		java.sql.Date sqlDateOfEnquiry = new java.sql.Date(enquiryDetails.getDateofEnquiry().getTime());
+		java.sql.Date sqlStartDate = new java.sql.Date(enquiryDetails.getStartDate().getTime());
 
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			String query = "\n" +
+					"INSERT INTO ENQUIRY_DETAILS \n" +
+					"(FIRST_NAME, \n" +
+					"LAST_NAME, \n" +
+					"EMAIL_ID, \n" +
+					"MOBILE_NO, \n" +
+					"ADDRESS, \n" +
+					"BIRTH_DATE, \n" +
+					"COLLEGE, \n" +
+					"DEGREE, \n" +
+					"BRANCH, \n" +
+					"OCCUPATION, \n" +
+					"ORGANISATION, \n" +
+					"DESIGNATION, \n" +
+					"DOMAIN, \n" +
+					"DATE_OF_ENQUIRY, \n" +
+					"GENDER, \n" +
+					"YEAR_OF_GRADUATION, \n" +
+					"ROLE, \n" +
+					"EXPERIENCE, \n" +
+					"CREATED_BY, \n" +	
+					"RECOMMENDATION, \n" +
+					"ELIGIBILITY,\n" +
+					"COURSE_INTERESTED_IN,\n" +
+					"REFERENCE, \n" +
+					"TIME_SLOTS_ID, \n" +
+					"COURSE_ALREADY_DONE,\n" +
+					"START_DATE, \n" +
+					"SEGMENT_TYPE_ID, \n" +
+					"SUGGESTION, \n" +
+					"ACTIVE_STATUS)\n" +
+					"VALUES('"+
+					enquiryDetails.getFirstName()+"','"+
+					enquiryDetails.getLastName()+"','"+
+					enquiryDetails.getEmail()+"','"+
+					enquiryDetails.getMobileNumber()+"','"+
+					enquiryDetails.getAddress()+"','"+
+					sqlBirthDate+"','"+
+					enquiryDetails.getCollege()+"','"+
+					enquiryDetails.getDegree()+"','"+
+					enquiryDetails.getBranch()+"','"+
+					enquiryDetails.getOccupation()+"','"+
+					enquiryDetails.getOrganisation()+"','"+
+					enquiryDetails.getDesignation()+"','"+
+					enquiryDetails.getDomain()+"','"+
+					sqlDateOfEnquiry+"','"+
+					enquiryDetails.getGender()+"','"+
+					enquiryDetails.getYearOfGraduation()+"','"+
+					enquiryDetails.getRole()+"','"+
+					enquiryDetails.getExperience()+"','"+
+					enquiryDetails.getCreatedBy()+"','"+
+					enquiryDetails.getRecommendation()+"','"+
+					enquiryDetails.getEligibility()+"','"+
+					enquiryDetails.getCoursesInterestedIn()+"','"+
+					enquiryDetails.getReference()+"','"+
+					enquiryDetails.getTimeSlotsId()+"','"+
+					enquiryDetails.getCourseAlreadyDone()+"','"+
+					sqlStartDate+"','"+
+					enquiryDetails.getSegmentTypeId()+"','"+
+					enquiryDetails.getSuggestion()+"','"+
+					enquiryDetails.getActiveStatus()+"')";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		}
+	}
 	// Group A - Update Page ~ Shraddha
 	public void update(EnquiryDetails enquiryDetailsObject) {
 		try(Connection connection = ConnectionManager.getConnection()){
@@ -105,77 +207,21 @@ public class EnquiryDetailsDao {
 					"        DESIGNATION='"+ enquiryDetailsObject.getDesignation()+"',\n" +
 					"        DOMAIN='"+ enquiryDetailsObject.getDomain()+"',\n" +
 					"        ROLE='"+ enquiryDetailsObject.getRole()+"',\n" +
-					"        EXPERIENCE='"+ enquiryDetailsObject.getExperience()+"',\n" +
+					"        EXPERIENCE="+ enquiryDetailsObject.getExperience()+",\n" +
 					"        GENDER='"+ enquiryDetailsObject.getGender()+"',\n" +
-					"        YEAR_OF_GRADUATION='"+ enquiryDetailsObject. getYearOfGraduation()+"',\n" +
+					"        YEAR_OF_GRADUATION="+ enquiryDetailsObject. getYearOfGraduation()+",\n" +
 					"        COURSE_ALREADY_DONE='"+ enquiryDetailsObject.getCourseAlreadyDone()+"',\n" +
+					"        SUGGESTION='"+ enquiryDetailsObject.getSuggestion()+"',\n" +
 					"        ACTIVE_STATUS='"+ enquiryDetailsObject. getActiveStatus()+"'\n" +
-					"        WHERE ENQUIRY_ID='"+ 112+"'\n" +
+					"        WHERE ENQUIRY_ID="+ enquiryDetailsObject.getEnquiryId()+"\n" +
 					"        " +
 					"";
+				System.out.println(query1);
 				statement.executeUpdate(query1);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	// group A - for inserting the values in the table. ~ Abhishek
-	public void create(EnquiryDetails enquiryDetails) throws SQLException {
-		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
-		java.sql.Date sqlDateOfEnquiry = new java.sql.Date(enquiryDetails.getDateofEnquiry().getTime());
-		java.sql.Date sqlStartDate = new java.sql.Date(enquiryDetails.getStartDate().getTime());
 
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-			String query = "\n" +
-					"INSERT INTO ENQUIRY_DETAILS \n" +
-					"(ENQUIRY_ID,\n" +
-					"FIRST_NAME, \n" +
-					"LAST_NAME, \n" +
-					"EMAIL_ID, \n" +
-					"MOBILE_NO, \n" +
-					"ADDRESS, \n" +
-					"BIRTH_DATE, \n" +
-					"COLLEGE, \n" +
-					"DEGREE, \n" +
-					"BRANCH, \n" +
-					"DATE_OF_ENQUIRY, \n" +
-					"GENDER, \n" +
-					"YEAR_OF_GRADUATION, \n" +
-					"RECOMMENDATION, \n" +
-					"ELIGIBILITY,\n" +
-					"COURSE_INTERESTED_IN,\n" +
-					"REFERENCE, \n" +
-					"TIME_SLOTS_ID, \n" +
-					"COURSE_ALREADY_DONE,\n" +
-					"START_DATE, \n" +
-					"SEGMENT_TYPE_ID, \n" +
-					"ACTIVE_STATUS)\n" +
-					"VALUES("+
-					118+",'"+
-					enquiryDetails.getFirstName()+"','"+
-					enquiryDetails.getLastName()+"','"+
-					enquiryDetails.getEmail()+"','"+
-					enquiryDetails.getMobileNumber()+"','"+
-					enquiryDetails.getAddress()+"','"+
-					sqlBirthDate+"','"+
-					enquiryDetails.getCollege()+"','"+
-					enquiryDetails.getDegree()+"','"+
-					enquiryDetails.getBranch()+"','"+
-					sqlDateOfEnquiry+"','"+
-					enquiryDetails.getGender()+"','"+
-					enquiryDetails.getYearOfGraduation()+"','"+
-					enquiryDetails.getRecommendation()+"','"+
-					enquiryDetails.getEligibility()+"','"+
-					enquiryDetails.getCoursesInterestedIn()+"','"+
-					enquiryDetails.getReference()+"','"+
-					enquiryDetails.getTimeSlotsId()+"','"+
-					enquiryDetails.getCourseAlreadyDone()+"','"+
-					sqlStartDate+"','"+
-					enquiryDetails.getSegmentTypeId()+"','"+
-					enquiryDetails.getActiveStatus()+"')";
-			System.out.println(query);
-			statement.executeUpdate(query);
-		}
-	}
 }
