@@ -41,8 +41,8 @@ public class StudentCourseInstallmentDetailsDao {
 			
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()) {
-				feeRecordsScreenWrapperList.add(new FeeRecordsScreenWrapper(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME") + " " + resultSet.getString("LAST_NAME"), 
-						resultSet.getString("FEE_STATUS"), resultSet.getString("PAYMENT_MODE_NAME"), resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), 
+				feeRecordsScreenWrapperList.add(new FeeRecordsScreenWrapper(resultSet.getString("PAYMENT_MODE_NAME"),resultSet.getString("FIRST_NAME") + " " + resultSet.getString("LAST_NAME"), 
+						resultSet.getString("FEE_STATUS"),resultSet.getInt("USER_ID") ,resultSet.getString("MOBILE_NUMBER"), resultSet.getString("EMAIL_ID"), null,resultSet.getInt("FEE_REMINDER_COUNT"), 
 						  new StudentCourseInstallmentDetails(resultSet.getInt("USER_ID"), null, 
 								  resultSet.getInt("PLANNED_INSTALLMENT1"), resultSet.getDate("PLANNED_INSTALLMENT1_DATE"), resultSet.getInt("ACTUAL_INSTALLMENT1"), resultSet.getDate("ACTUAL_INSTALLMENT1_DATE"),
 								  resultSet.getInt("PLANNED_INSTALLMENT2"), resultSet.getDate("PLANNED_INSTALLMENT2_DATE"), resultSet.getInt("ACTUAL_INSTALLMENT2"), resultSet.getDate("ACTUAL_INSTALLMENT2_DATE"), 

@@ -5,6 +5,8 @@ import java.sql.Date;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 
+import javafx.scene.control.Hyperlink;
+
 public class FeeRecordsScreenWrapper {
 	private String paymentMode;
 	private String name;
@@ -12,19 +14,26 @@ public class FeeRecordsScreenWrapper {
 	private Integer userId;
 	private String mobile;
 	private String emailId;
-	
+	private Hyperlink hpl;
+	private Integer feeReminderCount;
 	private StudentCourseInstallmentDetails studentCourseInstallmentDetails;
 	
-	public FeeRecordsScreenWrapper(Integer userId, String name, String feeStatus, String paymentMode, 
-			String emailId, String mobile, StudentCourseInstallmentDetails studentCourseInstallmentDetails) {
-		this.studentCourseInstallmentDetails = studentCourseInstallmentDetails;
-		this.feeStatus = feeStatus;
+	
+	public FeeRecordsScreenWrapper(String paymentMode, String name, String feeStatus, Integer userId, String mobile,
+			String emailId, Hyperlink hpl, Integer feeReminderCount,
+			StudentCourseInstallmentDetails studentCourseInstallmentDetails) {
+		super();
 		this.paymentMode = paymentMode;
 		this.name = name;
+		this.feeStatus = feeStatus;
 		this.userId = userId;
 		this.mobile = mobile;
 		this.emailId = emailId;
+		this.hpl = hpl;
+		this.feeReminderCount = feeReminderCount;
+		this.studentCourseInstallmentDetails = studentCourseInstallmentDetails;
 	}
+
 	
 	public String getPaymentMode() {
 		return paymentMode;
@@ -185,4 +194,23 @@ public class FeeRecordsScreenWrapper {
 	public void setDueAmount(Integer dueAmount) {
 		studentCourseInstallmentDetails.setDueAmount(dueAmount);
 	}
+
+	public Hyperlink getHpl() {
+		return hpl;
+	}
+
+	public void setHpl(Hyperlink hpl) {
+		this.hpl = hpl;
+	}
+
+
+	public Integer getFeeReminderCount() {
+		return feeReminderCount;
+	}
+
+
+	public void setFeeReminderCount(Integer feeReminderCount) {
+		this.feeReminderCount = feeReminderCount;
+	}
+	
 }

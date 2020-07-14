@@ -40,20 +40,22 @@ public class ProgressTrackingScreenController extends ParentFXMLController{
     private ImageView logo;
 
     @FXML
-    private TextField progressTrackingTotalLectures;
+    private TextField progressTrackingTotalTopics;
 
     @FXML
     private TextField ProgressTrackingTotalDuration;
 
     @FXML
+    private TextField progressTrackingTotalLectures;
+
+    @FXML
+    private TextField progressTrackingTopicsCovered;
+
+    @FXML
+    private TextField progressTrackingRemainingLectures;
+
+    @FXML
     private TextField progressTrackingElapsedDuration;
-
-    @FXML
-    private TextField progressTrackingTotalTopics;
-
-    @FXML
-    private TextField progressTrackingRemainingTopics;
-
     @FXML
     private TableView<ProgressTrackingWrapper> topicsTable;
 

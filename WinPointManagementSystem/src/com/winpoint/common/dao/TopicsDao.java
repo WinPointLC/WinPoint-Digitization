@@ -68,9 +68,10 @@ public class TopicsDao {
 				StringTokenizer st = new StringTokenizer(topicsCovered,",");
 				while(st.hasMoreTokens()) {
 					int topicId=Integer.parseInt(st.nextToken());
-					topicIdsSet.add(topicId);					
+					topicIdsSet.add(topicId);	
 					} 
 			  }
+			  
 				
 				
 				
