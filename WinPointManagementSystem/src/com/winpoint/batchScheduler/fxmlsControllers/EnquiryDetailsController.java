@@ -27,7 +27,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class EnquiryDetailsController extends ParentFXMLController{
-
+	
+	
+	
     @FXML
     private Button CancelButton;
 

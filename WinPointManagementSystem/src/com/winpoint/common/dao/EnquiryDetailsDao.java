@@ -45,7 +45,6 @@ public class EnquiryDetailsDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 
-//			String query1 = "SELECT FIRST_NAME, LAST_NAME FROM ENQUIRY_DETAILS";
 
 			//we have to access the course name from the previous screen
 			String q2 = "SELECT E.FIRST_NAME, E.LAST_NAME\n" +

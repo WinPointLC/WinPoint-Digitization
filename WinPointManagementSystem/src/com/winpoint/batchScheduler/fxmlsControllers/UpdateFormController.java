@@ -6,7 +6,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -17,14 +16,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import sun.util.resources.LocaleData;
 
 public class UpdateFormController extends ParentFXMLController {
 	
@@ -94,7 +92,8 @@ public class UpdateFormController extends ParentFXMLController {
 
  
     @FXML
-    private RadioButton activeStatus;
+    private CheckBox activeStatus;
+
 
     @FXML
     private Button cancelFrame;
@@ -354,7 +353,7 @@ public class UpdateFormController extends ParentFXMLController {
 		emailId.setText(enquiryDetails.getEmail());
 		gender.setText(enquiryDetails.getGender());
 		college.setText(enquiryDetails.getCollege());
-		//degree.setText(enquiryDetails.getDegree().toString());
+		//degree.setOnAction(enquiryDetails.getDegree());//(enquiryDetails.getDegree());
 		branch.setText(enquiryDetails.getBranch());
 		occupation.setText(enquiryDetails.getOccupation());
 		organization.setText(enquiryDetails.getOrganisation());
@@ -366,7 +365,7 @@ public class UpdateFormController extends ParentFXMLController {
 		courseInterestedIn.setText(enquiryDetails.getCoursesInterestedIn());	
 		coursesAlreadyDone.setText(enquiryDetails.getCourseAlreadyDone());
 		suggestions.setText(enquiryDetails.getSuggestion());
-		//activeStatus.setText(enquiryDetails.getActiveStatus());
+		activeStatus.setSelected(enquiryDetails.getActiveStatus());
 		
 	}
 }

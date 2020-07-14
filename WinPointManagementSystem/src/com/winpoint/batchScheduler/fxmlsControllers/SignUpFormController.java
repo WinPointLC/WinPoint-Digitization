@@ -7,13 +7,19 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.SegmentType;
+import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
+import com.winpoint.common.helpers.SegmentTypeHelper;
+import com.winpoint.common.helpers.TimeSlotsHelper;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +34,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class SignUpFormController extends ParentFXMLController {
-    @FXML
+    
+	private Integer timeSlotsId1;
+	
+	private Integer segmentTypeId;
+	
+	@FXML
     private TextField firstName;
 
     @FXML
@@ -265,10 +276,10 @@ public class SignUpFormController extends ParentFXMLController {
 
     }
     
+    
     @FXML
     private ChoiceBox<String> availableTime = new ChoiceBox<>();
-    String[] choiceBoxOfAvailableTime = {"Morning","Evening","Weekend"};
-
+    
     @FXML
     private ChoiceBox<String> degreeChoice = new ChoiceBox<>(); 
     String[] choices= {"F.Y","S.E","T.E", "F.E"};
@@ -276,7 +287,7 @@ public class SignUpFormController extends ParentFXMLController {
 
     @FXML
     private ChoiceBox<String> segmentType = new ChoiceBox<>();
-    String[] choiceSegmentType = {"Student","College","Working Professionals"};
+    //String[] choiceSegmentType = {"Student","College","Working Professionals"};
 
     
     @FXML
@@ -293,32 +304,6 @@ public class SignUpFormController extends ParentFXMLController {
   
     @FXML
     void submitClick(ActionEvent event) throws ParseException,IOException, SQLException{
-  	
-    	System.out.println(degreeChoice.getValue());
-    	System.out.println(availableTime.getValue());
-    	
-    	int timeSlotId = 0;
-    	if(availableTime.getValue().equals("Morning")) {
-    		timeSlotId = 1;
-    	}
-    	else if(availableTime.getValue().equals("Evening")) {
-    		timeSlotId = 2;
-    	}
-    	else if(availableTime.getValue().equals("Weekend")) {
-    		timeSlotId = 3;
-    	}
-    	
-    	int segmentTypeId = 0;
-    	if(segmentType.getValue().equals("Indivi")) {
-    		segmentTypeId = 1;
-    	}
-    	else if(segmentType.getValue().equals("College")) {
-    		segmentTypeId = 2;
-    	}
-    	else if(segmentType.getValue().equals("Working Professionals")) {
-    		segmentTypeId = 3;
-    	}
-    	
 
 
         if (eligible.isSelected()) 
@@ -371,7 +356,8 @@ public class SignUpFormController extends ParentFXMLController {
 		Boolean eligibility1 = eligible.isSelected();
 		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String reference1 = referance.getText();
-		Integer timeSlotsId1 = timeSlotId;
+		System.out.println("TimeSlotId : "+ timeSlotsId1);
+		Integer time = timeSlotsId1;
 		String courseAlreadyDone1 = courseAlreadyDone.getText();
 		Date startDate1 = dateStartDate;
 		Integer segmentTypeId1 = segmentTypeId; 
@@ -379,7 +365,9 @@ public class SignUpFormController extends ParentFXMLController {
 		Boolean activeStatus1 = active.isSelected();
 				
 		
-    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,timeSlotsId1,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
+
+		
+    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,time,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
     
     	new EnquiryDetailsHelper().create(enquiryDetails1);
     	
@@ -400,9 +388,48 @@ public class SignUpFormController extends ParentFXMLController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	
+    	List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    	    	
+    	
+    	for(TimeSlots timeSlot : timeSlotsList) {
+    		availableTime.getItems().add(timeSlot.getTimeSlotsId()-1, timeSlot.getTimeSlotsDescription());;
+    	}
+    	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+
+            	int index = availableTime.getItems().indexOf(availableTime.getValue());
+            	timeSlotsId1 = timeSlotsList.get(index).getTimeSlotsId();
+            	String description = timeSlotsList.get(index).getTimeSlotsDescription();
+            	
+            	System.out.println("Index : "+index);
+            	System.out.println("TimeSlotId : "+ timeSlotsId1);
+            	System.out.println("Description : "+ description);
+            
+            }
+        }; 	
+    	availableTime.setOnAction(event);
+    	
+    	List<SegmentType> segmentTypeList = new SegmentTypeHelper().getSegmentTypeList();    	    	
+    	
+    	for(SegmentType segmentTypeObject : segmentTypeList) {
+    		segmentType.getItems().add(segmentTypeObject.getSegmentTypeId()-1,segmentTypeObject.getSegmentTypeName());
+    	}
+    	EventHandler<ActionEvent> eventSegmentType = new EventHandler<ActionEvent>() {	
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				int index = segmentType.getItems().indexOf(segmentType.getValue());
+				segmentTypeId = segmentTypeList.get(index).getSegmentTypeId();
+				String description = segmentTypeList.get(index).getSegmentTypeName();
+				
+				System.out.println("Index : "+index);
+            	System.out.println("TimeSlotId : "+ segmentTypeId);
+            	System.out.println("Description : "+ description);
+			}
+		};
+    	segmentType.setOnAction(eventSegmentType);
+		
     	degreeChoice.getItems().addAll(choices);
-    	availableTime.getItems().addAll(choiceBoxOfAvailableTime);
-    	segmentType.getItems().addAll(choiceSegmentType);
     	
        	super.initialize(location, resources);
     	logo.setImage(logoImage);

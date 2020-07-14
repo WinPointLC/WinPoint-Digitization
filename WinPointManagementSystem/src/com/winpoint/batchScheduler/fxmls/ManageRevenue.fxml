@@ -28,7 +28,7 @@
                               <Insets top="25.0" />
                            </padding>
                            <children>
-                              <ChoiceBox fx:id="segmentType" accessibleHelp="eddede" accessibleText="ddde" prefHeight="25.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
+                              <ChoiceBox id="segment Type" fx:id="segmentType" accessibleHelp="eddede" accessibleText="ddde" prefHeight="25.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
                               <Region prefHeight="50.0" prefWidth="200.0" />
                               <TextField fx:id="recieptNumber" onAction="#validateRecieptNumber" prefHeight="25.0" prefWidth="300.0" text="Reciept No." HBox.hgrow="ALWAYS" />
                               <Region prefHeight="50.0" prefWidth="236.0" />
