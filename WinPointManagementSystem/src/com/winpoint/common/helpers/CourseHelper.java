@@ -26,5 +26,11 @@ public class CourseHelper {
 		return (ArrayList<Course>)new CourseDao().getBatchCourseDurationList();
 		
 	}
+	
+	public List<Course> getCourseNamesList() {
+		return new CourseDao().getCourseNamesList();
+	}
+	
+	
 }
 

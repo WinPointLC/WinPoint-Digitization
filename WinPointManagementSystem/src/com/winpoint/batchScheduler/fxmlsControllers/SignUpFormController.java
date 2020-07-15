@@ -10,10 +10,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 import com.winpoint.common.helpers.TimeSlotsHelper;
@@ -27,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -38,6 +41,14 @@ public class SignUpFormController extends ParentFXMLController {
 	private Integer timeSlotsId1;
 	
 	private Integer segmentTypeId;
+	
+	private Integer coursesInterestedInId;
+	
+	private Integer coursesAlreadyDone1;
+	
+	
+	List<Course> courseNamesComboBoxList = new CourseHelper().getCourseNamesList();    	    	
+	  
 	
 	@FXML
     private TextField firstName;
@@ -65,12 +76,12 @@ public class SignUpFormController extends ParentFXMLController {
 
     @FXML
     private DatePicker dobBox;
-
+   
     @FXML
-    private TextField yearOfGraduation;
-
+    private ComboBox<String> coursesInterestedIn= new ComboBox<String>();
+   
     @FXML
-    private TextField courseInterestedIn;
+    private ComboBox<String> coursesAlreadyDone= new ComboBox<String>();
 
     @FXML
     private TextField courseAlreadyDone;
@@ -110,6 +121,9 @@ public class SignUpFormController extends ParentFXMLController {
 
     @FXML
     private TextField recommendation;
+    
+    @FXML
+    private TextField yearOfGraduation;
 
     @FXML
     private Button cancelButton;
@@ -125,6 +139,8 @@ public class SignUpFormController extends ParentFXMLController {
 
     @FXML
     private ImageView logo;
+    
+    
 
     @FXML
     void validateActiveStatus(ActionEvent event) {
@@ -354,11 +370,11 @@ public class SignUpFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String recommendation1 = recommendation.getText(); 
 		Boolean eligibility1 = eligible.isSelected();
-		String coursesInterestedIn1 = courseInterestedIn.getText();
+		String coursesInterestedIn1 = coursesInterestedInId.toString();
 		String reference1 = referance.getText();
 		System.out.println("TimeSlotId : "+ timeSlotsId1);
 		Integer time = timeSlotsId1;
-		String courseAlreadyDone1 = courseAlreadyDone.getText();
+		String courseAlreadyDone1= coursesAlreadyDone1.toString();
 		Date startDate1 = dateStartDate;
 		Integer segmentTypeId1 = segmentTypeId; 
 		String suggestion1 = suggestion.getText(); 
@@ -428,7 +444,56 @@ public class SignUpFormController extends ParentFXMLController {
 			}
 		};
     	segmentType.setOnAction(eventSegmentType);
-		
+    	
+    	
+    	List<Course> courseNamesList = new CourseHelper().getCourseNamesList();    	    	
+    	
+    	for(Course courseName : courseNamesList) {
+    		coursesInterestedIn.getItems().add(courseName.getCourseId()-1, courseName.getCourseName());
+    		
+    	}
+    	
+    	EventHandler<ActionEvent> eventCoursesInterestedIn = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+
+            	int index = coursesInterestedIn.getItems().indexOf(coursesInterestedIn.getValue());
+            	coursesInterestedInId = courseNamesList.get(index).getCourseId();
+            	String coursesName = courseNamesList.get(index).getCourseName();
+            	
+            	System.out.println("Index : "+index);
+            	System.out.println("coursesInterestedInId : "+ coursesInterestedInId);
+            	System.out.println("coursesName : "+ coursesName);
+            
+            }
+        }; 	
+        coursesInterestedIn.setOnAction(eventCoursesInterestedIn);
+        
+        
+        
+        
+        
+	List<Course> courseNamesList1 = new CourseHelper().getCourseNamesList();    	    	
+    	
+    	for(Course courseName : courseNamesList1) {
+    		coursesInterestedIn.getItems().add(courseName.getCourseId()-1, courseName.getCourseName());
+    	}
+    	
+    	EventHandler<ActionEvent> eventCoursesAlreadyDone = new EventHandler<ActionEvent>() { 
+            public void handle(ActionEvent e) 
+            { 
+
+            	int index = coursesAlreadyDone.getItems().indexOf(coursesAlreadyDone.getValue());
+            	coursesAlreadyDone1 = courseNamesList1.get(index).getCourseId();
+            	String coursesName = courseNamesList1.get(index).getCourseName();
+            	
+            	System.out.println("Index : "+index);
+            	System.out.println("TimeSlotId : "+ coursesAlreadyDone1);
+            	System.out.println("Description : "+ coursesName);
+            
+            }
+        }; 	
+        coursesAlreadyDone.setOnAction(eventCoursesAlreadyDone);
     	degreeChoice.getItems().addAll(choices);
     	
        	super.initialize(location, resources);

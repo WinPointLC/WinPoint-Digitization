@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class BatchDetailsDao {
@@ -68,6 +69,36 @@ public List<BatchDetails> getBatchDetailsList1() {
 	}
 
 	
+//group A - for inserting the values in the table. ~ Shraddha
+public void create(BatchDetails batchDetails) throws SQLException {
+	java.sql.Date sqlBeginDate = new java.sql.Date( batchDetails.getStartDate().getTime());
+	java.sql.Date sqlEndDate = new java.sql.Date( batchDetails.getEndDate().getTime());
+	
+
+	try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();
+		String query = "\n" +
+				"INSERT INTO BATCH_DETAILS \n" +
+				"(BATCH_NAME, \n" +
+				"LECTURE_DURATION, \n" +
+				"TOTAL_NUMBER_OF_LECTURES, \n" +
+				"FACULTY_USER_ID, \n" +
+				"BATCH_TIME, \n" +
+				"BEGIN_DATE, \n" +
+				"END_DATE)\n" +
+				"VALUES("+
+				batchDetails.getBatchName()+"','"+
+				batchDetails.getLectureDuration()+"','"+
+				batchDetails.getTotalNumberOfLectures()+"','"+
+				batchDetails.getFacultyId()+"','"+
+				batchDetails.getBatchTime()+"','"+
+				sqlBeginDate+"','"+
+				sqlEndDate+"')";
+		
+		System.out.println(query);
+		statement.executeUpdate(query);
+	}
+}
 
 	
 }

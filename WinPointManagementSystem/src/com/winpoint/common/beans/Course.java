@@ -88,6 +88,13 @@ public class Course {
 		this.preRequisite = preRequisite;
 	}
 
+	public Course(int courseId, String courseName) {
+		// TODO Auto-generated constructor stub
+		
+		this.courseId=courseId;
+		this.courseName=courseName;
+	}
+
 	/**
 	 * @return the courseId
 	 */
