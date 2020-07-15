@@ -77,11 +77,11 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     private DatePicker dobBox;
    
-    @FXML
-    private ComboBox<String> coursesInterestedIn= new ComboBox<String>();
-   
-    @FXML
-    private ComboBox<String> coursesAlreadyDone= new ComboBox<String>();
+//    @FXML
+//    private ComboBox<String> coursesInterestedIn= new ComboBox<String>();
+//   
+//    @FXML
+//    private ComboBox<String> coursesAlreadyDone= new ComboBox<String>();
 
     @FXML
     private TextField courseAlreadyDone;
@@ -292,6 +292,11 @@ public class SignUpFormController extends ParentFXMLController {
 
     }
     
+    @FXML
+    private ComboBox<String> coursesInterestedIn= new ComboBox<>();
+    
+    @FXML
+    private ComboBox<String> coursesAlreadyDone= new ComboBox<>();
     
     @FXML
     private ChoiceBox<String> availableTime = new ChoiceBox<>();
@@ -300,12 +305,9 @@ public class SignUpFormController extends ParentFXMLController {
     private ChoiceBox<String> degreeChoice = new ChoiceBox<>(); 
     String[] choices= {"F.Y","S.E","T.E", "F.E"};
 
-
     @FXML
     private ChoiceBox<String> segmentType = new ChoiceBox<>();
-    //String[] choiceSegmentType = {"Student","College","Working Professionals"};
-
-    
+       
     @FXML
     void cancelClick(ActionEvent event) throws IOException {
     	System.out.println(event);
@@ -321,7 +323,7 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     void submitClick(ActionEvent event) throws ParseException,IOException, SQLException{
 
-
+    	// Choice Boxes if else Conditions : 
         if (eligible.isSelected()) 
         	eligible.setSelected(true);
         else
@@ -330,10 +332,11 @@ public class SignUpFormController extends ParentFXMLController {
         if (active.isSelected()) 
             active.setSelected(true);
         else
-            active.setSelected(false); 
+            active.setSelected(false);
+    	/*******************************************************/ 
 
     	
-    	
+    	// Conversion of the Date Functions : 
     	LocalDate ldDobBox = dobBox.getValue();
     	Calendar cDobBox =  Calendar.getInstance();
     	cDobBox.set(ldDobBox.getYear(), ldDobBox.getMonthValue(), ldDobBox.getDayOfMonth());
@@ -348,7 +351,9 @@ public class SignUpFormController extends ParentFXMLController {
     	Calendar cStartDate =  Calendar.getInstance();
     	cStartDate.set(ldStartDate.getYear(), ldStartDate.getMonthValue(), ldStartDate.getDayOfMonth());
     	Date dateStartDate = cDateOfEnquiry.getTime();
+    	/*******************************************************/
     	
+    	// Declaration of the required Variables : 
    		String firstName1 = firstName.getText();
 		String lastName1 = lastName.getText();
 		String emailId1 = emailId.getText();
@@ -379,14 +384,14 @@ public class SignUpFormController extends ParentFXMLController {
 		Integer segmentTypeId1 = segmentTypeId; 
 		String suggestion1 = suggestion.getText(); 
 		Boolean activeStatus1 = active.isSelected();
+    	/*******************************************************/
 				
-		
-
-		
+		// Object Passing to the bean class : 
     	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,time,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
-    
+    	// Helper Method Call : 
     	new EnquiryDetailsHelper().create(enquiryDetails1);
     	
+    	// Navigation for the next Screen : 
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
@@ -404,8 +409,8 @@ public class SignUpFormController extends ParentFXMLController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	
+    	// TimeSlots Choice Box : 
     	List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    	    	
-    	
     	for(TimeSlots timeSlot : timeSlotsList) {
     		availableTime.getItems().add(timeSlot.getTimeSlotsId()-1, timeSlot.getTimeSlotsDescription());;
     	}
@@ -424,16 +429,15 @@ public class SignUpFormController extends ParentFXMLController {
             }
         }; 	
     	availableTime.setOnAction(event);
+    	/*******************************************************/
     	
-    	List<SegmentType> segmentTypeList = new SegmentTypeHelper().getSegmentTypeList();    	    	
-    	
+    	// SegmentType Choice Box : 
+    	List<SegmentType> segmentTypeList = new SegmentTypeHelper().getSegmentTypeList();    	    	    	
     	for(SegmentType segmentTypeObject : segmentTypeList) {
-    		segmentType.getItems().add(segmentTypeObject.getSegmentTypeId()-1,segmentTypeObject.getSegmentTypeName());
-    	}
+    		segmentType.getItems().add(segmentTypeObject.getSegmentTypeName());
+    	}	
     	EventHandler<ActionEvent> eventSegmentType = new EventHandler<ActionEvent>() {	
-			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				int index = segmentType.getItems().indexOf(segmentType.getValue());
 				segmentTypeId = segmentTypeList.get(index).getSegmentTypeId();
 				String description = segmentTypeList.get(index).getSegmentTypeName();
@@ -444,58 +448,49 @@ public class SignUpFormController extends ParentFXMLController {
 			}
 		};
     	segmentType.setOnAction(eventSegmentType);
+    	/*******************************************************/
     	
-    	
-    	List<Course> courseNamesList = new CourseHelper().getCourseNamesList();    	    	
-    	
-    	for(Course courseName : courseNamesList) {
-    		coursesInterestedIn.getItems().add(courseName.getCourseId()-1, courseName.getCourseName());
-    		
-    	}
-    	
+    	//Courses Interested In Choice Box : 
+    	List<Course> CourseInterestedInList = new CourseHelper().getCourseNamesList();    	    	
+    	for(Course courseName : CourseInterestedInList) {
+    		coursesInterestedIn.getItems().add(courseName.getCourseName());  		
+    	}   	
     	EventHandler<ActionEvent> eventCoursesInterestedIn = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-
+            public void handle(ActionEvent e) { 
             	int index = coursesInterestedIn.getItems().indexOf(coursesInterestedIn.getValue());
-            	coursesInterestedInId = courseNamesList.get(index).getCourseId();
-            	String coursesName = courseNamesList.get(index).getCourseName();
-            	
+            	coursesInterestedInId = CourseInterestedInList.get(index).getCourseId();
+            	String coursesName = CourseInterestedInList.get(index).getCourseName();
             	System.out.println("Index : "+index);
             	System.out.println("coursesInterestedInId : "+ coursesInterestedInId);
-            	System.out.println("coursesName : "+ coursesName);
-            
+            	System.out.println("coursesName : "+ coursesName);            
             }
         }; 	
         coursesInterestedIn.setOnAction(eventCoursesInterestedIn);
+    	/*******************************************************/
         
-        
-        
-        
-        
-	List<Course> courseNamesList1 = new CourseHelper().getCourseNamesList();    	    	
-    	
-    	for(Course courseName : courseNamesList1) {
-    		coursesInterestedIn.getItems().add(courseName.getCourseId()-1, courseName.getCourseName());
-    	}
-    	
+        //Courses Already Done  :    
+        List<Course> courseAlreadyDoneList = new CourseHelper().getCourseNamesList();    	    	    	
+    	for(Course courseName : courseAlreadyDoneList) {
+    		coursesAlreadyDone.getItems().add(courseName.getCourseName());
+    	}    	
     	EventHandler<ActionEvent> eventCoursesAlreadyDone = new EventHandler<ActionEvent>() { 
             public void handle(ActionEvent e) 
             { 
-
             	int index = coursesAlreadyDone.getItems().indexOf(coursesAlreadyDone.getValue());
-            	coursesAlreadyDone1 = courseNamesList1.get(index).getCourseId();
-            	String coursesName = courseNamesList1.get(index).getCourseName();
-            	
+            	coursesAlreadyDone1 = courseAlreadyDoneList.get(index).getCourseId();
+            	String coursesName = courseAlreadyDoneList.get(index).getCourseName();            	
             	System.out.println("Index : "+index);
             	System.out.println("TimeSlotId : "+ coursesAlreadyDone1);
-            	System.out.println("Description : "+ coursesName);
-            
+            	System.out.println("Description : "+ coursesName);            
             }
         }; 	
         coursesAlreadyDone.setOnAction(eventCoursesAlreadyDone);
-    	degreeChoice.getItems().addAll(choices);
+    	/*******************************************************/
+   
+        // Degree Choice Box : 
+        degreeChoice.getItems().addAll(choices);
     	
+        // Adding the logo : 
        	super.initialize(location, resources);
     	logo.setImage(logoImage);
     	  	

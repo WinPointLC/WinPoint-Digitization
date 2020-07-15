@@ -296,7 +296,7 @@ public class EnquiryDetails extends UserProfile {
 	public EnquiryDetails(Integer enquiryId, String firstName1, String lastName1, String emailId1, String mobileNo1,
 			String college1, String degree1, String branch1, String occupation1, String organisation1,
 			String designation1, String domain1, String role1, Integer experience1, String gender1,
-			Integer yearOfGraduation1, String coursesInterestedIn1, String coursesAlreadyDone1, Boolean activeStatus1) {
+			Integer yearOfGraduation1, String coursesInterestedIn1, String coursesAlreadyDone1,String suggestion1, Boolean activeStatus1) {
 		// TODO Auto-generated constructor stub
 		this.enquiryId = enquiryId;
 		this.firstName = firstName1;
@@ -316,7 +316,15 @@ public class EnquiryDetails extends UserProfile {
 		this.yearOfGraduation = yearOfGraduation1;
 		this.coursesInterestedIn = coursesInterestedIn1;
 		this.courseAlreadyDone = coursesAlreadyDone1;
+		this.suggestion = suggestion1;
 		this.activeStatus = activeStatus1;
+	}
+
+
+	public EnquiryDetails(String coursesInterestedIn2, Boolean eligibility2) {
+		// TODO Auto-generated constructor stub
+		this.coursesInterestedIn = coursesInterestedIn2;
+		this.eligibility = eligibility2;
 	}
 
 

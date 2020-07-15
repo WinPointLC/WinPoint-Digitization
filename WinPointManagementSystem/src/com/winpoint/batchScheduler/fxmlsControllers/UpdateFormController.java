@@ -207,8 +207,11 @@ public class UpdateFormController extends ParentFXMLController {
     }
     @FXML
     void validateSubmitFrame(ActionEvent event) throws SQLException {
-    	
-    	System.out.println(degree.getValue());
+
+    	if (activeStatus.isSelected()) 
+    		activeStatus.setSelected(true);
+        else
+        	activeStatus.setSelected(false); 
     	
     	Integer enquiryId = enquiryDetails.getEnquiryId();
 		String firstName1 = firstName.getText();
@@ -228,12 +231,13 @@ public class UpdateFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String coursesAlreadyDone1 = coursesAlreadyDone.getText();
-		Boolean activeStatus1 = Boolean.parseBoolean(activeStatus.getText());
+		String suggestion = suggestions.getText();
+		Boolean activeStatus1 = activeStatus.isSelected();
     	
     	
 		EnquiryDetails enquiryDetailsObject = new EnquiryDetails(enquiryId, firstName1,lastName1,emailId1,
 				mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
-				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,activeStatus1);
+				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,suggestion,activeStatus1);
     	
     	new EnquiryDetailsHelper().update(enquiryDetailsObject);
     	
@@ -353,7 +357,7 @@ public class UpdateFormController extends ParentFXMLController {
 		emailId.setText(enquiryDetails.getEmail());
 		gender.setText(enquiryDetails.getGender());
 		college.setText(enquiryDetails.getCollege());
-		//degree.setOnAction(enquiryDetails.getDegree());//(enquiryDetails.getDegree());
+		degree.setValue(enquiryDetails.getDegree());
 		branch.setText(enquiryDetails.getBranch());
 		occupation.setText(enquiryDetails.getOccupation());
 		organization.setText(enquiryDetails.getOrganisation());
