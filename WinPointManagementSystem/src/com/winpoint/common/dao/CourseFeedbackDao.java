@@ -5,12 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.CourseFeedback;
-
 import com.winpoint.common.util.sql.ConnectionManager;
 
 
@@ -43,8 +41,7 @@ public class CourseFeedbackDao {
 		}
 		
 		return  feedBackResponses;
-	}
-	 
+	}	
 	 
 	public ArrayList<Float> getAverageResponses(Integer courseId){
 		

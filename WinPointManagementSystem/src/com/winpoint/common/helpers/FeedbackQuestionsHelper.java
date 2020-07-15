@@ -16,4 +16,8 @@ public class FeedbackQuestionsHelper {
 	public ArrayList<FeedbackQuestions> getFeedbackQuestions(){
 		return new FeedbackQuestionsDao().getFeedbackQuestions();
 	}
+	
+	public ArrayList<FeedbackQuestions> getResponsesQuestion(Integer feedbackCategoryId){
+		return new FeedbackQuestionsDao().getResponsesQuestion(feedbackCategoryId);
+	}
 }

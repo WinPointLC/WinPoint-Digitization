@@ -1,20 +1,25 @@
 package com.winpoint.common.wrappers;
 
+import javafx.scene.control.Hyperlink;
 
 public class BatchIndividualFeedbackScreenWrapper {
 	
+	private int userId;
 	private String fullName;
 	private String instructorName;
 	private Integer duration;
 	private String email ;
 	private String mobile;
 	private String status;
+	private Hyperlink hpl;
 	
 	
 	
-	public BatchIndividualFeedbackScreenWrapper(String firstName, String lastName, String instructorName, Integer duration, String email,
+	
+	public BatchIndividualFeedbackScreenWrapper(int userId, String firstName, String lastName, String instructorName, Integer duration, String email,
 			String mobile, String status) {
 		//super();
+		this.userId = userId;
 		this.fullName = firstName + " " + lastName;
 		this.instructorName = instructorName;
 		this.duration = duration;
@@ -60,6 +65,30 @@ public class BatchIndividualFeedbackScreenWrapper {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+
+	public Hyperlink getHpl() {
+		return hpl;
+	}
+
+
+
+	public void setHpl(Hyperlink hpl) {
+		this.hpl = hpl;
+	}
+
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 		

@@ -215,7 +215,7 @@ public class UserProfileDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query1 = "SELECT up1.FIRST_NAME, up1.LAST_NAME, up2.FIRST_NAME + ' ' + up2.LAST_NAME AS INSTRUCTOR_NAME, up1.EMAIL_ID, up1.MOBILE_NUMBER, c.DURATION, scd1.FEEDBACK_GIVEN \r\n" + 
+			String query1 = "SELECT up1.USER_ID, up1.FIRST_NAME, up1.LAST_NAME, up2.FIRST_NAME + ' ' + up2.LAST_NAME AS INSTRUCTOR_NAME, up1.EMAIL_ID, up1.MOBILE_NUMBER, c.DURATION, scd1.FEEDBACK_GIVEN \r\n" + 
 					"FROM USER_PROFILE AS up1 \r\n" + 
 					"INNER JOIN\r\n" + 
 					"STUDENT_COURSE_DETAILS AS scd1\r\n" + 
@@ -234,7 +234,7 @@ public class UserProfileDao {
 			
 			while(resultSet.next()) {
 				feedbackGiven = (resultSet.getString("FEEDBACK_GIVEN")==null)?"NO":"YES";
-				batchIndividualFeedbackScreenWrapper = new BatchIndividualFeedbackScreenWrapper(resultSet.getString("FIRST_NAME"),
+				batchIndividualFeedbackScreenWrapper = new BatchIndividualFeedbackScreenWrapper(resultSet.getInt("USER_ID"),resultSet.getString("FIRST_NAME"),
 						resultSet.getString("LAST_NAME"),resultSet.getString("INSTRUCTOR_NAME"), 
 						resultSet.getInt("DURATION"),resultSet.getString("EMAIL_ID"), 
 						resultSet.getString("MOBILE_NUMBER"), feedbackGiven);

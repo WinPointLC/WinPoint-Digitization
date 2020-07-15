@@ -83,6 +83,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 			batchIndividualFeedbackScreenController.setRecievedData(dataForBatchIndividualFeedbackScreen);
 			
 			
+			
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Individual Feedback");
