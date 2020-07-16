@@ -6,12 +6,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.winpoint.common.beans.ManageRevenue;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 public class StudentCourseInstallmentDetailsDao {
+	
+	
+	//GROUP A ~ FOR REVENUE MANAGEMENT SCREEN TO INSERT IN PLANNED INSTALLMENT
+	
+	public void getPaymentDetail(StudentCourseInstallmentDetails revenueDetail){
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			java.sql.Date sqActualInstallmentDate = new java.sql.Date(revenueDetail.getActualInstallment1Date().getTime());
+			
+			String query = "\n" + 
+
+			"INSERT INTO STUDENT_COURSE_INSTALLMENT_DETAILS \n" +
+					"(ACTUAL_INSTALLMENT1_DATE)\n "+
+					"VALUES('"+
+					sqActualInstallmentDate+"')";
+				
+			 System.out.println(query);
+			 statement.executeQuery(query);
+			
+
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+			
+	}	
+
+	
 	public ArrayList<FeeRecordsScreenWrapper> getFeeRecordsScreenWrapperList(Integer batchId) {		
 		ArrayList<FeeRecordsScreenWrapper> feeRecordsScreenWrapperList = new ArrayList<>();
 		ResultSet resultSet = null;

@@ -19,7 +19,10 @@ import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 import com.winpoint.common.helpers.TimeSlotsHelper;
+import com.winpoint.common.wrappers.EnquiryDetailsWrapper;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -450,11 +453,32 @@ public class SignUpFormController extends ParentFXMLController {
     	segmentType.setOnAction(eventSegmentType);
     	/*******************************************************/
     	
-    	//Courses Interested In Choice Box : 
-    	List<Course> CourseInterestedInList = new CourseHelper().getCourseNamesList();    	    	
-    	for(Course courseName : CourseInterestedInList) {
+    	//Courses Interested In Combo Box : 
+    	List<Course> CourseInterestedInList = new CourseHelper().getCourseNamesList();   
+    	ObservableList<Course> coursesList =FXCollections.observableArrayList(CourseInterestedInList);
+    	ObservableList<Course> selectItemList =FXCollections.observableArrayList();
+    	
+		
+    	for(Course courseName : selectItemList) {
+    		 
+    		CheckBox selectCourses = new CheckBox(courseName.getCourseName());
     		coursesInterestedIn.getItems().add(courseName.getCourseName());  		
     	}   	
+    	
+//    	coursesInterestedIn.setOnAction((event) -> {
+//            System.out.println("Text is: "+ComboBox.getEditor().getText());
+//            System.out.println("Content is: ");
+//            for (Iterator<CheckItem> iterator = ComboBox.getItems().iterator(); iterator.hasNext();) {
+//                    CheckItem ci = (CheckItem) iterator.next();
+//                    System.out.println(String.format("[%s] %s -> %s", ci.selected ? "X" : " ",ci.getDisplayName(), ci.getInternalName()));
+//
+//            }
+//    });
+//    	
+    	
+    	
+    	
+    	
     	EventHandler<ActionEvent> eventCoursesInterestedIn = new EventHandler<ActionEvent>() { 
             public void handle(ActionEvent e) { 
             	int index = coursesInterestedIn.getItems().indexOf(coursesInterestedIn.getValue());
@@ -495,5 +519,36 @@ public class SignUpFormController extends ParentFXMLController {
     	logo.setImage(logoImage);
     	  	
     }
-      
+          
+}
+ class CheckItem{
+	
+	 boolean selected;
+	    String displayName;
+	    String internalName;    
+
+	    public boolean isChecked() {
+	        return selected;
+	    }
+
+	    public void setChecked(boolean checked) {
+	        this.selected = checked;
+	    }
+
+	    public String getDisplayName() {
+	        return displayName;
+	    }
+
+	    public void setDisplayName(String displayName) {
+	        this.displayName = displayName;
+	    }
+
+	    public String getInternalName() {
+	        return internalName;
+	    }
+
+	    public void setInternalName(String internalName) {
+	        this.internalName = internalName;
+	    }	
+	
 }

@@ -59,6 +59,11 @@ public class StudentCourseInstallmentDetails {
 
 
 
+	public StudentCourseInstallmentDetails(Date firstPaymentDate) {
+		// TODO Auto-generated constructor stub
+		this.actualInstallment1Date = firstPaymentDate;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

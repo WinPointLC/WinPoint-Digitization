@@ -8,15 +8,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.ManageRevenue;
 import com.winpoint.common.beans.OrganizationType;
 import com.winpoint.common.beans.PaymentType;
 import com.winpoint.common.beans.RevenueType;
 import com.winpoint.common.beans.SegmentType;
+import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.ManageRevenueHelper;
 import com.winpoint.common.helpers.OrganizationTypeHelper;
 import com.winpoint.common.helpers.PaymentTypeHelper;
 import com.winpoint.common.helpers.RevenueTypeHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
+import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -131,21 +135,36 @@ public class ManageRevenueContoller extends ParentFXMLController{
     	LocalDate ldRecieptDate = recieptDate.getValue();
     	Calendar cRecieptDate =  Calendar.getInstance();
     	cRecieptDate.set(ldRecieptDate.getYear(), ldRecieptDate.getMonthValue(), ldRecieptDate.getDayOfMonth());
-    	Date recieptDate1 = cFirstPaymentDate.getTime();
+    	Date recieveDate1 = cFirstPaymentDate.getTime();
     	/***************************************************/
         	
     	// Declaration of required Variable :
-    	Integer segmentType1 = segmentTypeId;
-    	String recieptNumber1 = recieptNumber.getText() ;
-    	Date recieptDate = recieptDate1;
-    	String payerDescription1 = payerDescription.getText();
-    	String batchNumber1 = batchNumber.getText();
+    	Integer revenueDetailId=null ; // = object.getRevenueDetailId();
     	Integer revenueType1 = revenueTypeId;
-    	Integer organization1 ;
-    	Integer paymentMode1;
-    	String checkNumber1;
-    	float revenueAmount1;
+    	String recieptNumber1 = recieptNumber.getText();
+    	String payerDescription1 = payerDescription.getText();
+    	Integer courseId=null; // = objectOfBatchDetail.getCourseId();
+    	Integer batchId=null; // = objectOfBatchDetail.getBatchId();
+    	float revenueAmount1= Float.parseFloat(revenueAmount.getText());
+    	Integer paymentMode1 = paymentTypeId;
+    	String checkNumber1= checkNumber.getText();
+    	Integer segmentType1 = segmentTypeId;
+    	Integer organization1 = organizationTypeId;
+    	Integer userId=null; // = objectOfUserProfile.getUserId();
+    	Date recieveDate = recieveDate1;
+    	
+    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
+    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userId,recieveDate);
+    	
+    	new ManageRevenueHelper().getRevenueDetailList(manageRevenueObject);
+    	
+       //********************************************//  It goes in studentcoursesinstallmentdetails
     	Date firstPaymentDate = firstPaymentDate1;
+    	
+    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails((java.sql.Date) firstPaymentDate);
+    	
+    	new StudentCourseInstallmentHelper().getPaymentDetail(studentCourseInstallmentObject);
+    	
     	/***************************************************/   	
     	
     	// Navigation to the next Screen : 
