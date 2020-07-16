@@ -18,19 +18,19 @@ public class PaymentType {
 		this.paymentTypeName = paymentTypeName;
 	}
 
-	public Integer getOrganizationTypeId() {
+	public Integer getPaymentTypeId() {
 		return paymentTypeId;
 	}
 
-	public void setOrganizationTypeId(Integer paymentTypeId) {
+	public void setPaymentTypeId(Integer paymentTypeId) {
 		this.paymentTypeId = paymentTypeId;
 	}
 
-	public String getOrganizationTypeName() {
+	public String getPaymentTypeName() {
 		return paymentTypeName;
 	}
 
-	public void setOrganizationTypeName(String paymentTypeName) {
+	public void setPaymentTypeName(String paymentTypeName) {
 		this.paymentTypeName = paymentTypeName;
 	}
 	

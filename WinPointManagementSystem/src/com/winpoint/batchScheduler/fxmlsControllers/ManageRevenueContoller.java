@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.OrganizationType;
+import com.winpoint.common.beans.PaymentType;
 import com.winpoint.common.beans.RevenueType;
 import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.OrganizationTypeHelper;
+import com.winpoint.common.helpers.PaymentTypeHelper;
 import com.winpoint.common.helpers.RevenueTypeHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 
@@ -35,6 +37,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 	private Integer segmentTypeId;
 	private Integer revenueTypeId;
 	private Integer organizationTypeId;
+	private Integer paymentTypeId;
 	
 	@FXML
     private TextField recieptNumber;
@@ -210,15 +213,28 @@ public class ManageRevenueContoller extends ParentFXMLController{
             	System.out.println("Description : "+ description);
 			}
 		};
+		organization.setOnAction(eventOrganizationType);
+		/***************************************************/
     	
-    	
-    	//Abhishek
-    	//organization.getItems().addAll(organizationChoiceBox);
-    	//paymentMode.getItems().addAll(paymentModeChoiceBox);
-    	//revenueType.getItems().addAll(revenueTypeChoiceBox);
-    	//segmentType.getItems().addAll(segmentTypeChoiceBox);
-    	
-    	
+		// Payment Type choice Box : 
+		List<PaymentType> paymentTypeList = new  PaymentTypeHelper().getPaymentTypeDaoList();
+		for(PaymentType paymentTypeObject : paymentTypeList) {
+			paymentMode.getItems().add(paymentTypeObject.getPaymentTypeName());
+		}
+		EventHandler<ActionEvent> eventPaymentType = new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				int index = paymentMode.getItems().indexOf(paymentMode.getValue());
+				paymentTypeId = paymentTypeList.get(index).getPaymentTypeId();
+				String description = paymentTypeList.get(index).getPaymentTypeName();				
+				System.out.println("Index : "+index);
+            	System.out.println("RevenueTypeId : "+ paymentTypeId);
+	           	System.out.println("Description : "+ description);
+	        }
+		};
+		paymentMode.setOnAction(eventPaymentType);
+		/***************************************************/
+		
+		// adding the logo : 
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
    	}

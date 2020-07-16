@@ -1,8 +1,5 @@
 package com.winpoint.common.dao;
-/**
- * @author Abhishek Dixit
- *
- */
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,31 +7,32 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.winpoint.common.beans.OrganizationType;
+import com.winpoint.common.beans.PaymentType;
 import com.winpoint.common.util.sql.ConnectionManager;
 
-public class OrganizationTypeDao {
+public class PaymentTypeDao {
 
 	
-public List<OrganizationType> getOrganizationTypeList(){
+	public List<PaymentType> getPaymentTypeDaoList(){
 		
-		List<OrganizationType> organizationTypeList = new ArrayList<OrganizationType>();
+		List<PaymentType> paymentTypeDaoList = new ArrayList<PaymentType>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
 			String query = "\n" + 
-					"SELECT * FROM ORGANIZATION_TYPE";
+					"SELECT * FROM PAYMENT_MODE";
 			
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-				organizationTypeList.add(new OrganizationType(rs.getInt("ORGANIZATION_TYPE_ID"), rs.getString("ORGANIZATION_TYPE_DESCRIPTION")));
+				paymentTypeDaoList.add(new PaymentType(rs.getInt("PAYMENT_MODE_ID"), rs.getString("PAYMENT_MODE_NAME")));
 			}			
 		}catch(SQLException e) {
-			organizationTypeList = null;
+			paymentTypeDaoList = null;
 			e.printStackTrace();
 		}
-		return organizationTypeList;	
-	}	
+		return paymentTypeDaoList;	
+	}
+	
 }
