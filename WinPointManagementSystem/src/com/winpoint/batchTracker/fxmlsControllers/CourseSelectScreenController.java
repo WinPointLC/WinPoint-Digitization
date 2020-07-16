@@ -70,7 +70,7 @@ public class CourseSelectScreenController extends ParentFXMLController{
     	
     	courseTypeId = courseTypeList.get(index).getCourseTypeId();
     	
-    	System.out.println(courseTypeId);
+    	//System.out.println(courseTypeId);
     	gridPane.getChildren().clear();
     	getButtonsUpdate();
     }
@@ -122,6 +122,9 @@ public class CourseSelectScreenController extends ParentFXMLController{
 					dataForBatchSelection.add(((Button)event.getSource()).getId().substring(8));
 					dataForBatchSelection.add(((Button)event.getSource()).getText());
 					
+					//System.out.println("CourseID: " + ((Button)event.getSource()).getId().substring(8));
+					//System.out.println("CourseName: " + ((Button)event.getSource()).getText());
+					
 					batchSelectionScreenController.setRecievedData(dataForBatchSelection);
 					
 					Scene scene = new Scene(myNewScene);
@@ -132,17 +135,13 @@ public class CourseSelectScreenController extends ParentFXMLController{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//System.out.println(((Button)event.getSource()).getText());
-				//System.out.println(((Button)event.getSource()).getId() + "\n");
 			}
     	}; 
-    	//System.out.println("Buttons updated");
-    	//if(streamId != null && courseTypeId != null) {
     		List<Course> courseDetailsList = new CourseHelper().getCourseList(streamId, courseTypeId);
     		Integer courseCount = courseDetailsList.size();
     		int i, j, k = 0;
     		for(i = 0;i < Math.ceil(courseCount *0.25); i++) {
-        		for(j = 0; j < 4; j++) {
+        		for(j = 0; j < 4 && (k < courseCount); j++) {
         			courseButton = new Button();
         			courseButton.setId("courseId" + courseDetailsList.get(k).getCourseId().toString());
         	    	courseButton.setText(courseDetailsList.get(k).getCourseName());
@@ -161,11 +160,7 @@ public class CourseSelectScreenController extends ParentFXMLController{
         			gridPane.add(courseButton, j, i);
         			k++;
         		}
-        	}
-    		//System.out.println("\n\n");
-    	//}else {
-    		//System.out.println("Stream Id:" + streamId + "\nCourseType Id:" + courseTypeId + "\n\n");
-    	//}    	    	
+        	}   	    	
     }
     
     @Override
@@ -177,16 +172,6 @@ public class CourseSelectScreenController extends ParentFXMLController{
     		selectStream.getItems().add(streamList.get(i).getStreamName());
     		i++;
     	}
-    	
-//    	List<CourseType> courseTypeList = new CourseTypeHelper().getCourseTypeList();
-//    	i = 0;
-//    	while(i < courseTypeList.size())
-//    	{
-//    		selectCourseType.getItems().add(courseTypeList.get(i).getCourseTypeName());
-//    		i++;
-//    	}
-    	
-    	//getButtonsUpdate();
     	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
