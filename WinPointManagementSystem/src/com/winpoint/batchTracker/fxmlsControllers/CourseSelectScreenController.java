@@ -22,6 +22,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,24 +38,17 @@ import javafx.stage.Stage;
 public class CourseSelectScreenController extends ParentFXMLController{
 	private Integer courseTypeId;
 	private Integer streamId;
+	private Button courseButton;
+	private List<CourseType> courseTypeList ;
 	
 	@FXML
 	private Button backButton;
     
 	@FXML
     private ComboBox<String> selectStream = new ComboBox<>();
-    
-    
-    //String[] streams = {"Technical", "Soft Skills","Behavioural Skills"};
 
     @FXML
     private ComboBox<String> selectCourseType = new ComboBox<>();
-    
-    
-    //String[] coursesType = {"Modular", "CRT","TBC"};
-    
-    @FXML
-    private Button refreshGrid;
 
     @FXML
     private ImageView logo;
@@ -62,29 +56,55 @@ public class CourseSelectScreenController extends ParentFXMLController{
     @FXML
     private GridPane gridPane;
     
-    private Button courseButton;
-
     @FXML
     void getCourseType(ActionEvent event) {
-    	courseTypeId = new CourseTypeHelper().getCourseTypeId(selectCourseType.getValue());
+    	gridPane.getChildren().clear();
+    	//courseTypeId = new CourseTypeHelper().getCourseTypeId(selectCourseType.getValue());
+    	int i, index = -1;
+    	for(i = 0; i < courseTypeList.size(); i++) {
+    		if(courseTypeList.get(i) != null && courseTypeList.get(i).getCourseTypeName().equals(selectCourseType.getValue())) {
+    			index = i;
+    			break;
+    		}
+    	}
+    	
+    	courseTypeId = courseTypeList.get(index).getCourseTypeId();
+    	
+    	System.out.println(courseTypeId);
+    	gridPane.getChildren().clear();
+    	getButtonsUpdate();
     }
 
     @FXML
     void getStream(ActionEvent event) {
-    	//System.out.println(selectStream.getValue());
-    	//query2: "Select StreamId from Streams where StreamName = '"+selectStream.getValue()+"'"
+    	selectCourseType.getItems().clear();
+    	gridPane.getChildren().clear();
+    	//courseTypeList.clear();
     	streamId = new StreamHelper().getStreamId(selectStream.getValue());
+    	courseTypeList = new CourseTypeHelper().getCourseTypeList(streamId);
+    	int i = 0;
+    	while(i < courseTypeList.size())
+    	{
+    		selectCourseType.getItems().add(courseTypeList.get(i).getCourseTypeName());
+    		i++;
+    	}
     }
     
     @FXML
     void getPreviousScreen(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void refreshGridButtons(ActionEvent event) {
-    	gridPane.getChildren().clear();
-    	getButtonsUpdate();
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+    	Parent myNewScene;
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../common/testClient/FrontScreenFxml.fxml"));
+		try {
+			myNewScene = loader.load();
+			Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Course Select");
+	    	stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     void getButtonsUpdate() {    	
@@ -112,12 +132,12 @@ public class CourseSelectScreenController extends ParentFXMLController{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(((Button)event.getSource()).getText());
-				System.out.println(((Button)event.getSource()).getId() + "\n");
+				//System.out.println(((Button)event.getSource()).getText());
+				//System.out.println(((Button)event.getSource()).getId() + "\n");
 			}
     	}; 
-    	System.out.println("Buttons updated");
-    	if(streamId != null && courseTypeId != null) {
+    	//System.out.println("Buttons updated");
+    	//if(streamId != null && courseTypeId != null) {
     		List<Course> courseDetailsList = new CourseHelper().getCourseList(streamId, courseTypeId);
     		Integer courseCount = courseDetailsList.size();
     		int i, j, k = 0;
@@ -129,7 +149,9 @@ public class CourseSelectScreenController extends ParentFXMLController{
         	    	courseButton.setMinSize(200, 150);
         	    	courseButton.setMaxSize(200, 150);
         	    	courseButton.setPadding(new Insets(10, 10, 10, 10));
+        	    	courseButton.setCursor(Cursor.HAND);
         	    	courseButton.setWrapText(true);
+        	    	courseButton.setFocusTraversable(true);
         	    	courseButton.setFont(Font.font("Calibri", FontWeight.BOLD, FontPosture.ITALIC, 28));
         	    	courseButton.setAlignment(Pos.CENTER);
         	    	courseButton.setTextAlignment(TextAlignment.CENTER);
@@ -140,35 +162,11 @@ public class CourseSelectScreenController extends ParentFXMLController{
         			k++;
         		}
         	}
-        	System.out.println("\n\n");
-    	}else {
-    		System.out.println("Stream Id:" + streamId + "\nCourseType Id:" + courseTypeId + "\n\n");
-    	}    	    	
+    		//System.out.println("\n\n");
+    	//}else {
+    		//System.out.println("Stream Id:" + streamId + "\nCourseType Id:" + courseTypeId + "\n\n");
+    	//}    	    	
     }
-    
-//    void sendToBatchSelectionScreen(ActionEvent event) {
-//    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-//    	Parent myNewScene;
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/BatchSelectionScreen.fxml"));
-//			myNewScene = loader.load();
-//			BatchSelectionScreenController batchSelectionScreenController = loader.getController();
-//			
-//			ArrayList<String> dataForBatchSelection = new ArrayList<String>();
-//			dataForBatchSelection.add(((Button)event.getSource()).getId().substring(8));
-//			dataForBatchSelection.add(((Button)event.getSource()).getText());
-//			
-//			batchSelectionScreenController.setRecievedData(dataForBatchSelection);
-//			
-//			Scene scene = new Scene(myNewScene);
-//	    	stage.setScene(scene);
-//	    	stage.setTitle("Batch Select");
-//	    	stage.show();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    }
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {    	
@@ -180,15 +178,15 @@ public class CourseSelectScreenController extends ParentFXMLController{
     		i++;
     	}
     	
-    	List<CourseType> courseTypeList = new CourseTypeHelper().getCourseTypeList();
-    	i = 0;
-    	while(i < courseTypeList.size())
-    	{
-    		selectCourseType.getItems().add(courseTypeList.get(i).getCourseTypeName());
-    		i++;
-    	}
+//    	List<CourseType> courseTypeList = new CourseTypeHelper().getCourseTypeList();
+//    	i = 0;
+//    	while(i < courseTypeList.size())
+//    	{
+//    		selectCourseType.getItems().add(courseTypeList.get(i).getCourseTypeName());
+//    		i++;
+//    	}
     	
-    	getButtonsUpdate();
+    	//getButtonsUpdate();
     	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
