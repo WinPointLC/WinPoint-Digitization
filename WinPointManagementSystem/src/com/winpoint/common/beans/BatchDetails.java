@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class BatchDetails {
 	
-	private String batchId;
+	private Integer batchId;
 	private Integer courseId;	
 	private Integer facultyId;
 	private Date startDate;
@@ -34,7 +34,7 @@ public class BatchDetails {
 	 */
 	
 	// this Constructor is Created for the testing purpose ~ Abhishek
-	public BatchDetails (String batchId, Integer facultyId) {
+	public BatchDetails (Integer batchId, Integer facultyId) {
 		this.batchId = batchId;
 		this.facultyId = facultyId;
 		System.out.println(" Default Constructor ");
@@ -47,7 +47,7 @@ public class BatchDetails {
 	}
 	
 	
-	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
+	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
 			Integer lectureDuration, Integer userId, String facultyName) {
 		super();
@@ -66,7 +66,7 @@ public class BatchDetails {
 		this.facultyName = facultyName;
 	}
 
-	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
+	public BatchDetails (Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
 		this.batchId = batchId;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
@@ -76,7 +76,7 @@ public class BatchDetails {
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
-	public BatchDetails (String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate,String facultyName) {
+	public BatchDetails (Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate,String facultyName) {
 		this.batchId = batchId;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
@@ -87,7 +87,7 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 		this.facultyName=facultyName;
 	}
-	public BatchDetails(String batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
+	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
 			Integer lectureDuration, Integer userId) {
 		super();
@@ -186,14 +186,14 @@ public class BatchDetails {
 	/**
 	 * @return the batchId of the batch.
 	 */
-	public String getBatchId() {
+	public Integer getBatchId() {
 		return batchId;
 	}
 	
 	/**
 	 * @param batchId the batchId of the batch you want to set
 	 */
-	public void setBatchId(String batchId) {
+	public void setBatchId(Integer batchId) {
 		this.batchId = batchId;
 	}
 	

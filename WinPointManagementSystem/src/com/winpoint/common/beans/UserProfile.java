@@ -135,6 +135,12 @@ public class UserProfile {
 		this.createDate = createDate;*/
 	}
 
+	public UserProfile(String firstName, String lastName, Boolean empty) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
 	// Anjali ma'am
 	public UserProfile(String email, String password) {
 		// TODO Auto-generated constructor stub

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.BatchDetails;
-import com.winpoint.common.beans.EnquiryDetails;
-import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
 
@@ -28,7 +26,7 @@ public class BatchDetailsDao {
 			ResultSet rs = statement.executeQuery(query1);
 			
 			while(rs.next()) {
-				batchDetailsList.add(new BatchDetails(rs.getString("BATCH_ID"), rs.getInt("COURSE_ID"), rs.getInt("FACULTY_USER_ID"), rs.getInt("BATCH_TIME"), rs.getDate("BEGIN_DATE"), rs.getDate("END_DATE"), rs.getInt("CREATED_BY"), rs.getDate("CREATED_DATE")));
+				batchDetailsList.add(new BatchDetails(rs.getInt("BATCH_ID"), rs.getInt("COURSE_ID"), rs.getInt("FACULTY_USER_ID"), rs.getInt("BATCH_TIME"), rs.getDate("BEGIN_DATE"), rs.getDate("END_DATE"), rs.getInt("CREATED_BY"), rs.getDate("CREATED_DATE")));
 			}
 			
 		} 
@@ -57,7 +55,7 @@ public class BatchDetailsDao {
 			ResultSet rs = statement.executeQuery(query1);
 			
 			while(rs.next()) {
-				batchDetailsList1.add(new BatchDetails(rs.getString("BATCH_ID"), rs.getInt("COURSE_ID"), rs.getInt("FACULTY_USER_ID"), rs.getInt("BATCH_TIME"), rs.getDate("BEGIN_DATE"), rs.getDate("END_DATE"), rs.getInt("CREATED_BY"), rs.getDate("CREATED_DATE"),rs.getNString("FACULTY_NAME")));
+				batchDetailsList1.add(new BatchDetails(rs.getInt("BATCH_ID"), rs.getInt("COURSE_ID"), rs.getInt("FACULTY_USER_ID"), rs.getInt("BATCH_TIME"), rs.getDate("BEGIN_DATE"), rs.getDate("END_DATE"), rs.getInt("CREATED_BY"), rs.getDate("CREATED_DATE"),rs.getNString("FACULTY_NAME")));
 			}
 			
 		} 
@@ -125,4 +123,5 @@ public class BatchDetailsDao {
 		return batchList;
 		
 	}
+	
 }

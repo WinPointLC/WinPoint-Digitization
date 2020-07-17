@@ -84,7 +84,7 @@ public class CoursesNameController extends ParentFXMLController{
     
     public void initialize(URL location, ResourceBundle resources) {
     	
-   		List<UserProfile> userProfileList = new UserProfileHelper().getEligibleUsers();
+   		List<UserProfile> userProfileList = new UserProfileHelper().getRegisteredUsers();
    		List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
  
    		// Row Population logic

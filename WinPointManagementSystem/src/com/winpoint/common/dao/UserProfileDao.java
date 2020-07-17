@@ -181,7 +181,7 @@ public class UserProfileDao {
 	
 	// 
 	
-	public ArrayList<UserProfile> getEligibleUsers(){
+	public ArrayList<UserProfile> getRegisteredUsers(){
 		
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
 		
@@ -194,7 +194,8 @@ public class UserProfileDao {
 			ResultSet rs = statement.executeQuery(query1);
 			
 			while(rs.next()) {
-				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
+				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),true));
+				System.out.println(userProfileList);
 			}
 			
 		} 

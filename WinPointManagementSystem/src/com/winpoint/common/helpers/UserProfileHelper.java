@@ -23,16 +23,8 @@ public class UserProfileHelper {
     }
 
 
-    public ArrayList<UserProfile> getEligibleUsers(){
-        List<UserProfile> userProfileList = new UserProfileDao().getEligibleUsers();
-
-        for( UserProfile userProfile : userProfileList ) {
-
-            System.out.println(userProfile.getFirstName());
-
-        }
-
-        return (ArrayList<UserProfile>) userProfileList;
+    public List<UserProfile> getRegisteredUsers(){
+        return new UserProfileDao().getRegisteredUsers();
     }
 
 

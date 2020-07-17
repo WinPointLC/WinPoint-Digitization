@@ -164,7 +164,8 @@ public class EnquiryDetailsController extends ParentFXMLController{
         	update.setOnAction(event);
         	
         	System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
-        	enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
+        	enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),
+        			enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
         }
     	
     	

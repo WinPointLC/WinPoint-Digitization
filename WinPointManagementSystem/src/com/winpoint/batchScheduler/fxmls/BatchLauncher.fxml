@@ -72,7 +72,7 @@
                   <Label fx:id="batchName" prefHeight="25.0" prefWidth="337.0" GridPane.columnIndex="1" />
                   <Label fx:id="facultyId" prefHeight="29.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="timeChoice" prefHeight="28.0" prefWidth="323.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="31.0" prefWidth="397.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="totalNumberOfLectures" prefHeight="31.0" prefWidth="397.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />

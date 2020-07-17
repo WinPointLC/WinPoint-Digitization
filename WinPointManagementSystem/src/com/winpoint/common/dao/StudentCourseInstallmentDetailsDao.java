@@ -28,8 +28,12 @@ public class StudentCourseInstallmentDetailsDao {
 			String query = "\n" + 
 
 			"INSERT INTO STUDENT_COURSE_INSTALLMENT_DETAILS \n" +
-					"(ACTUAL_INSTALLMENT1_DATE)\n "+
-					"VALUES('"+
+					"(USER_ID"+","+
+					"COURSE_ID"+","+
+					"ACTUAL_INSTALLMENT1_DATE)\n "+
+					"VALUES("+
+					1+","+
+					1+",'"+
 					sqActualInstallmentDate+"')";
 				
 			 System.out.println(query);

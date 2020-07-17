@@ -7,9 +7,14 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.CheckComboBox;
+
+import com.sun.org.apache.bcel.internal.generic.GOTO;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.SegmentType;
@@ -19,9 +24,9 @@ import com.winpoint.common.helpers.CourseHelper;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 import com.winpoint.common.helpers.TimeSlotsHelper;
-import com.winpoint.common.wrappers.EnquiryDetailsWrapper;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,10 +42,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class SignUpFormController extends ParentFXMLController {
     
+	int i = 0;
+	
+	SignUpFormController signUpFormController;// = new SignUpFormController();
+	
 	private Integer timeSlotsId1;
 	
 	private Integer segmentTypeId;
@@ -50,8 +61,12 @@ public class SignUpFormController extends ParentFXMLController {
 	private Integer coursesAlreadyDone1;
 	
 	
-	List<Course> courseNamesComboBoxList = new CourseHelper().getCourseNamesList();    	    	
-	  
+	List<Course> courseNamesComboBoxList = new CourseHelper().getCourseNamesList();  
+	
+	HashMap<String, Integer> courseInterestedInSet = new HashMap<String, Integer>();
+	
+	HashMap<String, Integer> courseAlreadyDoneSet = new HashMap<String, Integer>();
+	
 	
 	@FXML
     private TextField firstName;
@@ -295,11 +310,15 @@ public class SignUpFormController extends ParentFXMLController {
 
     }
     
-    @FXML
-    private ComboBox<String> coursesInterestedIn= new ComboBox<>();
+    private Button courseName = new Button("CourseList");
     
+    ObservableList<String> coursesList = FXCollections.observableArrayList();
+        
     @FXML
-    private ComboBox<String> coursesAlreadyDone= new ComboBox<>();
+    private HBox coursesInterestedInHbox;
+ 
+    @FXML
+    private HBox courseAlreadyDoneHbox;
     
     @FXML
     private ChoiceBox<String> availableTime = new ChoiceBox<>();
@@ -390,7 +409,11 @@ public class SignUpFormController extends ParentFXMLController {
     	/*******************************************************/
 				
 		// Object Passing to the bean class : 
-    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,recommendation1,eligibility1,coursesInterestedIn1,reference1,time,courseAlreadyDone1,startDate1,segmentTypeId1,suggestion1,activeStatus1);
+    	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,
+    			address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,
+    			domain1,role1,experience1,createdBy1,dateOfEnquiry1,gender1,yearOfGraduation1,
+    			recommendation1,eligibility1,coursesInterestedIn1,reference1,time,courseAlreadyDone1,
+    			startDate1,segmentTypeId1,suggestion1,activeStatus1);
     	// Helper Method Call : 
     	new EnquiryDetailsHelper().create(enquiryDetails1);
     	
@@ -408,10 +431,9 @@ public class SignUpFormController extends ParentFXMLController {
 			e.printStackTrace();
 		}
     }
-   
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
+
     	// TimeSlots Choice Box : 
     	List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    	    	
     	for(TimeSlots timeSlot : timeSlotsList) {
@@ -454,61 +476,40 @@ public class SignUpFormController extends ParentFXMLController {
     	/*******************************************************/
     	
     	//Courses Interested In Combo Box : 
-    	List<Course> CourseInterestedInList = new CourseHelper().getCourseNamesList();   
-    	ObservableList<Course> coursesList =FXCollections.observableArrayList(CourseInterestedInList);
-    	ObservableList<Course> selectItemList =FXCollections.observableArrayList();
     	
-		
-    	for(Course courseName : selectItemList) {
-    		 
-    		CheckBox selectCourses = new CheckBox(courseName.getCourseName());
-    		coursesInterestedIn.getItems().add(courseName.getCourseName());  		
-    	}   	
+      	List<Course> CoursesList = new CourseHelper().getCourseNamesList();   // getAllCoursesList
+	
+    	for(Course courses : CoursesList) {
+    		coursesList.add(courses.getCourseName());
+  //  		courseInterestedInSet.add(courses.getCourseName(),courses.getCourseId());
+    	}
     	
-//    	coursesInterestedIn.setOnAction((event) -> {
-//            System.out.println("Text is: "+ComboBox.getEditor().getText());
-//            System.out.println("Content is: ");
-//            for (Iterator<CheckItem> iterator = ComboBox.getItems().iterator(); iterator.hasNext();) {
-//                    CheckItem ci = (CheckItem) iterator.next();
-//                    System.out.println(String.format("[%s] %s -> %s", ci.selected ? "X" : " ",ci.getDisplayName(), ci.getInternalName()));
-//
-//            }
-//    });
-//    	
-    	
-    	
-    	
-    	
-    	EventHandler<ActionEvent> eventCoursesInterestedIn = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) { 
-            	int index = coursesInterestedIn.getItems().indexOf(coursesInterestedIn.getValue());
-            	coursesInterestedInId = CourseInterestedInList.get(index).getCourseId();
-            	String coursesName = CourseInterestedInList.get(index).getCourseName();
-            	System.out.println("Index : "+index);
-            	System.out.println("coursesInterestedInId : "+ coursesInterestedInId);
-            	System.out.println("coursesName : "+ coursesName);            
-            }
-        }; 	
-        coursesInterestedIn.setOnAction(eventCoursesInterestedIn);
+    	CheckComboBox<String> coursesInterestedIn = new CheckComboBox<>(coursesList);
+
+      	coursesInterestedIn.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
+    	         System.out.println(coursesInterestedIn.getCheckModel().getCheckedItems());
+    	         
+    	     }
+    	 });
+    	 
+    	coursesInterestedInHbox.getChildren().add(coursesInterestedIn);
     	/*******************************************************/
         
         //Courses Already Done  :    
-        List<Course> courseAlreadyDoneList = new CourseHelper().getCourseNamesList();    	    	    	
-    	for(Course courseName : courseAlreadyDoneList) {
-    		coursesAlreadyDone.getItems().add(courseName.getCourseName());
-    	}    	
-    	EventHandler<ActionEvent> eventCoursesAlreadyDone = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-            	int index = coursesAlreadyDone.getItems().indexOf(coursesAlreadyDone.getValue());
-            	coursesAlreadyDone1 = courseAlreadyDoneList.get(index).getCourseId();
-            	String coursesName = courseAlreadyDoneList.get(index).getCourseName();            	
-            	System.out.println("Index : "+index);
-            	System.out.println("TimeSlotId : "+ coursesAlreadyDone1);
-            	System.out.println("Description : "+ coursesName);            
-            }
-        }; 	
-        coursesAlreadyDone.setOnAction(eventCoursesAlreadyDone);
+    	for(Course courses : CoursesList) {
+    		coursesList.add(courses.getCourseName());    		
+    	}
+    	
+    	CheckComboBox<String> coursesAlreadyDone = new CheckComboBox<>(coursesList);
+
+    	coursesAlreadyDone.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
+    	         System.out.println(coursesAlreadyDone.getCheckModel().getCheckedItems());
+//    	         courseInterestedInSetOfIds.add();
+    	     }
+    	 });
+      	courseAlreadyDoneHbox.getChildren().add(coursesAlreadyDone);
     	/*******************************************************/
    
         // Degree Choice Box : 
@@ -520,35 +521,4 @@ public class SignUpFormController extends ParentFXMLController {
     	  	
     }
           
-}
- class CheckItem{
-	
-	 boolean selected;
-	    String displayName;
-	    String internalName;    
-
-	    public boolean isChecked() {
-	        return selected;
-	    }
-
-	    public void setChecked(boolean checked) {
-	        this.selected = checked;
-	    }
-
-	    public String getDisplayName() {
-	        return displayName;
-	    }
-
-	    public void setDisplayName(String displayName) {
-	        this.displayName = displayName;
-	    }
-
-	    public String getInternalName() {
-	        return internalName;
-	    }
-
-	    public void setInternalName(String internalName) {
-	        this.internalName = internalName;
-	    }	
-	
 }

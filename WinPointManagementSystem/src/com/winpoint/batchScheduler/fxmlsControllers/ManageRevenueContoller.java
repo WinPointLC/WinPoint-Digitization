@@ -43,6 +43,8 @@ public class ManageRevenueContoller extends ParentFXMLController{
 	private Integer organizationTypeId;
 	private Integer paymentTypeId;
 	
+	
+	
 	@FXML
     private TextField recieptNumber;
 
@@ -76,8 +78,10 @@ public class ManageRevenueContoller extends ParentFXMLController{
     @FXML
     private DatePicker firstAmountDate;
 
+
     @FXML
     private ImageView logo;
+
 
     @FXML
     private Button submit;
@@ -139,19 +143,20 @@ public class ManageRevenueContoller extends ParentFXMLController{
     	/***************************************************/
         	
     	// Declaration of required Variable :
-    	Integer revenueDetailId=null ; // = object.getRevenueDetailId();
+    	Integer revenueDetailId = 6 ; // = object.getRevenueDetailId();
     	Integer revenueType1 = revenueTypeId;
     	String recieptNumber1 = recieptNumber.getText();
     	String payerDescription1 = payerDescription.getText();
-    	Integer courseId=null; // = objectOfBatchDetail.getCourseId();
-    	Integer batchId=null; // = objectOfBatchDetail.getBatchId();
+    	Integer courseId = 1; // = objectOfBatchDetail.getCourseId();
+    	Integer batchId = 1; // = objectOfBatchDetail.getBatchId();
     	float revenueAmount1= Float.parseFloat(revenueAmount.getText());
     	Integer paymentMode1 = paymentTypeId;
     	String checkNumber1= checkNumber.getText();
     	Integer segmentType1 = segmentTypeId;
     	Integer organization1 = organizationTypeId;
-    	Integer userId=null; // = objectOfUserProfile.getUserId();
+    	Integer userId = 1; // = objectOfUserProfile.getUserId();
     	Date recieveDate = recieveDate1;
+    	Date firstPaymentDate = firstPaymentDate1;
     	
     	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
     			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userId,recieveDate);
@@ -159,9 +164,9 @@ public class ManageRevenueContoller extends ParentFXMLController{
     	new ManageRevenueHelper().getRevenueDetailList(manageRevenueObject);
     	
        //********************************************//  It goes in studentcoursesinstallmentdetails
-    	Date firstPaymentDate = firstPaymentDate1;
     	
-    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails((java.sql.Date) firstPaymentDate);
+    	
+    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(firstPaymentDate);
     	
     	new StudentCourseInstallmentHelper().getPaymentDetail(studentCourseInstallmentObject);
     	

@@ -21,7 +21,7 @@ public class ManageRevenueDao {
 			Statement statement = connection.createStatement();
 			
 			java.sql.Date sqlRecieveDate = new java.sql.Date(revenueDetail.getRecieveDate().getTime());
-			
+			ResultSet resultSet;
 			String query = "\n" + 
 
 			"INSERT INTO REVENUE_DETAIL \n" +
@@ -54,23 +54,24 @@ public class ManageRevenueDao {
 					sqlRecieveDate+"')";
 		
 			
-			ResultSet rs = statement.executeQuery(query);
+			resultSet = statement.executeQuery(query);
 			
-			while(rs.next()) {
-				manageRevenueList.add(new ManageRevenue(rs.getInt("REVENUE_DETAIL_ID"),rs.getInt("REVENUE_TYPE_ID"),
-						rs.getString("RECIEPT_NUMBER"),rs.getString("PAYER_DESCRIPTION"),rs.getInt("COURSE_ID"),rs.getInt("BATCH_ID"),
-						rs.getFloat("REVENUE_AMOUNT"),rs.getInt("PAYMENT_MODE_ID"),rs.getString("CHEQUE_NUMBER"),rs.getInt("SEGMENT_TYPE_ID"),
-						rs.getInt("ORGANIZATION_ID"),rs.getInt("USER_ID"),rs.getDate("RECIEVE_DATE")));
+			while(resultSet.next()) {
+				manageRevenueList.add(new ManageRevenue(resultSet.getInt("REVENUE_DETAIL_ID"),
+						resultSet.getInt("REVENUE_TYPE_ID"),
+						resultSet.getString("RECIEPT_NUMBER"),
+						resultSet.getString("PAYER_DESCRIPTION"),
+						resultSet.getInt("COURSE_ID"),
+						resultSet.getInt("BATCH_ID"),
+						resultSet.getFloat("REVENUE_AMOUNT"),
+						resultSet.getInt("PAYMENT_MODE_ID"),
+						resultSet.getString("CHEQUE_NUMBER"),
+						resultSet.getInt("SEGMENT_TYPE_ID"),
+						resultSet.getInt("ORGANIZATION_ID"),
+						resultSet.getInt("USER_ID"),
+						resultSet.getDate("RECIEVE_DATE")));
 			}			
-			
-			
-//			public ManageRevenue(Integer revenueDetailId, Integer revenueTypeId, String recieptNumber,
-//					String payerDescription, Integer courseId, Integer batchId, float revenueAmount, Integer paymentModeId,
-//					String chequeNumber, Integer segmentTypeId, Integer organizationId, Integer userId,
-//					Date recieveDate)
-			
-			
-			
+				
 		}catch(SQLException e) {
 			manageRevenueList = null;
 			e.printStackTrace();

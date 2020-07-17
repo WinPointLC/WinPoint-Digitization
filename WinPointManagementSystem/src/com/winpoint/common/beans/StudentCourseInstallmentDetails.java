@@ -1,6 +1,6 @@
 package com.winpoint.common.beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class StudentCourseInstallmentDetails {
 	private Integer userId;

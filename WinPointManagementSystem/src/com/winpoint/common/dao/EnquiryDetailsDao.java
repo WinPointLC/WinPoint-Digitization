@@ -47,11 +47,12 @@ public class EnquiryDetailsDao {
 
 
 			//we have to access the course name from the previous screen
-			String q2 = "SELECT E.FIRST_NAME, E.LAST_NAME\n" +
-					"FROM ENQUIRY_DETAILS AS E\n" +
-					"JOIN COURSES AS C\n" +
-					"ON CAST(E.COURSE_ALREADY_DONE AS VARCHAR(30)) = C.PRE_REQUISITE\n" +
-					"WHERE C.COURSE_NAME = 'writing skills'";
+//			String q2 = "SELECT E.FIRST_NAME, E.LAST_NAME\n" +
+//					"FROM ENQUIRY_DETAILS AS E\n" +
+//					"JOIN COURSES AS C\n" +
+//					"ON CAST(E.COURSE_ALREADY_DONE AS VARCHAR(30)) = C.PRE_REQUISITE\n" +
+//					"WHERE C.COURSE_NAME = 'writing skills'";
+			String q2 = "SELECT * FROM ENQUIRY_DETAILS";
 			ResultSet rs = statement.executeQuery(q2);
 
 			while(rs.next()) {
@@ -115,7 +116,7 @@ public class EnquiryDetailsDao {
 		}
 		return  (ArrayList<EnquiryDetails>) enquiryDetailList;
 	}
-	// group A - for inserting the values in the table. ~ Abhishek
+	// group A - for inserting the values in the table.( SIGNUP FORM ) ~ Abhishek
 	public void create(EnquiryDetails enquiryDetails) throws SQLException {
 		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
 		java.sql.Date sqlDateOfEnquiry = new java.sql.Date(enquiryDetails.getDateofEnquiry().getTime());
