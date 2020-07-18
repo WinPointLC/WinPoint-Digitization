@@ -88,6 +88,17 @@ public class Course {
 		this.preRequisite = preRequisite;
 	}
 
+	
+	public Course(Integer courseId, String courseName, Integer courseFees, Integer streamId,
+			Integer courseTypeId) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.courseFees = courseFees;
+		this.streamId = streamId;
+		this.courseTypeId = courseTypeId;
+	}
+	
 	public Course(int courseId, String courseName) {
 		// TODO Auto-generated constructor stub
 		

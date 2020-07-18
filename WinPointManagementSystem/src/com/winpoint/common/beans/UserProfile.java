@@ -141,6 +141,19 @@ public class UserProfile {
 		this.lastName = lastName;
 	}
 	
+	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+			Integer userCategoryId, Integer timeSlotsId) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.userCategoryId = userCategoryId;
+		this.timeSlotsId = timeSlotsId;
+	}
+	
+	
 	// Anjali ma'am
 	public UserProfile(String email, String password) {
 		// TODO Auto-generated constructor stub
