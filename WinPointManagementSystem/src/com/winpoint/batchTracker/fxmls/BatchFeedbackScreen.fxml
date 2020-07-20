@@ -64,7 +64,7 @@
                 <CategoryAxis label="Questions" startMargin="0.0" tickLabelFill="WHITE" tickLabelGap="10.0" />
               </xAxis>
               <yAxis>
-                <NumberAxis autoRanging="false" label="Weignted Average" minorTickLength="0.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="1.0" tickUnit="1.0" upperBound="5.0" />
+                <NumberAxis autoRanging="false" label="Weignted Average" minorTickCount="0" minorTickLength="0.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="1.0" tickUnit="1.0" upperBound="5.0" />
               </yAxis>
             </BarChart>
          </children>

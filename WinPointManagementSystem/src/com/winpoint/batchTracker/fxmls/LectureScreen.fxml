@@ -105,7 +105,7 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <Slider fx:id="lectureSelectionSlider" majorTickUnit="5.0" max="60.0" minorTickCount="4" onDragDropped="#updateLectureDetails" prefHeight="135.0" prefWidth="656.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" HBox.hgrow="ALWAYS">
+                        <Slider fx:id="lectureSelectionSlider" majorTickUnit="5.0" max="60.0" minorTickCount="4" prefHeight="135.0" prefWidth="656.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" HBox.hgrow="ALWAYS">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -253,7 +253,7 @@
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="selectedLectureDate" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22 Oct 2019">
+                        <Text fx:id="displayLectureDate" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22 Oct 2019">
                            <font>
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
@@ -273,7 +273,7 @@
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="selectedLectureDuration" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                        <Text fx:id="displayLectureDuration" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                            <font>
                               <Font name="Calibri Bold Italic" size="24.0" />
                            </font>
@@ -295,7 +295,7 @@
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="selectedLectureTime" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="05:30 pm">
+                        <Text fx:id="displayLectureTime" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="05:30 pm">
                            <font>
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
@@ -312,7 +312,7 @@
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="classStrengthNumber" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+                        <Text fx:id="displayClassStrength" fill="WHITE" layoutX="15.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
                            <font>
                               <Font name="Calibri Bold Italic" size="20.0" />
                            </font>

@@ -7,6 +7,7 @@ import java.util.List;
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.dao.BatchDetailsDao;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
+import com.winpoint.common.wrappers.LectureWrapper;
 
 
 
@@ -28,6 +29,9 @@ public class BatchDetailsHelper {
 		new BatchDetailsDao().create(batchDetailsObject);
 	}
 	
+	public LectureWrapper getBatchDetails(Integer batchId) {
+		return new BatchDetailsDao().getBatchDetails(batchId);
+	}
 }
 
 

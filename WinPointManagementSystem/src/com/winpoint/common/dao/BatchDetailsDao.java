@@ -10,6 +10,7 @@ import java.util.List;
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
+import com.winpoint.common.wrappers.LectureWrapper;
 
 public class BatchDetailsDao {
 	
@@ -121,6 +122,31 @@ public class BatchDetailsDao {
 		}
 		
 		return batchList;
+		
+	}
+	
+	public LectureWrapper getBatchDetails(Integer batchId){
+		LectureWrapper batchDetails = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT batch.BEGIN_DATE, batch.END_DATE, batch.CURRENT_LECTURE_NUMBER, batch.TOTAL_NUMBER_OF_LECTURES\r\n" + 
+					"FROM BATCH_DETAILS AS batch\r\n" + 
+					"WHERE BATCH_ID = "+ batchId;
+			
+			ResultSet resultSet = statement.executeQuery(query1);
+			
+			while(resultSet.next()) {
+				batchDetails = new LectureWrapper(resultSet.getInt("CURRENT_LECTURE_NUMBER"), resultSet.getDate("BEGIN_DATE"), 
+						resultSet.getDate("END_DATE"), resultSet.getInt("TOTAL_NUMBER_OF_LECTURES"));
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return batchDetails;
 		
 	}
 	
