@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.CourseFeedbackHelper;
+import com.winpoint.common.wrappers.BatchFeedbackScreenWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -27,6 +30,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BatchFeedbackScreenController extends ParentFXMLController {
+	
+	
+//	 private Integer batchId;
+//	 private String batchName;
+	 private Integer courseId = 1;
+//	 private String courseName;
+	
+	private XYChart.Series<String, Float> question;
+	
+    @FXML
+    private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     @FXML
     private Button backButton;
@@ -38,7 +55,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     private ImageView logo;
 
     @FXML
-    private BarChart<Axis , Axis> weightedResponsesGraph;
+    private BarChart<String , Float> weightedResponsesGraph;
 
     @FXML
     private TextField overallExperience;
@@ -50,6 +67,10 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     private Button individualFeedback;
     
     public void setRecievedData(ArrayList<String> recievedData) {
+//    	batchId =  Integer.parseInt(recievedData.get(0));
+//    	batchName =  recievedData.get(1);
+//    	courseId =  Integer.parseInt(recievedData.get(2));
+//    	courseName =  recievedData.get(3);
     	for(String data : recievedData) {
             System.out.println(data);
         }
@@ -66,22 +87,8 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 			BatchIndividualFeedbackScreenController batchIndividualFeedbackScreenController = loader.getController();
 			
 			ArrayList<String> dataForBatchIndividualFeedbackScreen = new ArrayList<String>();
-			dataForBatchIndividualFeedbackScreen.add("BatchID");
-			dataForBatchIndividualFeedbackScreen.add("BatchName");
-			dataForBatchIndividualFeedbackScreen.add("StudentName");
-			dataForBatchIndividualFeedbackScreen.add("Instructor");
-			dataForBatchIndividualFeedbackScreen.add("Duration");
-			dataForBatchIndividualFeedbackScreen.add("StudentEmail");
-			dataForBatchIndividualFeedbackScreen.add("StudentMobile");
-			dataForBatchIndividualFeedbackScreen.add("Status");
-			dataForBatchIndividualFeedbackScreen.add("Q1");
-			dataForBatchIndividualFeedbackScreen.add("Q2");
-			dataForBatchIndividualFeedbackScreen.add("Q10");
-			dataForBatchIndividualFeedbackScreen.add("QA");
-			dataForBatchIndividualFeedbackScreen.add("QD");
 			
 			batchIndividualFeedbackScreenController.setRecievedData(dataForBatchIndividualFeedbackScreen);
-			
 			
 			
 			Scene scene = new Scene(myNewScene);
@@ -115,27 +122,45 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
     	
-//    	Axis xAxis = new CategoryAxis();   
-//        
-//    	xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Average"))); 
-//    	xAxis.setLabel("Questions");  
-//
-//    	Axis<Number> yAxis = new NumberAxis(); 
-//    	yAxis.setLabel("Average");
-//    	ArrayList<Float> averageResponseList =  new CourseFeedbackHelper().getAverageResponses(1);
-//    	weightedResponsesGraph = new BarChart<Axis,Axis>(xAxis, yAxis);
-//    	weightedResponsesGraph.setTitle("Average Feedback");
-//    	XYChart.Series<String, Float> q1 = new XYChart.Series<>();
-//    	q1.setName("Q1");
-//    	q1.getData().add(new XYChart.Data<>("Average",averageResponseList.get(0)));
-//    	
-//    	XYChart.Series<String, Float> q2 = new XYChart.Series<>();
-//    	q2.setName("Q2");
-//    	q2.getData().add(new XYChart.Data<>("Average",averageResponseList.get(1)));
-//		for(Float avg: averageResponseList) {
-//			System.out.println(avg);
-//		}
-//    	weightedResponsesGraph.getData().add(q1,q2);
+    	BatchFeedbackScreenWrapper studentCount = new CourseFeedbackHelper().getFeedbackCount(courseId);
+    	totalFeedbacksRecieved.setText(studentCount.getFeedbackCount().toString());
+    	
+    	 
+    	xAxis.setLabel("Questions");
+    	xAxis.setAutoRanging(true);
+    	xAxis.setTickLabelsVisible(true);
+    	xAxis.setEndMargin(5);
+    	xAxis.setTickLabelGap(10);
+    	xAxis.setTickMarkVisible(true);
+    	xAxis.setTickLength(8);
+ 
+    	yAxis.setLabel("Average");
+    	yAxis.setTickLabelsVisible(true);
+    	yAxis.setLowerBound(0);
+    	yAxis.setMinorTickCount(9);
+    	yAxis.setUpperBound(5);
+    	yAxis.setTickLabelGap(5);
+    	yAxis.setTickLength(8);
+    	yAxis.setTickUnit(1);
+    	
+    	
+    	ArrayList<Float> averageResponseList =  new CourseFeedbackHelper().getAverageResponses(courseId);
+    	
+    	
+    	
+    	for(Float avg : averageResponseList ) {
+    		System.out.println(avg);
+    	}
+    	
+    	weightedResponsesGraph.setTitle("Average Feedback");
+    	question = new XYChart.Series<String, Float>();
+    	
+    	for(int i=0;i<averageResponseList.size()-1;i++) {
+    		question = new XYChart.Series<>();
+    		question.setName("Q" + (i+1));
+    		question.getData().add(new XYChart.Data<>("Average",averageResponseList.get(i)));
+    		weightedResponsesGraph.getData().addAll(question);
+    	}   
     	
     	
 		// TODO Auto-generated method stub
