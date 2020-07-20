@@ -88,7 +88,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Lectures :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Topics :" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Calibri Bold" size="24.0" />
                            </font>

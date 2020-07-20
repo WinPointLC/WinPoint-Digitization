@@ -84,16 +84,40 @@ public class EvaluationScreenController extends ParentFXMLController {
     	batchNameValue = recievedData.get(1);
     	batchName.setText(batchNameValue);
     	courseId = Integer.parseInt(recievedData.get(2));
-//        for(String data : recievedData) {
-//            System.out.println(data);
-//        }
-    	 
- 	    
-// 	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
+    	ArrayList<EvaluationScreenWrapper>  evaluationWrapperList= new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId);
+    	setTableData(evaluationWrapperList);
+    	setScreenValues(evaluationWrapperList); 
+    	
     }
    
    
-    @FXML
+    private void setTableData(ArrayList<EvaluationScreenWrapper> evaluationWrapperList) {
+ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( evaluationWrapperList);
+	    
+	    evaluationTable.setItems(evaluationScreenRecords);
+	}
+
+
+	private void setScreenValues(ArrayList<EvaluationScreenWrapper> evaluationWrapperList) {
+    	for (EvaluationScreenWrapper evaluationScreenWrapper : evaluationWrapperList) {
+  		   String fullName=evaluationScreenWrapper.getFullName();	   
+         Hyperlink hpl= new Hyperlink(fullName);
+         hpl.setOnAction(new EventHandler<ActionEvent>() {
+             public void handle(ActionEvent e) {
+               	evaluationUserID.setText(evaluationScreenWrapper.getUserId().toString());
+            		evaluationName.setText(evaluationScreenWrapper.getFullName());
+            		evaluationMarks.setText(evaluationScreenWrapper.getMarks().toString());
+            		evaluationGrade.setText(evaluationScreenWrapper.getGradeId());
+            		evaluationCertificateIssued.setText(evaluationScreenWrapper.getIsCertificateGiven());
+            	
+                }
+               });
+         evaluationScreenWrapper.setHpl(hpl);
+     }
+	}
+
+
+	@FXML
     void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage)backButton.getScene().getWindow();
     	Parent myNewScene;
@@ -114,32 +138,20 @@ public class EvaluationScreenController extends ParentFXMLController {
    		// TODO Auto-generated method stub
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-   		ArrayList<EvaluationScreenWrapper>  evaluationWrapperList= new StudentCourseDetailsHelper().getStudentEvaluationDetails(1);
-   		//ArrayList<EvaluationScreenWrapper> studentCourseDetailsHelper1= new StudentCourseDetailsHelper().getEvaluationScreenValues(1,1);
-   	 for (EvaluationScreenWrapper evaluationScreenWrapper : evaluationWrapperList) {
- 		   String fullName=evaluationScreenWrapper.getFullName();	   
-        Hyperlink hpl= new Hyperlink(fullName);
-        hpl.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-              	evaluationUserID.setText(evaluationScreenWrapper.getUserId().toString());
-           		evaluationName.setText(evaluationScreenWrapper.getFullName());
-           		evaluationMarks.setText(evaluationScreenWrapper.getMarks().toString());
-           		evaluationGrade.setText(evaluationScreenWrapper.getGradeId());
-           		evaluationCertificateIssued.setText(evaluationScreenWrapper.getIsCertificateGiven());
-           	
-               }
-              });
-        evaluationScreenWrapper.setHpl(hpl);
-    }
+   		
    		evaluationTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("hpl"));
    		evaluationTableGradeColumn.setCellValueFactory(new PropertyValueFactory<>("gradeId"));
    		evaluationTableCertificateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("isCertificateGiven"));
    		
-   		
+//   		ArrayList<String> data = new ArrayList<>();
+//        data.add("1");
+//        data.add("Batch 1");
+//        data.add("1");
+//        data.add("Course 1");
+//
+//        setRecievedData(data);
    	 
-   		ObservableList<EvaluationScreenWrapper> evaluationScreenRecords = FXCollections.observableArrayList( evaluationWrapperList);
-	    
-	    evaluationTable.setItems((ObservableList<EvaluationScreenWrapper>) evaluationScreenRecords);
+   		
    	}
 
 

@@ -13,7 +13,10 @@ public class TopicsHelper {
 		return new TopicsDao().getTopicsList(courseId);
 	}
 	
-	public List<ProgressTrackingWrapper> getProgressTrackingWrapper1(int courseId,int batchId) {
-		return new TopicsDao().getProgressTrackingWrapper1(courseId,batchId);
+	public ArrayList<ProgressTrackingWrapper> getProgressTrackingWrapperTableValues(int courseId,int batchId) {
+		return new TopicsDao().getProgressTrackingWrapperTableValues(courseId,batchId);
+}
+	public   ProgressTrackingWrapper getProgressTrackingWrapperValues(int courseId,int batchId) {
+		return new TopicsDao().getProgressTrackingWrapperValues(courseId,batchId);
 }
 }
