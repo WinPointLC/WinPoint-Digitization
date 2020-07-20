@@ -100,6 +100,10 @@ public class EnquiryDetails extends UserProfile {
 //	}
 	
 
+	
+	
+	
+
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,
@@ -219,7 +223,6 @@ public class EnquiryDetails extends UserProfile {
 		this.activeStatus = activeStatus;
 	}
 
-	public EnquiryDetails() {	}
 
 	/**
 	 * @return the enquiryId
@@ -319,6 +322,28 @@ public class EnquiryDetails extends UserProfile {
 		this.suggestion = suggestion1;
 		this.activeStatus = activeStatus1;
 	}
+	
+	
+//	"SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,MOBILE_NO,\n" + 
+//	"ELIGIBILITY,COURSE_INTERESTED_IN,TIME_SLOTS_ID,COURSE_ALREADY_DONE,\n" + 
+//	" SEGMENT_TYPE_ID FROM ENQUIRY_DETAILS\n" + 
+//	"WHERE ACTIVE_STATUS = 1"; 
+
+
+	public EnquiryDetails(int enquiryId, String firstName, String lastName, String emailId, String mobileNo, Boolean eligibility,
+			String coursesInterestedIn, int timeSlotsId, String coursesAlreadyDone, int segmetTypeId) {
+		this.enquiryId= enquiryId;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.emailId=emailId;
+		this.mobileNo=mobileNo;
+		this.eligibility=eligibility;
+		this.coursesInterestedIn=coursesInterestedIn;
+		this.timeSlotsId=timeSlotsId;
+		this.courseAlreadyDone=coursesAlreadyDone;
+		this.segmentTypeId=segmetTypeId;
+		
+		}
 
 
 	public EnquiryDetails(String coursesInterestedIn2, Boolean eligibility2) {

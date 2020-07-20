@@ -12,8 +12,10 @@ import java.util.List;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.util.sql.ConnectionManager;
+import com.winpoint.common.wrappers.EnquiredStudetnsCourseWrapper;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 public class PriorityCoursesListDao {
@@ -26,27 +28,17 @@ public class PriorityCoursesListDao {
 		HashSet<String>coursesPre;
 
 	ResultSet resultSet=null;
-
 	try(Connection connection = ConnectionManager.getConnection()){
 		Statement statement = connection.createStatement();
-		String query = "SELECT COURSE_ID,COURSE_NAME,FEES,PRE_REQUISITE,STREAM_ID,COURSE_TYPE_ID FROM COURSES";
+		String query = "SELECT COURSE_ID,COURSE_NAME,FEES,PRE_REQUISITE,STREAM_ID,COURSE_TYPE_ID FROM COURSES"; //to add faculty id
 		resultSet = statement.executeQuery(query);
-//		LIST
 		while(resultSet.next()) {
 			coursesPre= new HashSet<>();
 			for(String s:resultSet.getString("PRE_REQUISITE").split(",")) {
 				coursesPre.add(s);
 			}
 			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"), resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID")), coursesPre);
-		}
-//		for(int i:coursesList.keySet()) {
-//			System.out.println("Course ID: "+i);
-//			for (String string : coursesList.get(i)) {
-//				System.out.println(string);
-//			}
-//			System.out.println("\n\n");
-//		}
-		
+		}		
 	}
 	
 	catch (SQLServerException e) {
@@ -107,23 +99,10 @@ public class PriorityCoursesListDao {
 		 resultSet = statement.executeQuery(query);
 		 
 		 while(resultSet.next()) {
+			 
 			 userID = resultSet.getInt("USER_ID");
-			 
-//			 
-			 
-				 coursesDoneMap.get(userID).getCoursesDoneSet().add(Integer.toString(resultSet.getInt("COURSE_ID")));
-				 
-		 }
-		
-		 
-		 
-//		for(int i:coursesDoneMap.keySet()) {
-//			System.out.println("Student ID: "+i+"\nCourses Already Done:");
-//			for (String string : coursesDoneMap.get(i).getCoursesDoneSet()) {
-//				System.out.println(string);
-//			}
-//			System.out.println("\n");
-//		}	
+			 coursesDoneMap.get(userID).getCoursesDoneSet().add(Integer.toString(resultSet.getInt("COURSE_ID")));			 
+		 }	
 	}
 	
 	catch (SQLServerException e) {
@@ -135,112 +114,97 @@ public class PriorityCoursesListDao {
 	
 	return coursesDoneMap;
 }
-
 	
-	private HashMap< Integer,UserCoursesDoneWrapper> getTimeSlotDepependentStudentList(int timeSlotId) {
-
-		HashMap< Integer, UserCoursesDoneWrapper>coursesDoneList= new HashMap<>();
-		HashSet<String>coursesDone;
-		int userID;
-
-	ResultSet resultSet=null;
-
-	try(Connection connection = ConnectionManager.getConnection()){
-		Statement statement = connection.createStatement();
-		String query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n"+
-				"EMAIL_ID,USER_CATEGORY_ID FROM USER_PROFILE\n" + 
-				"WHERE ACTIVE_STATUS = 1\n" + 
-				"AND USER_CATEGORY_ID=1\n"
-				+ "AND TIME_SLOTS_IDS="+timeSlotId;
-		resultSet = statement.executeQuery(query);
+	
+	public HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper> EnquiryDeatails() {
+		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = new HashMap<>();
 		
-		while(resultSet.next()) {
-				coursesDone = new HashSet<>();
-				String coursesAlreadyDone = resultSet.getString("COURSE_ALREADY_DONE");
-				if(coursesAlreadyDone != null) {
-					for(String s:coursesAlreadyDone.split(",")) {
-						coursesDone.add(s);
-					}
-				}
-				coursesDoneList.put(resultSet.getInt("USER_ID"),new UserCoursesDoneWrapper(new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), resultSet.getString("LAST_NAME"), 
-						resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getInt("USER_CATEGORY_ID"), resultSet.getInt("TIME_SLOTS_IDS")), coursesDone));
-			}
-		
-			for(Integer string : coursesDoneList.keySet()) {
-				System.out.println(coursesDoneList.get(string).getUserProfile().getFirstName());
-			}
-		 	query = null;
-		 	resultSet = null;
-		 
-		 	query = "SELECT A.USER_ID,B.COURSE_ID \n" + 
-		 			"		 		FROM USER_PROFILE A\n" + 
-		 			"		 		INNER JOIN STUDENT_COURSE_DETAILS B \n" + 
-		 			"		 		ON A.USER_ID=B.USER_ID\n" + 
-		 			"		 		WHERE A.ACTIVE_STATUS = 1\n" + 
-		 			"		 		AND A.TIME_SLOTS_IDS="+timeSlotId +" AND\n"+ 
-		 			"		 		A.USER_CATEGORY_ID=1 ORDER BY A.USER_ID,B.COURSE_ID";
-		 
-		
-		 	resultSet = statement.executeQuery(query);
-		 
-		 	while(resultSet.next()) {
-			 	userID = resultSet.getInt("USER_ID");
-				 	coursesDoneList.get(userID).getCoursesDoneSet().add(Integer.toString(resultSet.getInt("COURSE_ID")));
+		ResultSet resultSet=null;
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			String query = "SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,MOBILE_NO,\n" + 
+					"ELIGIBILITY,COURSE_INTERESTED_IN,TIME_SLOTS_ID,COURSE_ALREADY_DONE,\n" + 
+					" SEGMENT_TYPE_ID FROM ENQUIRY_DETAILS\n" + 
+					"WHERE ACTIVE_STATUS = 1";
+			
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()) {
+			boolean eligibility=resultSet.getInt("ELIGIBILITY")==0?true:false;
 				
-		 	}	
-		
-//		 	for (Integer string : coursesDoneList.keySet()) {
-//					System.out.println(coursesDoneList.get(string).getUserProfile().getFirstName());
-//				}
-//		 
-//			for(int i:coursesDoneList.keySet()) {
-//				System.out.println("Student ID: "+i+"\nCourses PRE REQ:");
-//				for (String string : coursesDoneList.get(i).getCoursesDoneSet()) {
-//					System.out.println(string);
-//				}
-//				System.out.println("\n");
-//			}	
+				
+			EnquiryDetails en = new EnquiryDetails(resultSet.getInt("ENQUIRY_ID"),resultSet.getString("FIRST_NAME"),
+					resultSet.getString("LAST_NAME"),resultSet.getString("EMAIL_ID"),resultSet.getString("MOBILE_NO"),
+					eligibility,resultSet.getString("COURSE_INTERESTED_IN"),resultSet.getInt("TIME_SLOTS_ID"),
+					resultSet.getString("COURSE_ALREADY_DONE"),resultSet.getInt("SEGMENT_TYPE_ID"));
+				HashSet<String>coursesDone = new HashSet<>();
+				HashSet<String>coursesInterestedIn = new HashSet<>();
+				for(String course: resultSet.getString("COURSE_ALREADY_DONE").split(",")) {
+					coursesDone.add(course);
+				}
+				for(String course: resultSet.getString("COURSE_INTERESTED_IN").split(",")) {
+					coursesInterestedIn.add(course);
+				}
+			
+				EnquiredStudetnsCourseWrapper enquiredStudetnsCourseWrapper = new EnquiredStudetnsCourseWrapper(coursesInterestedIn, coursesDone);
+				EnquiredStudentsCoursesMap.put(en, enquiredStudetnsCourseWrapper);
+			}
 		}
-	
 		catch (SQLServerException e) {
 			e.printStackTrace();
 		} 
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		} 
-	
-		return coursesDoneList;
+		return EnquiredStudentsCoursesMap;
 	}
+		
+	
+
 	
 	
-	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesStudent() {
-		HashMap< Course, HashSet<String>>courseList=new PriorityCoursesListDao().getCoursePreRequisites();
-		HashMap<Integer, UserCoursesDoneWrapper> studentsList = new PriorityCoursesListDao().getActiveStudentsList();
+	
+	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesStudentsEligibleMap() {
+		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
+		HashMap<Integer, UserCoursesDoneWrapper> studentsList = getActiveStudentsList();
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>>coursesStudentsEligibleMap = new HashMap<>();
 		
-		for(Course i:courseList.keySet()) {
-			coursesStudentsEligibleMap.put(i,new ArrayList<>());
-			for(int j:studentsList.keySet()) {
-				if((!(studentsList.get(j).getCoursesDoneSet().contains(Integer.toString(i.getCourseId()))) && 
-						studentsList.get(j).getCoursesDoneSet().containsAll(courseList.get(i))) || 
-						(courseList.get(i).contains("0") && !studentsList.get(j).getCoursesDoneSet().contains(Integer.toString(i.getCourseId())))){
-					
-					ArrayList<UserCoursesDoneWrapper>user=coursesStudentsEligibleMap.get(i);
-					user.add(studentsList.get(j));
-					coursesStudentsEligibleMap.put(i,user);
+		for(Course course : courseList.keySet()) {
+			coursesStudentsEligibleMap.put(course,new ArrayList<>());
+			for(int userId : studentsList.keySet()) {
+				if((!(studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))
+						&& studentsList.get(userId).getCoursesDoneSet().containsAll(courseList.get(course))) || (courseList.get(course).contains("0") 
+								&& !studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))){
+					ArrayList<UserCoursesDoneWrapper>user=coursesStudentsEligibleMap.get(course);
+					user.add(studentsList.get(userId));
+					coursesStudentsEligibleMap.put(course,user);
 				}
 			}
 		}
 		return coursesStudentsEligibleMap;
 	}
+	
+	
+	public HashMap<Course, ArrayList<EnquiryDetails>> coursesEligibleEnquiredStudentsMaps() {
+		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
+		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = EnquiryDeatails();
+		HashMap<Course, ArrayList<EnquiryDetails>> coursesEnquiredStudetnsMap = new HashMap<>();
+		
+		for(Course course : courseList.keySet()) {
+			coursesEnquiredStudetnsMap.put(course, new ArrayList<>());
+			for(EnquiryDetails enquiry : EnquiredStudentsCoursesMap.keySet()) {
+				if(EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId())) &&
+						(EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course)) ||
+								(courseList.get(course).contains("0") && !EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId()))))) {
+					 coursesEnquiredStudetnsMap.get(course).add(enquiry);
+				}
+			}
+		}
+		return coursesEnquiredStudetnsMap;
+	}
+	
+	
 }
 
 
-//for(Course k:count.keySet()) {
-//	System.out.println(k.getCourseName()+"\n");
-//	for (UserCoursesDoneWrapper string : count.get(k)) {
-//		System.out.println(string.getUserProfile().getFirstName());
-//	}
-//	System.out.println("\n\n\n");
-//}
+
 	

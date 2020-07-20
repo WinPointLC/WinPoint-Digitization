@@ -220,6 +220,9 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		this.courseAlreadyDone = courseAlreadyDone;
 		this.activeStatus = activeStatus;
 	}
+	
+	
+	
 
 	public UserProfile() {
 		// TODO Auto-generated constructor stub
