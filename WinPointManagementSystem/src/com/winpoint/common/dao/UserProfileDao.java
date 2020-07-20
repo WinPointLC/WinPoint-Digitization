@@ -145,6 +145,36 @@ public class UserProfileDao {
 		return allUsersList;
 	}
 
+	
+	//Group A : Faculty Access ~ Abhishek
+	public ArrayList<UserProfile> getFaculty(){
+		
+		List<UserProfile> facultyList = new ArrayList<UserProfile>();
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "select * from USER_PROFILE\n" + 
+					"where USER_CATEGORY_ID = 2" + 
+					"";
+			
+			ResultSet rs = statement.executeQuery(query1);
+			
+			while(rs.next()) {
+				facultyList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getInt("USER_ID")));
+				System.out.println(facultyList);
+			}
+			
+		} 
+		catch (SQLException e) {
+			facultyList = null;
+			e.printStackTrace();
+		}
+		
+		return  (ArrayList<UserProfile>) facultyList;
+		
+	}
+	
 	public String getCoursesList(Integer userId) {
 		StringBuilder coursesString = new StringBuilder("");		
 		try(Connection connection = ConnectionManager.getConnection()){

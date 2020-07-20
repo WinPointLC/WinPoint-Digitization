@@ -27,6 +27,10 @@ public class UserProfileHelper {
         return new UserProfileDao().getRegisteredUsers();
     }
 
+    public List<UserProfile> getFaculty(){
+        return new UserProfileDao().getFaculty();
+    }
+
 
     //BatchIndividual
 

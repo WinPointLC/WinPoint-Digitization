@@ -107,7 +107,6 @@ public class StudentDetailsController extends ParentFXMLController {
 
 	private void displayEnquiryDetails() {
 		
-		//System.out.println(enquiryDetailsObject.getDateofEnquiry());
 		
 		// TODO Auto-generated method stub
 		nameLabel.setText(enquiryDetailsObject.getFirstName()+" "+enquiryDetailsObject.getLastName());
@@ -116,13 +115,14 @@ public class StudentDetailsController extends ParentFXMLController {
     	branchLabel.setText(enquiryDetailsObject.getBranch());
     	emailLabel.setText(enquiryDetailsObject.getEmail());
        	contactLabel.setText(enquiryDetailsObject.getMobileNumber());
-    	dateofEnquiryLabel.setText(enquiryDetailsObject.getDateofEnquiry().toString());
     	suggestionLabel.setText(enquiryDetailsObject.getSuggestion());
     	coursesInterestedLabel.setText(enquiryDetailsObject.getCoursesInterestedIn());
     	
     	courseCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	eligiblityCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	ObservableList<EnquiryDetails>list=FXCollections.observableArrayList(new EnquiryDetails(enquiryDetailsObject.getCoursesInterestedIn(),enquiryDetailsObject.getEligibility()));
+    	ObservableList<EnquiryDetails>list=FXCollections.observableArrayList(new 
+    			EnquiryDetails(enquiryDetailsObject.getCoursesInterestedIn(),
+    					enquiryDetailsObject.getEligibility()));
     	eligibilityTable.setItems(list);
     	
 	}    

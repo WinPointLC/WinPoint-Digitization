@@ -3,15 +3,16 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
-import com.winpoint.common.helpers.BatchDetailsHelper;
-
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,36 +31,85 @@ import javafx.stage.Stage;
 public class BatchLauncherController extends ParentFXMLController {
 		BatchDetails batchDetails = new BatchDetails();
 
+	    @FXML
+	    private TextField lectureDuration;
+
+	    @FXML
+	    private DatePicker beginDate;
+
+	    @FXML
+	    private DatePicker endDate;
+
+	    @FXML
+	    private Label batchName;
+
+	    @FXML
+	    private Label facultyId;
+
+	    @FXML
+	    private Label timeChoice;
 
 	    @FXML
 	    private Label totalNumberOfLectures;
-		
-			@FXML
-		    private TextField lectureDuration;
 
-		    @FXML
-		    private DatePicker beginDate;
+	    @FXML
+	    private Button cancel;
 
-		    @FXML
-		    private DatePicker endDate;
+	    @FXML
+	    private Button launch;
 
-		    @FXML
-		    private Label batchName;
+	    @FXML
+	    private ImageView logo;
+	    
+	    @FXML
+	    private Button setLectureDuration;
 
-		    @FXML
-		    private Label facultyId;
+	    @FXML
+	    void validateLectureDuration(ActionEvent event) {
+	    	
+	    }
+	    
+	    @FXML
+	    void validateSetLectureDuration(ActionEvent event) {
 
-		    @FXML
-		    private Label timeChoice;
-	
-		    @FXML
-		    private Button cancel;
-	
-		    @FXML
-		    private Button launch;
-	
-		    @FXML
-		    private ImageView logo;
+	    	String lectureDurationString = lectureDuration.getText();
+	    	int lectureDuration1 = Integer.parseInt(lectureDurationString);
+			int totalNumberOfLectures1 = (80/lectureDuration1);		
+			String totalNumberOfLecturesString = Integer.toString(totalNumberOfLectures1);
+			totalNumberOfLectures.setText(totalNumberOfLecturesString);                      // Total Number Of Lectures
+			
+			int totalNumberOfDays;
+			if(timeChoice.getText().equals("MORNING")||timeChoice.getText().equals("EVENING"))
+				totalNumberOfDays = (int) (totalNumberOfLectures1 * 1.4);
+			else
+				totalNumberOfDays = (int) (totalNumberOfLectures1 * 3.5);
+			
+			//Given Date in String format
+			String oldDate = "2020-09-23";  
+			System.out.println("Date before Addition: "+oldDate);
+			//Specifying date format that matches the given date
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar c = Calendar.getInstance();
+			try{
+			   //Setting the date to the given date
+			   c.setTime(sdf.parse(oldDate));
+			}catch(ParseException e){
+				e.printStackTrace();
+			 }
+			   
+			//Number of Days to add
+			c.add(Calendar.DAY_OF_MONTH, totalNumberOfDays);  
+			//Date after adding the days to the given date
+			String newDate = sdf.format(c.getTime());  
+			//Displaying the new Date after addition of Days
+			System.out.println("Date after Addition: "+newDate);
+			
+			try {
+		        endDate.setValue(LOCAL_DATE(newDate));
+		    } catch (NullPointerException e) {
+		    }
+	    	
+	    }
 	
 	    @FXML
 	    void beginDateFrame(ActionEvent event) {
@@ -117,22 +166,22 @@ public class BatchLauncherController extends ParentFXMLController {
     	Date dateEndDate = cEndDate .getTime();
     	
     	
-    	String batchId ="11";
-    	String batchNumber1="1";
-    	String courseName ="Python";
-    	Integer courseId = 3;
-    	Integer lectureDuration1  = Integer.parseInt(lectureDuration.getText());
-    	Integer totalNumberOfLecture1  = 40; //Integer.parseInt(totalNumberOfLecture.getText());
-    	Integer facultyId1  = Integer.parseInt(facultyId.getText());
-    	Integer timeChoice1 = 2;
-    	Date beginDate1 = dateBeginDate;
-    	Date endDate1 = dateEndDate;
+//    	String batchId ="11";
+//    	String batchNumber1="1";
+//    	String courseName ="Python";
+//    	Integer courseId = 3;
+//    	Integer lectureDuration1  = Integer.parseInt(lectureDuration.getText());
+//    	Integer totalNumberOfLecture1  = 40; //Integer.parseInt(totalNumberOfLecture.getText());
+//    	Integer facultyId1  = Integer.parseInt(facultyId.getText());
+//    	Integer timeChoice1 = 2;
+//    	Date beginDate1 = dateBeginDate;
+//    	Date endDate1 = dateEndDate;
     	
     	
     	
-    	BatchDetails batchDetails1 = new BatchDetails(batchId,batchNumber1,courseName,courseId,lectureDuration1, totalNumberOfLecture1,facultyId1,timeChoice1,beginDate1,endDate1);
+//    	BatchDetails batchDetails1 = new BatchDetails(batchId,batchNumber1,courseName,courseId,lectureDuration1, totalNumberOfLecture1,facultyId1,timeChoice1,beginDate1,endDate1);
     	    	
-    	new BatchDetailsHelper().create(batchDetails1);
+//    	new BatchDetailsHelper().create(batchDetails1);
     	
     	Stage stage = (Stage) launch.getScene().getWindow();
     	Parent myNewScene;
@@ -162,15 +211,26 @@ public class BatchLauncherController extends ParentFXMLController {
     	batchName.setText(batchDetails.getBatchName());	
 	}
     
+    public static final LocalDate LOCAL_DATE (String dateString){
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate localDate = LocalDate.parse(dateString, formatter);
+	    return localDate;
+	}
+    
 	@Override
    	public void initialize(URL location, ResourceBundle resources) {
+	
+		//String date = enquiryDetails.getBirthDate().toString();
+		try {
+	        beginDate.setValue(LOCAL_DATE("2020-09-23"));
+	    } catch (NullPointerException e) {
+	    }
 		
 		batchName.setText("Modular"+"-"+"Java"+"-"+"2020"+"-"+"5");
-		lectureDuration.getText();
-		int lectureDuration1 = Integer.parseInt(lectureDuration.getText());
-		int totalNumberOfLectures1 = (10/lectureDuration1);
-		//totalNumberOfLectures.setText();
+		facultyId.setText("Anjali Parkhi");
+		timeChoice.setText("MORNING");
 		
+
    		super.initialize(location, resources);
    		logo.setImage(logoImage); 
    	}

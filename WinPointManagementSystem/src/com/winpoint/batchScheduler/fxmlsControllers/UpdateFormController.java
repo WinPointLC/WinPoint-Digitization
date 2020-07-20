@@ -245,7 +245,7 @@ public class UpdateFormController extends ParentFXMLController {
     	
     	Parent myNewScene = null;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
 			myNewScene = loader.load();
 			
 			StudentDetailsController studentDetailController = loader.getController();

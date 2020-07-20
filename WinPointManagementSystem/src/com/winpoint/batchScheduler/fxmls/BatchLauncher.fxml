@@ -66,13 +66,21 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <TextField fx:id="lectureDuration" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lectureDuration" onAction="#validateLectureDuration" prefHeight="27.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
                   <DatePicker fx:id="beginDate" onAction="#beginDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <DatePicker fx:id="endDate" onAction="#endDateFrame" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label fx:id="batchName" prefHeight="25.0" prefWidth="337.0" GridPane.columnIndex="1" />
                   <Label fx:id="facultyId" prefHeight="29.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="timeChoice" prefHeight="28.0" prefWidth="323.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label fx:id="totalNumberOfLectures" prefHeight="31.0" prefWidth="397.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="setLectureDuration" mnemonicParsing="false" onAction="#validateSetLectureDuration" prefHeight="27.0" prefWidth="75.0" text="Set" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="323.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />

@@ -353,6 +353,11 @@ public class EnquiryDetails extends UserProfile {
 	}
 
 
+	public EnquiryDetails() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @param enquiryId the enquiryId to set
 	 */

@@ -134,6 +134,14 @@ public class UserProfile {
 		/*this.createdBy = createdBy;
 		this.createDate = createDate;*/
 	}
+	// Abhishek
+	public UserProfile(String firstName, String lastName, int userId) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userId = userId;
+	}
+
 
 	public UserProfile(String firstName, String lastName, Boolean empty) {
 		// TODO Auto-generated constructor stub
