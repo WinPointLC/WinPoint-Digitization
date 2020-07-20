@@ -71,9 +71,9 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
 //    	batchName =  recievedData.get(1);
 //    	courseId =  Integer.parseInt(recievedData.get(2));
 //    	courseName =  recievedData.get(3);
-    	for(String data : recievedData) {
-            System.out.println(data);
-        }
+//    	for(String data : recievedData) {
+//            System.out.println(data);
+//        }
     }
 
     @FXML
@@ -148,9 +148,9 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     	
     	
     	
-    	for(Float avg : averageResponseList ) {
-    		System.out.println(avg);
-    	}
+//    	for(Float avg : averageResponseList ) {
+//    		System.out.println(avg);
+//    	}
     	
     	weightedResponsesGraph.setTitle("Average Feedback");
     	question = new XYChart.Series<String, Float>();
@@ -162,6 +162,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     		weightedResponsesGraph.getData().addAll(question);
     	}   
     	
+    	overallExperience.setText(new Float((float)Math.round((averageResponseList.get(averageResponseList.size()-1) * 100.0) / 100.0)).toString());
     	
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);

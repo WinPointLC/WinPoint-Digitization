@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.CoursePlans;
 import com.winpoint.common.beans.Lecture;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.BatchDetailsHelper;
+import com.winpoint.common.helpers.CoursePlansHelper;
 import com.winpoint.common.helpers.LectureHelper;
 import com.winpoint.common.wrappers.LectureWrapper;
 
@@ -341,17 +343,25 @@ public class LectureScreenController extends ParentFXMLController{
     	if(lectureNumber <= Integer.parseInt(currentLectureNumber.getText()) && (lectureNumber!=0)) {
     		selectedLectureNumber.setText(lectureNumber.toString());
     		Lecture lecture = new LectureHelper().getLectureDetailsForBatch(batchId, lectureNumber);
-    		String topics = null;
-    		for(int i = 0; i < lecture.getLectureCoverage().length; i++) {
-    			topics += (lecture.getLectureCoverage()[i] + "\n");
+    		CoursePlans coursePlans = new CoursePlansHelper().getCoursePlan(courseId, lectureNumber);
+    		
+    		String topicsCovered = lecture.getLectureCoverage()[0] + "\n", 
+    			   topicsPlanned = coursePlans.getTopicNames()[0] + "\n";
+    		
+    		for(int i = 1; i < coursePlans.getTopicNames().length; i++) {
+    			topicsPlanned += (coursePlans.getTopicNames()[i] + "\n");
     		}
     		
-    		displayCoursePlan.setText("Course Plan to be initiated yet.");
-    		displayLectureCoverage.setText(topics);
+    		for(int i = 1; i < lecture.getLectureCoverage().length; i++) {
+    			topicsCovered += (lecture.getLectureCoverage()[i] + "\n");
+    		}
+    		
+    		displayCoursePlan.setText(topicsPlanned);
+    		displayLectureCoverage.setText(topicsCovered);
     		displayLectureDate.setText(getDate(lecture.getLectureDate()));
     		displayLectureDuration.setText(getDurationInHours(lecture.getLectureDuration()).toString());
     		displayLectureTime.setText(getTime(lecture.getStartTime()));
-    		displayClassStrength.setText("NULL");
+    		displayClassStrength.setText("---");
     	}else {
     		selectedLectureNumber.setText(lectureNumber.toString());
     		displayCoursePlan.setText("");
@@ -387,7 +397,6 @@ public class LectureScreenController extends ParentFXMLController{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-    	//Set max lecture number here
     	
     	lectureSelectionSlider.setOnMouseReleased(event -> {
     		updateLectureDetails((int) lectureSelectionSlider.getValue());
@@ -399,7 +408,7 @@ public class LectureScreenController extends ParentFXMLController{
     	data.add("1");
     	data.add("Course 1");
     	
-    	setRecievedData(data);
+    	//setRecievedData(data);
     	
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

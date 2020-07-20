@@ -37,4 +37,8 @@ public class UserProfileHelper {
     public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId){
         return new UserProfileDao().getBatchIndividualFeedbackScreenWrapperList(batchId); 
     }
+    
+    public ArrayList<UserProfile> getStudentListForBatch(Integer batchId){
+	    return new UserProfileDao().getStudentListForBatch(batchId);
+	}
 }

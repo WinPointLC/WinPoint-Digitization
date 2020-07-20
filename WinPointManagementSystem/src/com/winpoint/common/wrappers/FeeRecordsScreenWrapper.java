@@ -1,6 +1,7 @@
 package com.winpoint.common.wrappers;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;

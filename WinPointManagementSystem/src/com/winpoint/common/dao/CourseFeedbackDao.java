@@ -95,10 +95,6 @@ public class CourseFeedbackDao {
 						
 						i++;
 					}
-
-					for(Integer x: sum) {
-						System.out.println(x);
-					}
 					
 					for(i=0;i<questionCount; i++) {
 						averageResponseList.add(new Float(((sum[i]*1.0f)/(feedbackCount*1.0f))));

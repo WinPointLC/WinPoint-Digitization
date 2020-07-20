@@ -279,4 +279,35 @@ public class UserProfileDao {
 		
 		return  batchWrapperList;
 	}	
+	
+	public ArrayList<UserProfile> getStudentListForBatch(Integer batchId){
+		
+		ArrayList<UserProfile> studentList = new ArrayList<UserProfile>();
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "SELECT up.USER_ID, up.FIRST_NAME, up.LAST_NAME\r\n" + 
+					"FROM USER_PROFILE AS up\r\n" + 
+					"INNER JOIN \r\n" + 
+					"STUDENT_COURSE_DETAILS AS scd\r\n" + 
+					"ON scd.USER_ID = up.USER_ID\r\n" + 
+					"WHERE scd.BATCH_ID =" + batchId;
+			
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				studentList.add(new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), 
+								resultSet.getString("LAST_NAME"), null, null, null));
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return  studentList;
+		
+	}
+	
 }
