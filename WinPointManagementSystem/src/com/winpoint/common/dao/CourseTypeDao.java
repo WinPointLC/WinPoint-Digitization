@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -150,5 +152,33 @@ public class CourseTypeDao {
 			e1.printStackTrace();
 		} 
 		return testList;
+	}
+	
+	//group A priorityList Aayush
+	public List<CourseType> getCoursesType() {
+		
+		List<CourseType> courseTypeIdNameList = new ArrayList<>();
+		
+		ResultSet resultSet = null;
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			String query = "SELECT COURSE_TYPE_ID,COURSE_TYPE_NAME FROM COURSE_TYPE";
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				courseTypeIdNameList.add( new CourseType(resultSet.getInt("COURSE_TYPE_ID"), resultSet.getString("COURSE_TYPE_NAME")));
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return courseTypeIdNameList;
+
+		
 	}
 }
