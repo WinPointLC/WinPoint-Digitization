@@ -122,9 +122,6 @@ public class CourseSelectScreenController extends ParentFXMLController{
 					dataForBatchSelection.add(((Button)event.getSource()).getId().substring(8));
 					dataForBatchSelection.add(((Button)event.getSource()).getText());
 					
-					//System.out.println("CourseID: " + ((Button)event.getSource()).getId().substring(8));
-					//System.out.println("CourseName: " + ((Button)event.getSource()).getText());
-					
 					batchSelectionScreenController.setRecievedData(dataForBatchSelection);
 					
 					Scene scene = new Scene(myNewScene);

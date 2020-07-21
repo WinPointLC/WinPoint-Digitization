@@ -84,15 +84,24 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     }
     @FXML
     void GoToPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage) back.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			myNewScene = loader.load();
+			LectureScreenController lectureScreenLecture = loader.getController();
+			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
+			dataForLectureScreen.add(batchId.toString());
+			dataForLectureScreen.add(batchNameValue);
+			dataForLectureScreen.add(courseId.toString());
+			dataForLectureScreen.add(courseName);
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");
 	    	stage.show();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

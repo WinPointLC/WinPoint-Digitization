@@ -104,10 +104,10 @@ public class LectureScreenController extends ParentFXMLController{
     	Integer currentLecture = 1;
     	batchId = Integer.parseInt(recievedData.get(0));
     	batchNameValue = recievedData.get(1);
-    	batchName.setText(batchNameValue);
     	courseId = Integer.parseInt(recievedData.get(2));
     	courseName = recievedData.get(3);
     	
+    	batchName.setText(batchNameValue);
     	LectureWrapper lectureDetails = new BatchDetailsHelper().getBatchDetails(batchId);
     	currentLecture = lectureDetails.getCurrentLectureNumber();
     	lectureSelectionSlider.setMax(lectureDetails.getTotalLectureEstimate());
@@ -402,13 +402,13 @@ public class LectureScreenController extends ParentFXMLController{
     		updateLectureDetails((int) lectureSelectionSlider.getValue());
     	});
     	
-    	ArrayList<String> data = new ArrayList<>();
-    	data.add("1");
-    	data.add("Batch 1");
-    	data.add("1");
-    	data.add("Course 1");
-    	
-    	//setRecievedData(data);
+//    	ArrayList<String> data = new ArrayList<>();
+//    	data.add("1");
+//    	data.add("Batch 1");
+//    	data.add("1");
+//    	data.add("Course 1");
+//    	
+//    	setRecievedData(data);
     	
 		super.initialize(location, resources);
 		logo.setImage(logoImage);

@@ -38,10 +38,11 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class AttendanceScreenController extends ParentFXMLController{
-	private static Integer batchId = 3;
+	private Integer batchId = 1;
 	private String batchNameValue;
-	private static Integer courseId;
+	private Integer courseId;
 	private String courseName;
+	
 	private ArrayList<AttendanceScreenWrapper> attendanceScreenWrapperList;
     @FXML
     private Button backButton;

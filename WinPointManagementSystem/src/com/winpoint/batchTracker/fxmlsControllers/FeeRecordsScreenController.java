@@ -44,6 +44,7 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 	private String batchNameValue;
 	private Integer courseId;
 	private String courseName;
+	
 	private  ArrayList<FeeRecordsScreenWrapper>  feeRecordsScreenWrapperList;
 	@FXML
     private Button backButton;
@@ -128,34 +129,27 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     	batchNameValue = recievedData.get(1);
     	courseId = Integer.parseInt(recievedData.get(2));
     	courseName = recievedData.get(3);
-//    	for(String data : recievedData) {
-//    		System.out.println(data);
-//    	}
+    	
     	batchName.setText(batchNameValue);
-    	//replace 1 with batchId
-    	 this.feeRecordsScreenWrapperList= new StudentCourseInstallmentHelper().getFeeRecordsScreenWrapperList(batchId);
-    	 displayTable();
-    	 displayDetails();
+    	this.feeRecordsScreenWrapperList= new StudentCourseInstallmentHelper().getFeeRecordsScreenWrapperList(batchId);
+    	displayTable();
+    	displayDetails();
     }
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage)backButton.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
-    	LectureScreenController lectureScreenController = new LectureScreenController();
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			myNewScene = loader.load();
-			lectureScreenController = loader.getController();
-			
+			LectureScreenController lectureScreenLecture = loader.getController();
 			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
 			dataForLectureScreen.add(batchId.toString());
 			dataForLectureScreen.add(batchNameValue);
 			dataForLectureScreen.add(courseId.toString());
 			dataForLectureScreen.add(courseName);
-			
-			lectureScreenController.setRecievedData(dataForLectureScreen);
-			
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");
