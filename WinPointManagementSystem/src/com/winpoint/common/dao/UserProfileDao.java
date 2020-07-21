@@ -145,6 +145,36 @@ public class UserProfileDao {
 		return allUsersList;
 	}
 
+	
+	//Group A : Faculty Access ~ Abhishek
+	public ArrayList<UserProfile> getFaculty(){
+		
+		List<UserProfile> facultyList = new ArrayList<UserProfile>();
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "select * from USER_PROFILE\n" + 
+					"where USER_CATEGORY_ID = 2" + 
+					"";
+			
+			ResultSet rs = statement.executeQuery(query1);
+			
+			while(rs.next()) {
+				facultyList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getInt("USER_ID")));
+				System.out.println(facultyList);
+			}
+			
+		} 
+		catch (SQLException e) {
+			facultyList = null;
+			e.printStackTrace();
+		}
+		
+		return  (ArrayList<UserProfile>) facultyList;
+		
+	}
+	
 	public String getCoursesList(Integer userId) {
 		StringBuilder coursesString = new StringBuilder("");		
 		try(Connection connection = ConnectionManager.getConnection()){
@@ -181,7 +211,7 @@ public class UserProfileDao {
 	
 	// 
 	
-	public ArrayList<UserProfile> getEligibleUsers(){
+	public ArrayList<UserProfile> getRegisteredUsers(){
 		
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
 		
@@ -194,7 +224,8 @@ public class UserProfileDao {
 			ResultSet rs = statement.executeQuery(query1);
 			
 			while(rs.next()) {
-				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
+				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),true));
+				System.out.println(userProfileList);
 			}
 			
 		} 
@@ -215,7 +246,7 @@ public class UserProfileDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query1 = "SELECT up1.FIRST_NAME, up1.LAST_NAME, up2.FIRST_NAME + ' ' + up2.LAST_NAME AS INSTRUCTOR_NAME, up1.EMAIL_ID, up1.MOBILE_NUMBER, c.DURATION, scd1.FEEDBACK_GIVEN \r\n" + 
+			String query1 = "SELECT up1.USER_ID, up1.FIRST_NAME, up1.LAST_NAME, up2.FIRST_NAME + ' ' + up2.LAST_NAME AS INSTRUCTOR_NAME, up1.EMAIL_ID, up1.MOBILE_NUMBER, c.DURATION, scd1.FEEDBACK_GIVEN \r\n" + 
 					"FROM USER_PROFILE AS up1 \r\n" + 
 					"INNER JOIN\r\n" + 
 					"STUDENT_COURSE_DETAILS AS scd1\r\n" + 
@@ -234,7 +265,7 @@ public class UserProfileDao {
 			
 			while(resultSet.next()) {
 				feedbackGiven = (resultSet.getString("FEEDBACK_GIVEN")==null)?"NO":"YES";
-				batchIndividualFeedbackScreenWrapper = new BatchIndividualFeedbackScreenWrapper(resultSet.getString("FIRST_NAME"),
+				batchIndividualFeedbackScreenWrapper = new BatchIndividualFeedbackScreenWrapper(resultSet.getInt("USER_ID"),resultSet.getString("FIRST_NAME"),
 						resultSet.getString("LAST_NAME"),resultSet.getString("INSTRUCTOR_NAME"), 
 						resultSet.getInt("DURATION"),resultSet.getString("EMAIL_ID"), 
 						resultSet.getString("MOBILE_NUMBER"), feedbackGiven);
@@ -248,4 +279,35 @@ public class UserProfileDao {
 		
 		return  batchWrapperList;
 	}	
+	
+	public ArrayList<UserProfile> getStudentListForBatch(Integer batchId){
+		
+		ArrayList<UserProfile> studentList = new ArrayList<UserProfile>();
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "SELECT up.USER_ID, up.FIRST_NAME, up.LAST_NAME\r\n" + 
+					"FROM USER_PROFILE AS up\r\n" + 
+					"INNER JOIN \r\n" + 
+					"STUDENT_COURSE_DETAILS AS scd\r\n" + 
+					"ON scd.USER_ID = up.USER_ID\r\n" + 
+					"WHERE scd.BATCH_ID =" + batchId;
+			
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				studentList.add(new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), 
+								resultSet.getString("LAST_NAME"), null, null, null));
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return  studentList;
+		
+	}
+	
 }

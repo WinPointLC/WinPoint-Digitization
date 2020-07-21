@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.winpoint.batchScheduler.fxmlsControllers.SignUpFormController;
+import com.winpoint.batchScheduler.fxmlsControllers.UpdateFormController;
 import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;
@@ -90,9 +92,24 @@ public class FrontScreenController extends ParentFXMLController {
 
 	    @FXML
 	    void openSignUpForm(ActionEvent event) throws IOException {
+//	    	Stage stage = (Stage) takeEnquiryLink.getScene().getWindow();
+//	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/SignUpForm.fxml"));
+//	    	Scene scene = new Scene(myNewScene);
+//	    	stage.setScene(scene);
+//	    	stage.setTitle("Sign Up Form");
+//	    	stage.show();
+	    	
+	    	Parent myNewScene = null;
+			
 	    	Stage stage = (Stage) takeEnquiryLink.getScene().getWindow();
-	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/SignUpForm.fxml"));
-	    	Scene scene = new Scene(myNewScene);
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/SignUpForm.fxml"));
+			myNewScene = loader.load();
+			
+			SignUpFormController signUpFormController = loader.getController();
+			//signUpFormController.setCourseInterestedInCheckComboBox(signUpFormController);//(signUpFormController);
+
+			Scene scene = new Scene(myNewScene);
+			
 	    	stage.setScene(scene);
 	    	stage.setTitle("Sign Up Form");
 	    	stage.show();

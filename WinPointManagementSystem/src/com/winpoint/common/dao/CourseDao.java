@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.Test;
@@ -74,6 +73,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 		return courseList;
 		
 	}
+	
 
 	public List<Test> getTestList(int userId, int courseId) {
 		List<Test> testList = new ArrayList<Test>();
@@ -122,4 +122,35 @@ public ArrayList<Course> getBatchCourseDurationList() {
 		} 
 		return testList;
 	}
+	  
+	
+	//group A - sign up form - shraddha
+	public List<Course> getCourseNamesList(){
+		
+			List<Course> courseList = new ArrayList<Course>();
+			
+			ResultSet resultSet = null;
+
+			try(Connection connection = ConnectionManager.getConnection()){
+				Statement statement = connection.createStatement();
+				
+				
+				String query = "SELECT * FROM COURSES";
+						
+				resultSet = statement.executeQuery(query);
+				
+				while(resultSet.next()) {
+					courseList.add(new Course(resultSet.getInt("COURSE_ID"),resultSet.getString("COURSE_NAME")));
+				}
+		
+		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return courseList;
 }
+}
+
+
+

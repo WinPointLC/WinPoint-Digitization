@@ -50,9 +50,8 @@
                   <Label text="Branch " GridPane.rowIndex="3" />
                   <Label text="Email-ID" GridPane.rowIndex="4" />
                   <Label prefHeight="17.0" prefWidth="81.0" text="Contact No" GridPane.rowIndex="5" />
-                  <Label text="Date  of Enquiry" GridPane.rowIndex="6" />
-                  <Label text="Suggestion" GridPane.rowIndex="7" />
-                  <Label prefHeight="17.0" prefWidth="116.0" text="Course Interested in" GridPane.rowIndex="8" />
+                  <Label text="Suggestion" GridPane.rowIndex="6" />
+                  <Label prefHeight="17.0" prefWidth="116.0" text="Course Interested in" GridPane.rowIndex="7" />
                   <TableView fx:id="eligibilityTable" prefHeight="164.0" prefWidth="556.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                     <columns>
                       <TableColumn fx:id="courseCol" prefWidth="181.0" text="Courses" />

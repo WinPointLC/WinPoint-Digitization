@@ -69,15 +69,6 @@ public class UserProfile {
 	 * @param activeStatus
 	 */
 
-	public UserProfile(String firstName,  String email, String mobileNumber) {
-		super();
-
-		this.firstName = firstName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-	}
-
-
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, Integer securityQuestionId, String securityAnswer, Integer userCategoryId,
@@ -143,7 +134,35 @@ public class UserProfile {
 		/*this.createdBy = createdBy;
 		this.createDate = createDate;*/
 	}
+	// Abhishek
+	public UserProfile(String firstName, String lastName, int userId) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userId = userId;
+	}
 
+
+	public UserProfile(String firstName, String lastName, Boolean empty) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+			Integer userCategoryId, Integer timeSlotsId) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.userCategoryId = userCategoryId;
+		this.timeSlotsId = timeSlotsId;
+	}
+	
+	
+	// Anjali ma'am
 	public UserProfile(String email, String password) {
 		// TODO Auto-generated constructor stub
 		this.email = email;
@@ -209,17 +228,13 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		this.courseAlreadyDone = courseAlreadyDone;
 		this.activeStatus = activeStatus;
 	}
+	
+	
+	
 
 	public UserProfile() {
 		// TODO Auto-generated constructor stub
 	}
-
-/*	public UserProfile(String firstName, String lastName) {
-		// TODO Auto-generated constructor stub
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}*/
-
 
 	/**
 	 * @return the userId

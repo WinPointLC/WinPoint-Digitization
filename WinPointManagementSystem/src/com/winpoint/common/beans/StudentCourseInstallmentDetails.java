@@ -1,6 +1,6 @@
 package com.winpoint.common.beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class StudentCourseInstallmentDetails {
 	private Integer userId;
@@ -58,6 +58,11 @@ public class StudentCourseInstallmentDetails {
 	}
 
 
+
+	public StudentCourseInstallmentDetails(Date firstPaymentDate) {
+		// TODO Auto-generated constructor stub
+		this.actualInstallment1Date = firstPaymentDate;
+	}
 
 	public Integer getUserId() {
 		return userId;

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,23 +14,23 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.PriorityListOfCoursesController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.PriorityListOfCoursesController">
    <center>
       <ScrollPane BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="25.0" right="25.0" />
          </BorderPane.margin>
          <content>
-            <TableView prefHeight="750.0" prefWidth="1230.0">
+            <TableView fx:id="priorityCoursesListTable" prefHeight="750.0" prefWidth="1230.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Course" />
-                <TableColumn prefWidth="75.0" text="Segment Type" />
-                  <TableColumn prefWidth="75.0" text="Available Time" />
-                  <TableColumn prefWidth="75.0" text="No. of Student" />
-                  <TableColumn prefWidth="75.0" text="Begin Date" />
-                  <TableColumn prefWidth="75.0" text="Faculty Name" />
-                  <TableColumn prefWidth="75.0" text="Total Revenue" />
-                  <TableColumn prefWidth="75.0" text="Launch" />
+                <TableColumn fx:id="coursesCol" prefWidth="75.0" text="Course" />
+                <TableColumn fx:id="segmentTypeCol" prefWidth="75.0" text="Segment Type" />
+                  <TableColumn fx:id="avaialbleTimeCol" prefWidth="75.0" text="Available Time" />
+                  <TableColumn fx:id="noOfStudentsCol" prefWidth="75.0" text="No. of Student" />
+                  <TableColumn fx:id="beginDateCol" prefWidth="75.0" text="Begin Date" />
+                  <TableColumn fx:id="facultyNameCol" prefWidth="75.0" text="Faculty Name" />
+                  <TableColumn fx:id="totalRevenueCol" prefWidth="75.0" text="Total Revenue" />
+                  <TableColumn fx:id="launchCol" prefWidth="75.0" text="Launch" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -52,7 +53,12 @@
                   <Insets top="25.0" />
                </padding>
             </Label>
-            <Region prefHeight="75.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <ChoiceBox fx:id="courseType" onMouseClicked="#validateCourseType" prefHeight="24.0" prefWidth="201.0">
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </ChoiceBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
             <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
                   <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />

@@ -10,7 +10,7 @@ public class Client extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		//System.out.println("Hello");
-		try {			
+		try {
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/AttendanceScreen.fxml"));
 
 		    //BorderPane root =(BorderPane) FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/NumberOfStudents.fxml"));
@@ -26,9 +26,9 @@ public class Client extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 }

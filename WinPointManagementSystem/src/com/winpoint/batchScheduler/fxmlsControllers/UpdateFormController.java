@@ -4,6 +4,8 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
@@ -14,15 +16,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class UpdateFormController extends ParentFXMLController {
+	
+	
+	private EnquiryDetails enquiryDetails = new EnquiryDetails();
+	
 	@FXML
     private ImageView logo;
 	
@@ -86,7 +92,8 @@ public class UpdateFormController extends ParentFXMLController {
 
  
     @FXML
-    private RadioButton activeStatus;
+    private CheckBox activeStatus;
+
 
     @FXML
     private Button cancelFrame;
@@ -96,6 +103,8 @@ public class UpdateFormController extends ParentFXMLController {
 
     @FXML
     private Button submitFrame;
+    
+
 
     @FXML
     void validateActiveStatus(ActionEvent event) {
@@ -198,13 +207,13 @@ public class UpdateFormController extends ParentFXMLController {
     }
     @FXML
     void validateSubmitFrame(ActionEvent event) throws SQLException {
+
+    	if (activeStatus.isSelected()) 
+    		activeStatus.setSelected(true);
+        else
+        	activeStatus.setSelected(false); 
     	
-    	
-    	System.out.println(degree.getValue());
-    	
-    	
-    	
-    	
+    	Integer enquiryId = enquiryDetails.getEnquiryId();
 		String firstName1 = firstName.getText();
 		String lastName1 = lastName.getText();
 		String emailId1 = emailId.getText();
@@ -222,27 +231,47 @@ public class UpdateFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String coursesInterestedIn1 = courseInterestedIn.getText();
 		String coursesAlreadyDone1 = coursesAlreadyDone.getText();
-		Boolean activeStatus1 = Boolean.parseBoolean(activeStatus.getText());
+		String suggestion = suggestions.getText();
+		Boolean activeStatus1 = activeStatus.isSelected();
     	
     	
-		EnquiryDetails enquiryDetailsObject = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
-				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,activeStatus1);
+		EnquiryDetails enquiryDetailsObject = new EnquiryDetails(enquiryId, firstName1,lastName1,emailId1,
+				mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
+				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,suggestion,activeStatus1);
     	
     	new EnquiryDetailsHelper().update(enquiryDetailsObject);
-
     	
-    	FXMLLoader loader = new FXMLLoader();
-    	Parent myNewScene;
+    	
+    	
+    	Parent myNewScene = null;
 		try {
-			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-			Stage stage = (Stage) submitFrame.getScene().getWindow();
-	    	Scene scene = new Scene(myNewScene);
-	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
-	    	stage.show();  
-		} catch (IOException e) {
-			e.printStackTrace();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
+			myNewScene = loader.load();
+			
+			StudentDetailsController studentDetailController = loader.getController();
+			studentDetailController.setStudentDetail(enquiryDetailsObject);
+        	
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
+    	Stage stage = (Stage) submitFrame.getScene().getWindow();
+    	Scene scene = new Scene(myNewScene);
+    	stage.setScene(scene);
+    	stage.setTitle("Main Scene");
+    	stage.show();
+    	
+//    	FXMLLoader loader = new FXMLLoader();
+//    	Parent myNewScene;
+//		try {
+//			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
+//			Stage stage = (Stage) submitFrame.getScene().getWindow();
+//	    	Scene scene = new Scene(myNewScene);
+//	    	stage.setScene(scene);
+//	    	stage.setTitle("My New Scene");
+//	    	stage.show();  
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		
     	
@@ -298,4 +327,53 @@ public class UpdateFormController extends ParentFXMLController {
     	super.initialize(location, resources);
 		logo.setImage(logoImage);
 	}
+
+	public void setStudentDetail(EnquiryDetails enquiryDetail) {
+		this.enquiryDetails = enquiryDetail;
+		displayEnquiryDetails();
+	}
+
+	public static final LocalDate LOCAL_DATE (String dateString){
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate localDate = LocalDate.parse(dateString, formatter);
+	    return localDate;
+	}
+	
+	private void displayEnquiryDetails() {
+
+	
+		System.out.println("we Got the Enquiry ID : "+enquiryDetails.getEnquiryId());
+				
+		String date = enquiryDetails.getBirthDate().toString();
+		
+		try {
+	        dob.setValue(LOCAL_DATE(date));
+	    } catch (NullPointerException e) {
+	    }
+
+		firstName.setText(enquiryDetails.getFirstName());
+		lastName.setText(enquiryDetails.getLastName());
+		mobileNumber.setText(enquiryDetails.getMobileNumber());
+		emailId.setText(enquiryDetails.getEmail());
+		gender.setText(enquiryDetails.getGender());
+		college.setText(enquiryDetails.getCollege());
+		degree.setValue(enquiryDetails.getDegree());
+		branch.setText(enquiryDetails.getBranch());
+		occupation.setText(enquiryDetails.getOccupation());
+		organization.setText(enquiryDetails.getOrganisation());
+		designation.setText(enquiryDetails.getDesignation());
+		domain.setText(enquiryDetails.getDomain());
+		yearOfGraduation.setText(enquiryDetails.getYearOfGraduation().toString());
+		role.setText(enquiryDetails.getRole());
+		experience.setText(enquiryDetails.getExperience().toString());
+		courseInterestedIn.setText(enquiryDetails.getCoursesInterestedIn());	
+		coursesAlreadyDone.setText(enquiryDetails.getCourseAlreadyDone());
+		suggestions.setText(enquiryDetails.getSuggestion());
+		activeStatus.setSelected(enquiryDetails.getActiveStatus());
+		
+	}
 }
+
+
+
+

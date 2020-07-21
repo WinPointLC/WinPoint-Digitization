@@ -55,7 +55,7 @@ public class AttendanceDao {
 			int i = 0;
 			
 			while(resultSet1.next()) {
-				HashMap<Integer,Boolean> attendanceMap = new HashMap<Integer, Boolean>(); //<lectureId,Status>		
+				HashMap<String, String> attendanceMap = new HashMap<String, String>(); //<lectureId,Status>		
 				String query2 = "SELECT LECTURE_NUMBER, ABSENTEES \r\n" + 
 						"FROM LECTURE\r\n" + 
 						"WHERE BATCH_ID =" + batchId;
@@ -71,9 +71,9 @@ public class AttendanceDao {
 					}
 					
 					if(absentStudentsList.contains(resultSet1.getInt("USER_ID"))) {
-						attendanceMap.put(resultSet2.getInt("LECTURE_NUMBER"), false);
+						attendanceMap.put("Lecture" + resultSet2.getString("LECTURE_NUMBER"), "ABSENT");
 					}else {
-						attendanceMap.put(resultSet2.getInt("LECTURE_NUMBER"), true);
+						attendanceMap.put("Lecture" + resultSet2.getString("LECTURE_NUMBER"), "PRESENT");
 					}
 					
 					//System.out.println("UserID: " + resultSet1.getInt("USER_ID") + "\tLectNo: " + resultSet2.getInt("LECTURE_NUMBER") + "\tStatus : " + attendanceMap.get(resultSet2.getInt("LECTURE_NUMBER")));

@@ -13,7 +13,6 @@ public class ConnectionManager {
 		dataSource.setUser("sa");
 
 		dataSource.setPassword("winpoint");
-//		dataSource.setPassword("@Shradz8888");
 		//dataSource.setPassword("Dockersql123");
 
 //		dataSource.setPassword("@Shradz8888");

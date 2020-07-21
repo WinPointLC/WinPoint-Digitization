@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class StudentDetailsController extends ParentFXMLController {
 
+	private EnquiryDetails enquiryDetailsObject = new EnquiryDetails();
+	
     @FXML
     private ImageView logo;
 
@@ -89,21 +91,39 @@ public class StudentDetailsController extends ParentFXMLController {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	collegeLabel.setText("VIT");
-    	yearLabel.setText("B. Tech");
-    	branchLabel.setText("IT");
-    	emailLabel.setText("Aayush@gmail,com");
-    	dateofEnquiryLabel.setText("10.05.20");
-    	contactLabel.setText("9004628901");
-    	suggestionLabel.setText("none");
-    	coursesInterestedLabel.setText("Java");
-    	   	
-    	courseCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    	eligiblityCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    	ObservableList<EnquiryDetails>list=FXCollections.observableArrayList(new EnquiryDetails("C", "YES", "", "", ""), new EnquiryDetails("CPP", "YES", "", "", ""));
-    	eligibilityTable.setItems(list);
     	
+    	   	
+
     	super.initialize(location, resources);
     	logo.setImage(logoImage);
-    }    
+    }
+
+	public void setStudentDetail(EnquiryDetails enquiryDetailsObject) {
+		// TODO Auto-generated method stub
+		System.out.println("Setter of the StudentDetailsScreen");
+		this.enquiryDetailsObject = enquiryDetailsObject;
+		displayEnquiryDetails();
+	}
+
+	private void displayEnquiryDetails() {
+		
+		
+		// TODO Auto-generated method stub
+		nameLabel.setText(enquiryDetailsObject.getFirstName()+" "+enquiryDetailsObject.getLastName());
+		collegeLabel.setText(enquiryDetailsObject.getCollege());
+    	yearLabel.setText(enquiryDetailsObject.getDegree());
+    	branchLabel.setText(enquiryDetailsObject.getBranch());
+    	emailLabel.setText(enquiryDetailsObject.getEmail());
+       	contactLabel.setText(enquiryDetailsObject.getMobileNumber());
+    	suggestionLabel.setText(enquiryDetailsObject.getSuggestion());
+    	coursesInterestedLabel.setText(enquiryDetailsObject.getCoursesInterestedIn());
+    	
+    	courseCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    	eligiblityCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    	ObservableList<EnquiryDetails>list=FXCollections.observableArrayList(new 
+    			EnquiryDetails(enquiryDetailsObject.getCoursesInterestedIn(),
+    					enquiryDetailsObject.getEligibility()));
+    	eligibilityTable.setItems(list);
+    	
+	}    
 }

@@ -10,4 +10,8 @@ public class StreamHelper {
 	public List<Stream> getStreamList(){
 		return new StreamDao().getStreamList();
 	}
+	
+	public Integer getStreamId(String streamName) {
+		return new StreamDao().getStreamId(streamName);
+	}
 }

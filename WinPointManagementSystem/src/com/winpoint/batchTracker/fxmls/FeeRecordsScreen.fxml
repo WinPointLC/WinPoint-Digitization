@@ -4,7 +4,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -21,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.FeeRecordsScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.FeeRecordsScreenController">
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -29,7 +28,7 @@
                <children>
                   <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                      <font>
-                        <Font name="Calibri Bold" size="14.0" />
+                        <Font name="Calibri Bold Italic" size="12.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -43,7 +42,7 @@
                         <Font name="Calibri Bold Italic" size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets top="15.0" />
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
                      </HBox.margin>
                   </Text>
                   <Region prefHeight="68.0" prefWidth="302.0" HBox.hgrow="ALWAYS" />
@@ -61,7 +60,7 @@
                         <Image url="@../../../../../Downloads/Winpoint%20Logo.jpeg" />
                      </image>
                      <HBox.margin>
-                        <Insets top="3.0" />
+                        <Insets />
                      </HBox.margin>
                   </ImageView>
                </children>
@@ -80,7 +79,7 @@
         <items>
           <AnchorPane minWidth="300.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: purple;">
                <children>
-                  <GridPane layoutX="79.0" layoutY="101.0" prefHeight="343.0" prefWidth="293.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane layoutX="79.0" layoutY="101.0" prefHeight="612.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -142,37 +141,29 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="612.0" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <content>
-                      <AnchorPane prefHeight="1000.0">
-                           <children>
-                              <TableView fx:id="feeTable" layoutX="-2.0" minWidth="2400.0" prefHeight="945.0" prefWidth="2598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TableColumn fx:id="feeTableNameColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Name" />
-                                  <TableColumn fx:id="feeTableFeeStatusColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Fee Status" />
-                                    <TableColumn fx:id="feeTablePaymentModeColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Payment Mode" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment1Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 1" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment1DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 1 Date" />
-                                    <TableColumn fx:id="feeTableActualInstallment1Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Installment 1" />
-                                    <TableColumn fx:id="feeTableActualInstallment1DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Payment Date 1" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment2Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 2" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment2DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 2 Date" />
-                                    <TableColumn fx:id="feeTableActualInstallment2Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Installment 2" />
-                                    <TableColumn fx:id="feeTableActualInstallment2DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Payment Date 2" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment3Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 3" />
-                                    <TableColumn fx:id="feeTablePlannedInstallment3DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Planned Installment 3 Date" />
-                                    <TableColumn fx:id="feeTableActualInstallment3Column" editable="false" minWidth="150.0" prefWidth="-1.0" text="Installment 3" />
-                                    <TableColumn fx:id="feeTableActualInstallment3DateColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Payment Date 3" />
-                                    <TableColumn fx:id="feeTableDueAmountColumn" editable="false" minWidth="150.0" prefWidth="-1.0" text="Due Amount" />
-                                </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <TableView fx:id="feeTable" minWidth="2400.0" pickOnBounds="false" prefHeight="612.0" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="feeTableNameColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Name" />
+                      <TableColumn fx:id="feeTableFeeStatusColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Fee Status" />
+                        <TableColumn fx:id="feeTablePaymentModeColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Payment Mode" />
+                        <TableColumn fx:id="feeTablePlannedInstallment1Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 1" />
+                        <TableColumn fx:id="feeTablePlannedInstallment1DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 1 Date" />
+                        <TableColumn fx:id="feeTableActualInstallment1Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Installment 1" />
+                        <TableColumn fx:id="feeTableActualInstallment1DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Payment Date 1" />
+                        <TableColumn fx:id="feeTablePlannedInstallment2Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 2" />
+                        <TableColumn fx:id="feeTablePlannedInstallment2DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 2 Date" />
+                        <TableColumn fx:id="feeTableActualInstallment2Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Installment 2" />
+                        <TableColumn fx:id="feeTableActualInstallment2DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Payment Date 2" />
+                        <TableColumn fx:id="feeTablePlannedInstallment3Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 3" />
+                        <TableColumn fx:id="feeTablePlannedInstallment3DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Planned Installment 3 Date" />
+                        <TableColumn fx:id="feeTableActualInstallment3Column" editable="false" minWidth="200.0" prefWidth="-1.0" text="Installment 3" />
+                        <TableColumn fx:id="feeTableActualInstallment3DateColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Payment Date 3" />
+                        <TableColumn fx:id="feeTableDueAmountColumn" editable="false" minWidth="200.0" prefWidth="-1.0" text="Due Amount" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
             </AnchorPane>
         </items>

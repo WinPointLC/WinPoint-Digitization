@@ -5,7 +5,9 @@ import java.util.Date;
 import javafx.scene.control.Button;
 
 public class BatchDetailsWrapper {
-	private String batchId;
+	private String batchIds;
+	private Integer batchId;
+	private String batchName;
 	private Integer courseId;
 	private Integer facultyId;
 	private Integer batchTime;
@@ -14,8 +16,10 @@ public class BatchDetailsWrapper {
 	private Integer createdBy;
 	private Date createdDate;
 	private Button add;
+	private String facultyName;
+	private String facultyImageLocation;
 
-	public BatchDetailsWrapper(String batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate,
+	public BatchDetailsWrapper(Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate,
 			Date endDate, Integer createdBy, Date createdDate, Button add) {
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -27,6 +31,58 @@ public class BatchDetailsWrapper {
 		this.createdDate = createdDate;
 		this.add=add;
 	}
+	
+	public BatchDetailsWrapper(Integer batchId, String batchName, String facultyName,
+			String facultyImageLocation) {
+		super();
+		this.batchId = batchId;
+		this.batchName = batchName;
+		this.facultyName = facultyName;
+		this.facultyImageLocation = facultyImageLocation;
+	}
+
+	
+	
+
+	public String getBatchIds() {
+		return batchIds;
+	}
+
+	public void setBatchIds(String batchIds) {
+		this.batchIds = batchIds;
+	}
+
+	public Integer getBatchId() {
+		return batchId;
+	}
+
+	public void setBatchId(Integer batchId) {
+		this.batchId = batchId;
+	}
+
+	public String getBatchName() {
+		return batchName;
+	}
+
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
+	}
+
+	public String getFacultyName() {
+		return facultyName;
+	}
+
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+
+	public String getFacultyImageLocation() {
+		return facultyImageLocation;
+	}
+
+	public void setFacultyImageLocation(String facultyImageLocation) {
+		this.facultyImageLocation = facultyImageLocation;
+	}
 
 	public Button getAdd() {
 		return add;
@@ -36,13 +92,6 @@ public class BatchDetailsWrapper {
 		this.add = add;
 	}
 
-	public String getBatchId() {
-		return batchId;
-	}
-
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
 
 	public Integer getCourseId() {
 		return courseId;
@@ -99,7 +148,4 @@ public class BatchDetailsWrapper {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	
-	
-	
 }

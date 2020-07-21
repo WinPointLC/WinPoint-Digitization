@@ -40,7 +40,7 @@ public class BatchDetailsController extends ParentFXMLController{
 	    private TableView<BatchDetailsWrapper> batchDetails;
 
 	    @FXML
-	    private TableColumn<String, BatchDetailsWrapper> batchId;
+	    private TableColumn<Integer, BatchDetailsWrapper> batchId;
 
 	    @FXML
 	    private TableColumn<Integer, BatchDetailsWrapper> courseId;
@@ -92,7 +92,7 @@ public class BatchDetailsController extends ParentFXMLController{
    		List<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchDetailsList(); 
    		
 		// Row Population logic
-   		batchId.setCellValueFactory(new PropertyValueFactory<String, BatchDetailsWrapper>("batchId"));
+   		batchId.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("batchId"));
    		courseId.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("courseId"));
    		faculty.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("facultyId"));
    		time.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("BatchTime"));
@@ -116,5 +116,3 @@ public class BatchDetailsController extends ParentFXMLController{
    		
    	}
 }
-
-//new BatchDetailsWrapper(batchDetail.getBatchId(), batchDetail.getCourseId(), batchDetail.getFacultyId(), batchDetail.getBatchTime(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate())

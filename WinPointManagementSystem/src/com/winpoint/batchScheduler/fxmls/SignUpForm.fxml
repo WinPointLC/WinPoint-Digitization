@@ -112,14 +112,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="courseInterestedIn" layoutX="233.0" layoutY="513.0" onAction="#validateCourseInterestedIn" />
                         <Label layoutX="43.0" layoutY="609.0" prefHeight="23.0" prefWidth="167.0" text="Available Time">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <ChoiceBox fx:id="availableTime" layoutX="233.0" layoutY="607.0" onDragDetected="#validateAvailableTime" prefHeight="25.0" prefWidth="156.0" />
-                        <TextField fx:id="courseAlreadyDone" layoutX="233.0" layoutY="578.0" onAction="#validatecourseAlreadyDone" />
                         <Label layoutX="46.0" layoutY="638.0" prefHeight="23.0" prefWidth="148.0" text="Reference :">
                            <font>
                               <Font size="18.0" />
@@ -151,7 +149,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="42.0" layoutY="457.0" prefHeight="23.0" prefWidth="192.0" text="Experiance ">
+                        <Label layoutX="42.0" layoutY="457.0" prefHeight="23.0" prefWidth="192.0" text="Experience ">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -176,7 +174,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="41.0" layoutY="580.0" prefHeight="23.0" prefWidth="186.0" text="Course Already Done :">
+                        <Label layoutX="41.0" layoutY="580.0" prefHeight="23.0" prefWidth="186.0" text="Courses Already Done :">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -195,7 +193,6 @@
                         <ChoiceBox fx:id="segmentType" layoutX="230.0" layoutY="748.0" onDragDetected="#validateSegmentType" prefHeight="28.0" prefWidth="150.0" />
                         <TextField fx:id="role" layoutX="233.0" layoutY="426.0" onAction="#validateRole" />
                         <TextField fx:id="experience" layoutX="233.0" layoutY="454.0" onAction="#validateExperience" />
-                        <TextField fx:id="createdBy" layoutX="233.0" layoutY="482.0" onAction="#validateCreatedBy" prefHeight="31.0" prefWidth="161.0" />
                         <Label layoutX="41.0" layoutY="664.0" prefHeight="23.0" prefWidth="189.0" text="Date Of Enquiry :">
                            <font>
                               <Font size="18.0" />
@@ -216,6 +213,9 @@
                         <TextField fx:id="recommendation" layoutX="233.0" layoutY="691.0" onAction="#validateRecommendation" prefHeight="28.0" prefWidth="161.0" />
                         <CheckBox fx:id="eligible" layoutX="234.0" layoutY="552.0" mnemonicParsing="false" onAction="#validateEligible" text="Eligible" />
                         <CheckBox fx:id="active" layoutX="237.0" layoutY="824.0" mnemonicParsing="false" onAction="#validateActive" text="Active" />
+                        <HBox fx:id="coursesInterestedInHbox" layoutX="234.0" layoutY="516.0" prefHeight="33.0" prefWidth="162.0" />
+                        <HBox fx:id="courseAlreadyDoneHbox" layoutX="233.0" layoutY="575.0" prefHeight="28.0" prefWidth="162.0" />
+                        <ChoiceBox fx:id="createdBy" layoutX="233.0" layoutY="483.0" prefHeight="24.0" prefWidth="168.0" />
                      </children>
                   </AnchorPane>
               </content>

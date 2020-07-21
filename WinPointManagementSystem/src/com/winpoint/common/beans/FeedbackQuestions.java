@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class FeedbackQuestions {
 	private Integer feedbackQuestionId;
+	private Integer feedbackCategoryId;
 	private String feedbackQuestion;
-	private String feedbackQuestionType;
+	private Integer feedbackQuestionTypeId;
 	private Integer createdBy;
 	private Date createdDate;
-	private Integer feedbackCategoryId;
+	
 	/**
 	 * @param feedbackQuestionId
 	 * @param feedbackQuestion
@@ -56,21 +57,13 @@ public class FeedbackQuestions {
 	}
 	
 	
-	public String getFeedbackQuestionType() {
-		return feedbackQuestionType;
-	}
-
-	public void setFeedbackQuestionType(String feedbackQuestionType) {
-		this.feedbackQuestionType = feedbackQuestionType;
-	}
-
 	
-	public FeedbackQuestions(Integer feedbackQuestionId, String feedbackQuestion, String feedbackQuestionType,
-			Integer createdBy, Date createdDate, Integer feedbackCategoryId) {
+	public FeedbackQuestions(Integer feedbackQuestionId, Integer feedbackCategoryId, String feedbackQuestion, Integer feedbackQuestionTypeId,
+			Integer createdBy, Date createdDate) {
 		super();
 		this.feedbackQuestionId = feedbackQuestionId;
 		this.feedbackQuestion = feedbackQuestion;
-		this.feedbackQuestionType = feedbackQuestionType;
+		this.setFeedbackQuestionTypeId(feedbackQuestionTypeId);
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.feedbackCategoryId = feedbackCategoryId;
@@ -110,5 +103,13 @@ public class FeedbackQuestions {
 	 */
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public Integer getFeedbackQuestionTypeId() {
+		return feedbackQuestionTypeId;
+	}
+
+	public void setFeedbackQuestionTypeId(Integer feedbackQuestionTypeId) {
+		this.feedbackQuestionTypeId = feedbackQuestionTypeId;
 	}
 }

@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.CourseSelectScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.CourseSelectScreenController">
    <top>
       <AnchorPane prefHeight="120.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -76,114 +76,24 @@
    <center>
       <AnchorPane prefWidth="841.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="580.0" prefWidth="1000.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
                 <AnchorPane minHeight="400.0" minWidth="900.0">
                      <children>
-                        <GridPane fx:id="gridPane" alignment="CENTER" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="900.0" prefHeight="400.0" prefWidth="900.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane fx:id="gridPane" alignment="CENTER" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="900.0" prefHeight="555.0" prefWidth="970.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                           <children>
-                              <Button fx:id="courseID1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID2" alignment="CENTER" layoutX="70.0" layoutY="48.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID3" alignment="CENTER" layoutX="33.0" layoutY="29.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID4" alignment="CENTER" layoutX="480.0" layoutY="29.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 4" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID5" alignment="CENTER" layoutX="705.0" layoutY="29.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID6" alignment="CENTER" layoutX="30.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 6" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID7" alignment="CENTER" layoutX="255.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 7" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="courseID8" alignment="CENTER" layoutX="480.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendToBatchSelectionScreen" prefHeight="150.0" prefWidth="200.0" text="Course 8" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Calibri Bold Italic" size="34.0" />
-                                 </font>
-                              </Button>
-                           </children>
                         </GridPane>
                      </children>
                   </AnchorPane>

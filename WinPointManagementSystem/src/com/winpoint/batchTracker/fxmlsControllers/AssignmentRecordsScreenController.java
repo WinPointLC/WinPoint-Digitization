@@ -33,7 +33,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AssignmentRecordsScreenController extends ParentFXMLController {
-
+	private Integer batchId;
+    private String batchNameValue;
+    private Integer courseId;
+    private String courseName;
     @FXML
     private Button back;
 
@@ -66,21 +69,33 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     
     
     public void setRecievedData(ArrayList<String> recievedData) {
-        for(String data : recievedData) {
-            System.out.println(data);
+    	batchId = Integer.parseInt(recievedData.get(0));
+        batchNameValue = recievedData.get(1);
+        batchName.setText(batchNameValue);
+        courseId = Integer.parseInt(recievedData.get(2));
+        courseName = recievedData.get(3);
+        ObservableList<AssignmentsScreenWrapper> assignmentDetailsList = FXCollections.observableArrayList(new StudentCourseDetailsHelper().getAssignmentScreenWrapperList(batchId));
+	    
+	    assignmentsTable.setItems(assignmentDetailsList);
         }
-    }
-    
     
     public void setBackButton(String s) {
     	
     }
     @FXML
     void GoToPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage) back.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			myNewScene = loader.load();
+			LectureScreenController lectureScreenLecture = loader.getController();
+			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
+			dataForLectureScreen.add(batchId.toString());
+			dataForLectureScreen.add(batchNameValue);
+			dataForLectureScreen.add(courseId.toString());
+			dataForLectureScreen.add(courseName);
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");
@@ -89,17 +104,6 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-    	/*FXMLLoader loader = new FXMLLoader();
-        Parent parent = loader.load(getClass().getResource("../../resources/fxmls/LectureSceneController.fxml").openStream());
-        LectureSceneController lectureSceneController = loader.getController();
-        lectureSceneController.setRevenueType(label);
-        stage = (Stage) sceneButton1.getScene().getWindow();
-        myNewScene = FXMLLoader.load(getClass().getResource("/mvc/view/scene1.fxml"));
-      Scene scene = new Scene(myNewScene);
-    stage.setScene(scene);
-    stage.setTitle("My New Scene");
-    stage.show();*/
     }
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
@@ -107,17 +111,20 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
    		
-   		// Row Population logic
    		assignmentsTableNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
    		assignmentsTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<>("feeStatus"));
    		assignmentsTableCoursewareColumn.setCellValueFactory(new PropertyValueFactory<>("coursewareIssued"));
    		assignmentsTableAssignmentsIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsIssued"));
    		assignmentsTableAssignmentsSubmittedColumn.setCellValueFactory(new PropertyValueFactory<>("assignmentsSubmitted"));
 
+//   		ArrayList<String> data = new ArrayList<>();
+//        data.add("1");
+//        data.add("Batch 1");
+//        data.add("1");
+//        data.add("Course 1");
+//
+//        setRecievedData(data);
    		
-   		
-	    ObservableList<AssignmentsScreenWrapper> assignmentDetailsList = FXCollections.observableArrayList(new StudentCourseDetailsHelper().getAssignmentScreenWrapperList(1));
 	    
-	    assignmentsTable.setItems(assignmentDetailsList);
    	}
 }

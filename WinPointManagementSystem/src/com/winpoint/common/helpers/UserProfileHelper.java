@@ -23,16 +23,12 @@ public class UserProfileHelper {
     }
 
 
-    public ArrayList<UserProfile> getEligibleUsers(){
-        List<UserProfile> userProfileList = new UserProfileDao().getEligibleUsers();
+    public List<UserProfile> getRegisteredUsers(){
+        return new UserProfileDao().getRegisteredUsers();
+    }
 
-        for( UserProfile userProfile : userProfileList ) {
-
-            System.out.println(userProfile.getFirstName());
-
-        }
-
-        return (ArrayList<UserProfile>) userProfileList;
+    public List<UserProfile> getFaculty(){
+        return new UserProfileDao().getFaculty();
     }
 
 
@@ -41,4 +37,8 @@ public class UserProfileHelper {
     public ArrayList<BatchIndividualFeedbackScreenWrapper> getBatchIndividualFeedbackScreenWrapperList(Integer batchId){
         return new UserProfileDao().getBatchIndividualFeedbackScreenWrapperList(batchId); 
     }
+    
+    public ArrayList<UserProfile> getStudentListForBatch(Integer batchId){
+	    return new UserProfileDao().getStudentListForBatch(batchId);
+	}
 }

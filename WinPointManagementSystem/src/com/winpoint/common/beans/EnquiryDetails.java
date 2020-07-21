@@ -40,27 +40,27 @@ public class EnquiryDetails extends UserProfile {
 	private String suggestion;
 	private Boolean activeStatus;
 
-	private String student;
-	
-	private String enquired;
-	private String registered;
-	
-
-	public String getEnquired() {
-		return enquired;
-	}
-
-	public void setEnquired(String enquired) {
-		this.enquired = enquired;
-	}
-
-	public String getRegistered() {
-		return registered;
-	}
-
-	public void setRegistered(String registered) {
-		this.registered = registered;
-	}
+//	private String student;
+//	
+//	private String enquired;
+//	private String registered;
+//	
+//
+//	public String getEnquired() {
+//		return enquired;
+//	}
+//
+//	public void setEnquired(String enquired) {
+//		this.enquired = enquired;
+//	}
+//
+//	public String getRegistered() {
+//		return registered;
+//	}
+//
+//	public void setRegistered(String registered) {
+//		this.registered = registered;
+//	}
 
 	/**
 	@param enquiryId;
@@ -95,19 +95,22 @@ public class EnquiryDetails extends UserProfile {
 	@param activeStatus;
 	*/
 	
-	public EnquiryDetails(String student) {
-		this.setStudent(student);
-	}
+//	public EnquiryDetails(String student) {
+//		this.setStudent(student);
+//	}
 	
 
-	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String email, String mobileNumber,
+	
+	
+	
+
+	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,
 			Date dateofEnquiry, String gender, Integer yearOfGraduation, String recommendation, Boolean eligibility,
 			String coursesInterestedIn, String reference, Integer timeSlotsId, String courseAlreadyDone,
 			Date startDate, Integer segmentTypeId, String suggestion, Boolean activeStatus) {
 		super();
-		this.enquiryId = enquiryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = email;
@@ -156,8 +159,9 @@ public class EnquiryDetails extends UserProfile {
 		this.lastName = lastName;
 	}
 
-	public EnquiryDetails(String firstName, String lastName, String coursesInterestedIn,boolean eligibility,String suggestion) {
+	public EnquiryDetails(int enquiryId, String firstName, String lastName, String coursesInterestedIn,boolean eligibility,String suggestion) {
 		// TODO Auto-generated constructor stub
+		this.enquiryId = enquiryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.coursesInterestedIn = coursesInterestedIn;
@@ -166,13 +170,14 @@ public class EnquiryDetails extends UserProfile {
 	} 
 
 	
-	public EnquiryDetails(String firstName, String lastName, String emailId, String mobileNo, String college,
+	public EnquiryDetails(Integer enquiryId, String firstName, String lastName, String emailId, String mobileNo, String college,
 			String degree, String branch, String occupation, String organisation, String designation,
 			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
 			Integer coursesInterestedIn, String courseAlreadyDone, Boolean activeStatus) {
 		
 		// TODO Auto-generated constructor stub
 	
+		this.enquiryId = enquiryId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
@@ -218,7 +223,6 @@ public class EnquiryDetails extends UserProfile {
 		this.activeStatus = activeStatus;
 	}
 
-	public EnquiryDetails() {	}
 
 	/**
 	 * @return the enquiryId
@@ -227,7 +231,133 @@ public class EnquiryDetails extends UserProfile {
 		return enquiryId;
 	}
 
+	public EnquiryDetails(
+			Integer enquiryId, 
+			String firstName2,
+			String lastName2, 
+			String emailId, 
+			String mobileNo, 
+			String address2, 
+			Date birthDate2, 
+			String college2,			
+			String degree2, 
+			String branch2, 
+			String occupation2, 
+			String organisation2, 
+			String designation2,
+			String domain2, 
+			String role2, 
+			Integer experience2, 
+			Integer createdBy2, 
+			Date dateOfEnquiry, 
+			String gender,
+			Integer yearOfGraduation2, 
+			String recommendation, 
+			Boolean eligibility, 
+			String coursesInterestedIn,
+			String reference, 
+			Integer timeSlotsId, 
+			String courseAlreadyDone, 
+			Date startDate, 
+			Integer segmentTypeId,
+			String suggestion, 
+			Boolean activeStatus) {
+
+		this.enquiryId = enquiryId;
+		this.firstName = firstName2;
+		this.lastName = lastName2;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		this.address = address2;
+		this.birthDate = birthDate2;
+		this.college = college2;
+		this.degree = degree2;
+		this.branch = branch2;
+		this.occupation = occupation2;
+		this.organisation = organisation2;
+		this.designation = designation2;
+		this.domain = domain2;
+		this.role = role2;
+		this.experience = experience2;
+		this.createdBy = createdBy2;
+		this.dateOfEnquiry = dateOfEnquiry;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation2;
+		this.recommendation = recommendation;
+		this.eligibility = eligibility;
+		this.coursesInterestedIn = coursesInterestedIn;
+		this.reference = reference;
+		this.timeSlotsId = timeSlotsId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.startDate = startDate;
+		this.segmentTypeId = segmentTypeId;
+		this.suggestion = suggestion;
+		this.activeStatus = activeStatus;
+	}
+
+	// new for update Screen
+	public EnquiryDetails(Integer enquiryId, String firstName1, String lastName1, String emailId1, String mobileNo1,
+			String college1, String degree1, String branch1, String occupation1, String organisation1,
+			String designation1, String domain1, String role1, Integer experience1, String gender1,
+			Integer yearOfGraduation1, String coursesInterestedIn1, String coursesAlreadyDone1,String suggestion1, Boolean activeStatus1) {
+		// TODO Auto-generated constructor stub
+		this.enquiryId = enquiryId;
+		this.firstName = firstName1;
+		this.lastName = lastName1;
+		this.emailId = emailId1;
+		this.mobileNo = mobileNo1;
+		this.college = college1;
+		this.degree = degree1;
+		this.branch = branch1;
+		this.occupation = occupation1;
+		this.organisation = organisation1;
+		this.designation = designation1;
+		this.domain = domain1;
+		this.role = role1;
+		this.experience = experience1;
+		this.gender = gender1;
+		this.yearOfGraduation = yearOfGraduation1;
+		this.coursesInterestedIn = coursesInterestedIn1;
+		this.courseAlreadyDone = coursesAlreadyDone1;
+		this.suggestion = suggestion1;
+		this.activeStatus = activeStatus1;
+	}
 	
+	
+//	"SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,MOBILE_NO,\n" + 
+//	"ELIGIBILITY,COURSE_INTERESTED_IN,TIME_SLOTS_ID,COURSE_ALREADY_DONE,\n" + 
+//	" SEGMENT_TYPE_ID FROM ENQUIRY_DETAILS\n" + 
+//	"WHERE ACTIVE_STATUS = 1"; 
+
+
+	public EnquiryDetails(int enquiryId, String firstName, String lastName, String emailId, String mobileNo, Boolean eligibility,
+			String coursesInterestedIn, int timeSlotsId, String coursesAlreadyDone, int segmetTypeId) {
+		this.enquiryId= enquiryId;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.emailId=emailId;
+		this.mobileNo=mobileNo;
+		this.eligibility=eligibility;
+		this.coursesInterestedIn=coursesInterestedIn;
+		this.timeSlotsId=timeSlotsId;
+		this.courseAlreadyDone=coursesAlreadyDone;
+		this.segmentTypeId=segmetTypeId;
+		
+		}
+
+
+	public EnquiryDetails(String coursesInterestedIn2, Boolean eligibility2) {
+		// TODO Auto-generated constructor stub
+		this.coursesInterestedIn = coursesInterestedIn2;
+		this.eligibility = eligibility2;
+	}
+
+
+	public EnquiryDetails() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * @param enquiryId the enquiryId to set
 	 */
@@ -650,12 +780,12 @@ public class EnquiryDetails extends UserProfile {
 		this.activeStatus = activeStatus;
 	}
 
-	public String getStudent() {
-		return student;
-	}
-
-	public void setStudent(String student) {
-		this.student = student;
-	}
+//	public String getStudent() {
+//		return student;
+//	}
+//
+//	public void setStudent(String student) {
+//		this.student = student;
+//	}
 
 }

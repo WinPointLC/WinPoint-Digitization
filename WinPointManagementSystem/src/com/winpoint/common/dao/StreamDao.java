@@ -42,4 +42,30 @@ public class StreamDao {
 		return streamList;
 		
 	}
+	
+	public Integer getStreamId(String streamName) {
+		Integer streamId = null;
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "SELECT STREAM_ID \r\n" + 
+					"FROM STREAMS\r\n" + 
+					"WHERE STREAM_NAME = '"+ streamName +"'";
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				streamId = resultSet.getInt("STREAM_ID");
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return streamId;
+		
+	}
 }

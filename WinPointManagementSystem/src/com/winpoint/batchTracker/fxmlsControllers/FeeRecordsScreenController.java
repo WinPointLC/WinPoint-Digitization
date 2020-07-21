@@ -16,6 +16,7 @@ import com.winpoint.common.dao.StudentCourseInstallmentDetailsDao;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
 //import javafx.beans.property.ObjectProperty;
@@ -23,11 +24,13 @@ import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,11 +40,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FeeRecordsScreenController extends ParentFXMLController{
-	private static Integer batchId;
-	private static String batchNameValue;
-	private static Integer courseId;
-	private static String courseName;
-
+	private Integer batchId;
+	private String batchNameValue;
+	private Integer courseId;
+	private String courseName;
+	
+	private  ArrayList<FeeRecordsScreenWrapper>  feeRecordsScreenWrapperList;
 	@FXML
     private Button backButton;
 
@@ -125,31 +129,27 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     	batchNameValue = recievedData.get(1);
     	courseId = Integer.parseInt(recievedData.get(2));
     	courseName = recievedData.get(3);
-//    	for(String data : recievedData) {
-//    		System.out.println(data);
-//    	}
+    	
     	batchName.setText(batchNameValue);
+    	this.feeRecordsScreenWrapperList= new StudentCourseInstallmentHelper().getFeeRecordsScreenWrapperList(batchId);
     	displayTable();
+    	displayDetails();
     }
 
     @FXML
     void getPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage)backButton.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
-    	LectureScreenController lectureScreenController = new LectureScreenController();
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
 			myNewScene = loader.load();
-			lectureScreenController = loader.getController();
-			
+			LectureScreenController lectureScreenLecture = loader.getController();
 			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
 			dataForLectureScreen.add(batchId.toString());
 			dataForLectureScreen.add(batchNameValue);
 			dataForLectureScreen.add(courseId.toString());
 			dataForLectureScreen.add(courseName);
-			
-			lectureScreenController.setRecievedData(dataForLectureScreen);
-			
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");
@@ -159,17 +159,33 @@ public class FeeRecordsScreenController extends ParentFXMLController{
 			e.printStackTrace();
 		}
     }
-    
+    void displayDetails() {
+    	for (FeeRecordsScreenWrapper feerecordsScreenWrapper : this.feeRecordsScreenWrapperList) {
+ 		   String fullName=feerecordsScreenWrapper.getName();	   
+    Hyperlink hpl= new Hyperlink(fullName);
+    hpl.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent e) {
+       	 feeUniqueId.setText(feerecordsScreenWrapper.getUserId().toString());
+       	 feeName.setText(feerecordsScreenWrapper.getName());
+       	 feeEmailID.setText(feerecordsScreenWrapper.getEmailId());
+       	 feeMobileNumber.setText(feerecordsScreenWrapper.getMobile());
+       	 feeReminderCount.setText(feerecordsScreenWrapper.getFeeReminderCount().toString());
+       	 feeDueAmount.setText(feerecordsScreenWrapper.getDueAmount().toString());
+           }
+          });
+    feerecordsScreenWrapper.setHpl(hpl);
+ }
+    }
     void displayTable() {
-    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(new StudentCourseInstallmentHelper().getFeeRecordsScreenWrapperList(batchId));
+    	
+    	ObservableList<FeeRecordsScreenWrapper> data = FXCollections.observableArrayList(this.feeRecordsScreenWrapperList);
 		feeTable.setItems(data);
     }
-
-
 @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	
-    	feeTableNameColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("name")); 
+	
+		
+    	feeTableNameColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("hpl"));
     	feeTableFeeStatusColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("feeStatus"));
     	feeTablePaymentModeColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, String>("paymentMode"));
     	feeTablePlannedInstallment1Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("plannedInstallment1"));
@@ -185,7 +201,7 @@ public class FeeRecordsScreenController extends ParentFXMLController{
     	feeTableActualInstallment3Column.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("actualInstallment3"));
     	feeTableActualInstallment3DateColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Date>("actualInstallment3Date"));
     	feeTableDueAmountColumn.setCellValueFactory(new PropertyValueFactory<FeeRecordsScreenWrapper, Integer>("dueAmount"));
-		
+    	
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
 	}

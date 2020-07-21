@@ -16,7 +16,6 @@ public class TimeSlots {
 		this.timeSlotsDescription = timeSlotsDescription;
 	}
 	
-	
 	/**
 	 * @return the timeSlotsId
 	 */

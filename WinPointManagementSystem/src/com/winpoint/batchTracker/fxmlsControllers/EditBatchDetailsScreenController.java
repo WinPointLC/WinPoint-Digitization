@@ -22,7 +22,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EditBatchDetailsScreenController extends ParentFXMLController {
-
+	private Integer batchId;
+	private String batchNameValue;
+	private Integer courseId;
+	private String courseName;
+	
     @FXML
     private Button backButton;
 
@@ -86,9 +90,12 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     private Button saveLecture;
     
     public void setRecievedData(ArrayList<String> recievedData) {
-    	for(String data : recievedData) {
-            System.out.println(data);
-        }
+    	batchId = Integer.parseInt(recievedData.get(0));
+    	batchNameValue = recievedData.get(1);
+    	courseId = Integer.parseInt(recievedData.get(2));
+    	courseName = recievedData.get(3);
+    	batchName.setText(batchNameValue);
+    	
     }
 
     @FXML
@@ -114,10 +121,18 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 
     @FXML
     void goToPreviousScreen(ActionEvent event) {
-    	Stage stage = (Stage) backButton.getScene().getWindow();
+    	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchTracker/fxmls/LectureScreen.fxml"));
+			myNewScene = loader.load();
+			LectureScreenController lectureScreenLecture = loader.getController();
+			ArrayList<String> dataForLectureScreen = new ArrayList<String>();
+			dataForLectureScreen.add(batchId.toString());
+			dataForLectureScreen.add(batchNameValue);
+			dataForLectureScreen.add(courseId.toString());
+			dataForLectureScreen.add(courseName);
+			lectureScreenLecture.setRecievedData(dataForLectureScreen);
 			Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Lecture Screen");

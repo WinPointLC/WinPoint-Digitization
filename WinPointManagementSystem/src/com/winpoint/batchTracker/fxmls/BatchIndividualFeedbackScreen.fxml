@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.BatchIndividualFeedbackScreenController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" minHeight="400.0" minWidth="200.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchTracker.fxmlsControllers.BatchIndividualFeedbackScreenController">
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +28,18 @@
                   <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPreviousScreen" prefHeight="50.0" prefWidth="50.0" text="Back">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <font>
+                        <Font name="Calibri Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Text fx:id="batchName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Name">
+                     <font>
+                        <Font name="Calibri Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Text>
                   <Region HBox.hgrow="ALWAYS" />
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Individual Feedback">
                      <font>
@@ -63,27 +73,22 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="300.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: purple;">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="615.0" prefWidth="300.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <content>
-                      <AnchorPane prefHeight="945.0" prefWidth="1800.0">
-                           <children>
-                              <TableView fx:id="individualFeedbackTable" maxWidth="3000.0" minWidth="500.0" prefHeight="945.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <columns>
-                                  <TableColumn fx:id="individualFeedbackTableNameColumn" minWidth="-1.0" prefWidth="200.0" text="Name" />
-                                  <TableColumn fx:id="individualFeedbackTableInstructorColumn" minWidth="-1.0" prefWidth="200.0" text="Instructor" />
-                                    <TableColumn fx:id="individualFeedbackTableDuration" minWidth="-1.0" prefWidth="200.0" text="Duration" />
-                                    <TableColumn fx:id="individualFeedbackTableEmailId" minWidth="-1.0" prefWidth="200.0" text="Email ID" />
-                                    <TableColumn fx:id="individualFeedbackTableMobile" minWidth="-1.0" prefWidth="200.0" text="Mobile" />
-                                    <TableColumn fx:id="individualFeedbackTableStatus" minWidth="-1.0" prefWidth="200.0" text="Status" />
-                                </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <TableView fx:id="individualFeedbackTable" layoutX="10.0" layoutY="10.0" maxWidth="3000.0" minWidth="900.0" prefHeight="615.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="individualFeedbackTableNameColumn" editable="false" minWidth="150.0" prefWidth="200.0" text="Name" />
+                      <TableColumn fx:id="individualFeedbackTableInstructorColumn" editable="false" minWidth="150.0" prefWidth="200.0" text="Instructor" />
+                        <TableColumn fx:id="individualFeedbackTableDuration" editable="false" minWidth="150.0" prefWidth="200.0" text="Duration" />
+                        <TableColumn fx:id="individualFeedbackTableEmailId" editable="false" minWidth="150.0" prefWidth="200.0" text="Email ID" />
+                        <TableColumn fx:id="individualFeedbackTableMobile" editable="false" minWidth="150.0" prefWidth="200.0" text="Mobile" />
+                        <TableColumn fx:id="individualFeedbackTableStatus" editable="false" minWidth="150.0" prefWidth="200.0" text="Status" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </TableView>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -95,7 +100,7 @@
                     <content>
                       <AnchorPane prefHeight="714.0" prefWidth="661.0" style="-fx-background-color: purple;">
                            <children>
-                              <VBox prefHeight="714.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox prefHeight="2357.0" prefWidth="659.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <HBox VBox.vgrow="ALWAYS">
                                        <children>
@@ -109,11 +114,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5" VBox.vgrow="ALWAYS">
+                                                <TextArea fx:id="individualFeedbackQuestion1" editable="false" layoutX="15.0" layoutY="15.0" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true" VBox.vgrow="ALWAYS">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -133,11 +141,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion2" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -157,11 +168,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion3" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -181,11 +195,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion4" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -205,11 +222,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion5" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -229,11 +249,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion6" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -253,11 +276,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion7" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -277,11 +303,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion8" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion8" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -301,11 +330,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion9" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -325,11 +357,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion10" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -349,12 +384,12 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="individualFeedbackQuestion11" editable="false" layoutX="15.0" layoutY="15.0" prefHeight="200.0" prefWidth="200.0" scrollTop="10000.0" wrapText="true">
+                                                <TextArea fx:id="individualFeedbackQuestion11" editable="false" layoutX="15.0" layoutY="15.0" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
                                                    <effect>
                                                       <Glow />
                                                    </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold Italic" size="24.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
                                                 </TextArea>
                                              </children>
@@ -376,12 +411,12 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="individualFeedbackQuestion12" editable="false" prefHeight="200.0" prefWidth="200.0" scrollTop="10000.0" wrapText="true">
+                                                <TextArea fx:id="individualFeedbackQuestion12" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
                                                    <effect>
                                                       <Glow />
                                                    </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold Italic" size="24.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
                                                 </TextArea>
                                              </children>
@@ -395,7 +430,7 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <TextArea fx:id="individualFeedbackQuestion13ext" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Q13." scrollTop="10000.0" wrapText="true">
+                                                <TextArea fx:id="individualFeedbackQuestion13Text" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Q13." scrollTop="10000.0" wrapText="true">
                                                    <effect>
                                                       <Glow />
                                                    </effect>
@@ -403,11 +438,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion13" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion13" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -427,11 +465,14 @@
                                                       <Font name="Calibri Bold Italic" size="24.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextField fx:id="individualFeedbackQuestion14" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" promptText="5">
+                                                <TextArea fx:id="individualFeedbackQuestion14" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="5" scrollTop="10000.0" wrapText="true">
+                                                   <effect>
+                                                      <Glow />
+                                                   </effect>
                                                    <font>
-                                                      <Font name="Calibri Bold" size="30.0" />
+                                                      <Font name="Calibri Bold" size="26.0" />
                                                    </font>
-                                                </TextField>
+                                                </TextArea>
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
