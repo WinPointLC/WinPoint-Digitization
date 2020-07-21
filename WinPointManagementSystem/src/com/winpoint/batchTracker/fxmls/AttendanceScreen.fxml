@@ -65,11 +65,11 @@
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.46060606060606063" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.46060606060606063" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane maxWidth="500.0" minHeight="400.0" minWidth="300.0" prefHeight="200.0" prefWidth="100.0">
+          <AnchorPane maxWidth="500.0" minHeight="400.0" minWidth="300.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: purple;">
                <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="628.0" prefWidth="294.0" spacing="5.0" style="-fx-background-color: purple;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="628.0" prefWidth="294.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ComboBox fx:id="selectLectureNumber" maxHeight="30.0" maxWidth="1800.0" onAction="#listOfLectureNumber" prefHeight="30.0" prefWidth="280.0" promptText="Select Lecture">
                            <cursor>
@@ -115,7 +115,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="200.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
+          <AnchorPane minHeight="200.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: purple;">
                <children>
                   <TableView fx:id="displayStudentAttendanceTable" prefHeight="620.0" prefWidth="531.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
@@ -127,6 +127,9 @@
                      </columnResizePolicy>
                   </TableView>
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </AnchorPane>
         </items>
          <padding>
