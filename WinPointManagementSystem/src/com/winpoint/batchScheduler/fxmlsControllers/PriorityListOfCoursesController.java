@@ -137,13 +137,12 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
             			
             			
     	    		for(Course course : registeredStudentsCourseMap.keySet()) {
+    	    			count = 0 ;
     	    			launchButton= new Button("Launch");
     	    			if(course.getCourseTypeId()==courseTypeNameId) {
 //    	    				System.out.println(course.getCourseName());
     	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList = registeredStudentsCourseMap.get(course);
     	    			
-    	    				
-    		    			count = 0 ;
     	    		        for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
     	    		        	count++;	
     	    		        }
@@ -153,22 +152,21 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	 
     	    			}
     	    		}
+    	    		System.out.println("count " + count);
     	    		
     	    		for(Course course : enquiredStudentsCourseMap.keySet()) {
-    	    			
+    	    			int innerCount=0;
     	    			if(course.getCourseTypeId() == courseTypeNameId) {
     	    				ArrayList<EnquiryDetails> studentDetailsList = enquiredStudentsCourseMap.get(course);
-    	    				for(EnquiryDetails enquiryDetails : studentDetailsList) {
-    	    					
+    	    				for(EnquiryDetails enquiryDetails : studentDetailsList) {  
     	    					System.out.println(enquiryDetails.getFirstName());
-    	    					
-    	    					count ++;
+    	    					innerCount ++;
     	    				}
+    	    				System.out.println(count);
     	    					for (PriorityListOfCoursesWrapper coursesWrapper : priorityListOfCoursesWrapperList) {
     	    						if(coursesWrapper.getCourseId() == course.getCourseId()) {
     	    							System.out.println(coursesWrapper.getCourse());
-    	    							System.out.println("mazak");
-    	    							coursesWrapper.setNoOfStudents(count);
+    	    							coursesWrapper.setNoOfStudents(innerCount+coursesWrapper.getNoOfStudents());
     	    							coursesWrapper.setTotalRevenue(coursesWrapper.getNoOfStudents()*course.getCourseFees());
     	    							break;
     	    						}
