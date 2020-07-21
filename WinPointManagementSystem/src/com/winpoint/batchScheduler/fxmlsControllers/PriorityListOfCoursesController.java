@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.CourseType;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.CourseTypeHelper;
 import com.winpoint.common.helpers.PriorityCoursesListHelper;
@@ -45,7 +46,9 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 		
 		ObservableList<PriorityListOfCoursesWrapper> data;
 		
-		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> studentList;
+		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> registeredStudentsCourseMap;
+		
+		HashMap<Course, ArrayList<EnquiryDetails>> enquiredStudentsCourseMap;
 		
 		List<PriorityListOfCoursesWrapper> priorityListOfCoursesWrapperList;
 		
@@ -111,8 +114,8 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
     	
-    	 studentList  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();
-
+    	 registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();
+    	 enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();
     	 
     	 
     	//course Type choice box
@@ -129,130 +132,50 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
             	System.out.println("CategoryUserId : "+ courseTypeNameId);
             	System.out.println("Description : "+ description); 
             	
-            	
-            	
-            	
-            	if(courseTypeNameId == 1) {	//modular
-    	    		for(Course course : studentList.keySet()) {
+            
+            	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
+            			
+            			
+    	    		for(Course course : registeredStudentsCourseMap.keySet()) {
     	    			launchButton= new Button("Launch");
-    	    			if(course.getCourseTypeId()==1) {
-    	    				System.out.println(course.getCourseName());
-    	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList = studentList.get(course);
+    	    			if(course.getCourseTypeId()==courseTypeNameId) {
+//    	    				System.out.println(course.getCourseName());
+    	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList = registeredStudentsCourseMap.get(course);
     	    			
     	    				
     		    			count = 0 ;
     	    		        for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
-    	    		        	count++;
-    	    		        	
+    	    		        	count++;	
     	    		        }
     	    		        
-    	    		        priorityListOfCoursesWrapperList.add(new PriorityListOfCoursesWrapper(course.getCourseName() , 1, 1, count,null, count*course.getCourseFees(), launchButton));
+    	    		        priorityListOfCoursesWrapperList.add(new PriorityListOfCoursesWrapper(course.getCourseId(),course.getCourseName() , 1, 1, count,null, count*course.getCourseFees(), launchButton));
     	    	        	
-    	    		        	launchButton = new Button("Launch");
-    	    		        	EventHandler<ActionEvent> eventPriorityList = new EventHandler<ActionEvent>() { 
-    	    		                public void handle(ActionEvent e) 
-    	    		                { 
-    	    		                    Parent myNewScene = null;
-    	    		    				try {
-    	    		    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/UpdateForm.fxml"));
-    	    		    					myNewScene = loader.load();
-    	    		 
-    	    		    	            	
-    	    		    				} catch (IOException e1) {
-    	    		    					e1.printStackTrace();
-    	    		    				}
-    	    		                	Stage stage = (Stage) launchButton.getScene().getWindow();
-    	    		                	Scene scene = new Scene(myNewScene);
-    	    		                	stage.setScene(scene);
-    	    		                	stage.setTitle("Main Scene");
-    	    		                	stage.show();
-    	    		                } 
-    	    		            }; 	
-    	    		        	launchButton.setOnAction(eventPriorityList);   	    		        	
+    	 
     	    			}
     	    		}
     	    		
-    	    		
-    	    		
-    	    	}
-    	    	
-    	    	else if(courseTypeNameId == 2) {	//tbc
-    	    		priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
-    	    		for(Course course : studentList.keySet()) {
-    	    			if(course.getCourseTypeId()==2) {
-    	    				System.out.println(course.getCourseName());
-    	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList=studentList.get(course);
-    	    				count = 0 ;
-    	    		        for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
-    	    		        	count++;
-    	    		        	
-    	    		        }
-    	    		        
-    	    		        priorityListOfCoursesWrapperList.add(new PriorityListOfCoursesWrapper(course.getCourseName() , 1, 1, count,null, count*course.getCourseFees(), launchButton));
-    	    	        	
-    	    		        	launchButton = new Button("Launch");
-    	    		        	EventHandler<ActionEvent> eventPriorityList = new EventHandler<ActionEvent>() { 
-    	    		                public void handle(ActionEvent e) 
-    	    		                { 
-    	    		                    Parent myNewScene = null;
-    	    		    				try {
-    	    		    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/UpdateForm.fxml"));
-    	    		    					myNewScene = loader.load();
-    	    		 
-    	    		    	            	
-    	    		    				} catch (IOException e1) {
-    	    		    					e1.printStackTrace();
-    	    		    				}
-    	    		                	Stage stage = (Stage) launchButton.getScene().getWindow();
-    	    		                	Scene scene = new Scene(myNewScene);
-    	    		                	stage.setScene(scene);
-    	    		                	stage.setTitle("Main Scene");
-    	    		                	stage.show();
-    	    		                } 
-    	    		            }; 	
-    	    		        	launchButton.setOnAction(eventPriorityList);     	    			
+    	    		for(Course course : enquiredStudentsCourseMap.keySet()) {
+    	    			
+    	    			if(course.getCourseTypeId() == courseTypeNameId) {
+    	    				ArrayList<EnquiryDetails> studentDetailsList = enquiredStudentsCourseMap.get(course);
+    	    				for(EnquiryDetails enquiryDetails : studentDetailsList) {
+    	    					
+    	    					System.out.println(enquiryDetails.getFirstName());
+    	    					
+    	    					count ++;
+    	    				}
+    	    					for (PriorityListOfCoursesWrapper coursesWrapper : priorityListOfCoursesWrapperList) {
+    	    						if(coursesWrapper.getCourseId() == course.getCourseId()) {
+    	    							System.out.println(coursesWrapper.getCourse());
+    	    							System.out.println("mazak");
+    	    							coursesWrapper.setNoOfStudents(count);
+    	    							coursesWrapper.setTotalRevenue(coursesWrapper.getNoOfStudents()*course.getCourseFees());
+    	    							break;
+    	    						}
+    	    					}
     	    			}
     	    		}
-    	    	}
-    	    	
-    	    	else if(courseTypeNameId == 3) {	//crt
-    	    		priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
-    	    		for(Course course : studentList.keySet()) {
-    	    			if(course.getCourseTypeId()==3) {
-    	    				System.out.println(course.getCourseName());
-    	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList=studentList.get(course);
-    	    				count = 0 ;
-    	    		        for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
-    	    		        	count++;
-    	    		        	
-    	    		        }
-    	    		        
-    	    		        priorityListOfCoursesWrapperList.add(new PriorityListOfCoursesWrapper(course.getCourseName() , 1, 1, count,null, count*course.getCourseFees(), launchButton));
-    	    	        	
-    	    		        	launchButton = new Button("Launch");
-    	    		        	EventHandler<ActionEvent> eventPriorityList = new EventHandler<ActionEvent>() { 
-    	    		                public void handle(ActionEvent e) 
-    	    		                { 
-    	    		                    Parent myNewScene = null;
-    	    		    				try {
-    	    		    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/UpdateForm.fxml"));
-    	    		    					myNewScene = loader.load();
-    	    		 
-    	    		    	            	
-    	    		    				} catch (IOException e1) {
-    	    		    					e1.printStackTrace();
-    	    		    				}
-    	    		                	Stage stage = (Stage) launchButton.getScene().getWindow();
-    	    		                	Scene scene = new Scene(myNewScene);
-    	    		                	stage.setScene(scene);
-    	    		                	stage.setTitle("Main Scene");
-    	    		                	stage.show();
-    	    		                } 
-    	    		            }; 	
-    	    		        	launchButton.setOnAction(eventPriorityList); 
-    	    			}
-    	    		}
-    	    	 }	    	
+    	    		
             	data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
 	        	priorityCoursesListTable.setItems(data);
             	
@@ -260,6 +183,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
             
         }; 	
         courseType.setOnAction(eventCourseType);
+        
         
         
     	// TimeSlots Choice Box : 
@@ -322,8 +246,8 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	launchCol.setCellValueFactory(new PropertyValueFactory<>("Launch"));
     	
     	
-    	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
     	
+    	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
     	data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
     	priorityCoursesListTable.setItems(data);
 

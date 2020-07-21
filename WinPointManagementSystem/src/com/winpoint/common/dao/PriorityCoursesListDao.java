@@ -192,9 +192,9 @@ public class PriorityCoursesListDao {
 		for(Course course : courseList.keySet()) {
 			coursesEnquiredStudetnsMap.put(course, new ArrayList<>());
 			for(EnquiryDetails enquiry : EnquiredStudentsCoursesMap.keySet()) {
-				if(EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId())) &&
-						(EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course)) ||
-								(courseList.get(course).contains("0") && !EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId()))))) {
+				if( (!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId())))  &&
+						((courseList.get(course).contains("0"))||EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course)))    
+						&&  (EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId())))) {
 					 coursesEnquiredStudetnsMap.get(course).add(enquiry);
 				}
 			}
@@ -204,6 +204,18 @@ public class PriorityCoursesListDao {
 	
 	
 }
+
+//!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId()))
+
+
+//EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId()))
+
+
+//EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course))
+
+//(courseList.get(course).contains("0"))
+
+
 
 
 

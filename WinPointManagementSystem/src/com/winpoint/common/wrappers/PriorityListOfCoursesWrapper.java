@@ -5,6 +5,7 @@ import java.util.Date;
 import javafx.scene.control.Button;
 
 public class PriorityListOfCoursesWrapper {
+	private int courseId;
 	private String course;
 	private int segmentType;
 	private int availableTime;
@@ -31,8 +32,9 @@ public class PriorityListOfCoursesWrapper {
 
 
 
-	public PriorityListOfCoursesWrapper(String courseName, int segmentType, int availableTime, int noOfStudents, Date beginDate, int totalRevenue, Button launchButton) {
+	public PriorityListOfCoursesWrapper(int courseId,String courseName, int segmentType, int availableTime, int noOfStudents, Date beginDate, int totalRevenue, Button launchButton) {
 
+		this.courseId = courseId;
 		this.course = courseName;
 		this.segmentType = segmentType;
 		this.availableTime = availableTime;
@@ -136,6 +138,18 @@ public class PriorityListOfCoursesWrapper {
 
 	public void setLaunch(Button launch) {
 		this.launch = launch;
+	}
+
+
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
 	
 	
