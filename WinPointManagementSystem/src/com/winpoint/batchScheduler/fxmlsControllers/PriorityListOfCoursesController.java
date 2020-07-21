@@ -134,6 +134,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
             	
             	if(courseTypeNameId == 1) {	//modular
     	    		for(Course course : studentList.keySet()) {
+    	    			launchButton= new Button("Launch");
     	    			if(course.getCourseTypeId()==1) {
     	    				System.out.println(course.getCourseName());
     	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList = studentList.get(course);

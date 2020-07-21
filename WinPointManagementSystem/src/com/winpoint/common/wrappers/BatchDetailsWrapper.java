@@ -42,6 +42,8 @@ public class BatchDetailsWrapper {
 	}
 
 	
+	
+
 	public String getBatchIds() {
 		return batchIds;
 	}
