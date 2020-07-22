@@ -39,6 +39,8 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	
 		private Integer courseTypeNameId;
 		
+		private Integer availableTimeId = null;
+		
 		private Integer timeSlotsId;
 		
 		private Integer facultySkillsId;
@@ -114,9 +116,8 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
     	
-    	 registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();
-    	 enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();
-    	 
+    	 registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();		//key is course bean and value UserCoursesDoneWrapper(userProfile beand and oursesDone)
+    	 enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();	//course bean and enquiry details array list    
     	 
     	//course Type choice box
     	List<CourseType> courseTypeList = new CourseTypeHelper().getCoursesType();    	 
@@ -144,7 +145,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	    				ArrayList<UserCoursesDoneWrapper> studentDetailsList = registeredStudentsCourseMap.get(course);
     	    			
     	    		        for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
-    	    		        	count++;	
+    	    		        	count++;
     	    		        }
     	    		        
     	    		        priorityListOfCoursesWrapperList.add(new PriorityListOfCoursesWrapper(course.getCourseId(),course.getCourseName() , 1, 1, count,null, count*course.getCourseFees(), launchButton));
@@ -152,20 +153,16 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	 
     	    			}
     	    		}
-    	    		System.out.println("count " + count);
     	    		
     	    		for(Course course : enquiredStudentsCourseMap.keySet()) {
     	    			int innerCount=0;
     	    			if(course.getCourseTypeId() == courseTypeNameId) {
     	    				ArrayList<EnquiryDetails> studentDetailsList = enquiredStudentsCourseMap.get(course);
     	    				for(EnquiryDetails enquiryDetails : studentDetailsList) {  
-    	    					System.out.println(enquiryDetails.getFirstName());
     	    					innerCount ++;
     	    				}
-    	    				System.out.println(count);
-    	    					for (PriorityListOfCoursesWrapper coursesWrapper : priorityListOfCoursesWrapperList) {
+    	    					for (PriorityListOfCoursesWrapper coursesWrapper : priorityListOfCoursesWrapperList) {			//accessing the prev 
     	    						if(coursesWrapper.getCourseId() == course.getCourseId()) {
-    	    							System.out.println(coursesWrapper.getCourse());
     	    							coursesWrapper.setNoOfStudents(innerCount+coursesWrapper.getNoOfStudents());
     	    							coursesWrapper.setTotalRevenue(coursesWrapper.getNoOfStudents()*course.getCourseFees());
     	    							break;

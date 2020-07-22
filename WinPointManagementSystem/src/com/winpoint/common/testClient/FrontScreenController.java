@@ -57,7 +57,7 @@ public class FrontScreenController extends ParentFXMLController {
 	    @FXML
 	    void openCategorisedRecommendedCourses(ActionEvent event) throws IOException {
 	    	Stage stage = (Stage) categorisedRecommendedCoursesLink.getScene().getWindow();
-	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/CategorisedCourseRecommender.fxml"));
+	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/PriorityListOfCourses.fxml"));
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Categorised Course Recommender");
