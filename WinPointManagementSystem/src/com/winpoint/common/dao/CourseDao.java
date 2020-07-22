@@ -9,8 +9,10 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
+import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
 
 
 public class CourseDao {
@@ -125,9 +127,9 @@ public ArrayList<Course> getBatchCourseDurationList() {
 	  
 	
 	//group A - sign up form - shraddha
-	public List<Course> getCourseNamesList(){
+	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList(){
 		
-			List<Course> courseList = new ArrayList<Course>();
+			ArrayList<SignUpFormCourseListWrapper> courseList = new ArrayList<SignUpFormCourseListWrapper>();
 			
 			ResultSet resultSet = null;
 
@@ -135,21 +137,26 @@ public ArrayList<Course> getBatchCourseDurationList() {
 				Statement statement = connection.createStatement();
 				
 				
-				String query = "SELECT * FROM COURSES";
+				String query = "select C.COURSE_ID , C.COURSE_NAME,C.COURSE_TYPE_ID,CD.COURSE_TYPE_NAME\n" + 
+						"FROM COURSES AS C JOIN\n" + 
+						"COURSE_TYPE AS CD ON \n" + 
+						"C.COURSE_TYPE_ID = CD.COURSE_TYPE_ID";
 						
 				resultSet = statement.executeQuery(query);
 				
 				while(resultSet.next()) {
-					courseList.add(new Course(resultSet.getInt("COURSE_ID"),resultSet.getString("COURSE_NAME")));
+					courseList.add(new SignUpFormCourseListWrapper(resultSet.getInt("COURSE_ID"),resultSet.getString("COURSE_NAME"),
+							resultSet.getInt("COURSE_TYPE_ID"),resultSet.getString("COURSE_TYPE_NAME")));
+					
+					//courseList.add(new CourseType(null,resultSet.getString("COURSE_TYPE_NAME")));
 				}
-		
 		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return courseList;
-}
+	}
 }
 
 

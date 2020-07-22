@@ -243,35 +243,35 @@ public class UpdateFormController extends ParentFXMLController {
     	
     	
     	
-    	Parent myNewScene = null;
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
-			myNewScene = loader.load();
-			
-			StudentDetailsController studentDetailController = loader.getController();
-			studentDetailController.setStudentDetail(enquiryDetailsObject);
-        	
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-    	Stage stage = (Stage) submitFrame.getScene().getWindow();
-    	Scene scene = new Scene(myNewScene);
-    	stage.setScene(scene);
-    	stage.setTitle("Main Scene");
-    	stage.show();
-    	
-//    	FXMLLoader loader = new FXMLLoader();
-//    	Parent myNewScene;
+//    	Parent myNewScene = null;
 //		try {
-//			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/StudentDetails.fxml").openStream());
-//			Stage stage = (Stage) submitFrame.getScene().getWindow();
-//	    	Scene scene = new Scene(myNewScene);
-//	    	stage.setScene(scene);
-//	    	stage.setTitle("My New Scene");
-//	    	stage.show();  
-//		} catch (IOException e) {
-//			e.printStackTrace();
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml"));
+//			myNewScene = loader.load();
+//			
+//			StudentDetailsController studentDetailController = loader.getController();
+//			studentDetailController.setStudentDetail(enquiryDetailsObject);
+//        	
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
 //		}
+//    	Stage stage = (Stage) submitFrame.getScene().getWindow();
+//    	Scene scene = new Scene(myNewScene);
+//    	stage.setScene(scene);
+//    	stage.setTitle("Main Scene");
+//    	stage.show();
+    	
+    	FXMLLoader loader = new FXMLLoader();
+    	Parent myNewScene;
+		try {
+			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
+			Stage stage = (Stage) submitFrame.getScene().getWindow();
+	    	Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("My New Scene");
+	    	stage.show();  
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
     	

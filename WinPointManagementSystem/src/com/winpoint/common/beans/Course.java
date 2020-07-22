@@ -99,11 +99,12 @@ public class Course {
 		this.courseTypeId = courseTypeId;
 	}
 	
-	public Course(int courseId, String courseName) {
+	public Course(int courseId, String courseName, int courseTypeId) {
 		// TODO Auto-generated constructor stub
 		
 		this.courseId=courseId;
 		this.courseName=courseName;
+		this.courseTypeId = courseTypeId;
 	}
 
 	/**

@@ -27,6 +27,11 @@ public class CourseType {
 		this.courseTypeName = courseTypeName;
 	}
 
+//	public CourseType(String courseTypeName) {
+//		// TODO Auto-generated constructor stub
+//		
+//	}
+
 	/**
 	 * @return the courseTypeId
 	 */

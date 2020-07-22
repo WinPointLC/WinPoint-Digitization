@@ -25,6 +25,7 @@ import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 import com.winpoint.common.helpers.TimeSlotsHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
+import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -190,11 +191,18 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     void cancelClick(ActionEvent event) throws IOException {
     	
-//        System.out.println("COURSES INTERESTED LIST : "+courseInterestedInSetOfIds.toString());
-//    	System.out.println("COURSES ALREADY DONE LIST : "+courseAlreadyDoneSetOfIds.toString());
         
-		
-		
+    	//list for  course Interested IN
+    	System.out.println("SetOfIds : "+courseInterestedInSetOfIds);
+    			String courseInterestedInfinalString = "";
+    			for(Integer string : courseInterestedInSetOfIds) {
+    				if(string!=null)
+    				courseInterestedInfinalString += string.toString()+",";
+    				System.out.println("String : "+string);
+    			}
+    			courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+    			
+		System.out.println("Course LIst : "+courseInterestedInfinalString);
 
     	
     	System.out.println(event);
@@ -264,15 +272,15 @@ public class SignUpFormController extends ParentFXMLController {
 		String recommendation1 = recommendation.getText(); 
 		Boolean eligibility1 = eligible.isSelected();
 		
-		//list for  course Interested IN
-		String courseInterestedInfinalString = "";
-		for(Integer string : courseInterestedInSetOfIds) {
-			courseInterestedInfinalString += string.toString()+",";
-			System.out.println("String : "+string);
-		}
-		courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
-		
-		String coursesInterestedIn1 = courseInterestedInfinalString;
+//		//list for  course Interested IN
+//		String courseInterestedInfinalString = "";
+//		for(Integer string : courseInterestedInSetOfIds) {
+//			courseInterestedInfinalString += string.toString()+",";
+//			System.out.println("String : "+string);
+//		}
+//		courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+//		
+		String coursesInterestedIn1 = "";
 		String reference1 = referance.getText();
 		System.out.println("TimeSlotId : "+ timeSlotsId1);
 		Integer time = timeSlotsId1;
@@ -375,11 +383,11 @@ public class SignUpFormController extends ParentFXMLController {
     	segmentType.setOnAction(eventSegmentType);
     	/*******************************************************/    	
     	//Courses Interested In Combo Box :     	
-      	List<Course> CoursesList = new CourseHelper().getCourseNamesList();   // getAllCoursesList	
+      	List<SignUpFormCourseListWrapper> CoursesList = new CourseHelper().getCourseNamesList();   // getAllCoursesList	
       	HashMap<String, Integer> courseInterestedInSet = new HashMap<String, Integer>(); 
       	HashMap<String, Integer> courseAlreadyDoneSet = new HashMap<String, Integer>();
-    	for(Course courses : CoursesList) {
-    		coursesList.add(courses.getCourseName());//courses.getCoursetyoeNmae + " - " +courses.getCourseName
+    	for(SignUpFormCourseListWrapper courses : CoursesList) {
+    		coursesList.add(courses.getCourseTypeName()+"-"+courses.getCourseName());//courses.getCoursetyoeNmae + " - " +courses.getCourseName
     		courseInterestedInSet.put(courses.getCourseName(),courses.getCourseId());
     		courseAlreadyDoneSet.put(courses.getCourseName(), courses.getCourseId());
 

@@ -10,6 +10,7 @@ import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.Test;
 
 import com.winpoint.common.dao.CourseDao;
+import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
 
 
 public class CourseHelper {
@@ -27,7 +28,7 @@ public class CourseHelper {
 		
 	}
 	
-	public List<Course> getCourseNamesList() {
+	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList() {
 		return new CourseDao().getCourseNamesList();
 	}
 	

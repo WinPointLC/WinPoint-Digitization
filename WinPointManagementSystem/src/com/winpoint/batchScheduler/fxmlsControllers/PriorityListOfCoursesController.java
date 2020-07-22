@@ -108,8 +108,18 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    private Button cancel;
 
 	    @FXML
-	    void cancelFrame(ActionEvent event) {
+	    void cancelFrame(ActionEvent event) throws IOException {
 
+	    	System.out.println(event);
+	    	FXMLLoader loader = new FXMLLoader();
+	    	Parent myNewScene = loader.load(getClass().getResource("../../common/testClient/FrontScreenFxml.fxml").openStream());
+	    	Stage stage = (Stage) cancel.getScene().getWindow();
+	    	Scene scene = new Scene(myNewScene);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Main Scene");
+	    	stage.show();
+
+	    	
 	    }   
 	    
 	    
