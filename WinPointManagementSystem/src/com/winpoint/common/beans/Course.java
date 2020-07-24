@@ -90,13 +90,14 @@ public class Course {
 
 	
 	public Course(Integer courseId, String courseName, Integer courseFees, Integer streamId,
-			Integer courseTypeId) {
+			Integer courseTypeId, Integer courseDuration) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.courseFees = courseFees;
 		this.streamId = streamId;
 		this.courseTypeId = courseTypeId;
+		this.courseDuration = courseDuration;
 	}
 	
 	public Course(int courseId, String courseName, int courseTypeId) {
@@ -105,6 +106,10 @@ public class Course {
 		this.courseId=courseId;
 		this.courseName=courseName;
 		this.courseTypeId = courseTypeId;
+	}
+
+	public Course() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

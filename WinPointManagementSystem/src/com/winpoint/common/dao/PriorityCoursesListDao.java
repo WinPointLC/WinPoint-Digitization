@@ -30,14 +30,15 @@ public class PriorityCoursesListDao {
 	ResultSet resultSet=null;
 	try(Connection connection = ConnectionManager.getConnection()){
 		Statement statement = connection.createStatement();
-		String query = "SELECT COURSE_ID,COURSE_NAME,FEES,PRE_REQUISITE,STREAM_ID,COURSE_TYPE_ID FROM COURSES"; //to add faculty id
+		String query = "\n" + 
+				"SELECT COURSE_ID,COURSE_NAME,FEES,PRE_REQUISITE,STREAM_ID,COURSE_TYPE_ID,DURATION FROM COURSES"; //to add faculty id
 		resultSet = statement.executeQuery(query);
 		while(resultSet.next()) {
 			coursesPre= new HashSet<>();
 			for(String s:resultSet.getString("PRE_REQUISITE").split(",")) {
 				coursesPre.add(s);
 			}
-			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"), resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID")), coursesPre);
+			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"), resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID"),resultSet.getInt("DURATION")), coursesPre);
 		}		
 	}
 	
@@ -67,8 +68,6 @@ public class PriorityCoursesListDao {
 				"WHERE ACTIVE_STATUS = 1\n" + 
 				"AND USER_CATEGORY_ID=1";
 		resultSet = statement.executeQuery(query);
-		
-	
 		
 		while(resultSet.next()) {
 			coursesDone = new HashSet<>();
@@ -101,7 +100,17 @@ public class PriorityCoursesListDao {
 		 while(resultSet.next()) {
 			 
 			 userID = resultSet.getInt("USER_ID");
-			 coursesDoneMap.get(userID).getCoursesDoneSet().add(Integer.toString(resultSet.getInt("COURSE_ID")));			 
+			 
+			 String courseId = Integer.toString(resultSet.getInt("COURSE_ID"));
+			 
+			 System.out.println("CourseId : "+courseId);
+			 System.out.println(coursesDoneMap.get(userID).getCoursesDoneSet().size());
+			 for(String object : coursesDoneMap.get(userID).getCoursesDoneSet()) {
+				 System.out.println(object);
+			 }
+			 System.out.println();
+			 (coursesDoneMap.get(userID).getCoursesDoneSet()).add(courseId);
+			 System.out.println("welcome");
 		 }	
 	}
 	
@@ -116,7 +125,7 @@ public class PriorityCoursesListDao {
 }
 	
 	
-	public HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper> EnquiryDeatails() {
+	public HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper> getEligibleEnquiryDetails() {
 		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = new HashMap<>();
 		
 		ResultSet resultSet=null;
@@ -186,7 +195,7 @@ public class PriorityCoursesListDao {
 	
 	public HashMap<Course, ArrayList<EnquiryDetails>> coursesEligibleEnquiredStudentsMaps() {
 		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
-		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = EnquiryDeatails();
+		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = getEligibleEnquiryDetails();
 		HashMap<Course, ArrayList<EnquiryDetails>> coursesEnquiredStudetnsMap = new HashMap<>();
 		
 		for(Course course : courseList.keySet()) {

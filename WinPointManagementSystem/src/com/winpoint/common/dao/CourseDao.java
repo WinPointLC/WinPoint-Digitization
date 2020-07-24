@@ -127,7 +127,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 	  
 	
 	//group A - sign up form - shraddha
-	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList(){
+	public ArrayList<SignUpFormCourseListWrapper> getCoursesNamesList(){
 		
 			ArrayList<SignUpFormCourseListWrapper> courseList = new ArrayList<SignUpFormCourseListWrapper>();
 			

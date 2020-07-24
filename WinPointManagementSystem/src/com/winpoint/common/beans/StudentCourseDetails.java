@@ -48,8 +48,6 @@ public class StudentCourseDetails {
 		this.batchId = batchId;
 	}
 	
-	
-	
 	public StudentCourseDetails(String gradeId,String isCertificateGiven ) {
 		super();
 		this.isCertificateGiven = isCertificateGiven;
@@ -124,7 +122,7 @@ public class StudentCourseDetails {
 	}
 
 	
-	
+
 	public String getCoursewareIssued() {
 		return coursewareIssued;
 	}

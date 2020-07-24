@@ -29,9 +29,7 @@ public class CourseHelper {
 	}
 	
 	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList() {
-		return new CourseDao().getCourseNamesList();
+		return new CourseDao().getCoursesNamesList();
 	}
-	
-	
 }
 

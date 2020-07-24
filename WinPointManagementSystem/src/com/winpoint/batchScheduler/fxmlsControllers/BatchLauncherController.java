@@ -7,12 +7,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.CourseType;
+import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
+import com.winpoint.common.helpers.CourseTypeHelper;
+import com.winpoint.common.wrappers.BatchDetailsWrapper;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +40,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class BatchLauncherController extends ParentFXMLController {
+		
+	Course course = new Course();
 		BatchDetails batchDetails = new BatchDetails();
+	
+		private HashMap<Course, ArrayList<UserCoursesDoneWrapper>> registeredStudentsCourseMap;// = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>;
+		private HashMap<Course, ArrayList<EnquiryDetails>> enquiredStudentsCourseMap;
 
+		private Integer totalHours;
+		
 	    @FXML
 	    private TextField lectureDuration;
 
@@ -63,7 +81,9 @@ public class BatchLauncherController extends ParentFXMLController {
 	    
 	    @FXML
 	    private Button setLectureDuration;
-
+	    
+		private List<CourseType> courseTypeList;
+		
 	    @FXML
 	    void validateLectureDuration(ActionEvent event) {
 	    	
@@ -72,11 +92,12 @@ public class BatchLauncherController extends ParentFXMLController {
 	    @FXML
 	    void validateSetLectureDuration(ActionEvent event) {
 
+	    	System.out.println("Total : "+totalHours);
 	    	String lectureDurationString = lectureDuration.getText();
 	    	int lectureDuration1 = Integer.parseInt(lectureDurationString);
-			int totalNumberOfLectures1 = (80/lectureDuration1);		
+			int totalNumberOfLectures1 = (totalHours/lectureDuration1);		
 			String totalNumberOfLecturesString = Integer.toString(totalNumberOfLectures1);
-			totalNumberOfLectures.setText(totalNumberOfLecturesString);                      // Total Number Of Lectures
+			totalNumberOfLectures.setText(totalNumberOfLecturesString);// Total Number Of Lectures
 			
 			int totalNumberOfDays;
 			if(timeChoice.getText().equals("MORNING")||timeChoice.getText().equals("EVENING"))
@@ -164,8 +185,7 @@ public class BatchLauncherController extends ParentFXMLController {
     	Calendar cEndDate  =  Calendar.getInstance();
     	cEndDate .set(ldEndDate .getYear(), ldEndDate .getMonthValue(), ldEndDate .getDayOfMonth());
     	Date dateEndDate = cEndDate .getTime();
-    	
-    	
+    		
 //    	String batchId ="11";
 //    	String batchNumber1="1";
 //    	String courseName ="Python";
@@ -176,11 +196,7 @@ public class BatchLauncherController extends ParentFXMLController {
 //    	Integer timeChoice1 = 2;
 //    	Date beginDate1 = dateBeginDate;
 //    	Date endDate1 = dateEndDate;
-    	
-    	
-    	
 //    	BatchDetails batchDetails1 = new BatchDetails(batchId,batchNumber1,courseName,courseId,lectureDuration1, totalNumberOfLecture1,facultyId1,timeChoice1,beginDate1,endDate1);
-    	    	
 //    	new BatchDetailsHelper().create(batchDetails1);
     	
     	Stage stage = (Stage) launch.getScene().getWindow();
@@ -202,13 +218,24 @@ public class BatchLauncherController extends ParentFXMLController {
     	
     	System.out.println("this is set function");
     	this.batchDetails=batchDetails;
-    	displayBatchDetails();
+    	//displayBatchDetails();
     }
 
-    private void displayBatchDetails() {
+    private void displayBatchDetails(String courseName, int courseId, int courseTypeId, String courseTypeName) {
 		// TODO Auto-generated method stub
     	System.out.println("This is display function");
-    	batchName.setText(batchDetails.getBatchName());	
+    	
+    	Date d=new Date();  
+        @SuppressWarnings("deprecation")
+        int year=d.getYear();  
+        int currentYear=year+1900;  
+          
+        BatchDetailsWrapper countBatch = new BatchDetailsHelper().countNumberOfBatches(courseId);
+        int count = countBatch.getCount()+1;
+        System.out.println("CountBatch : "+count);
+          
+    	batchName.setText(courseTypeName+"-"+courseName+"-"+currentYear+"-"+count);
+    	System.out.println(courseTypeName+"-"+courseName+"-"+currentYear+"-"+count);
 	}
     
     public static final LocalDate LOCAL_DATE (String dateString){
@@ -220,19 +247,50 @@ public class BatchLauncherController extends ParentFXMLController {
 	@Override
    	public void initialize(URL location, ResourceBundle resources) {
 	
+		
+		
+		System.out.println("Welcome");
+		
 		//String date = enquiryDetails.getBirthDate().toString();
 		try {
 	        beginDate.setValue(LOCAL_DATE("2020-09-23"));
 	    } catch (NullPointerException e) {
 	    }
 		
-		batchName.setText("Modular"+"-"+"Java"+"-"+"2020"+"-"+"5");
-		facultyId.setText("Anjali Parkhi");
-		timeChoice.setText("MORNING");
+//		batchName.setText("Modular"+"-"+"Java"+"-"+"2020"+"-"+"5");
+//		facultyId.setText("Anjali Parkhi");
+//		timeChoice.setText("MORNING");
 		
 
    		super.initialize(location, resources);
    		logo.setImage(logoImage); 
    	}
+
+	public void setStudentDetail(Course course,
+			HashMap<Course, ArrayList<UserCoursesDoneWrapper>> registeredStudentsCourseMap,
+			HashMap<Course, ArrayList<EnquiryDetails>> enquiredStudentsCourseMap) {
+		
+//		this.course=course;
+//		this.courseTypeList = courseTypeList;
+//		this.registeredStudentsCourseMap=registeredStudentsCourseMap;
+//		this.enquiredStudentsCourseMap=enquiredStudentsCourseMap;
+		
+		String courseName = course.getCourseName();
+		int courseId = course.getCourseId();
+		int courseTypeId = course.getCourseTypeId();
+		totalHours = course.getCourseDuration();
+		CourseType courseType_Name = new CourseTypeHelper().getCourseTypeName(courseTypeId);
+		String courseTypeName = courseType_Name.getCourseTypeName();
+		
+		
+		
+		System.out.println("1"+courseName);
+		System.out.println("2"+courseId);
+		System.out.println("3"+courseTypeId);
+		System.out.println("4"+courseTypeName);
+		System.out.println("5"+totalHours);
+		
+		displayBatchDetails(courseName,courseId,courseTypeId,courseTypeName);
+	}
 }
 

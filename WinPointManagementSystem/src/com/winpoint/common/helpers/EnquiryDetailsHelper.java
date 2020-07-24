@@ -29,4 +29,8 @@ public class EnquiryDetailsHelper {
 		new EnquiryDetailsDao().update(enquiryDetailsObject);
 	}
 	
+	public EnquiryDetails getStartDate() {
+		return new EnquiryDetailsDao().getStartDate();
+	}
+	
 }

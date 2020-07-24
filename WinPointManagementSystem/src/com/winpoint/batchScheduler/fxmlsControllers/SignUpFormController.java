@@ -279,7 +279,7 @@ public class SignUpFormController extends ParentFXMLController {
 //			System.out.println("String : "+string);
 //		}
 //		courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
-//		
+		
 		String coursesInterestedIn1 = "";
 		String reference1 = referance.getText();
 		System.out.println("TimeSlotId : "+ timeSlotsId1);
@@ -388,19 +388,20 @@ public class SignUpFormController extends ParentFXMLController {
       	HashMap<String, Integer> courseAlreadyDoneSet = new HashMap<String, Integer>();
     	for(SignUpFormCourseListWrapper courses : CoursesList) {
     		coursesList.add(courses.getCourseTypeName()+"-"+courses.getCourseName());//courses.getCoursetyoeNmae + " - " +courses.getCourseName
-    		courseInterestedInSet.put(courses.getCourseName(),courses.getCourseId());
+    		courseInterestedInSet.put(courses.getCourseTypeName()+"-"+courses.getCourseName(), courses.getCourseId());
     		courseAlreadyDoneSet.put(courses.getCourseName(), courses.getCourseId());
-
     	}    	
     	CheckComboBox<String> coursesInterestedIn = new CheckComboBox<>(coursesList);
     	HashSet<String> tempCoursesInterestedInList = new HashSet<String>();    	
       	coursesInterestedIn.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
     	     public void onChanged(ListChangeListener.Change<? extends String> c) {
-    	         //System.out.println(coursesInterestedIn.getCheckModel().getCheckedItems()); 
+    	         System.out.println(coursesInterestedIn.getCheckModel().getCheckedItems()); 
     	    	 tempCoursesInterestedInList.addAll(coursesInterestedIn.getCheckModel().getCheckedItems());
+    	    	 System.out.println("temp : "+tempCoursesInterestedInList);
     	         for(String course : tempCoursesInterestedInList) {
     	     		System.out.println(course);
     	     		courseInterestedInSetOfIds.add(courseInterestedInSet.get(course));
+    	     		System.out.println(courseInterestedInSetOfIds);
     	     	} 	         
     	     }
     	 });

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 	
 
@@ -224,4 +225,33 @@ public class EnquiryDetailsDao {
 		}
 	}
 
+	//Group A - get start date ~ Abhishek
+	public EnquiryDetails getStartDate() {
+		
+		EnquiryDetails startDate = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			
+			
+			
+			String query1 = "SELECT top 1 START_DATE from ENQUIRY_DETAILS\n" + 
+					"Order by START_DATE DESC";
+			
+			System.out.println(query1);
+			ResultSet resultSet = statement.executeQuery(query1);
+				
+			while(resultSet.next()) {
+				startDate = new EnquiryDetails(resultSet.getDate("START_DATE"));
+			}
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return startDate;
+		
+	}
+	
 }

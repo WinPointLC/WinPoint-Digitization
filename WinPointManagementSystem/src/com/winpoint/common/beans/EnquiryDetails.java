@@ -358,6 +358,12 @@ public class EnquiryDetails extends UserProfile {
 	}
 
 
+	public EnquiryDetails(java.sql.Date startDate) {
+		// TODO Auto-generated constructor stub
+		this.startDate = startDate;
+	}
+
+
 	/**
 	 * @param enquiryId the enquiryId to set
 	 */

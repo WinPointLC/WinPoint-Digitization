@@ -18,6 +18,28 @@ public class BatchDetailsWrapper {
 	private Button add;
 	private String facultyName;
 	private String facultyImageLocation;
+	private Integer count;
+	
+	public BatchDetailsWrapper(Integer count) {
+		this.count = count;
+	}
+	
+	
+	
+	
+	public Integer getCount() {
+		return count;
+	}
+
+
+
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+
+
 
 	public BatchDetailsWrapper(Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate,
 			Date endDate, Integer createdBy, Date createdDate, Button add) {
