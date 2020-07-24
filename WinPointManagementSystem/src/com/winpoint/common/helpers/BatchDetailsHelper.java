@@ -31,6 +31,11 @@ public class BatchDetailsHelper {
 	public BatchDetails getBatchDetails(Integer batchId) {
 		return new BatchDetailsDao().getBatchDetails(batchId);
 	}
+	
+	public BatchDetailsWrapper countNumberOfBatches(Integer courseId) {
+		return new BatchDetailsDao().getcountNumberOfBatches(courseId);
+	} 
+
 }
 
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
@@ -39,6 +40,35 @@ public class BatchDetailsDao {
 		return  (ArrayList<BatchDetails>) batchDetailsList;
 		
 	}
+	
+	//Group A - for counting the NO. of batches - Abhishek
+	public BatchDetailsWrapper getcountNumberOfBatches(Integer courseId) {
+		BatchDetailsWrapper count = null;
+		
+		ResultSet resultSet = null;
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			String query = "\n" + 
+					"SELECT COUNT(COURSE_ID) as COUNT_BATCH FROM STUDENT_COURSE_DETAILS " + 
+					"WHERE COURSE_ID = "+courseId;
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				count = new BatchDetailsWrapper(resultSet.getInt("COUNT_BATCH"));
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return count ;
+		
+	}
+	
 	
 	//GroupB
 	public List<BatchDetails> getBatchDetailsList1() {
