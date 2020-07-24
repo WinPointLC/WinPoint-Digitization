@@ -38,7 +38,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     private Integer courseId;
     private String courseName;
     @FXML
-    private Button back;
+    private Button backButton;
 
     @FXML
     private Text batchName;
@@ -83,7 +83,7 @@ public class AssignmentRecordsScreenController extends ParentFXMLController {
     	
     }
     @FXML
-    void GoToPreviousScreen(ActionEvent event) {
+    void getPreviousScreen(ActionEvent event) {
     	Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
     	Parent myNewScene;
 		try {

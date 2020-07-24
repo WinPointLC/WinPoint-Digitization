@@ -20,7 +20,6 @@ public class BatchDetails {
 	private Integer batchTime;
 	private Integer currentLectureNumber;
 	private Integer lectureDuration; 
-	private Integer userId;
 	private String facultyName;
 	private Integer totalNumberOfLectures;
 	/**
@@ -46,10 +45,9 @@ public class BatchDetails {
 		
 	}
 	
-	
 	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
-			Integer lectureDuration, Integer userId, String facultyName) {
+			Integer lectureDuration, String facultyName, Integer totalNumberOfLectures) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -62,7 +60,25 @@ public class BatchDetails {
 		this.batchTime = batchTime;
 		this.currentLectureNumber = currentLectureNumber;
 		this.lectureDuration = lectureDuration;
-		this.userId = userId;
+		this.facultyName = facultyName;
+		this.totalNumberOfLectures = totalNumberOfLectures;
+	}
+
+	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
+			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
+			Integer lectureDuration, String facultyName) {
+		super();
+		this.batchId = batchId;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.batchName = batchName;
+		this.batchTime = batchTime;
+		this.currentLectureNumber = currentLectureNumber;
+		this.lectureDuration = lectureDuration;
 		this.facultyName = facultyName;
 	}
 
@@ -89,7 +105,7 @@ public class BatchDetails {
 	}
 	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
-			Integer lectureDuration, Integer userId) {
+			Integer lectureDuration) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -102,7 +118,7 @@ public class BatchDetails {
 		this.batchTime = batchTime;
 		this.currentLectureNumber = currentLectureNumber;
 		this.lectureDuration = lectureDuration;
-		this.userId = userId;
+		
 		
 }
 
@@ -173,14 +189,6 @@ public class BatchDetails {
 
 	public void setLectureDuration(Integer lectureDuration) {
 		this.lectureDuration = lectureDuration;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	/**

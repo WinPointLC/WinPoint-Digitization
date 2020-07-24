@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
-import com.winpoint.common.wrappers.LectureWrapper;
 
 public class BatchDetailsDao {
 	
@@ -125,21 +125,26 @@ public class BatchDetailsDao {
 		
 	}
 	
-	public LectureWrapper getBatchDetails(Integer batchId){
-		LectureWrapper batchDetails = null;
+	public BatchDetails getBatchDetails(Integer batchId){
+		BatchDetails batchDetails = null;
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query1 = "SELECT batch.BEGIN_DATE, batch.END_DATE, batch.CURRENT_LECTURE_NUMBER, batch.TOTAL_NUMBER_OF_LECTURES\r\n" + 
-					"FROM BATCH_DETAILS AS batch\r\n" + 
-					"WHERE BATCH_ID = "+ batchId;
+			String query1 = "SELECT BATCH_ID, BATCH_NAME, BATCH_TIME, COURSE_ID, FACULTY_USER_ID, BEGIN_DATE, CURRENT_LECTURE_NUMBER, LECTURE_DURATION, TOTAL_NUMBER_OF_LECTURES,\r\n" + 
+					"bd.SEGMENT_TYPE_ID, END_DATE, bd.CREATED_BY, bd.CREATED_DATE, (FIRST_NAME + ' ' + LAST_NAME) AS FACULTY_NAME \r\n" + 
+					"FROM BATCH_DETAILS AS bd\r\n" + 
+					"INNER JOIN\r\n" + 
+					"USER_PROFILE AS up\r\n" + 
+					"ON USER_ID = FACULTY_USER_ID\r\n" + 
+					"WHERE BATCH_ID = " + batchId;
 			
 			ResultSet resultSet = statement.executeQuery(query1);
 			
 			while(resultSet.next()) {
-				batchDetails = new LectureWrapper(resultSet.getInt("CURRENT_LECTURE_NUMBER"), resultSet.getDate("BEGIN_DATE"), 
-						resultSet.getDate("END_DATE"), resultSet.getInt("TOTAL_NUMBER_OF_LECTURES"));
+				batchDetails = new BatchDetails(resultSet.getInt("BATCH_ID"), resultSet.getInt("COURSE_ID"), resultSet.getInt("FACULTY_USER_ID"), resultSet.getDate("BEGIN_DATE"), resultSet.getDate("END_DATE"),
+						resultSet.getInt("CREATED_BY"), resultSet.getDate("CREATED_DATE"), resultSet.getString("BATCH_NAME"), resultSet.getInt("BATCH_TIME"), resultSet.getInt("CURRENT_LECTURE_NUMBER"),
+			Integer.parseInt(resultSet.getString("LECTURE_DURATION")), resultSet.getString("FACULTY_NAME"), resultSet.getInt("TOTAL_NUMBER_OF_LECTURES"));
 			}
 		} 
 		catch (SQLException e) {

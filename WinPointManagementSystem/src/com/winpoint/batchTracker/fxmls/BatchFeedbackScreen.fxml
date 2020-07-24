@@ -109,7 +109,7 @@
                   </Text>
                   <TextField fx:id="overallExperience" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="Calibri Bold" size="28.0" />
+                        <Font name="Calibri Bold" size="26.0" />
                      </font></TextField>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Feedbacks Recieved :" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
@@ -118,7 +118,7 @@
                   </Text>
                   <TextField fx:id="totalFeedbacksRecieved" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="Calibri Bold" size="28.0" />
+                        <Font name="Calibri Bold" size="26.0" />
                      </font></TextField>
                </children>
                <padding>

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.CoursePlans;
 import com.winpoint.common.beans.Lecture;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.helpers.CoursePlansHelper;
 import com.winpoint.common.helpers.LectureHelper;
-import com.winpoint.common.wrappers.LectureWrapper;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,12 +108,12 @@ public class LectureScreenController extends ParentFXMLController{
     	courseName = recievedData.get(3);
     	
     	batchName.setText(batchNameValue);
-    	LectureWrapper lectureDetails = new BatchDetailsHelper().getBatchDetails(batchId);
-    	currentLecture = lectureDetails.getCurrentLectureNumber();
-    	lectureSelectionSlider.setMax(lectureDetails.getTotalLectureEstimate());
+    	BatchDetails batchDetails = new BatchDetailsHelper().getBatchDetails(batchId);
+    	currentLecture = batchDetails.getCurrentLectureNumber();
+    	lectureSelectionSlider.setMax(batchDetails.getTotalNumberOfLectures());
     	currentLectureNumber.setText(currentLecture.toString());
-    	startDateDisplay.setText(lectureDetails.getBatchStartDate().toString());
-    	endDateDisplay.setText(lectureDetails.getBatchEndDate().toString());
+    	startDateDisplay.setText(batchDetails.getStartDate().toString());
+    	endDateDisplay.setText(batchDetails.getEndDate().toString());
     	lectureSelectionSlider.setValue(currentLecture);
     	updateLectureDetails(currentLecture);
     }    

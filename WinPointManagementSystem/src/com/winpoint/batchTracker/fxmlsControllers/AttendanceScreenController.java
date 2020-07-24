@@ -3,42 +3,37 @@ package com.winpoint.batchTracker.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import com.winpoint.common.beans.Lecture;
-import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.AttendanceHelper;
 import com.winpoint.common.helpers.LectureHelper;
-import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.wrappers.AttendanceScreenWrapper;
-import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class AttendanceScreenController extends ParentFXMLController{
-	private Integer batchId = 1;
+	private Integer batchId;
 	private String batchNameValue;
 	private Integer courseId;
 	private String courseName;
@@ -62,50 +57,29 @@ public class AttendanceScreenController extends ParentFXMLController{
     private Text selectedLectureNumberDate;
 
     @FXML
-    private TableView<AttendanceScreenWrapper> updateAttendanceRecordTable;
+    private TableView<Attendance> updateAttendanceRecordTable;
 
     @FXML
-    private TableColumn<AttendanceScreenWrapper, String> updateAttendanceRecordTableStudentColumn;
+    private TableColumn<Attendance, String> updateAttendanceRecordTableStudentColumn;
 
     @FXML
-    private TableColumn<AttendanceScreenWrapper, String> updateAttendanceRecordTableAttendanceColumn;
+    private TableColumn<Attendance, Boolean> updateAttendanceRecordTableAttendanceColumn;
 
     @FXML
     private Button saveAttendance;
     
     @FXML
-    private TableView<List<StringProperty>> displayStudentAttendanceTable;
+    private TableView<ObservableList> displayStudentAttendanceTable;
 
-    @FXML
-    private TableColumn<List<StringProperty>, String> displayStudentAttendanceTableName;
-
-    @FXML
-    private TableColumn<AttendanceScreenWrapper, String> displayStudentAttendanceTableLecture1;
-    
     public void setRecievedData(ArrayList<String> recievedData) {
     	batchId = Integer.parseInt(recievedData.get(0));
     	batchNameValue = recievedData.get(1);
     	courseId = Integer.parseInt(recievedData.get(2));
     	courseName = recievedData.get(3);
     	batchName.setText(batchNameValue);
-    	
-    	attendanceScreenWrapperList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
-//    	Integer lectureCount = attendanceScreenWrapperList.get(0).getAttendanceMap().size();
-//    	int i = 0;
-//    	for(i = 0; i < lectureCount; i++) {
-//    		createColumn("Lecture" + (i+1), i);
-//    	}
-//    	
-//    	final ObservableMap<String, String> obsMap = FXCollections.observableHashMap();
-//    	for (i = 0; i < 3; i++)  obsMap.put("Lecture" + (i+1), "Present");
-//    	
-//    	TableView<ObservableMap.Entry<String, String>> sampleTable = new TableView(FXCollections.observableArrayList(obsMap.entrySet()));
-//    	
-//        TableColumn<ObservableMap.Entry<String, String>,String> attendance = new TableColumn<>("key");
-//    	
-//    	
-    	displayStudentAttendanceTableName.setCellValueFactory(new PropertyValueFactory<AttendanceScreenWrapper, String>("Name"));
-    	
+    	displayTable();
+    	//attendanceScreenWrapperList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
+    	//addColumns(10);
     }
 
     @FXML
@@ -141,64 +115,51 @@ public class AttendanceScreenController extends ParentFXMLController{
     
     @FXML
     void saveAttendance(ActionEvent event) {
-//    	attendanceScreenWrapperList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
-//    	
-//    	
-//    	System.out.println("\n");
-//    	int i, j;
-//    	for(i = 0; i < attendanceScreenWrapperList.size(); i++) {
-//    		System.out.println("UserId: " + attendanceScreenWrapperList.get(i).getUserId());
-//        	System.out.println(attendanceScreenWrapperList.get(i).getFirstName() + " " + attendanceScreenWrapperList.get(i).getLastName());
-//        	j = 1;
-//        	while(j <= attendanceScreenWrapperList.get(i).getAttendanceMap().size()) {
-//        		System.out.println("Lecture " + j + ": " + attendanceScreenWrapperList.get(i).getAttendanceMap().get(j));
-//        		j++;
-//        	}
-//        	System.out.println();        	
-//    	}
-//    	
+
     }
     
     void displayTable() {
-    	ArrayList<UserProfile> studentList = new UserProfileHelper().getStudentListForBatch(batchId);
-    	ArrayList<Lecture> lectureAbsenteeList = new LectureHelper().getAttendanceforBatch(batchId);
-    	Integer currentLecture = lectureAbsenteeList.size();
-    	ArrayList<String> columnHeaders = new ArrayList<String>();
-    	ArrayList<String> records = new ArrayList<String>();
-    	ObservableList<List<StringProperty>> data = FXCollections.observableArrayList();
-    	try {
-    		int columnIndex = 0;
-    		TableColumn[] columns = new TableColumn[currentLecture];
-    		for(int i = 0; i < currentLecture; i++) {
-    			columns[i].setCellValueFactory(data -> data.getValue().get(i));
-    		}
-    		
-    		
-    	}catch(Exception e) {
-    		 System.out.println(e);
-    	}
-    	
-    	
-    	for(UserProfile student : studentList) {
-    		int i = 0;
-    		for(i = 0; i < currentLecture; i++) {
-    			
-    		}
-    	}
+    	updateTable(new LectureHelper().getAbsenteeListforBatch(batchId).size());
+    	ObservableList<ObservableList> attendanceList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
+    	displayStudentAttendanceTable.setItems(attendanceList);
     }
+    void updateTable(Integer lectureCount) {
+    	displayStudentAttendanceTable.getColumns().clear();
+    	TableColumn<ObservableList, String> column;
+    	
+    	column = new TableColumn<ObservableList, String>("Name");
+    	column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
 
-//    private TableColumn<AttendanceScreenWrapper, String> createColumn(String columnTitle) {
-//	    TableColumn<AttendanceScreenWrapper, String> column = new TableColumn<>();
-//	    column.setText(columnTitle);
-//	    column.setCellValueFactory(new PropertyValueFactory<AttendanceScreenWrapper, String>("attendanceMap"));
-//	    return column;
-//    }
-//    private TableColumn<AttendanceScreenWrapper, String> createColumn(String columnTitle, Integer columnIndex) {
-//	    TableColumn<AttendanceScreenWrapper, String> column = new TableColumn<>();
-//	    column.setText(columnTitle);
-//	    column.setCellValueFactory((p) -> {return new SimpleStringProperty(p.getValue().getKey());
-//	    return column;
-//    }
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+				// TODO Auto-generated method stub
+				//System.out.println(param);
+				return new SimpleStringProperty(param.getValue().get(0).toString());
+			}
+			
+		});
+    	displayStudentAttendanceTable.getColumns().add(column);
+    	
+    	for(int i = 1; i <= lectureCount; i++) {
+			final int j = i;
+			column = new TableColumn<ObservableList, String>("Lecture" + i);
+			column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
+
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+					// TODO Auto-generated method stub
+					//System.out.println(param);
+					return new SimpleStringProperty(param.getValue().get(j).toString());
+				}
+				
+			});
+			displayStudentAttendanceTable.getColumns().add(column);
+		}
+    }
+    
+    void updateAttendanceTable() {
+    	
+    }
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -207,6 +168,65 @@ public class AttendanceScreenController extends ParentFXMLController{
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		logo.setImage(logoImage);
+		//displayTable();
+		
+		updateAttendanceRecordTableStudentColumn.setCellValueFactory(new PropertyValueFactory<Attendance, String>("fullName"));
+		updateAttendanceRecordTableAttendanceColumn.setCellValueFactory(cellData -> cellData.getValue().getPresent());
+		
+    	ArrayList<String> data = new ArrayList<>();
+    	data.add("1");
+    	data.add("Batch 1");
+    	data.add("1");
+    	data.add("Course 1");
+    	
+    	setRecievedData(data);
+	}
+	
+}
+
+class Attendance{
+	Integer userId;
+	String fullName;
+	CheckBox isPresent;
+	BooleanProperty present = new SimpleBooleanProperty();
+	
+	public Attendance(Integer userId, String fullName, BooleanProperty present){
+		this.userId = userId;
+		this.fullName = fullName;
+		this.present = present;
+		
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public CheckBox getIsPresent() {
+		return isPresent;
+	}
+
+	public void setIsPresent(CheckBox isPresent) {
+		this.isPresent = isPresent;
+	}
+
+	public BooleanProperty getPresent() {
+		return present;
+	}
+
+	public void setPresent(BooleanProperty present) {
+		this.present = present;
 	}
 	
 }

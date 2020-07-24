@@ -143,7 +143,7 @@ public class BatchFeedbackScreenController extends ParentFXMLController {
     		weightedResponsesGraph.getData().addAll(question);
     	}   
     	
-    	overallExperience.setText(new Float((float)Math.round((averageResponseList.get(averageResponseList.size()-1) * 100.0) / 100.0)).toString());
+    	overallExperience.setText(new Float((float)Math.round((averageResponseList.get(averageResponseList.size()-1) * 100.0))/100.0f).toString());
 
     }
     
