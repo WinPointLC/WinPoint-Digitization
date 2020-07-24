@@ -12,12 +12,11 @@ import java.util.StringTokenizer;
 
 import com.winpoint.common.beans.Lecture;
 import com.winpoint.common.util.sql.ConnectionManager;
-import com.winpoint.common.wrappers.LectureWrapper;
 
 public class LectureDao {
-	public ArrayList<Lecture> getAttendanceforBatch(Integer batchId){
+	public ArrayList<Lecture> getAbsenteeListforBatch(Integer batchId){
 		
-		ArrayList<Lecture> lectureAttendanceList = new ArrayList<Lecture>();
+		ArrayList<Lecture> lectureAbsenteeList = new ArrayList<Lecture>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -29,7 +28,7 @@ public class LectureDao {
 			ResultSet resultSet = statement.executeQuery(query);
 			
 			while(resultSet.next()) {
-				lectureAttendanceList.add(new Lecture(resultSet.getInt("LECTURE_NUMBER"), resultSet.getString("ABSENTEES")));
+				lectureAbsenteeList.add(new Lecture(resultSet.getInt("LECTURE_NUMBER"), resultSet.getString("ABSENTEES")));
 			}
 			
 		} 
@@ -37,7 +36,7 @@ public class LectureDao {
 			e.printStackTrace();
 		}
 		
-		return  lectureAttendanceList;
+		return  lectureAbsenteeList;
 		
 	}
 	@SuppressWarnings("null")
@@ -54,11 +53,13 @@ public class LectureDao {
 					"WHERE lecture.LECTURE_NUMBER = " + lectureNumber + " AND lecture.BATCH_ID = " + batchId;
 			
 			resultSet1 = statement.executeQuery(query1);
+			
 			while(resultSet1.next()) {
 				lecture  = new Lecture(batchId, lectureNumber, Integer.parseInt(resultSet1.getString("LECTURE_DURATION")),
 						resultSet1.getTime("START_TIME"), null, resultSet1.getDate("LECTURE_DATE"));		
 				stringTopicList = new StringTokenizer(resultSet1.getString("LECTURE_COVERAGE"),",");
 			}
+			
 			int i = 0;
 			topicNameList = new String[stringTopicList.countTokens()];
 			while(stringTopicList.hasMoreTokens()){
