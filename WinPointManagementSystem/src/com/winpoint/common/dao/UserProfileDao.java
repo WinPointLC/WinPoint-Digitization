@@ -162,7 +162,7 @@ public class UserProfileDao {
 			
 			while(rs.next()) {
 				facultyList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getInt("USER_ID")));
-				System.out.println(facultyList);
+				
 			}
 			
 		} 
@@ -225,7 +225,7 @@ public class UserProfileDao {
 			
 			while(rs.next()) {
 				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),true));
-				System.out.println(userProfileList);
+				
 			}
 			
 		} 

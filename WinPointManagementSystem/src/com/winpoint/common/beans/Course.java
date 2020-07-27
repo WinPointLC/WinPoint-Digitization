@@ -112,6 +112,8 @@ public class Course {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	/**
 	 * @return the courseId
 	 */

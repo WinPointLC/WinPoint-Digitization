@@ -395,13 +395,13 @@ public class SignUpFormController extends ParentFXMLController {
     	HashSet<String> tempCoursesInterestedInList = new HashSet<String>();    	
       	coursesInterestedIn.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
     	     public void onChanged(ListChangeListener.Change<? extends String> c) {
-    	         System.out.println(coursesInterestedIn.getCheckModel().getCheckedItems()); 
+    	        // System.out.println(coursesInterestedIn.getCheckModel().getCheckedItems()); 
     	    	 tempCoursesInterestedInList.addAll(coursesInterestedIn.getCheckModel().getCheckedItems());
-    	    	 System.out.println("temp : "+tempCoursesInterestedInList);
+    	    	// System.out.println("temp : "+tempCoursesInterestedInList);
     	         for(String course : tempCoursesInterestedInList) {
-    	     		System.out.println(course);
+    	     		//System.out.println(course);
     	     		courseInterestedInSetOfIds.add(courseInterestedInSet.get(course));
-    	     		System.out.println(courseInterestedInSetOfIds);
+    	     		//System.out.println(courseInterestedInSetOfIds);
     	     	} 	         
     	     }
     	 });

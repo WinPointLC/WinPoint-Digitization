@@ -239,7 +239,6 @@ public class EnquiryDetailsDao {
 			String query1 = "SELECT top 1 START_DATE from ENQUIRY_DETAILS\n" + 
 					"Order by START_DATE DESC";
 			
-			System.out.println(query1);
 			ResultSet resultSet = statement.executeQuery(query1);
 				
 			while(resultSet.next()) {

@@ -9,12 +9,12 @@ public class PriorityListOfCoursesWrapper {
 	
 	private int courseId;
 	private String course;
-	private int segmentType;
+	private String segmentType;
 	private int availableTime;
-	private int noOfStudents;
+	private String noOfStudents;
 	private Date beginDate;
 	private String facultyName;
-	private int totalRevenue;
+	private String totalRevenue;
 	private Button launch;
 	
 	private ChoiceBox<String> availableChoiceBox;// = new ChoiceBox<String>();
@@ -26,7 +26,7 @@ public class PriorityListOfCoursesWrapper {
 	private String courseTypeName;
 	
 
-	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, int segmentType, ChoiceBox<String> availableChoiceBox, int noOfStudents, Date beginDate, ChoiceBox<String> facultyNameList, int totalRevenue, Button launch) {
+	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, String segmentType, ChoiceBox<String> availableChoiceBox, String noOfStudents, Date beginDate, ChoiceBox<String> facultyNameList, String totalRevenue, Button launch) {
 
 		this.courseId = courseId;
 		this.course = courseName;
@@ -65,7 +65,7 @@ public class PriorityListOfCoursesWrapper {
 		this.courseTypeName = courseTypeName;
 	}
 
-	public PriorityListOfCoursesWrapper(int courseId,String courseName, int segmentType, ChoiceBox<String> availableChoiceBox, int noOfStudents, Date beginDate, int totalRevenue, Button launch) {
+	public PriorityListOfCoursesWrapper(int courseId,String courseName, String segmentType, ChoiceBox<String> availableChoiceBox, String noOfStudents, Date beginDate, String totalRevenue, Button launch) {
 
 		this.courseId = courseId;
 		this.course = courseName;
@@ -101,11 +101,11 @@ public class PriorityListOfCoursesWrapper {
 		this.launch = launch;
 	}
 
-	public int getSegmentType() {
+	public String getSegmentType() {
 		return segmentType;
 	}
 
-	public void setSegmentType(int segmentType) {
+	public void setSegmentType(String segmentType) {
 		this.segmentType = segmentType;
 	}
 //
@@ -121,13 +121,13 @@ public class PriorityListOfCoursesWrapper {
 
 
 
-	public int getNoOfStudents() {
+	public String getNoOfStudents() {
 		return noOfStudents;
 	}
 
 
 
-	public void setNoOfStudents(int noOfStudents) {
+	public void setNoOfStudents(String noOfStudents) {
 		this.noOfStudents = noOfStudents;
 	}
 
@@ -157,13 +157,13 @@ public class PriorityListOfCoursesWrapper {
 
 
 
-	public int getTotalRevenue() {
+	public String getTotalRevenue() {
 		return totalRevenue;
 	}
 
 
 
-	public void setTotalRevenue(int totalRevenue) {
+	public void setTotalRevenue(String totalRevenue) {
 		this.totalRevenue = totalRevenue;
 	}
 

@@ -7,10 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.StringTokenizer;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.UserProfile;
@@ -19,13 +18,13 @@ import com.winpoint.common.wrappers.EnquiredStudetnsCourseWrapper;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 public class PriorityCoursesListDao {
-
+	
 	
 	
 	private HashMap< Course, HashSet<String>> getCoursePreRequisites() {
 
-		HashMap< Course, HashSet<String>>coursesList= new HashMap<>();
-		HashSet<String>coursesPre;
+	HashMap< Course, HashSet<String>>coursesList= new HashMap<>();
+	HashSet<String>coursesPre;
 
 	ResultSet resultSet=null;
 	try(Connection connection = ConnectionManager.getConnection()){
@@ -63,23 +62,30 @@ public class PriorityCoursesListDao {
 
 	try(Connection connection = ConnectionManager.getConnection()){
 		Statement statement = connection.createStatement();
-		String query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n"+
-				"EMAIL_ID,USER_CATEGORY_ID FROM USER_PROFILE\n" +
-				"WHERE ACTIVE_STATUS = 1\n" + 
-				"AND USER_CATEGORY_ID=1";
+		String query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n" + 
+				"				EMAIL_ID,USER_CATEGORY_ID, SEGMENT_TYPE_ID FROM USER_PROFILE\n" + 
+				"				WHERE ACTIVE_STATUS = 1\n" + 
+				"				AND USER_CATEGORY_ID=1\n" + 
+				"				";
 		resultSet = statement.executeQuery(query);
+		
+		
 		
 		while(resultSet.next()) {
 			coursesDone = new HashSet<>();
 			String coursesAlreadyDone = resultSet.getString("COURSE_ALREADY_DONE");
-		if(coursesAlreadyDone != null) {
+			if(coursesAlreadyDone != null) {
 			for(String s:coursesAlreadyDone.split(",")) {
 				coursesDone.add(s);
+							
 			}
 		}
+			
 		
 			UserProfile userProfile=new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), resultSet.getString("LAST_NAME"), 
-					resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getInt("USER_CATEGORY_ID"), resultSet.getInt("TIME_SLOTS_IDS"));
+					resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getInt("USER_CATEGORY_ID"),
+					resultSet.getString("TIME_SLOTS_IDS"),resultSet.getInt("SEGMENT_TYPE_ID"));
+			
 			coursesDoneMap.put(resultSet.getInt("USER_ID"),new UserCoursesDoneWrapper(userProfile, coursesDone));
 			
 		}
@@ -95,23 +101,12 @@ public class PriorityCoursesListDao {
 		 		"		 		AND \n" + 
 		 		"		 		A.USER_CATEGORY_ID=1";
 		
-		 resultSet = statement.executeQuery(query);
-		 
+		 resultSet = statement.executeQuery(query);	 
 		 while(resultSet.next()) {
-			 
 			 userID = resultSet.getInt("USER_ID");
-			 
 			 String courseId = Integer.toString(resultSet.getInt("COURSE_ID"));
-			 
-			 System.out.println("CourseId : "+courseId);
-			 System.out.println(coursesDoneMap.get(userID).getCoursesDoneSet().size());
-			 for(String object : coursesDoneMap.get(userID).getCoursesDoneSet()) {
-				 System.out.println(object);
-			 }
-			 System.out.println();
 			 (coursesDoneMap.get(userID).getCoursesDoneSet()).add(courseId);
-			 System.out.println("welcome");
-		 }	
+			 }	
 	}
 	
 	catch (SQLServerException e) {
@@ -156,6 +151,7 @@ public class PriorityCoursesListDao {
 			
 				EnquiredStudetnsCourseWrapper enquiredStudetnsCourseWrapper = new EnquiredStudetnsCourseWrapper(coursesInterestedIn, coursesDone);
 				EnquiredStudentsCoursesMap.put(en, enquiredStudetnsCourseWrapper);
+				
 			}
 		}
 		catch (SQLServerException e) {
@@ -167,11 +163,7 @@ public class PriorityCoursesListDao {
 		return EnquiredStudentsCoursesMap;
 	}
 		
-	
 
-	
-	
-	
 	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesStudentsEligibleMap() {
 		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
 		HashMap<Integer, UserCoursesDoneWrapper> studentsList = getActiveStudentsList();
@@ -210,15 +202,12 @@ public class PriorityCoursesListDao {
 		}
 		return coursesEnquiredStudetnsMap;
 	}
-	
-	
+		
 }
 
 //!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId()))
 
-
 //EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId()))
-
 
 //EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course))
 

@@ -33,7 +33,7 @@ public class EnquiryDetails extends UserProfile {
 	private Boolean eligibility;
 	private String coursesInterestedIn;
 	private String reference;
-	private Integer timeSlotsId;
+	private Integer timeSlotsId1;
 	private String courseAlreadyDone;
 	private Date startDate;
 	private Integer segmentTypeId;
@@ -134,7 +134,7 @@ public class EnquiryDetails extends UserProfile {
 		this.eligibility = eligibility;
 		this.coursesInterestedIn = coursesInterestedIn;
 		this.reference = reference;
-		this.timeSlotsId = timeSlotsId;
+		this.timeSlotsId1 = timeSlotsId;
 		this.courseAlreadyDone = courseAlreadyDone;
 		this.startDate = startDate;
 		this.segmentTypeId = segmentTypeId;
@@ -287,7 +287,7 @@ public class EnquiryDetails extends UserProfile {
 		this.eligibility = eligibility;
 		this.coursesInterestedIn = coursesInterestedIn;
 		this.reference = reference;
-		this.timeSlotsId = timeSlotsId;
+		this.timeSlotsId1 = timeSlotsId;
 		this.courseAlreadyDone = courseAlreadyDone;
 		this.startDate = startDate;
 		this.segmentTypeId = segmentTypeId;
@@ -339,7 +339,7 @@ public class EnquiryDetails extends UserProfile {
 		this.mobileNo=mobileNo;
 		this.eligibility=eligibility;
 		this.coursesInterestedIn=coursesInterestedIn;
-		this.timeSlotsId=timeSlotsId;
+		this.timeSlotsId1=timeSlotsId;
 		this.courseAlreadyDone=coursesAlreadyDone;
 		this.segmentTypeId=segmetTypeId;
 		
@@ -705,15 +705,15 @@ public class EnquiryDetails extends UserProfile {
 	/**
 	 * @return the timeSlotsId
 	 */
-	public Integer getTimeSlotsId() {
-		return timeSlotsId;
+	public Integer getTimeSlotsId1() {
+		return timeSlotsId1;
 	}
 
 	/**
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
-	public void setTimeSlotsId(Integer timeSlotsId) {
-		this.timeSlotsId = timeSlotsId;
+	public void setTimeSlotsId1(Integer timeSlotsId) {
+		this.timeSlotsId1 = timeSlotsId;
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class UserProfile {
 	private Integer experience;
 	private Integer createdBy;
 	private Date createDate;
-	private Integer timeSlotsId;
+	private String timeSlotsId;
 	private Integer segmentTypeId;
 	private String courseAlreadyDone;
 	private Boolean activeStatus;
@@ -150,7 +150,7 @@ public class UserProfile {
 	}
 	
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
-			Integer userCategoryId, Integer timeSlotsId) {
+			Integer userCategoryId, String timeSlotsId, Integer segmentTypeId) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -159,6 +159,7 @@ public class UserProfile {
 		this.mobileNumber = mobileNumber;
 		this.userCategoryId = userCategoryId;
 		this.timeSlotsId = timeSlotsId;
+		this.segmentTypeId = segmentTypeId;
 	}
 	
 	
@@ -194,7 +195,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
-			String domain, String role, Integer experience, Integer createdBy, Date createDate, Integer timeSlotsId,
+			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
 			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
 		super();
 		this.userId = userId;
@@ -615,7 +616,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 	 * @return the timeSlotsId
 	 */
 
-	public Integer getTimeSlotsId() {
+	public String getTimeSlotsId() {
 		return timeSlotsId;
 	}
 
@@ -624,7 +625,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
 
-	public void setTimeSlotsId(Integer timeSlotsId) {
+	public void setTimeSlotsId(String timeSlotsId) {
 		this.timeSlotsId = timeSlotsId;
 	}
 
