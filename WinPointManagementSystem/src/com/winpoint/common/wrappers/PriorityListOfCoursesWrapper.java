@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 
 public class PriorityListOfCoursesWrapper {
 	
@@ -25,6 +26,9 @@ public class PriorityListOfCoursesWrapper {
 	private int courseTypeId;
 	private String courseTypeName;
 	
+	private Hyperlink numberOfStudentsLink;
+	
+
 
 	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, String segmentType, ChoiceBox<String> availableChoiceBox, String noOfStudents, Date beginDate, ChoiceBox<String> facultyNameList, String totalRevenue, Button launch) {
 
@@ -41,6 +45,84 @@ public class PriorityListOfCoursesWrapper {
 		
 	}
 	
+	
+	
+	
+	// trial will delete later
+	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, String segmentType, ChoiceBox<String> availableChoiceBox, Hyperlink numberOfStudentsLink, Date beginDate, ChoiceBox<String> facultyNameList, String totalRevenue, Button launch) {
+
+		this.courseId = courseId;
+		this.course = courseName;
+		this.courseTypeId = courseTypeId;
+		this.segmentType = segmentType;
+		this.availableChoiceBox = availableChoiceBox;
+		this.numberOfStudentsLink = numberOfStudentsLink;
+		this.beginDate = beginDate;
+		this.totalRevenue = totalRevenue;
+		this.launch = launch;
+		this.facultyNameList = facultyNameList;
+		
+	}
+	
+	
+	
+
+	public Hyperlink getNumberOfStudentsLink() {
+		return numberOfStudentsLink;
+	}
+
+
+
+
+	public void setNumberOfStudentsLink(Hyperlink numberOfStudentsLink) {
+		this.numberOfStudentsLink = numberOfStudentsLink;
+	}
+
+
+
+
+	public void setAvailableTime(int availableTime) {
+		this.availableTime = availableTime;
+	}
+
+
+
+
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+
+
+
+
+	public void setAvailableChoiceBox(ChoiceBox<String> availableChoiceBox) {
+		this.availableChoiceBox = availableChoiceBox;
+	}
+
+
+
+
+	public void setFacultyNameList(ChoiceBox<String> facultyNameList) {
+		this.facultyNameList = facultyNameList;
+	}
+
+
+
+	
+	public ChoiceBox<String> getAvailableChoiceBox() {
+		return availableChoiceBox;
+	}
+
+
+
+
+	public ChoiceBox<String> getFacultyNameList() {
+		return facultyNameList;
+	}
+
+
+
+
 	public ChoiceBox<String> getAvailableTime() {
 		return availableChoiceBox;
 	}
@@ -63,18 +145,6 @@ public class PriorityListOfCoursesWrapper {
 
 	public void setCourseTypeName(String courseTypeName) {
 		this.courseTypeName = courseTypeName;
-	}
-
-	public PriorityListOfCoursesWrapper(int courseId,String courseName, String segmentType, ChoiceBox<String> availableChoiceBox, String noOfStudents, Date beginDate, String totalRevenue, Button launch) {
-
-		this.courseId = courseId;
-		this.course = courseName;
-		this.segmentType = segmentType;
-		this.availableChoiceBox = availableChoiceBox;
-		this.noOfStudents = noOfStudents;
-		this.beginDate = beginDate;
-		this.totalRevenue = totalRevenue;
-		this.launch = launch;
 	}
 
 	public ChoiceBox<String> getAvailbleTime() {

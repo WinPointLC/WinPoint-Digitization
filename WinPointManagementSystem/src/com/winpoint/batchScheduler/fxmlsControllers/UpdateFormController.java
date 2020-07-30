@@ -341,12 +341,14 @@ public class UpdateFormController extends ParentFXMLController {
 	
 	private void displayEnquiryDetails() {
 
-		System.out.println("we Got the Enquiry ID : "+enquiryDetails.getEnquiryId());				
+		
 		String date = enquiryDetails.getBirthDate().toString();		
 		try {
 	        dob.setValue(LOCAL_DATE(date));
 	    } catch (NullPointerException e) {
 	    }
+		
+		
 		firstName.setText(enquiryDetails.getFirstName());
 		lastName.setText(enquiryDetails.getLastName());
 		mobileNumber.setText(enquiryDetails.getMobileNumber());

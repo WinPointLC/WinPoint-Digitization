@@ -93,45 +93,6 @@ public class EnquiryDetailsController extends ParentFXMLController{
 		
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
 
-  
-       //  EventHandler<ActionEvent> event = ; 	
-    	
-//    	for(EnquiryDetails enquiryDetail : enquiryDetailsList){
-//    		update = new Button("Update");
-//    		update.setOnAction(new EventHandler<ActionEvent>() { 
-//                public void handle(ActionEvent e) {   
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/UpdateForm.fxml"));
-//                    Parent myNewScene = null;
-//   				try {
-//   					
-//   					UpdateFormController studentDetails = loader.getController();
-//   					myNewScene = loader.load();
-//   					System.out.println(""+loader.getController());
-//                	
-//   					System.out.println("Enquiry Id : "+enquiryDetail.getEnquiryId());
-//   					System.out.println(studentDetails);
-//   					
-//   				
-//   					studentDetails.setEnquiryId(enquiryDetail.getEnquiryId());
-//   					
-//   					myNewScene = loader.load();
-//   				} catch (IOException e1) {
-//   					e1.printStackTrace();
-//   				}
-//                	Stage stage = (Stage) update.getScene().getWindow();
-//                	Scene scene = new Scene(myNewScene);
-//                	stage.setScene(scene);
-//                	stage.setTitle("Main Scene");
-//                	stage.show();
-//                } 
-//            });
-//    		System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
-//    		enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),
-//    				enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),
-//    				enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
-//    	}
-//    	
-    	
 
         for(EnquiryDetails enquiryDetail : enquiryDetailsList){
         	update = new Button("Update");
@@ -144,12 +105,8 @@ public class EnquiryDetailsController extends ParentFXMLController{
     					myNewScene = loader.load();
     					
     					UpdateFormController studentDetailController = loader.getController();
-    					System.out.println(enquiryDetail.getMobileNumber());
-    					System.out.println(enquiryDetail.getEmail());
     					studentDetailController.setStudentDetail(enquiryDetail);
     					
-       					System.out.println(enquiryDetail.getEnquiryId());
-    					System.out.println(studentDetailController);
     	            	
     				} catch (IOException e1) {
     					e1.printStackTrace();
@@ -163,7 +120,6 @@ public class EnquiryDetailsController extends ParentFXMLController{
             }; 	
         	update.setOnAction(event);
         	
-        	System.out.println(enquiryDetail.getFirstName()+enquiryDetail.getLastName());
         	enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),
         			enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
         }

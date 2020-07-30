@@ -103,7 +103,7 @@ public class EnquiryDetailsDao {
 						rs.getBoolean("ELIGIBILITY"),
 						rs.getString("COURSE_INTERESTED_IN"),
 						rs.getString("REFERENCE"),
-						rs.getInt("TIME_SLOTS_ID"),
+						rs.getString("TIME_SLOTS_ID"),
 						rs.getString("COURSE_ALREADY_DONE"),
 						rs.getDate("START_DATE"),
 						rs.getInt("SEGMENT_TYPE_ID"),

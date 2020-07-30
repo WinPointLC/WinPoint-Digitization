@@ -42,7 +42,7 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <Label text="Lecture Duration" GridPane.rowIndex="1">
+                  <Label text="Lecture Duration ( minutes)" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>

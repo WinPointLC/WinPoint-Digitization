@@ -53,12 +53,12 @@
                   <Insets top="25.0" />
                </padding>
             </Label>
-            <ChoiceBox fx:id="courseType" onMouseClicked="#validateCourseType" prefHeight="24.0" prefWidth="201.0">
+            <ChoiceBox fx:id="courseType" onMouseClicked="#validateCourseType" prefHeight="24.0" prefWidth="201.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets top="25.0" />
                </HBox.margin>
             </ChoiceBox>
-            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
                   <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />

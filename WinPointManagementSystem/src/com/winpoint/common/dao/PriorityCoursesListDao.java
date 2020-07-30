@@ -37,7 +37,9 @@ public class PriorityCoursesListDao {
 			for(String s:resultSet.getString("PRE_REQUISITE").split(",")) {
 				coursesPre.add(s);
 			}
-			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"), resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID"),resultSet.getInt("DURATION")), coursesPre);
+			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"),
+					resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID"),
+					resultSet.getInt("DURATION")), coursesPre);
 		}		
 	}
 	
@@ -138,7 +140,7 @@ public class PriorityCoursesListDao {
 				
 			EnquiryDetails en = new EnquiryDetails(resultSet.getInt("ENQUIRY_ID"),resultSet.getString("FIRST_NAME"),
 					resultSet.getString("LAST_NAME"),resultSet.getString("EMAIL_ID"),resultSet.getString("MOBILE_NO"),
-					eligibility,resultSet.getString("COURSE_INTERESTED_IN"),resultSet.getInt("TIME_SLOTS_ID"),
+					eligibility,resultSet.getString("COURSE_INTERESTED_IN"),resultSet.getString("TIME_SLOTS_ID"),
 					resultSet.getString("COURSE_ALREADY_DONE"),resultSet.getInt("SEGMENT_TYPE_ID"));
 				HashSet<String>coursesDone = new HashSet<>();
 				HashSet<String>coursesInterestedIn = new HashSet<>();
@@ -170,36 +172,47 @@ public class PriorityCoursesListDao {
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>>coursesStudentsEligibleMap = new HashMap<>();
 		
 		for(Course course : courseList.keySet()) {
-			coursesStudentsEligibleMap.put(course,new ArrayList<>());
+			ArrayList<UserCoursesDoneWrapper>user= new ArrayList<>();//coursesStudentsEligibleMap.get(course);
+			//coursesStudentsEligibleMap.put(course,new ArrayList<>());
 			for(int userId : studentsList.keySet()) {
 				if((!(studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))
 						&& studentsList.get(userId).getCoursesDoneSet().containsAll(courseList.get(course))) || (courseList.get(course).contains("0") 
-								&& !studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))){
-					ArrayList<UserCoursesDoneWrapper>user=coursesStudentsEligibleMap.get(course);
-					user.add(studentsList.get(userId));
-					coursesStudentsEligibleMap.put(course,user);
+								&& !studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))){					
+					user.add(studentsList.get(userId));	
+					//System.out.println("Course : "+course.getCourseName()+" Name :  "+userId);
 				}
 			}
+			//System.out.println("Course : "+course.getCourseName()+" Size :  "+user.size());
+			coursesStudentsEligibleMap.put(course,user);
 		}
 		return coursesStudentsEligibleMap;
 	}
 	
 	
-	public HashMap<Course, ArrayList<EnquiryDetails>> coursesEligibleEnquiredStudentsMaps() {
+	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesEligibleEnquiredStudentsMaps() {
 		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
 		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = getEligibleEnquiryDetails();
-		HashMap<Course, ArrayList<EnquiryDetails>> coursesEnquiredStudetnsMap = new HashMap<>();
-		
+		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesEnquiredStudetnsMap = new HashMap<>();
+				
 		for(Course course : courseList.keySet()) {
-			coursesEnquiredStudetnsMap.put(course, new ArrayList<>());
+			ArrayList<UserCoursesDoneWrapper> enquiryList = new ArrayList<>();
+
+			//coursesEnquiredStudetnsMap.put(course, new ArrayList<>());
 			for(EnquiryDetails enquiry : EnquiredStudentsCoursesMap.keySet()) {
 				if( (!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId())))  &&
 						((courseList.get(course).contains("0"))||EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course)))    
 						&&  (EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId())))) {
-					 coursesEnquiredStudetnsMap.get(course).add(enquiry);
+					
+					enquiryList.add(new UserCoursesDoneWrapper(enquiry, EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet()));
+					//System.out.println("Course : "+course.getCourseName()+" Name :  "+enquiry.getFirstName());
 				}
+				
 			}
+			//System.out.println("Course : "+course.getCourseName()+" Size :  "+enquiryList.size());
+			coursesEnquiredStudetnsMap.put(course, enquiryList);
+
 		}
+		
 		return coursesEnquiredStudetnsMap;
 	}
 		
