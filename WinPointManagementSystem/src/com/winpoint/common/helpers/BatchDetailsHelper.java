@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.dao.BatchDetailsDao;
+import com.winpoint.common.dao.EnquiryDetailsDao;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
 
 
 
 public class BatchDetailsHelper {
 		
-	public List<BatchDetails> getBatchDetailsList() {
+	public List<BatchDetailsWrapper> getBatchDetailsList() {
 		return new BatchDetailsDao().getBatchDetailsList();
 	}
 	public List<BatchDetails> getBatchDetailsList1() {
@@ -22,12 +24,7 @@ public class BatchDetailsHelper {
 	public ArrayList<BatchDetailsWrapper> getWrapperListOfBatches(Integer courseId){
 		return new BatchDetailsDao().getWrapperListOfBatches(courseId);
 	}
-	
-	public void create(BatchDetails batchDetailsObject) throws SQLException {
-		// TODO Auto-generated method stub
-		new BatchDetailsDao().create(batchDetailsObject);
-	}
-	
+
 	public BatchDetails getBatchDetails(Integer batchId) {
 		return new BatchDetailsDao().getBatchDetails(batchId);
 	}
@@ -35,6 +32,15 @@ public class BatchDetailsHelper {
 	public BatchDetailsWrapper countNumberOfBatches(Integer courseId) {
 		return new BatchDetailsDao().getcountNumberOfBatches(courseId);
 	} 
+	
+	public void create(EnquiryDetails enquiryDetailsObject) throws SQLException {
+		new EnquiryDetailsDao().create(enquiryDetailsObject);
+	}
+	
+	public void create(BatchDetails batchDetails) throws SQLException {
+		new BatchDetailsDao().create(batchDetails);
+	}
+	
 
 }
 

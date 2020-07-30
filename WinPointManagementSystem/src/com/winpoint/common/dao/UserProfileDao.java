@@ -1,6 +1,7 @@
 package com.winpoint.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.UserProfile;
@@ -307,6 +309,31 @@ public class UserProfileDao {
 		}
 		
 		return  studentList;
+		
+	}
+
+
+	public HashMap<String, Integer> getMapOfFaculty() {
+		// TODO Auto-generated method stub
+		 HashMap<String, Integer> facultyMap = new HashMap<String, Integer>();
+		 
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "SELECT * FROM USER_PROFILE";
+			
+			ResultSet resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				facultyMap.put(resultSet.getString("FIRST_NAME")+" "+resultSet.getString("LAST_NAME"), resultSet.getInt("USER_ID"));
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return  facultyMap;
 		
 	}
 	

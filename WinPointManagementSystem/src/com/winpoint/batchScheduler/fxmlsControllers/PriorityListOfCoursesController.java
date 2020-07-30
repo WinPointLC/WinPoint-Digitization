@@ -14,12 +14,16 @@ import java.util.StringTokenizer;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.FacultySkills;
 import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.dao.EnquiryDetailsDao;
+import com.winpoint.common.dao.FacultySkillsDao;
+import com.winpoint.common.dao.UserProfileDao;
 import com.winpoint.common.helpers.CourseTypeHelper;
+import com.winpoint.common.helpers.FacultySkillsHelper;
 import com.winpoint.common.helpers.PriorityCoursesListHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
 import com.winpoint.common.helpers.TimeSlotsHelper;
@@ -162,9 +166,9 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	}
     	totalEligibleStudentCourseMap.putAll(tempMap);
     	
-    	System.out.println("Total Size : "+totalEligibleStudentCourseMap.size());
-    	System.out.println("Registered Size : "+registeredStudentsCourseMap.size());
-    	System.out.println("Enquired Size : "+enquiredStudentsCourseMap.size());
+//    	System.out.println("Total Size : "+totalEligibleStudentCourseMap.size());
+//    	System.out.println("Registered Size : "+registeredStudentsCourseMap.size());
+//    	System.out.println("Enquired Size : "+enquiredStudentsCourseMap.size());
     	
     	
     	//Course Type choice box : 
@@ -187,11 +191,11 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	            for(Course course : totalEligibleStudentCourseMap.keySet()) {  	
 	            	
 	            	
-	            	for(Course courseEnquiry : enquiredStudentsCourseMap.keySet()) {
-	            		System.out.println("Enquiry Course Name : "+courseEnquiry.getCourseName());	            	
-		            	System.out.println("Enquiry Size : "+enquiredStudentsCourseMap.get(courseEnquiry).size());
-		            	System.out.println("Enquiry Data : "+enquiredStudentsCourseMap.get(courseEnquiry));
-	            	}
+//	            	for(Course courseEnquiry : enquiredStudentsCourseMap.keySet()) {
+//	            		System.out.println("Enquiry Course Name : "+courseEnquiry.getCourseName());	            	
+//		            	System.out.println("Enquiry Size : "+enquiredStudentsCourseMap.get(courseEnquiry).size());
+//		            	System.out.println("Enquiry Data : "+enquiredStudentsCourseMap.get(courseEnquiry));
+//	            	}
 	            		            	
 	           		for(SegmentType segmentType : segmentTypeList) {
 	           				           			
@@ -202,7 +206,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	    		
 	    	    		Hyperlink numberOfStudent = new Hyperlink();
 	    	    		
-	    				ChoiceBox<String> facultyName = new ChoiceBox<String>();
+	    	    		ChoiceBox<String> facultyName = null;
 	    
 	    	    		ChoiceBox<String> availableTime = new ChoiceBox<String>();    	    			
 	    	    		availableTime.setId(""+rowNumber);
@@ -210,8 +214,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	            List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    
 	    	            //availableTime.setValue("ALL");
 	    	            for(TimeSlots timeSlot : timeSlotsList) {
-	    	            	availableTime.getItems().add(timeSlot.getTimeSlotsDescription());
-	    	            		
+	    	            	availableTime.getItems().add(timeSlot.getTimeSlotsDescription());	    	            		
 	    	            }
 	    	            	
 	    	            EventHandler<ActionEvent> eventAvailable = new EventHandler<ActionEvent>() { 
@@ -221,26 +224,41 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	                   	timeSlotsId = timeSlotsList.get(index).getTimeSlotsId();
 	    	                   	descriptionForPreferedTime = timeSlotsList.get(index).getTimeSlotsDescription();
 	    	
+	    	                	ChoiceBox<String> facultyName = new ChoiceBox<String>();
+	    	    				//Faculty Ids Choice Box :
+	    	    		    	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
+	    	    		    	List<FacultySkills> userIdList = new FacultySkillsHelper().getAvailableFaculty(timeSlotsId,course.getCourseId());
+	    	    		    	HashSet<Integer> facultyUserIdsSet = new HashSet<Integer>();
+	    	    		    	HashMap<String, Integer> facultyNameIdsMap = new UserProfileDao().getMapOfFaculty();
+   	    	        
+	    	    	            for(UserProfile faculty : facultyList) {
+	    	    	            	for(FacultySkills id : userIdList) {
+	    	    	            		int User = faculty.getUserId();
+	    	    	            		int id1 = id.getUserId();
+	    	    	            		if(User==id1) {
+	    	    	            			facultyName.getItems().add(faculty.getFirstName());
+	    	    	            			System.out.println("added");
+	    	    	            			break;
+	    	    	            		}
+	    	    	            	}
+	    	    	            }	    	    	         
+	    	    	            
+	    	    		    	EventHandler<ActionEvent> eventCreatedBy = new EventHandler<ActionEvent>() { 
+	    	    		            public void handle(ActionEvent e) { 
+	    	    		            	int index = facultyName.getItems().indexOf(facultyName.getValue());
+	    	    		            	facultySkillsId = facultyList.get(index).getUserId();
+	    	    		            	descriptionForFacultyName = facultyName.getValue();
+	    	    		            }
+	    	    		        }; 	
+	    	    		        facultyName.setOnAction(eventCreatedBy);        
+	    	    		    	/*******************************************************/
+	    	                   	
 	    	                    getTimewiseNumberOfStudents(course, segmentType, timeSlotsId, availableTime, true, facultyName, launchButton, numberOfStudent);
 	    	                    	      	                    	
 	    	                 }
 	    	            }; 	
 	    	            availableTime.setOnAction(eventAvailable);
-	    				
-	    				//Faculty Ids Choice Box :
-	    		    	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
-	    		    	for(UserProfile faculty : facultyList) {
-	    			    		facultyName.getItems().add(faculty.getFirstName());
-	    		    	}
-	    		    	EventHandler<ActionEvent> eventCreatedBy = new EventHandler<ActionEvent>() { 
-	    		            public void handle(ActionEvent e) { 
-	    		            	int index = facultyName.getItems().indexOf(facultyName.getValue());
-	    		            	facultySkillsId = facultyList.get(index).getUserId();
-	    		            	descriptionForFacultyName = facultyList.get(index).getFirstName();
-	    		            }
-	    		        }; 	
-	    		        facultyName.setOnAction(eventCreatedBy);        
-	    		    	/*******************************************************/
+
 	    		    	EventHandler <ActionEvent> eventLaunchButton = new EventHandler<ActionEvent>() {
 	    					@Override
 	    					public void handle(ActionEvent event) {
@@ -249,9 +267,18 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    		            	try {
 	    		            		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/BatchLauncher.fxml"));
 	    		            		myNewScene = loader.load();
+	    		            		
 	    		            		BatchLauncherController batchLauncherController = loader.getController();			
 	    		            		ArrayList<String> dataForAttendanceScreen = new ArrayList<String>();
-	    		            		batchLauncherController.setStudentDetail(course, totalEligibleStudentCourseMap, descriptionForPreferedTime, descriptionForFacultyName);
+	    		            		
+	    		            		batchLauncherController.setStudentDetail(
+	    		            				course, 
+	    		            				registeredStudentsCourseMap, 
+	    		            				enquiredStudentsCourseMap,
+	    		            				segmentType,	    		            				
+	    		            				descriptionForPreferedTime,
+	    		            				descriptionForFacultyName);
+	    		            		
 	    		            		Scene scene = new Scene(myNewScene);
 	    		                	stage.setScene(scene);
 	    		                	stage.setTitle("Attendance Records");
@@ -264,11 +291,6 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    		        launchButton.setOnAction(eventLaunchButton); 	
 	    		    	/*******************************************************/ 
 	    		        // Hyper Link for the Number of the Student : 
-	    		        
-	    		        
-//	    		        NumberOfStudentsController numberOfStudentsController = loader.getController();			
-//	            		numberOfStudentsController.displayBatchDetails(course ,totalEligibleStudentCourseMap);
-//	            		
 	    		        
 	    		        EventHandler <ActionEvent> eventNumberOfStudent = new EventHandler<ActionEvent>() {
 	    					@Override
@@ -291,7 +313,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	    						}
 	    	    	            	
 	    	    	            	}
-	    	    					System.out.println("Size of registered Array List : "+registeredStudentsCourseMap.get(course).size());
+//	    	    					System.out.println("Size of registered Array List : "+registeredStudentsCourseMap.get(course).size());
 	    	 	            		numberOfStudentsController.displayBatchDetails(registeredStudentsCourseMap.get(course), enquiredStudentsCourseMap.get(courseEnquiry));
 	    	    					
 	    	    	            	
@@ -345,14 +367,14 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     		count = 0; 
     		
 			ArrayList<UserCoursesDoneWrapper> studentDetailsList = totalEligibleStudentCourseMap.get(course);
-			System.out.println("User Profile : "+course.getCourseName()+" RowNumber : "+availableTimeId);
+//			System.out.println("User Profile : "+course.getCourseName()+" RowNumber : "+availableTimeId);
 				        
 				for(UserCoursesDoneWrapper userCoursesDoneWrapper : studentDetailsList){
 					if(userCoursesDoneWrapper.getUserProfile().getSegmentTypeId() == segmentType.getSegmentTypeId()) {
 							count++;
-			        	System.out.println(userCoursesDoneWrapper.getUserProfile().getFirstName()
-			        			+"   "+userCoursesDoneWrapper.getUserProfile().getSegmentTypeId()
-			        			+"   "+userCoursesDoneWrapper.getUserProfile().getTimeSlotsId());
+//			        	System.out.println(userCoursesDoneWrapper.getUserProfile().getFirstName()
+//			        			+"   "+userCoursesDoneWrapper.getUserProfile().getSegmentTypeId()
+//			        			+"   "+userCoursesDoneWrapper.getUserProfile().getTimeSlotsId());
 			        	
 			        	HashSet<Integer> timeSlotsIdsSet = new HashSet<Integer>();
 			        	String timeSlotsIdString = userCoursesDoneWrapper.getUserProfile().getTimeSlotsId();
@@ -372,12 +394,12 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 
 				String ratioOfCount = timeWiseCount +"/"+count;
 				String ratioOfRevenue = timeWiseCount*course.getCourseFees() +"/"+count*course.getCourseFees();
-				System.out.println("Time Wise Count : "+timeWiseCount);
-				System.out.println("ratio : "+ratioOfCount);
+//				System.out.println("Time Wise Count : "+timeWiseCount);
+//				System.out.println("ratio : "+ratioOfCount);
 		        EnquiryDetails startDate = new EnquiryDetailsDao().getStartDate();
 				Date date = startDate.getStartDate();
 				
-				System.out.println("*****("+availableTime.getId());
+//				System.out.println("*****("+availableTime.getId());
 
 				numberOfStudent.setText(ratioOfCount);
 				
@@ -387,11 +409,11 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 		        		ratioOfRevenue, launchButton);
 				 			
 				if( isRowToBeRemoved ) {
-					System.out.println("############"+availableTime.getId());
+//					System.out.println("############"+availableTime.getId());
 					priorityListOfCoursesWrapperList.remove(Integer.parseInt(availableTime.getId()));			
 					priorityListOfCoursesWrapperList.add(Integer.parseInt(availableTime.getId()), priorityListOfCoursesWrapperRow);
 				}else {
-					System.out.println("Else : "+availableTime.getId());
+//					System.out.println("Else : "+availableTime.getId());
 					priorityListOfCoursesWrapperList.add(priorityListOfCoursesWrapperRow);	
 					rowNumber++;
 				}

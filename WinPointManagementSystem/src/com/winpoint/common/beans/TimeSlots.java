@@ -16,6 +16,10 @@ public class TimeSlots {
 		this.timeSlotsDescription = timeSlotsDescription;
 	}
 	
+	public TimeSlots(String timeSlotsDescription) {
+		this.timeSlotsDescription = timeSlotsDescription;
+	}
+
 	/**
 	 * @return the timeSlotsId
 	 */

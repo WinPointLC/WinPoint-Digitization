@@ -61,8 +61,8 @@
                <children>
                   <TableView fx:id="batchDetails" prefHeight="750.0" prefWidth="1230.0">
                     <columns>
-                      <TableColumn fx:id="batchId" prefWidth="136.0" text="Batch ID" />
-                      <TableColumn fx:id="courseId" prefWidth="136.0" text="Course ID" />
+                      <TableColumn fx:id="batchId" prefWidth="136.0" text="Batch Name" />
+                      <TableColumn fx:id="courseId" prefWidth="136.0" text="Course Name" />
                         <TableColumn fx:id="faculty" prefWidth="136.0" text="Faculty" />
                         <TableColumn fx:id="time" prefWidth="136.0" text="Time" />
                         <TableColumn fx:id="beginDate" prefWidth="136.0" text="Begin Date" />

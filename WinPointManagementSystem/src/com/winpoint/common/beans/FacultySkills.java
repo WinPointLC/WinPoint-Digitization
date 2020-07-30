@@ -13,8 +13,8 @@ public class FacultySkills {
 	private String skillSet;
 	private Integer createdBy;
 	private Date createdDate;
-	private Integer segmentTypeId;
-	private Integer timeSlotsId;
+	private String segmentTypeId;
+	private String timeSlotsId;
 	
 	/**
 	 * @param userId
@@ -32,8 +32,8 @@ public class FacultySkills {
 	
 	
 	
-	public FacultySkills(Integer userId, String skillSet, Integer createdBy, Date createdDate, Integer segmentTypeId,
-			Integer timeSlotsId) {
+	public FacultySkills(Integer userId, String skillSet, Integer createdBy, Date createdDate, String segmentTypeId,
+			String timeSlotsId) {
 		super();
 		this.userId = userId;
 		this.skillSet = skillSet;
@@ -41,6 +41,19 @@ public class FacultySkills {
 		this.createdDate = createdDate;
 		this.segmentTypeId = segmentTypeId;
 		this.timeSlotsId = timeSlotsId;
+	}
+
+
+
+	public FacultySkills(String skillSet) {
+		// TODO Auto-generated constructor stub
+		this.skillSet = skillSet;
+	}
+
+
+
+	public FacultySkills(int userId) {
+		this.userId = userId;
 	}
 
 
@@ -105,7 +118,7 @@ public class FacultySkills {
 	/**
 	 * @return the segmentTypeId
 	 */
-	public Integer getSegmentTypeId() {
+	public String getSegmentTypeId() {
 		return segmentTypeId;
 	}
 
@@ -113,7 +126,7 @@ public class FacultySkills {
 	/**
 	 * @param segmentTypeId the segmentTypeId to set
 	 */
-	public void setSegmentTypeId(Integer segmentTypeId) {
+	public void setSegmentTypeId(String segmentTypeId) {
 		this.segmentTypeId = segmentTypeId;
 	}
 
@@ -121,7 +134,7 @@ public class FacultySkills {
 	/**
 	 * @return the timeSlotsId;
 	 */
-	public Integer getTimeSlotsId() {
+	public String getTimeSlotsId() {
 		return timeSlotsId;
 	}
 
@@ -129,7 +142,7 @@ public class FacultySkills {
 	/**
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
-	public void setTimeSlotsId(Integer timeSlotsId) {
+	public void setTimeSlotsId(String timeSlotsId) {
 		this.timeSlotsId = timeSlotsId;
 	}
 

@@ -19,6 +19,9 @@ public class BatchDetailsWrapper {
 	private String facultyName;
 	private String facultyImageLocation;
 	private Integer count;
+	private String courseName;
+	private String batchTimeDescription;
+	
 	
 	public BatchDetailsWrapper(Integer count) {
 		this.count = count;
@@ -41,12 +44,12 @@ public class BatchDetailsWrapper {
 
 
 
-	public BatchDetailsWrapper(Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate,
+	public BatchDetailsWrapper(String batchName, String courseName, String facultyName, String batchTimeDescription, Date startDate,
 			Date endDate, Integer createdBy, Date createdDate, Button add) {
-		this.batchId = batchId;
-		this.courseId = courseId;
-		this.facultyId = facultyId;
-		this.batchTime = batchTime;
+		this.batchName = batchName;
+		this.courseName = courseName;
+		this.facultyName = facultyName;
+		this.batchTimeDescription = batchTimeDescription;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.createdBy = createdBy;
@@ -54,6 +57,34 @@ public class BatchDetailsWrapper {
 		this.add=add;
 	}
 	
+	public String getCourseName() {
+		return courseName;
+	}
+
+
+
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+
+
+
+	public String getBatchTimeDescription() {
+		return batchTimeDescription;
+	}
+
+
+
+
+	public void setBatchTimeDescription(String batchTimeDescription) {
+		this.batchTimeDescription = batchTimeDescription;
+	}
+
+
+
+
 	public BatchDetailsWrapper(Integer batchId, String batchName, String facultyName,
 			String facultyImageLocation) {
 		super();
@@ -65,6 +96,11 @@ public class BatchDetailsWrapper {
 
 	
 	
+
+
+
+
+
 
 	public String getBatchIds() {
 		return batchIds;

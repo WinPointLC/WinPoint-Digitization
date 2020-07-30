@@ -10,5 +10,5 @@ public class TimeSlotsHelper {
 	public List<TimeSlots> getTimeSlotsList(){
 		return new TimeSlotsDao().getTimeSlotsList();
 	}
-	
+
 }

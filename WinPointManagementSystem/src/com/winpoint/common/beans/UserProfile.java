@@ -396,6 +396,12 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		this.segmentTypeId=segmetTypeId;
 	}
 
+	public UserProfile(String Name, int userId) {
+		// TODO Auto-generated constructor stub
+		this.firstName = Name;
+		this.userId = userId;
+	}
+
 	/**
 	 * @return the userId
 	 */

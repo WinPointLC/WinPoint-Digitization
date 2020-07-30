@@ -40,16 +40,16 @@ public class BatchDetailsController extends ParentFXMLController{
 	    private TableView<BatchDetailsWrapper> batchDetails;
 
 	    @FXML
-	    private TableColumn<Integer, BatchDetailsWrapper> batchId;
+	    private TableColumn<String, BatchDetailsWrapper> batchId;
 
 	    @FXML
-	    private TableColumn<Integer, BatchDetailsWrapper> courseId;
+	    private TableColumn<String, BatchDetailsWrapper> courseId;
 
 	    @FXML
-	    private TableColumn<Integer, BatchDetailsWrapper> faculty;
+	    private TableColumn<String, BatchDetailsWrapper> faculty;
 
 	    @FXML
-	    private TableColumn<Integer, BatchDetailsWrapper> time;
+	    private TableColumn<String, BatchDetailsWrapper> time;
 
 	    @FXML
 	    private TableColumn<Date, BatchDetailsWrapper> beginDate;
@@ -89,13 +89,13 @@ public class BatchDetailsController extends ParentFXMLController{
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
    		
-   		List<BatchDetails> batchDetailsList = new BatchDetailsHelper().getBatchDetailsList(); 
+   		List<BatchDetailsWrapper> batchDetailsList = new BatchDetailsHelper().getBatchDetailsList(); 
    		
 		// Row Population logic
-   		batchId.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("batchId"));
-   		courseId.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("courseId"));
-   		faculty.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("facultyId"));
-   		time.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("BatchTime"));
+   		batchId.setCellValueFactory(new PropertyValueFactory<String, BatchDetailsWrapper>("BatchName"));
+   		courseId.setCellValueFactory(new PropertyValueFactory<String, BatchDetailsWrapper>("CourseName"));
+   		faculty.setCellValueFactory(new PropertyValueFactory<String, BatchDetailsWrapper>("FacultyName"));
+   		time.setCellValueFactory(new PropertyValueFactory<String, BatchDetailsWrapper>("BatchTimeDescription"));
    		beginDate.setCellValueFactory(new PropertyValueFactory<Date, BatchDetailsWrapper>("StartDate"));
    		endDate.setCellValueFactory(new PropertyValueFactory<Date, BatchDetailsWrapper>("EndDate"));
    		createdBy.setCellValueFactory(new PropertyValueFactory<Integer, BatchDetailsWrapper>("CreatedBy"));
@@ -105,9 +105,9 @@ public class BatchDetailsController extends ParentFXMLController{
    		
    		List<BatchDetailsWrapper> batchDetailsWrapperList = new ArrayList<BatchDetailsWrapper>();
    		
-   		for( BatchDetails batchDetail : batchDetailsList ) {
+   		for( BatchDetailsWrapper batchDetail : batchDetailsList ) {
    			add= new Button("Add");
-   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchId(), batchDetail.getCourseId(), batchDetail.getFacultyId(), batchDetail.getBatchTime(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
+   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchName(), batchDetail.getCourseName(), batchDetail.getFacultyName(), batchDetail.getBatchTimeDescription(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
    		}
    		
    		ObservableList<BatchDetailsWrapper> batchDetailRecords = FXCollections.observableArrayList(batchDetailsWrapperList);
