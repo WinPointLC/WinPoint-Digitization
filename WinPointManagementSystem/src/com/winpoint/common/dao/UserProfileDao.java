@@ -311,30 +311,5 @@ public class UserProfileDao {
 		return  studentList;
 		
 	}
-
-
-	public HashMap<String, Integer> getMapOfFaculty() {
-		// TODO Auto-generated method stub
-		 HashMap<String, Integer> facultyMap = new HashMap<String, Integer>();
-		 
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-			
-			String query = "SELECT * FROM USER_PROFILE";
-			
-			ResultSet resultSet = statement.executeQuery(query);
-			
-			while(resultSet.next()) {
-				facultyMap.put(resultSet.getString("FIRST_NAME")+" "+resultSet.getString("LAST_NAME"), resultSet.getInt("USER_ID"));
-			}
-			
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return  facultyMap;
-		
-	}
 	
 }

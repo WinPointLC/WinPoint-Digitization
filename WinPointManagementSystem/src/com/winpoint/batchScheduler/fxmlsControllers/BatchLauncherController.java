@@ -203,7 +203,7 @@ public class BatchLauncherController extends ParentFXMLController {
        	}
     	HashMap<String, Integer> facultyList = new HashMap<String, Integer>();
     	for(UserProfile faculty : new UserProfileHelper().getFaculty()) {
-    		timeSlotsMap.put(faculty.getFirstName()+" "+faculty.getLastName(), faculty.getUserId());
+    		timeSlotsMap.put(faculty.getFirstName(), faculty.getUserId());
     	}
     	LocalDate ldBeginDate = beginDate.getValue();
        	Calendar cBeginDate =  Calendar.getInstance();
@@ -225,8 +225,21 @@ public class BatchLauncherController extends ParentFXMLController {
        	Integer totalNumberOfLectures = totalNumberOfLectures1;
        	Integer segmentTypeId = selectedSegmentTypeId;       	
        	Date endDate = dateEndDate;   	
-    	Integer createdBy = null;
-    	Date createdDate = null;
+    	Integer createdBy = 1;
+    	
+//    	long millis=System.currentTimeMillis();  
+//    	java.sql.Date date=new java.sql.Date(millis);  
+//    	System.out.println(date);
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    	Date javaDate = null;
+		try {
+			javaDate = sdf.parse("06/10/2013 18:29:09");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	java.sql.Date date = new java.sql.Date(javaDate.getTime());
+    	Date createdDate = date;
     	
 
     	// Object Passing to the bean class : 
@@ -239,7 +252,7 @@ public class BatchLauncherController extends ParentFXMLController {
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
-			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
+			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/BatchDetails.fxml").openStream());
 			Stage stage = (Stage) launch.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);

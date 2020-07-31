@@ -64,9 +64,9 @@ public class BatchDetailsDao {
 	
 	//GROUP A - For Inserting the Data in BatchDetails - Abhishek
 	public void create(BatchDetails batchDetails) throws SQLException {
-//		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
-//		java.sql.Date sqlDateOfEnquiry = new java.sql.Date(enquiryDetails.getDateofEnquiry().getTime());
-//		java.sql.Date sqlStartDate = new java.sql.Date(enquiryDetails.getStartDate().getTime());
+		java.sql.Date sqlCreatedDate = new java.sql.Date(batchDetails.getCreatedDate().getTime());
+		java.sql.Date sqlEndDate = new java.sql.Date(batchDetails.getEndDate().getTime());
+		java.sql.Date sqlStartDate = new java.sql.Date(batchDetails.getStartDate().getTime());
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -90,17 +90,18 @@ public class BatchDetailsDao {
 					""+ batchDetails.getBatchTime() +",\n" + 
 					""+ batchDetails.getCourseId() +",\n" + 
 					""+ batchDetails.getFacultyId() +",\n" + 
-					""+ batchDetails.getStartDate() +",\n" + 
+					"'"+ sqlStartDate +"',\n" + 
 					""+ batchDetails.getCurrentLectureNumber() +",\n" + 
 					"'"+ batchDetails.getLectureDuration() +"',\n" + 
 					""+ batchDetails.getTotalNumberOfLectures() +",\n" + 
 					""+ batchDetails.getSegmentTypeId() +",\n" + 
-					"'"+ batchDetails.getEndDate() +"',\n" + 
+					"'"+ sqlEndDate +"',\n" + 
 					""+ batchDetails.getCreatedBy() +",\n" + 
-					"'"+ batchDetails.getCreatedDate() +"')\n" + 
+					"'"+ sqlCreatedDate +"')\n" + 
 					"";
 			System.out.println(query);
 			statement.executeUpdate(query);
+			
 		}
 
 		
@@ -117,8 +118,8 @@ public class BatchDetailsDao {
 			Statement statement = connection.createStatement();
 
 			String query = "\n" + 
-					"SELECT COUNT(COURSE_ID) as COUNT_BATCH FROM STUDENT_COURSE_DETAILS " + 
-					"WHERE COURSE_ID = "+courseId;
+					"SELECT COUNT(COURSE_ID) as COUNT_BATCH FROM BATCH_DETAILS\n" + 
+					"					WHERE COURSE_ID =  "+courseId;
 			resultSet = statement.executeQuery(query);
 			
 			while(resultSet.next()) {
@@ -250,5 +251,35 @@ public class BatchDetailsDao {
 		return batchDetails;
 		
 	}
+
+
+
+	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId) {
+		
+		boolean batchExist = false;
+		
+		BatchDetails batchDetails = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query1 = "SELECT BEGIN_DATE\n" + 
+					"from BATCH_DETAILS\n" + 
+					"where COURSE_ID = "+ courseId +" and BATCH_TIME = "+ timeSlotsId +" and FACULTY_USER_ID = "+ facultyUserId +"";
+			
+			ResultSet resultSet = statement.executeQuery(query1);
+			
+			while(resultSet.next()) {
+				batchDetails = new BatchDetails(resultSet.getDate("BEGIN_DATE"));
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(batchDetails!=null) {
+			batchExist = true;
+		}
+			
+		return batchExist;	}
 	
 }

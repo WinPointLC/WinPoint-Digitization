@@ -181,6 +181,11 @@ public class BatchDetails {
 		this.createdDate = createdDate;
 	}
 
+	public BatchDetails(java.sql.Date date) {
+		// TODO Auto-generated constructor stub
+		this.startDate = date;
+	}
+
 	public String getBatchName() {
 		return batchName;
 	}
