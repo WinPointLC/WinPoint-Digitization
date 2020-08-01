@@ -31,6 +31,11 @@ public class CourseHelper {
 	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList() {
 		return new CourseDao().getCourseNamesList();
 	}
+
+	public List<Course> getUserCourseList(int userId, int streamId, int courseTypeId) {
+		// TODO Auto-generated method stub
+		return new CourseDao().getUserCourseList(userId, streamId, courseTypeId);
+	}
 	
 	
 }

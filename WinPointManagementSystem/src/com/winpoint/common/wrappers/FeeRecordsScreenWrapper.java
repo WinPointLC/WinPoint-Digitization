@@ -15,7 +15,7 @@ public class FeeRecordsScreenWrapper {
 	private Integer userId;
 	private String mobile;
 	private String emailId;
-	private Hyperlink hpl;
+	transient private Hyperlink hpl;
 	private Integer feeReminderCount;
 	private StudentCourseInstallmentDetails studentCourseInstallmentDetails;
 	

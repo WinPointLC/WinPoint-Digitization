@@ -1,12 +1,14 @@
 package com.winpoint.common.helpers;
 
 import java.util.ArrayList;
+import java.util.List;
 
-
+import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsHelper {
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){
@@ -19,7 +21,7 @@ public class StudentCourseDetailsHelper {
 	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId){
 		return new StudentCourseDetailsDao().getAssignmentScreenWrapperList(batchId);
 	}
-	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId){
+	public ArrayList<EvaluationScreenWrapperParent> getStudentEvaluationDetails(Integer batchId){
 		return new StudentCourseDetailsDao().getStudentEvaluationDetails(batchId);
 	}
 
@@ -33,6 +35,11 @@ public class StudentCourseDetailsHelper {
 
 	public void updateStudentCourseDetails(int userId, int courseId) {
 		new StudentCourseDetailsDao().updateStudentCourseDetails(userId, courseId);
+	}
+
+	public List<StudentCourseDetails> getStudentCourseDetailList(int userId, int streamId, int courseTypeId) {
+		// TODO Auto-generated method stub
+		return new StudentCourseDetailsDao().getStudentCourseDetailList(userId, streamId, courseTypeId);
 	}
 
 

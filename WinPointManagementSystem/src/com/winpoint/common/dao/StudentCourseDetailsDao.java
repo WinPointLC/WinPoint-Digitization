@@ -8,14 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.winpoint.common.beans.BatchDetails;
+import com.winpoint.common.beans.Course;
 
 //import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import com.winpoint.common.beans.StudentCourseDetails;
+import com.winpoint.common.helpers.AttendanceHelper;
+import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsDao {
 
@@ -170,8 +175,8 @@ public class StudentCourseDetailsDao {
 			}
 			return  assignmentsScreenWrapperList;
 	}
-	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId) {		
-		ArrayList<EvaluationScreenWrapper> evaluationScreenWrapperList = new ArrayList<EvaluationScreenWrapper>();
+	public ArrayList<EvaluationScreenWrapperParent> getStudentEvaluationDetails(Integer batchId) {		
+		ArrayList<EvaluationScreenWrapperParent> evaluationScreenWrapperList = new ArrayList<>();
 			ResultSet resultSet = null;
 			try(Connection connection = ConnectionManager.getConnection()){
 				Statement statement = connection.createStatement();
@@ -183,7 +188,7 @@ public class StudentCourseDetailsDao {
 					
 					String gradeId=(resultSet.getString("GRADE_ID"));
 					String certificateGiven=(resultSet.getString("CERTIFICATE_GIVEN"));
-					evaluationScreenWrapperList.add(new EvaluationScreenWrapper(resultSet.getString("FIRST_NAME"),
+					evaluationScreenWrapperList.add(new EvaluationScreenWrapperParent(resultSet.getString("FIRST_NAME"),
 							resultSet.getString("LAST_NAME"),resultSet.getInt("USER_ID"),null,
 							resultSet.getInt("COURSE_AGGR"),gradeId,certificateGiven));
 					
@@ -220,4 +225,91 @@ public class StudentCourseDetailsDao {
 		
 		return  batchCount;
 	}
+
+	public List<StudentCourseDetails> getStudentCourseDetailList(int userId, int streamId, int courseTypeId) {
+		ArrayList<StudentCourseDetails> studentCourseDetailsList = new ArrayList<>();		
+		
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			/*String query = "SELECT STREAMS.STREAM_NAME, \r\n" + 
+					"		COURSE_TYPE.COURSE_TYPE_NAME, \r\n" + 
+					"		COURSES.COURSE_ID, COURSES.COURSE_NAME, COURSES.LOGO_LOCATION, \r\n" + 
+					"		STUDENT_COURSE_DETAILS.BATCH_ID, \r\n" +
+					"		STUDENT_COURSE_DETAILS.COURSE_AGGR\r\n" + 
+					"FROM STREAMS JOIN COURSES \r\n" + 
+					"	ON STREAMS.STREAM_ID =  COURSES.STREAM_ID\r\n" + 
+					"		LEFT OUTER JOIN COURSE_TYPE \r\n" + 
+					"		ON COURSE_TYPE.COURSE_TYPE_ID = COURSES.COURSE_TYPE_ID\r\n" + 
+					"		LEFT OUTER JOIN STUDENT_COURSE_DETAILS \r\n" + 
+					"		ON COURSES.COURSE_ID = STUDENT_COURSE_DETAILS.COURSE_ID\r\n" + 
+					"WHERE COURSES.COURSE_ID IN \r\n" + 
+					"	(SELECT STUDENT_COURSE_DETAILS.COURSE_ID FROM STUDENT_COURSE_DETAILS where STUDENT_COURSE_DETAILS.USER_ID=" + userId + "and courses.stream_Id = " + streamId + "and courses.course_type_Id = " + courseTypeId+") and STUDENT_COURSE_DETAILS.USER_ID=" + userId;*/
+			String query = "SELECT STREAMS.STREAM_NAME, \r\n" + 
+					"							COURSE_TYPE.COURSE_TYPE_NAME, \r\n" + 
+					"							COURSES.COURSE_ID, COURSES.COURSE_NAME, COURSES.LOGO_LOCATION, \r\n" + 
+					"							STUDENT_COURSE_DETAILS.BATCH_ID,\r\n" + 
+					"							STUDENT_COURSE_DETAILS.COURSE_AGGR,\r\n" + 
+					"							STUDENT_COURSE_INSTALLMENT_DETAILS.DUE_AMOUNT\r\n" + 
+					"					FROM STREAMS JOIN COURSES  \r\n" + 
+					"						ON STREAMS.STREAM_ID =  COURSES.STREAM_ID \r\n" + 
+					"							LEFT OUTER JOIN COURSE_TYPE \r\n" + 
+					"							ON COURSE_TYPE.COURSE_TYPE_ID = COURSES.COURSE_TYPE_ID \r\n" + 
+					"							LEFT OUTER JOIN STUDENT_COURSE_DETAILS \r\n" + 
+					"							ON COURSES.COURSE_ID = STUDENT_COURSE_DETAILS.COURSE_ID \r\n" + 
+					"							LEFT OUTER JOIN STUDENT_COURSE_INSTALLMENT_DETAILS\r\n" + 
+					"							ON STUDENT_COURSE_INSTALLMENT_DETAILS.USER_ID = STUDENT_COURSE_DETAILS.USER_ID\r\n" + 
+					"					WHERE COURSES.COURSE_ID IN \r\n" + 
+					"						(SELECT STUDENT_COURSE_DETAILS.COURSE_ID FROM STUDENT_COURSE_DETAILS where STUDENT_COURSE_DETAILS.USER_ID = " + userId + " and courses.stream_Id = " + streamId + " and courses.course_type_Id = " + courseTypeId  + ") and STUDENT_COURSE_DETAILS.USER_ID = "+ userId;
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				int courseId = resultSet.getInt("COURSE_ID");
+				String courseName = resultSet.getString("COURSE_NAME");
+				String logoLocation = resultSet.getString("LOGO_LOCATION"); 
+				String courseTypeName = resultSet.getString("COURSE_TYPE_NAME");
+				String streamName = resultSet.getString("STREAM_NAME");
+				int courseAggr = resultSet.getInt("COURSE_AGGR");
+				int dueAmount = resultSet.getInt("DUE_AMOUNT");
+				int batchId = resultSet.getInt("BATCH_ID");
+				int percentageAttendance = new AttendanceHelper().getPercentageStudenAttendanceForBatch(userId, batchId);
+				
+				BatchDetails batchDetails= new BatchDetailsHelper().getBatchDetails(batchId);
+				
+				StudentCourseDetails secQuest = new StudentCourseDetails(userId, courseId, courseName, logoLocation, courseTypeName, streamName, courseAggr, dueAmount, percentageAttendance, batchDetails);
+				
+				studentCourseDetailsList.add(secQuest);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
+		
+		return studentCourseDetailsList;
+	}
+
+	/*private int getUserBatchId(int userId, int courseId) {
+		// TODO Auto-generated method stub
+		int batchId = 0;
+		ResultSet resultSet = null;
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			String query = "SELECT BATCH_ID FROM STUDENT_COURSE_DETAILS WHERE USER_ID = "  + userId + " AND COURSE_ID = " + courseId;
+			resultSet = statement.executeQuery(query);
+			int i = 1;
+			while(resultSet.next()) {
+				batchId = resultSet.getInt("BATCH_ID");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return batchId;
+	}*/
 }

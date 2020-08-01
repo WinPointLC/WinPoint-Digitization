@@ -101,8 +101,8 @@ public class AttendanceDao {
 //	}	
 	
 	
-	public ObservableList<ObservableList> getStudentAttendanceForBatch(Integer batchId){
-		ObservableList<ObservableList> data = FXCollections.observableArrayList();
+	public ObservableList<ObservableList<String>> getStudentsAttendanceForBatch(Integer batchId){
+		ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement1 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			Statement statement2 = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -154,5 +154,44 @@ public class AttendanceDao {
 			e.printStackTrace();
 		}
 		return data;
+	}
+	
+	public int getPercentageStudenAttendanceForBatch(int userId, int batchId) {
+		int percentage = 0;
+		int present=0;
+		int noOfLectures=0;
+		try(Connection connection = ConnectionManager.getConnection()){
+			
+			Statement statement2 = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			String query2 = "SELECT LECTURE_NUMBER, ABSENTEES \r\n" + 
+					"FROM LECTURE\r\n" + 
+					"WHERE BATCH_ID =" + batchId;
+			
+			ResultSet resultSet = statement2.executeQuery(query2);
+			
+			
+			while(resultSet.next()) {
+					//String[] status = new String[columnCount];
+					StringTokenizer absentStudents = new StringTokenizer(resultSet.getString("ABSENTEES"), ",");
+					List<Integer> absentStudentsList = new ArrayList<>();
+					
+					while(absentStudents.hasMoreTokens()) {
+						absentStudentsList.add(Integer.parseInt(absentStudents.nextToken()));
+					}
+					
+					if(absentStudentsList.contains(userId)) {
+						//Absent
+						present++;
+					}
+					noOfLectures++;
+					percentage = (present/noOfLectures) * 100;
+					System.out.println("Percentage = " + percentage);
+			}			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return percentage;
 	}
 }

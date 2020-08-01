@@ -92,4 +92,5 @@ public class StudentCourseInstallmentDetailsDao {
 		}		
 		return feeRecordsScreenWrapperList;
 	}
+	
 }

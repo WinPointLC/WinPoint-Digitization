@@ -42,7 +42,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 			Statement statement = connection.createStatement();
 
 			String query = "SELECT\r\n" + 
-					"	/*STREAMSTREAM_ID,\r\n" + 
+					"	/*STREAMS.STREAM_ID,\r\n" + 
 					"	STREAMS.STREAM_NAME,\r\n" + 
 					"	COURSE_TYPE.COURSE_TYPE_ID,\r\n" + 
 					"	COURSE_TYPE.COURSE_TYPE_NAME,*/\r\n" + 
@@ -56,6 +56,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 					"		ON COURSES.COURSE_TYPE_ID = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
 					"WHERE " + streamId + "= STREAMS.STREAM_ID and " + courseTypeId + " = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
 					"ORDER BY STREAMS.STREAM_ID, COURSE_TYPE.COURSE_TYPE_ID, COURSES.COURSE_ID";
+			
 			resultSet = statement.executeQuery(query);
 			
 			while(resultSet.next()) {
@@ -156,6 +157,20 @@ public ArrayList<Course> getBatchCourseDurationList() {
 				e.printStackTrace();
 			}
 		return courseList;
+	}
+
+
+	public List<Course> getUserCourseList(int userId, int streamId, int courseTypeId) {
+		// TODO Auto-generated method stub
+		ArrayList<Course> userCourses = new ArrayList<>();
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			String query = "";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userCourses;
 	}
 }
 

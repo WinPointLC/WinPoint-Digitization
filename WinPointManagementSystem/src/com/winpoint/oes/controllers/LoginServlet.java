@@ -81,13 +81,15 @@ public class LoginServlet extends ParentWEBController {
 			
 				PrintWriter writer = response.getWriter();
 				userCategoryId =  userProfileRecd.getUserCategoryId();
+				List<Stream> streamList = new StreamHelper().getStreamList();
+				String json3 = gson.toJson(streamList);
 				if (userCategoryId == 1) {
 				   json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "ClientDashboard-New.jsp'}");
-				   jsonString = "[" + json1 + "," + json2 + "]";
+				   jsonString = "[" + json1 + "," + json2 + "," + json3 + "]";
 				}
 				else if(userCategoryId == 2) {
-					List<Stream> streamList = new StreamHelper().getStreamList();
-					String json3 = gson.toJson(streamList);
+					/*List<Stream> streamList = new StreamHelper().getStreamList();
+					String json3 = gson.toJson(streamList);*/
 					json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "EmployeeDashboard-New.jsp'}");
 					jsonString = "[" + json1 + "," + json2 + "," + json3 + "]";
 				}

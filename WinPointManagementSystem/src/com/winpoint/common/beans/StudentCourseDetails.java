@@ -23,6 +23,9 @@ public class StudentCourseDetails {
 	private String reminderTypeId;
 	private Integer feeReminderCount;
 	private Integer studentCount;
+	private Integer dueAmount;
+	private int percentageAttendance;
+	private BatchDetails batchDetails;
 	/**
 	 * @param userId
 	 * @param batchId
@@ -125,6 +128,22 @@ public class StudentCourseDetails {
 
 	
 	
+	public StudentCourseDetails(int userId, int courseId, String courseName, String logoLocation,
+			String courseTypeName, String streamName, int courseAggr, int dueAmount, int percentageAttendance, BatchDetails batchDetails) {
+		// TODO Auto-generated constructor stub
+		this.userId = userId;
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.logoLocation = logoLocation;
+		this.courseTypeName = courseTypeName;
+		this.streamName = streamName;
+		this.courseAggr = courseAggr;
+		this.dueAmount = dueAmount;
+		this.percentageAttendance = percentageAttendance;
+		this.batchDetails = batchDetails;
+	}
+
+
 	public String getCoursewareIssued() {
 		return coursewareIssued;
 	}
@@ -340,4 +359,35 @@ public class StudentCourseDetails {
 	public void setStudentCount(Integer studentCount) {
 		this.studentCount = studentCount;
 	}
+
+
+	public Integer getDueAmount() {
+		return dueAmount;
+	}
+
+
+	public void setDueAmount(Integer dueAmount) {
+		this.dueAmount = dueAmount;
+	}
+
+
+	public BatchDetails getBatchDetails() {
+		return batchDetails;
+	}
+
+
+	public void setBatchDetails(BatchDetails batchDetails) {
+		this.batchDetails = batchDetails;
+	}
+
+
+	public int getPercentageAttendance() {
+		return percentageAttendance;
+	}
+
+
+	public void setPercentageAttendance(int percentageAttendance) {
+		this.percentageAttendance = percentageAttendance;
+	}
+	
 }

@@ -48,6 +48,7 @@ public class ClientDashboardServlet extends ParentWEBController {
 		Iterator<StudentCourseDetails> studcourseIt = studentCourseDetailsList.iterator();
 		while(studcourseIt.hasNext()) {
 			StudentCourseDetails studDet = studcourseIt.next();
+			System.out.println("************ClientDash " + studDet.getCourseTypeName() + studDet.getCourseName());
 		}
 		
 		Gson gson = new Gson();
