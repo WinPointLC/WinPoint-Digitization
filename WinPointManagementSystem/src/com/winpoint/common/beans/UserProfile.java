@@ -32,7 +32,7 @@ public class UserProfile {
 	private Integer experience;
 	private Integer createdBy;
 	private Date createDate;
-	private Integer timeSlotsId;
+	private String timeSlotsId;
 	private Integer segmentTypeId;
 	private String courseAlreadyDone;
 	private Boolean activeStatus;
@@ -150,7 +150,7 @@ public class UserProfile {
 	}
 	
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
-			Integer userCategoryId, Integer timeSlotsId) {
+			Integer userCategoryId, String timeSlotsId, Integer segmentTypeId) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -159,6 +159,7 @@ public class UserProfile {
 		this.mobileNumber = mobileNumber;
 		this.userCategoryId = userCategoryId;
 		this.timeSlotsId = timeSlotsId;
+		this.segmentTypeId = segmentTypeId;
 	}
 	
 	
@@ -194,7 +195,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
 			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
-			String domain, String role, Integer experience, Integer createdBy, Date createDate, Integer timeSlotsId,
+			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
 			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
 		super();
 		this.userId = userId;
@@ -234,6 +235,171 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 
 	public UserProfile() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public UserProfile(String firstName, String lastName, String email, String mobileNumber, String address,
+			Date birthDate, String college, String degree, String branch, String occupation, String organisation,
+			String designation, String domain, String role, Integer experience, Integer createdBy, String gender,
+			Integer yearOfGraduation, String timeSlotsId, String courseAlreadyDone, Integer segmentTypeId,
+			Boolean activeStatus) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.createdBy = createdBy;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.timeSlotsId = timeSlotsId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.segmentTypeId = segmentTypeId;
+		this.activeStatus = activeStatus;
+		
+		
+		
+	}
+
+	public UserProfile(String firstName, String lastName, String email, String mobileNumber, String address) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		
+	}
+
+	public UserProfile(String firstName, String lastName, String emailId, String mobileNo, String college,
+			String degree, String branch, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
+			String courseAlreadyDone, Boolean activeStatus) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = emailId;
+		this.mobileNumber = mobileNo;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.activeStatus = activeStatus;
+
+	}
+
+	public UserProfile(String firstName, String lastName, String email, String mobileNumber, String college,
+			String degree, String branch, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, String gender, Integer yearOfGraduation,
+			Boolean activeStatus) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.college = college;
+		this.degree = degree; 
+		this.branch = branch;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.gender = gender;
+		this.yearOfGraduation = yearOfGraduation;
+		this.activeStatus = activeStatus;
+
+	}
+
+	public UserProfile(String firstName2, String lastName2, String emailId, String mobileNo, String address2,
+			Date birthDate2, String college2, String degree2, String branch2, String occupation2, String organisation2,
+			String designation2, String domain2, String role2, Integer experience2, Integer createdBy2, String gender2,
+			Integer yearOfGraduation2, Integer timeSlotsId2, String courseAlreadyDone2, Integer segmentTypeId2,
+			Boolean activeStatus2) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName2;
+		this.lastName = lastName2;
+		this.email = emailId;
+		this.mobileNumber = mobileNo;
+		this.address = address2;
+		this.birthDate = birthDate2;
+		this.college = college2;
+		this.degree = degree2;
+		this.branch = branch2;
+		this.occupation = occupation2;
+		this.organisation = organisation2;
+		this.designation = designation2;
+		this.domain = domain2;
+		this.role = role2;
+		this.experience = experience2;
+		this.createdBy = createdBy2;
+		this.gender = gender2;
+		this.yearOfGraduation = yearOfGraduation2;
+		this.courseAlreadyDone = courseAlreadyDone2;
+		this.segmentTypeId = segmentTypeId2;
+		this.activeStatus = activeStatus2;
+		
+	}
+
+	public UserProfile(String firstName1, String lastName1, String emailId1, String mobileNo1, String college1,
+			String degree1, String branch1, String occupation1, String organisation1, String designation1,
+			String domain1, String role1, Integer experience1, String gender1, Integer yearOfGraduation1,
+			String coursesAlreadyDone1, String coursesAlreadyDone12, Boolean activeStatus1) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName1;
+		this.lastName = lastName1;
+		this.email = emailId1;
+		this.mobileNumber = mobileNo1;
+		this.college = college1;
+		this.degree = degree1;
+		this.branch = branch1;
+		this.occupation = occupation1;
+		this.organisation = organisation1;
+		this.designation = designation1;
+		this.domain = domain1;
+		this.role = role1;
+		this.experience = experience1;
+		this.gender = gender1;
+		this.yearOfGraduation = yearOfGraduation1;
+		this.courseAlreadyDone = coursesAlreadyDone1;
+		this.activeStatus = activeStatus1;
+		
+	}
+
+	public UserProfile(String firstName2, String lastName2, String emailId, String mobileNo, String timeSlotsId2,
+			String coursesAlreadyDone, int segmetTypeId) {
+		// TODO Auto-generated constructor stub
+		this.firstName=firstName2;
+		this.lastName=lastName2;
+		this.email=emailId;
+		this.mobileNumber=mobileNo;
+		this.timeSlotsId=timeSlotsId2;
+		this.courseAlreadyDone=coursesAlreadyDone;
+		this.segmentTypeId=segmetTypeId;
+	}
+
+	public UserProfile(String Name, int userId) {
+		// TODO Auto-generated constructor stub
+		this.firstName = Name;
+		this.userId = userId;
 	}
 
 	/**
@@ -615,7 +781,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 	 * @return the timeSlotsId
 	 */
 
-	public Integer getTimeSlotsId() {
+	public String getTimeSlotsId() {
 		return timeSlotsId;
 	}
 
@@ -624,7 +790,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 	 * @param timeSlotsId the timeSlotsId to set
 	 */
 
-	public void setTimeSlotsId(Integer timeSlotsId) {
+	public void setTimeSlotsId(String timeSlotsId) {
 		this.timeSlotsId = timeSlotsId;
 	}
 

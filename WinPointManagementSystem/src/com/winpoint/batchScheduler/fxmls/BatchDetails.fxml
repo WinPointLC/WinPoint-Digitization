@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -44,9 +43,6 @@
             </Label>
             <Region prefHeight="85.0" prefWidth="289.0" HBox.hgrow="ALWAYS" />
             <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-               <image>
-                  <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />
-               </image>
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
@@ -61,8 +57,8 @@
                <children>
                   <TableView fx:id="batchDetails" prefHeight="750.0" prefWidth="1230.0">
                     <columns>
-                      <TableColumn fx:id="batchId" prefWidth="136.0" text="Batch ID" />
-                      <TableColumn fx:id="courseId" prefWidth="136.0" text="Course ID" />
+                      <TableColumn fx:id="batchId" prefWidth="136.0" text="Batch Name" />
+                      <TableColumn fx:id="courseId" prefWidth="136.0" text="Course Name" />
                         <TableColumn fx:id="faculty" prefWidth="136.0" text="Faculty" />
                         <TableColumn fx:id="time" prefWidth="136.0" text="Time" />
                         <TableColumn fx:id="beginDate" prefWidth="136.0" text="Begin Date" />

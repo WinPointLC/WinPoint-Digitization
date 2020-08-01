@@ -7,17 +7,15 @@ import com.winpoint.common.beans.UserProfile;
 public class UserCoursesDoneWrapper {
 	
 	
-	UserProfile userProfile;
-	HashSet<String> coursesDone;
-	
-	
+	UserProfile userProfile;			
+	HashSet<String> coursesDone;		
+
 		
 	public UserCoursesDoneWrapper(UserProfile userProfile, HashSet<String> coursesDone) {
 		this.userProfile = userProfile;                                 
 		this.coursesDone =  coursesDone;
 	}
-
-
+	
 	public UserProfile getUserProfile() {
 		return userProfile;
 	}
@@ -33,6 +31,5 @@ public class UserCoursesDoneWrapper {
 	public void setCoursesDoneSet(HashSet <String> coursesDoneSet) {
 		this.coursesDone =  coursesDoneSet;
 	}
-	
 	
 }

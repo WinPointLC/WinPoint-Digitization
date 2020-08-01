@@ -341,16 +341,14 @@ public class UpdateFormController extends ParentFXMLController {
 	
 	private void displayEnquiryDetails() {
 
-	
-		System.out.println("we Got the Enquiry ID : "+enquiryDetails.getEnquiryId());
-				
-		String date = enquiryDetails.getBirthDate().toString();
 		
+		String date = enquiryDetails.getBirthDate().toString();		
 		try {
 	        dob.setValue(LOCAL_DATE(date));
 	    } catch (NullPointerException e) {
 	    }
-
+		
+		
 		firstName.setText(enquiryDetails.getFirstName());
 		lastName.setText(enquiryDetails.getLastName());
 		mobileNumber.setText(enquiryDetails.getMobileNumber());
@@ -369,8 +367,7 @@ public class UpdateFormController extends ParentFXMLController {
 		courseInterestedIn.setText(enquiryDetails.getCoursesInterestedIn());	
 		coursesAlreadyDone.setText(enquiryDetails.getCourseAlreadyDone());
 		suggestions.setText(enquiryDetails.getSuggestion());
-		activeStatus.setSelected(enquiryDetails.getActiveStatus());
-		
+		activeStatus.setSelected(enquiryDetails.getActiveStatus());		
 	}
 }
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.PriorityListOfCoursesController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winpoint.batchScheduler.fxmlsControllers.PriorityListOfCoursesController">
    <center>
       <ScrollPane BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -53,12 +53,12 @@
                   <Insets top="25.0" />
                </padding>
             </Label>
-            <ChoiceBox fx:id="courseType" onMouseClicked="#validateCourseType" prefHeight="24.0" prefWidth="201.0">
+            <ChoiceBox fx:id="courseType" onMouseClicked="#validateCourseType" prefHeight="24.0" prefWidth="201.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets top="25.0" />
                </HBox.margin>
             </ChoiceBox>
-            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
                   <Image url="@../../../../../Downloads/WhatsApp%20Image%202020-06-16%20at%2011.30.44%20PM.jpeg" />
@@ -79,7 +79,7 @@
             <Insets bottom="25.0" left="25.0" right="25.0" />
          </BorderPane.margin>
          <children>
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="25.0" prefWidth="100.0" text="Cancel" />
+            <Button fx:id="cancelbutton" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="25.0" prefWidth="100.0" text="Cancel" />
          </children>
          <padding>
             <Insets left="50.0" top="25.0" />

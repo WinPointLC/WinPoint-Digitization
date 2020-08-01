@@ -12,6 +12,7 @@ import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.wrappers.CoursesNameWrapper;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +63,10 @@ public class CoursesNameController extends ParentFXMLController{
     @FXML
     private Button email;
 
+	private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents;
+
+	private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents;
+
     @FXML
     void cancelFrame(ActionEvent event) {
     	Stage stage = (Stage) cancel.getScene().getWindow();
@@ -97,39 +102,58 @@ public class CoursesNameController extends ParentFXMLController{
    		
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
 
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-               FXMLLoader loader = new FXMLLoader();
-            	Parent myNewScene = null;
-				try {
-					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            	Stage stage = (Stage) cancel.getScene().getWindow();
-            	Scene scene = new Scene(myNewScene);
-            	stage.setScene(scene);
-            	stage.setTitle("Main Scene");
-            	stage.show();
-            } 
-        }; 
+       
             
    		
    		
-   		for( UserProfile userProfile: userProfileList ) {
+   		for( UserCoursesDoneWrapper registeredStudent: listOfRegisteredStudents ) {
    			addStudent = new Button("Add Student");
-   			addStudent.setOnAction(event);
+	   		EventHandler<ActionEvent> eventaddStudent = new EventHandler<ActionEvent>() { 
+	             public void handle(ActionEvent e) 
+	             { 
+	                FXMLLoader loader = new FXMLLoader();
+	             	Parent myNewScene = null;
+	 				try {
+	 					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
+	 				} catch (IOException e1) {
+	 					// TODO Auto-generated catch block
+	 					e1.printStackTrace();
+	 				}
+	             	Stage stage = (Stage) addStudent.getScene().getWindow();
+	             	Scene scene = new Scene(myNewScene);
+	             	stage.setScene(scene);
+	             	stage.setTitle("Main Scene");
+	             	stage.show();
+	             } 
+	         }; 
+   			addStudent.setOnAction(eventaddStudent);
    			checkbox = new CheckBox();
-   			coursesNameWrapperList.add(new CoursesNameWrapper(userProfile.getFirstName(), userProfile.getLastName(), false, true, checkbox, addStudent));
+   			coursesNameWrapperList.add(new CoursesNameWrapper(registeredStudent.getUserProfile().getFirstName(), registeredStudent.getUserProfile().getLastName(), false, true, checkbox, addStudent));
    		}
    		
-   		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
+   		for( UserCoursesDoneWrapper enquiredStudent: listOfEnquiredStudents ) {
    			addStudent = new Button("Add Student");
-   			addStudent.setOnAction(event);
+	   		EventHandler<ActionEvent> eventaddStudent = new EventHandler<ActionEvent>() { 
+	             public void handle(ActionEvent e) 
+	             { 
+	                FXMLLoader loader = new FXMLLoader();
+	             	Parent myNewScene = null;
+	 				try {
+	 					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
+	 				} catch (IOException e1) {
+	 					// TODO Auto-generated catch block
+	 					e1.printStackTrace();
+	 				}
+	             	Stage stage = (Stage) addStudent.getScene().getWindow();
+	             	Scene scene = new Scene(myNewScene);
+	             	stage.setScene(scene);
+	             	stage.setTitle("Main Scene");
+	             	stage.show();
+	             } 
+	         }; 
+   			addStudent.setOnAction(eventaddStudent);
    			checkbox = new CheckBox();
-   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false, checkbox, addStudent));
+   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiredStudent.getUserProfile().getFirstName(), enquiredStudent.getUserProfile().getLastName(), true, false, checkbox, addStudent));
    		}
    		
    		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);
@@ -140,5 +164,14 @@ public class CoursesNameController extends ParentFXMLController{
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
    	}
+
+	public void setListOfStudents (
+			ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents,
+			ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents) {
+		
+		this.listOfRegisteredStudents = listOfRegisteredStudents;
+		this.listOfEnquiredStudents = listOfEnquiredStudents;
+		
+	}
 
 }

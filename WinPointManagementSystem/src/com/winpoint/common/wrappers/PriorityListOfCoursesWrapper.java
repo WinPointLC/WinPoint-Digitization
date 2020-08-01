@@ -3,76 +3,81 @@ package com.winpoint.common.wrappers;
 import java.util.Date;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 
 public class PriorityListOfCoursesWrapper {
+	
 	private int courseId;
 	private String course;
-	private int segmentType;
+	private String segmentType;
 	private int availableTime;
-	private int noOfStudents;
+	private String noOfStudents;
 	private Date beginDate;
-	private String faucultyName;
-	private int totalRevenue;
+	private String facultyName;
+	private String totalRevenue;
 	private Button launch;
 	
+	private ChoiceBox<String> availableChoiceBox;// = new ChoiceBox<String>();
 	
-//this is commented for tp	
-//	public PriorityListOfCoursesWrapper(String course, String segmentType, String availableTime, String noOfStudents,
-//			Date beginDate, String faucultyName, int totalRevenue, Button launch) {
-//		super();
-//		this.course = course;
-//		this.segmentType = segmentType;
-//		this.availableTime = availableTime;
-//		this.noOfStudents = noOfStudents;
-//		this.beginDate = beginDate;
-//		this.faucultyName = faucultyName;
-//		this.totalRevenue = totalRevenue;
-//		this.launch = launch;
-//	}
+	private ChoiceBox<String> facultyNameList;// = new ChoiceBox<String>();
+
+	//private ChoiceBox available;
+	private int courseTypeId;
+	private String courseTypeName;
+	
+	private Hyperlink numberOfStudentsLink;
+	
 
 
-
-	public PriorityListOfCoursesWrapper(int courseId,String courseName, int segmentType, int availableTime, int noOfStudents, Date beginDate, int totalRevenue, Button launchButton) {
+	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, String segmentType, ChoiceBox<String> availableChoiceBox, String noOfStudents, Date beginDate, ChoiceBox<String> facultyNameList, String totalRevenue, Button launch) {
 
 		this.courseId = courseId;
 		this.course = courseName;
+		this.courseTypeId = courseTypeId;
 		this.segmentType = segmentType;
-		this.availableTime = availableTime;
+		this.availableChoiceBox = availableChoiceBox;
 		this.noOfStudents = noOfStudents;
 		this.beginDate = beginDate;
 		this.totalRevenue = totalRevenue;
+		this.launch = launch;
+		this.facultyNameList = facultyNameList;
 		
 	}
+	
+	
+	
+	
+	// trial will delete later
+	public PriorityListOfCoursesWrapper(int courseId,String courseName,int courseTypeId, String segmentType, ChoiceBox<String> availableChoiceBox, Hyperlink numberOfStudentsLink, Date beginDate, ChoiceBox<String> facultyNameList, String totalRevenue, Button launch) {
 
-
-
-	public String getCourse() {
-		return course;
-	}
-
-
-
-	public void setCourse(String course) {
-		this.course = course;
-	}
-
-
-
-	public int getSegmentType() {
-		return segmentType;
-	}
-
-
-
-	public void setSegmentType(int segmentType) {
+		this.courseId = courseId;
+		this.course = courseName;
+		this.courseTypeId = courseTypeId;
 		this.segmentType = segmentType;
+		this.availableChoiceBox = availableChoiceBox;
+		this.numberOfStudentsLink = numberOfStudentsLink;
+		this.beginDate = beginDate;
+		this.totalRevenue = totalRevenue;
+		this.launch = launch;
+		this.facultyNameList = facultyNameList;
+		
+	}
+	
+	
+	
+
+	public Hyperlink getNumberOfStudentsLink() {
+		return numberOfStudentsLink;
 	}
 
 
 
-	public int getAvailableTime() {
-		return availableTime;
+
+	public void setNumberOfStudentsLink(Hyperlink numberOfStudentsLink) {
+		this.numberOfStudentsLink = numberOfStudentsLink;
 	}
+
 
 
 
@@ -82,13 +87,117 @@ public class PriorityListOfCoursesWrapper {
 
 
 
-	public int getNoOfStudents() {
+
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+
+
+
+
+	public void setAvailableChoiceBox(ChoiceBox<String> availableChoiceBox) {
+		this.availableChoiceBox = availableChoiceBox;
+	}
+
+
+
+
+	public void setFacultyNameList(ChoiceBox<String> facultyNameList) {
+		this.facultyNameList = facultyNameList;
+	}
+
+
+
+	
+	public ChoiceBox<String> getAvailableChoiceBox() {
+		return availableChoiceBox;
+	}
+
+
+
+
+	public ChoiceBox<String> getFacultyNameList() {
+		return facultyNameList;
+	}
+
+
+
+
+	public ChoiceBox<String> getAvailableTime() {
+		return availableChoiceBox;
+	}
+
+	public void setAvailableTime(ChoiceBox<String> availableChoiceBox) {
+		this.availableChoiceBox = availableChoiceBox;
+	}
+
+	public int getCourseTypeId() {
+		return courseTypeId;
+	}
+
+	public void setCourseTypeId(int courseTypeId) {
+		this.courseTypeId = courseTypeId;
+	}
+
+	public String getCourseTypeName() {
+		return courseTypeName;
+	}
+
+	public void setCourseTypeName(String courseTypeName) {
+		this.courseTypeName = courseTypeName;
+	}
+
+	public ChoiceBox<String> getAvailbleTime() {
+		return availableChoiceBox;
+	}
+
+	public void getAvailbleTime(ChoiceBox<String> availableChoiceBox) {
+		this.availableChoiceBox = availableChoiceBox;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
+	public Button getLaunchButton() {
+		return launch;
+	}
+
+	public void setLaunchButton(Button launch) {
+		this.launch = launch;
+	}
+
+	public String getSegmentType() {
+		return segmentType;
+	}
+
+	public void setSegmentType(String segmentType) {
+		this.segmentType = segmentType;
+	}
+//
+//	public int getAvailableTime() {
+//		return availableTime;
+//	}
+//
+//
+//
+//	public void setAvailableTime(int availableTime) {
+//		this.availableTime = availableTime;
+//	}
+
+
+
+	public String getNoOfStudents() {
 		return noOfStudents;
 	}
 
 
 
-	public void setNoOfStudents(int noOfStudents) {
+	public void setNoOfStudents(String noOfStudents) {
 		this.noOfStudents = noOfStudents;
 	}
 
@@ -107,24 +216,24 @@ public class PriorityListOfCoursesWrapper {
 
 
 	public String getFaucultyName() {
-		return faucultyName;
+		return facultyName;
 	}
 
 
 
-	public void setFaucultyName(String faucultyName) {
-		this.faucultyName = faucultyName;
+	public void setFaucultyName(String facultyName) {
+		this.facultyName = facultyName;
 	}
 
 
 
-	public int getTotalRevenue() {
+	public String getTotalRevenue() {
 		return totalRevenue;
 	}
 
 
 
-	public void setTotalRevenue(int totalRevenue) {
+	public void setTotalRevenue(String totalRevenue) {
 		this.totalRevenue = totalRevenue;
 	}
 
@@ -151,9 +260,13 @@ public class PriorityListOfCoursesWrapper {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	
-	
-	
-	
+
+	public ChoiceBox<String> getFacultyName() {
+		return facultyNameList;
+	}
+
+	public void setFacultyName(ChoiceBox<String> facultyNameList) {
+		this.facultyNameList = facultyNameList;
+	}
 
 }

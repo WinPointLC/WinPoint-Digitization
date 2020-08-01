@@ -1,6 +1,7 @@
 package com.winpoint.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.UserProfile;
@@ -162,7 +164,7 @@ public class UserProfileDao {
 			
 			while(rs.next()) {
 				facultyList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),rs.getInt("USER_ID")));
-				System.out.println(facultyList);
+				
 			}
 			
 		} 
@@ -225,7 +227,7 @@ public class UserProfileDao {
 			
 			while(rs.next()) {
 				userProfileList.add(new UserProfile(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"),true));
-				System.out.println(userProfileList);
+				
 			}
 			
 		} 

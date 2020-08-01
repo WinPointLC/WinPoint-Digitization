@@ -24,6 +24,10 @@ public class CourseTypeHelper {
 		return new CourseDao().getTestList(streamId, courseTypeId);
 	}
 	
+	public CourseType getCourseTypeName(Integer courseTypeId) {
+		return new CourseTypeDao().getCourseTypeName(courseTypeId);
+	}
+
 	
 	public List<CourseType> getCoursesType() {
 		return new CourseTypeDao().getCoursesType();

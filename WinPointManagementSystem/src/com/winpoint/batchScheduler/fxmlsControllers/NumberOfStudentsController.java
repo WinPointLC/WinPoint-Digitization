@@ -4,16 +4,23 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
+import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.EnquiryDetails;
+import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
+import com.winpoint.common.helpers.TimeSlotsHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
 
 import com.winpoint.common.wrappers.NumberOfStudentWrapper;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +37,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 	public class NumberOfStudentsController extends ParentFXMLController{
-
+		
+		ArrayList<UserCoursesDoneWrapper> ListOfEnquiredStudents;// =  enquiredStudentsCourseMap.get(course);
+	   	ArrayList<UserCoursesDoneWrapper> ListOfRegisteredStudents;// =  registeredStudentsCourseMap.get(course);
+		
 	    @FXML
 	    private Button cancel;
 
@@ -60,49 +70,98 @@ import javafx.stage.Stage;
 
 	    @FXML
 	    void cancelFrame(ActionEvent event) throws IOException {
-	    	FXMLLoader loader = new FXMLLoader();
-	    	Parent myNewScene = loader.load(getClass().getResource("../../common/testClient/FrontScreenFxml.fxml").openStream());
+	    	
 	    	Stage stage = (Stage) cancel.getScene().getWindow();
-	    	Scene scene = new Scene(myNewScene); 
+	    	Parent myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/PriorityListOfCourses.fxml"));
+	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
+	    	stage.setTitle("Categorised Course Recommender");
 	    	stage.show();
+
 	    }
 
 	    @FXML
 	    void emailFrame(ActionEvent event) {
 	    	System.out.println(event);
 	    }
-	    @Override
-		public void initialize(URL location, ResourceBundle resources) {
-	    	
-	    	List<UserProfile> userProfileList = new UserProfileHelper().getRegisteredUsers();
-	   		List<EnquiryDetails> enquiryDetailsList = new EnquiryDetailsHelper().getEligibleUsers();
-	    	
-	    	student.setCellValueFactory(new PropertyValueFactory<>("Name"));	
+	    
+	    public void displayBatchDetails(ArrayList<UserCoursesDoneWrapper> ListOfRegisteredStudents, ArrayList<UserCoursesDoneWrapper> ListOfEnquiredStudents) {
+			// TODO Auto-generated method stub
+	    	student.setCellValueFactory(new PropertyValueFactory<>("FullName"));	
 	    	enquired.setCellValueFactory(new PropertyValueFactory<>("Enquired"));
 	   		registered.setCellValueFactory(new PropertyValueFactory<>("Registered"));
 	   		startDate.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
 	   	    preferredBatch.setCellValueFactory(new PropertyValueFactory<>("PreferredBatch"));
+	    	
 	   	    
+	   	    // hash map - array list of student - one student at each time
 	   	    List<NumberOfStudentWrapper> noOfStudentWrapperList = new ArrayList<NumberOfStudentWrapper>();
-	   	    Date d1 = new Date(0);
-	   		
-	   	    for( UserProfile userProfile: userProfileList ) {
-	   			noOfStudentWrapperList.add(new NumberOfStudentWrapper(userProfile.getFirstName(), userProfile.getLastName(),false, true, d1,"B1"));
-	   		}
-	   		
-	   		for( EnquiryDetails enquiryDetails: enquiryDetailsList ) {
-	   			noOfStudentWrapperList.add(new NumberOfStudentWrapper(enquiryDetails.getFirstName(), enquiryDetails.getLastName(), true, false,d1,"B2"));
-	   		}
-	   		
-	   		ObservableList<NumberOfStudentWrapper> noOfStudentRecords = FXCollections.observableArrayList(noOfStudentWrapperList);
+	   	    
+	   	   
+	   	    
+	   	    System.out.println("Size of registered Array List (  ) : "+ListOfRegisteredStudents.size());
+	   	    for(UserCoursesDoneWrapper userCoursesDoneWrapper : ListOfRegisteredStudents) {
+	   	    	
+	        	HashSet<Integer> timeSlotsIdsSet = new HashSet<Integer>();
+	   	    	String timeSlotsDescription = "";
+	        	String timeSlotsIdString = userCoursesDoneWrapper.getUserProfile().getTimeSlotsId();
+				StringTokenizer st = new StringTokenizer(timeSlotsIdString,",");
+				while(st.hasMoreTokens()) {
+					int timeSlotIdOfStudent=Integer.parseInt(st.nextToken());
+					timeSlotsIdsSet.add(timeSlotIdOfStudent);						
+				} 	    	
+	   	    	ArrayList<TimeSlots> timeSlotsList = (ArrayList<TimeSlots>) new TimeSlotsHelper().getTimeSlotsList();
+				for(TimeSlots timeSlots : timeSlotsList) {
+					 for(Integer time : timeSlotsIdsSet) {
+						 if(time == timeSlots.getTimeSlotsId()) {
+								timeSlotsDescription += timeSlots.getTimeSlotsDescription()+", ";
+							}
+					 }
+	   	    	}
+				timeSlotsDescription = timeSlotsDescription.substring(0,timeSlotsDescription.length()-1);
+	   	    	noOfStudentWrapperList.add(new NumberOfStudentWrapper(userCoursesDoneWrapper.getUserProfile().getFirstName(),
+	   	    			userCoursesDoneWrapper.getUserProfile().getLastName(), timeSlotsDescription, false, true ));
+	   	    }
+	   	    
+	   	    for(UserCoursesDoneWrapper userCoursesDoneWrapper : ListOfEnquiredStudents) {
+	   	    	
+	        	HashSet<Integer> timeSlotsIdsSet = new HashSet<Integer>();
+	   	    	String timeSlotsDescription = "";
+	        	String timeSlotsIdString = userCoursesDoneWrapper.getUserProfile().getTimeSlotsId();
+				StringTokenizer st = new StringTokenizer(timeSlotsIdString,",");
+				while(st.hasMoreTokens()) {
+					int timeSlotIdOfStudent=Integer.parseInt(st.nextToken());
+					timeSlotsIdsSet.add(timeSlotIdOfStudent);						
+				} 	    	
+	   	    	ArrayList<TimeSlots> timeSlotsList = (ArrayList<TimeSlots>) new TimeSlotsHelper().getTimeSlotsList();
+				for(TimeSlots timeSlots : timeSlotsList) {
+					 for(Integer time : timeSlotsIdsSet) {
+						 if(time == timeSlots.getTimeSlotsId()) {
+								timeSlotsDescription += timeSlots.getTimeSlotsDescription()+", ";
+							}
+					 }
+	   	    	}
+				timeSlotsDescription = timeSlotsDescription.substring(0,timeSlotsDescription.length()-1);
+	   	    	noOfStudentWrapperList.add(new NumberOfStudentWrapper(userCoursesDoneWrapper.getUserProfile().getFirstName(),
+	   	    			userCoursesDoneWrapper.getUserProfile().getLastName(), timeSlotsDescription, true, false));
+	   	    }
+		
+	   	    ObservableList<NumberOfStudentWrapper> noOfStudentRecords = FXCollections.observableArrayList(noOfStudentWrapperList);
 		    
 	   		addToBatchTable.setItems((ObservableList<NumberOfStudentWrapper>) noOfStudentRecords);
+	    	
+	   	    
+		}
+	    
+	   
+		@Override
+		public void initialize(URL location, ResourceBundle resources) {
 	    	
 	    	super.initialize(location, resources);
 			logo.setImage(logoImage);
 		}
+
+		
 		
 
 	}

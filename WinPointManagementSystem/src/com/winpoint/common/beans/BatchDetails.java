@@ -2,6 +2,7 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+
 /**
  * The class to store the Batch details of each course at WinPoint.
  * @author Sanika Gandhe
@@ -22,6 +23,8 @@ public class BatchDetails {
 	private Integer lectureDuration; 
 	private String facultyName;
 	private Integer totalNumberOfLectures;
+	private Integer segmentTypeId;
+
 	/**
 	 * @param batchId
 	 * @param courseId
@@ -82,8 +85,9 @@ public class BatchDetails {
 		this.facultyName = facultyName;
 	}
 
-	public BatchDetails (Integer batchId, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
-		this.batchId = batchId;
+	// Group A - for the Insertion Purpose - Abhishek
+	public BatchDetails (String batchName, Integer courseId, Integer facultyId, Integer batchTime, Date startDate, Date endDate, Integer createdBy, Date createdDate) {
+		this.batchName = batchName;
 		this.courseId = courseId;
 		this.facultyId = facultyId;
 		this.batchTime = batchTime;
@@ -157,6 +161,30 @@ public class BatchDetails {
 
 	public BatchDetails() {
 		// TODO Auto-generated constructor stub
+	}
+
+	// GROUP A - to insert the data in the table - Abhishek
+	public BatchDetails(String batchName, Integer batchTime, Integer courseId, Integer facultyId, Date startDate,
+			Integer currentLectureNumber, Integer lectureDuration, Integer totalNumberOfLectures,
+			Integer segmentTypeId, Date endDate, Integer createdBy, Date createdDate) {
+		// TODO Auto-generated constructor stub
+		this.batchName = batchName;
+		this.batchTime = batchTime;
+		this.courseId = courseId;
+		this.facultyId = facultyId;
+		this.startDate = startDate;
+		this.currentLectureNumber = currentLectureNumber;
+		this.lectureDuration = lectureDuration;
+		this.totalNumberOfLectures = totalNumberOfLectures;
+		this.segmentTypeId = segmentTypeId;
+		this.endDate = endDate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+	}
+
+	public BatchDetails(java.sql.Date date) {
+		// TODO Auto-generated constructor stub
+		this.startDate = date;
 	}
 
 	public String getBatchName() {
@@ -304,5 +332,23 @@ public class BatchDetails {
 	public void setTotalNumberOfLectures(Integer totalNumberOfLectures) {
 		this.totalNumberOfLectures = totalNumberOfLectures;
 	}
-	
+	public Integer getSegmentTypeId() {
+		return segmentTypeId;
+	}
+
+	public void setSegmentTypeId(Integer segmentTypeId) {
+		this.segmentTypeId = segmentTypeId;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+

@@ -154,6 +154,35 @@ public class CourseTypeDao {
 		return testList;
 	}
 	
+	//group A BatchLauncher Abhishek
+	public CourseType getCourseTypeName(Integer courseTypeId) {
+		
+		CourseType courseTypeName = null;
+		
+		ResultSet resultSet = null;
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			String query = "\n" + 
+					"SELECT COURSE_TYPE_NAME FROM COURSE_TYPE WHERE COURSE_TYPE_ID = "+courseTypeId;
+			resultSet = statement.executeQuery(query);
+			
+			while(resultSet.next()) {
+				courseTypeName = new CourseType(resultSet.getString("COURSE_TYPE_NAME"));
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return courseTypeName;
+
+		
+	}
+
 	//group A priorityList Aayush
 	public List<CourseType> getCoursesType() {
 		

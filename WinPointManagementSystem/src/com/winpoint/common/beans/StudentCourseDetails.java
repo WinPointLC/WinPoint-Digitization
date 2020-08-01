@@ -37,22 +37,20 @@ public class StudentCourseDetails {
 	 * @param createdBy
 	 * @param createdDate
 	 */
-	
-	
+
+
 	public StudentCourseDetails(String isFeedbackGiven) {
 		super();
 		this.isFeedbackGiven = isFeedbackGiven;
 	}
-	
+
 
 	public StudentCourseDetails(Integer studentCount,Integer batchId) {
 		super();
 		this.studentCount= studentCount;
 		this.batchId = batchId;
 	}
-	
-	
-	
+
 	public StudentCourseDetails(String gradeId,String isCertificateGiven ) {
 		super();
 		this.isCertificateGiven = isCertificateGiven;
@@ -60,7 +58,7 @@ public class StudentCourseDetails {
 	}
 	public StudentCourseDetails( String feeStatus, String coursewareIssued, String assignmentsIssued, String assignmentsSubmitted) {
 		super();
-		
+
 		this.feeStatus = feeStatus;
 		this.coursewareIssued = coursewareIssued;
 		this.assignmentsIssued = assignmentsIssued;
@@ -80,7 +78,7 @@ public class StudentCourseDetails {
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
-	
+
 	public StudentCourseDetails(int userId, int courseId, int courseAggr) {
 		this.userId = userId;
 		this.courseId = courseId;
@@ -98,7 +96,7 @@ public class StudentCourseDetails {
 		this.courseAggr = courseAggr;
 	}
 
-	
+
 	public StudentCourseDetails(Integer userId, Integer courseId, String courseName, String logoLocation,
 			String courseTypeName, String streamName, Integer batchId, String isFeedbackGiven,
 			String isCertificateGiven, Integer courseAggr, String gradeId, String feeStatus, Integer createdBy,
@@ -126,8 +124,8 @@ public class StudentCourseDetails {
 		this.feeReminderCount = feeReminderCount;
 	}
 
-	
-	
+
+
 	public StudentCourseDetails(int userId, int courseId, String courseName, String logoLocation,
 			String courseTypeName, String streamName, int courseAggr, int dueAmount, int percentageAttendance, BatchDetails batchDetails) {
 		// TODO Auto-generated constructor stub
@@ -190,119 +188,119 @@ public class StudentCourseDetails {
 	public Integer getUserId() {
 		return userId;
 	}
-	
+
 	/**
 	 * @param userId the userId to set
 	 */
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
+
 	/**
 	 * @return the batchId
 	 */
 	public Integer getBatchId() {
 		return batchId;
 	}
-	
+
 	/**
 	 * @param batchId the batchId to set
 	 */
 	public void setBatchId(Integer batchId) {
 		this.batchId = batchId;
 	}
-	
+
 	/**
 	 * @return the isFeedbackGiven
 	 */
 	public String getIsFeedbackGiven() {
 		return isFeedbackGiven;
 	}
-	
+
 	/**
 	 * @param isFeedbackGiven the isFeedbackGiven to set
 	 */
 	public void setIsFeedbackGiven(String isFeedbackGiven) {
 		this.isFeedbackGiven = isFeedbackGiven;
 	}
-	
+
 	/**
 	 * @return the isCertificateGiven
 	 */
 	public String getIsCertificateGiven() {
 		return isCertificateGiven;
 	}
-	
+
 	/**
 	 * @param isCertificateGiven the isCertificateGiven to set
 	 */
 	public void setIsCertificateGiven(String isCertificateGiven) {
 		this.isCertificateGiven = isCertificateGiven;
 	}
-	
+
 	/**
 	 * @return the courseAggr
 	 */
 	public Integer getCourseAggr() {
 		return courseAggr;
 	}
-	
+
 	/**
 	 * @param courseAggr the courseAggr to set
 	 */
 	public void setCourseAggr(Integer courseAggr) {
 		this.courseAggr = courseAggr;
 	}
-	
+
 	/**
 	 * @return the gradeId
 	 */
 	public String getGradeId() {
 		return gradeId;
 	}
-	
+
 	/**
 	 * @param gradeId the gradeId to set
 	 */
 	public void setGradeId(String gradeId) {
 		this.gradeId = gradeId;
 	}
-	
+
 	/**
 	 * @return the feeStatus
 	 */
 	public String getFeeStatus() {
 		return feeStatus;
 	}
-	
+
 	/**
 	 * @param feeStatus the feeStatus to set
 	 */
 	public void setFeeStatus(String feeStatus) {
 		this.feeStatus = feeStatus;
 	}
-	
+
 	/**
 	 * @return the createdBy
 	 */
 	public Integer getCreatedBy() {
 		return createdBy;
 	}
-	
+
 	/**
 	 * @param createdBy the createdBy to set
 	 */
 	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
-	
+
 	/**
 	 * @return the createdDate
 	 */
 	public Date getCreatedDate() {
 		return createdDate;
 	}
-	
+
 	/**
 	 * @param createdDate the createdDate to set
 	 */
@@ -389,5 +387,5 @@ public class StudentCourseDetails {
 	public void setPercentageAttendance(int percentageAttendance) {
 		this.percentageAttendance = percentageAttendance;
 	}
-	
+
 }

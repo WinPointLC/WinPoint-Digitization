@@ -21,22 +21,21 @@ public class CourseHelper {
 	public List<Test> getTestsList(int userId, int streamId, int courseTypeId, int courseId) {
 		return new CourseDao().getTestList(userId, courseId);
 	}
-	
-	
+
+
 	public ArrayList<Course> getBatchCourseDurationList() {
 		return (ArrayList<Course>)new CourseDao().getBatchCourseDurationList();
-		
+
 	}
-	
+
 	public ArrayList<SignUpFormCourseListWrapper> getCourseNamesList() {
-		return new CourseDao().getCourseNamesList();
+		return new CourseDao().getCoursesNamesList();
 	}
 
 	public List<Course> getUserCourseList(int userId, int streamId, int courseTypeId) {
 		// TODO Auto-generated method stub
 		return new CourseDao().getUserCourseList(userId, streamId, courseTypeId);
 	}
-	
-	
-}
 
+
+}

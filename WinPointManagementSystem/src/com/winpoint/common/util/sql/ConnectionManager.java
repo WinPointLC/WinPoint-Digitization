@@ -12,8 +12,8 @@ public class ConnectionManager {
 		SQLServerDataSource dataSource = new SQLServerDataSource();
 		dataSource.setUser("sa");
 
-		dataSource.setPassword("winpoint");
-		//dataSource.setPassword("Dockersql123");
+//		dataSource.setPassword("winpoint");
+		dataSource.setPassword("Dockersql123");
 
 //		dataSource.setPassword("@Shradz8888");
 		//dataSource.setPassword("Dockersql123");

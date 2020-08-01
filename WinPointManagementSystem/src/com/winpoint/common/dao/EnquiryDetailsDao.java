@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 	
 
@@ -102,7 +103,7 @@ public class EnquiryDetailsDao {
 						rs.getBoolean("ELIGIBILITY"),
 						rs.getString("COURSE_INTERESTED_IN"),
 						rs.getString("REFERENCE"),
-						rs.getInt("TIME_SLOTS_ID"),
+						rs.getString("TIME_SLOTS_ID"),
 						rs.getString("COURSE_ALREADY_DONE"),
 						rs.getDate("START_DATE"),
 						rs.getInt("SEGMENT_TYPE_ID"),
@@ -224,4 +225,32 @@ public class EnquiryDetailsDao {
 		}
 	}
 
+	//Group A - get start date ~ Abhishek
+	public EnquiryDetails getStartDate() {
+		
+		EnquiryDetails startDate = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			
+			
+			
+			String query1 = "SELECT top 1 START_DATE from ENQUIRY_DETAILS\n" + 
+					"Order by START_DATE DESC";
+			
+			ResultSet resultSet = statement.executeQuery(query1);
+				
+			while(resultSet.next()) {
+				startDate = new EnquiryDetails(resultSet.getDate("START_DATE"));
+			}
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return startDate;
+		
+	}
+	
 }
