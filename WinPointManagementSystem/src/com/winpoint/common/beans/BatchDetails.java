@@ -2,6 +2,7 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+
 /**
  * The class to store the Batch details of each course at WinPoint.
  * @author Sanika Gandhe
@@ -339,4 +340,15 @@ public class BatchDetails {
 		this.segmentTypeId = segmentTypeId;
 	}
 
+
 }
+
+
+
+
+
+
+
+
+
+

@@ -7,14 +7,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -68,6 +69,10 @@ public class BatchDetailsController extends ParentFXMLController{
 	    
 	    private Button add;
 
+		private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents;
+
+		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents;
+
 	    @FXML
 	    void cancelFrame(ActionEvent event) {
 	    	Stage stage = (Stage) cancel.getScene().getWindow();
@@ -81,6 +86,11 @@ public class BatchDetailsController extends ParentFXMLController{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	    }
+	    
+	    void setListOfStudent(ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents, ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents) {
+	    	this.listOfRegisteredStudents = listOfRegisteredStudents;
+	    	this.listOfEnquiredStudents = listOfEnquiredStudents;
 	    }
 
     @Override
@@ -107,6 +117,28 @@ public class BatchDetailsController extends ParentFXMLController{
    		
    		for( BatchDetailsWrapper batchDetail : batchDetailsList ) {
    			add= new Button("Add");
+   			EventHandler <ActionEvent> eventAddButton = new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Parent myNewScene = null;
+    				try {
+    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
+    					myNewScene = loader.load();
+
+    					CoursesNameController coursesNameController = loader.getController();
+    					coursesNameController.setListOfStudents(listOfRegisteredStudents, listOfEnquiredStudents);
+    	            	
+    				} catch (IOException e1) {
+    					e1.printStackTrace();
+    				}
+                	Stage stage = (Stage) add.getScene().getWindow();
+                	Scene scene = new Scene(myNewScene);
+                	stage.setScene(scene);
+                	stage.setTitle("Main Scene");
+                	stage.show();
+				}
+			};
+			add.setOnAction(eventAddButton); 
    			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchName(), batchDetail.getCourseName(), batchDetail.getFacultyName(), batchDetail.getBatchTimeDescription(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
    		}
    		
@@ -116,3 +148,9 @@ public class BatchDetailsController extends ParentFXMLController{
    		
    	}
 }
+
+
+
+
+
+

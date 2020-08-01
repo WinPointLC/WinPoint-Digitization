@@ -40,8 +40,8 @@ public class BatchDetailsHelper {
 	public void create(BatchDetails batchDetails) throws SQLException {
 		new BatchDetailsDao().create(batchDetails);
 	}
-	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId) {
-		return new BatchDetailsDao().doBatchExist(courseId,timeSlotsId,facultyUserId);
+	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId, Integer segmentTypeId) {
+		return new BatchDetailsDao().doBatchExist(courseId,timeSlotsId,facultyUserId,segmentTypeId);
 	}
 	
 

@@ -45,6 +45,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PriorityListOfCoursesController extends ParentFXMLController{
@@ -63,7 +66,6 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> enquiredStudentsCourseMap;
 		
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> totalEligibleStudentCourseMap;
-
 		
 		List<PriorityListOfCoursesWrapper> priorityListOfCoursesWrapperList;
 		
@@ -92,8 +94,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    private TableColumn<PriorityListOfCoursesWrapper,Integer> totalRevenueCol;
 
 	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, Button> launchCol;
-	    
+	    private TableColumn<PriorityListOfCoursesWrapper, Button> launchCol;	    
 
 	    @FXML
 	    private ChoiceBox<String> courseType;
@@ -124,228 +125,258 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	
 	    }   
  
-    @Override
-   	public void initialize(URL location, ResourceBundle resources) {
+	    @Override
+	   	public void initialize(URL location, ResourceBundle resources) {
     	
-    	registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();//key is course bean and value UserCoursesDoneWrapper(userProfile beand and oursesDone)
-    	enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();//course bean and enquiry details array list    
-    	    	    	
-    	totalEligibleStudentCourseMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
-    	
-    	totalEligibleStudentCourseMap.putAll(registeredStudentsCourseMap);
-
-    	HashMap<Course, ArrayList<UserCoursesDoneWrapper>> tempMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
-    	    	  	
-    	for(Course courseEnquiry : enquiredStudentsCourseMap.keySet()) {
-    		boolean courseFound = false;
-    		for(Course course : totalEligibleStudentCourseMap.keySet()) {
-	    		if(course.getCourseId() == courseEnquiry.getCourseId()) {
-	    			
-	    			totalEligibleStudentCourseMap.get(course).addAll(enquiredStudentsCourseMap.get(courseEnquiry));	    			
-                    courseFound = true;
-                    break;
-	    		}	   
-    		}
-            if(!courseFound)
-            tempMap.put(courseEnquiry,enquiredStudentsCourseMap.get(courseEnquiry));
-    	}
-    	totalEligibleStudentCourseMap.putAll(tempMap);
-    	
-    	//Course Type choice box : 
-    	List<CourseType> courseTypeList = new CourseTypeHelper().getCoursesType();    	 
-    	for(CourseType courseId : courseTypeList) {
-    		courseType.getItems().add(courseId.getCourseTypeName());
-    	}
-    	
-    	EventHandler<ActionEvent> eventCourseType = new EventHandler<ActionEvent>() { 
-    		
-            public void handle(ActionEvent e) { 
-            	int index = courseType.getItems().indexOf(courseType.getValue());
-            	courseTypeNameId = courseTypeList.get(index).getCourseTypeId();
-            	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();  
-            	
-            	Integer rowNumber = 0;
-            	
-            	ArrayList<SegmentType> segmentTypeList = (ArrayList<SegmentType>) new SegmentTypeHelper().getSegmentTypeList();
-
-	            for(Course course : totalEligibleStudentCourseMap.keySet()) {  	
-	                      	
-	           		for(SegmentType segmentType : segmentTypeList) {
-	           				           			
-	           			count = 0;
-	    	    		timeWiseCount = 0;
-	    	    		
-	    	    		Button launchButton = new Button("Launch");
-	    	    		
-	    	    		Hyperlink numberOfStudent = new Hyperlink();
-	    	    		
-	    	    		ChoiceBox<String> facultyName = null;
-	    
-	    	    		ChoiceBox<String> availableTime = new ChoiceBox<String>();    	    			
-	    	    		availableTime.setId(""+rowNumber);
-	    		    	// TimeSlots Choice Box : 
-	    	            List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    
-	    	            //availableTime.setValue("ALL");
-	    	            for(TimeSlots timeSlot : timeSlotsList) {
-	    	            	availableTime.getItems().add(timeSlot.getTimeSlotsDescription());	    	            		
-	    	            }
-	    	            	
-	    	            EventHandler<ActionEvent> eventAvailable = new EventHandler<ActionEvent>() { 
-	    	                public void handle(ActionEvent e) { 
-	    		               	int index = availableTime.getItems().indexOf(availableTime.getValue());
-	    	                   
-	    	                   	timeSlotsId = timeSlotsList.get(index).getTimeSlotsId();
-	    	                   	descriptionForPreferedTime = timeSlotsList.get(index).getTimeSlotsDescription();
+	    	registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();//key is course bean and value UserCoursesDoneWrapper(userProfile beand and oursesDone)
+	    	enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();//course bean and enquiry details array list    
+	    	    	    	
+	    	totalEligibleStudentCourseMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
 	    	
-	    	                	ChoiceBox<String> facultyName = new ChoiceBox<String>();
-	    	    				//Faculty Ids Choice Box :
-	    	    		    	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
-	    	    		    	List<FacultySkills> userIdList = new FacultySkillsHelper().getAvailableFaculty(timeSlotsId,course.getCourseId());
-	    	    		    	
-	    	    		    	
-	    	    		    	for(UserProfile faculty : facultyList) {
-	    	    	            	for(FacultySkills id : userIdList) {
-	    	    	            		int User = faculty.getUserId();
-	    	    	            		int id1 = id.getUserId();
-	    	    	            		if(User==id1) {
-	    	    	            			facultyName.getItems().add(faculty.getFirstName());
-	    	    	            			System.out.println("added");
-	    	    	            			break;
-	    	    	            		}
-	    	    	            	}
-	    	    	            }	    	    	         
-	    	    	            
-	    	    		    	EventHandler<ActionEvent> eventCreatedBy = new EventHandler<ActionEvent>() { 
-	    	    		            public void handle(ActionEvent e) { 
-	    	    		            	int index = facultyName.getItems().indexOf(facultyName.getValue());
-	    	    		            	descriptionForFacultyName = facultyName.getValue();
-	    	    		            	facultyUserId = userIdList.get(index).getUserId();
-	    	    		            }
-	    	    		        }; 	
-	    	    		        facultyName.setOnAction(eventCreatedBy);        
-	    	    		    	/*******************************************************/
-	    	                   	
-	    	                    getTimewiseNumberOfStudents(course, segmentType, timeSlotsId, availableTime, true, facultyName, launchButton, numberOfStudent);
-	    	                    	      	                    	
-	    	                 }
-	    	            }; 	
-	    	            availableTime.setOnAction(eventAvailable);
-	    	            // Launch Button Event Handler
-	    	           
-	    		    	EventHandler <ActionEvent> eventLaunchButton = new EventHandler<ActionEvent>() {
-	    					@Override
-	    					public void handle(ActionEvent event) {
-	    						boolean batchExist = new BatchDetailsHelper().doBatchExist(course.getCourseId(),timeSlotsId,facultyUserId);
-	    						if(!batchExist) {
-	    							doLaunch = true;
-		    		            	Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-		    		            	Parent myNewScene;
-		    		            	try {
-		    		            		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/BatchLauncher.fxml"));
-		    		            		myNewScene = loader.load();
-		    		            		
-		    		            		BatchLauncherController batchLauncherController = loader.getController();			
-		    		            		batchLauncherController.setStudentDetail(		    		            				
-		    		            				course, 
-		    		            				registeredStudentsCourseMap, 
-		    		            				enquiredStudentsCourseMap,
-		    		            				segmentType,	    		            				
-		    		            				descriptionForPreferedTime,
-		    		            				descriptionForFacultyName);
-		    		            		
-		    		            		Scene scene = new Scene(myNewScene);
-		    		                	stage.setScene(scene);
-		    		                	stage.setTitle("Attendance Records");
-		    		                	stage.show();
-		    		            	} catch (IOException ee) {
-		    		            		ee.printStackTrace();
-		    		            	}
-		    		            }
-	    						else {
-	    							Stage stage = (Stage) launchButton.getScene().getWindow();
-	    					    	Parent myNewScene;
-	    							try {
-	    								myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/ExistBatchPopUpWindow.fxml"));
-	    								Scene scene = new Scene(myNewScene);
-	    						    	stage.setScene(scene);
-	    						    	stage.setTitle("My New Scene");
-	    						    	stage.show();
-	    							} catch (IOException e) {
-	    								e.printStackTrace();
-	    							}
-
-	    						}
-	    					}
-	    				};
-	    				launchButton.setOnAction(eventLaunchButton); 
-	    		    	/*******************************************************/ 
-	    		        // Hyper Link for the Number of the Student : 
-	    		        
-	    		        EventHandler <ActionEvent> eventNumberOfStudent = new EventHandler<ActionEvent>() {
-	    					@Override
-	    					public void handle(ActionEvent e) 
-	    	                { 
-	    	                    Parent myNewScene = null;
-	    	    				try {
-	    	    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/NumberOfStudents.fxml"));
-	    	    					myNewScene = loader.load();
-	    	    					
-	    	    					NumberOfStudentsController numberOfStudentsController = loader.getController();
-	    	    					
-	    	    					Course courseEnquiry = null;
-	    	    					
-	    	    					for(Course courseEnquiry1 : enquiredStudentsCourseMap.keySet()) {
-	    	    						
-	    	    						if(courseEnquiry1.getCourseId()==course.getCourseId()) {
-	    	    							courseEnquiry = courseEnquiry1;
-	    	    							break;
-	    	    						}
-	    	    	            	
-	    	    	            	}
-	    	    					numberOfStudentsController.displayBatchDetails(registeredStudentsCourseMap.get(course), enquiredStudentsCourseMap.get(courseEnquiry));
-	    	    					
-	    	    	            	
-	    	    				} catch (IOException e1) {
-	    	    					e1.printStackTrace();
-	    	    				}
-	    	                	Stage stage = (Stage) numberOfStudent.getScene().getWindow();
-	    	                	Scene scene = new Scene(myNewScene);
-	    	                	stage.setScene(scene);
-	    	                	stage.setTitle("Main Scene");
-	    	                	stage.show();
-	    	                } 
-	    				};
-	    				numberOfStudent.setOnAction(eventNumberOfStudent); 	
-	    	    			   	    			    	                
-	    	            rowNumber = getTimewiseNumberOfStudents(course, segmentType, 4, availableTime, false, facultyName, launchButton, numberOfStudent);		    	            
-	    	            
-	            	}
-	    	   	}	    	    		
-            	
-	    	    data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
-	    	    priorityCoursesListTable.setItems(data);      
-	    	   
-            }                  
-        }; 	
-        courseType.setOnAction(eventCourseType);
-
-    	coursesCol.setCellValueFactory(new PropertyValueFactory<>("Course"));
-    	segmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("SegmentType"));
-    	avaialbleTimeCol.setCellValueFactory(new PropertyValueFactory<>("AvailableTime"));
-    	noOfStudentsCol.setCellValueFactory(new PropertyValueFactory<>("NumberOfStudentsLink"));
-    	beginDateCol.setCellValueFactory(new PropertyValueFactory<>("BeginDate"));
-    	facultyNameCol.setCellValueFactory(new PropertyValueFactory<>("FacultyName"));
-    	totalRevenueCol.setCellValueFactory(new PropertyValueFactory<>("TotalRevenue"));
-    	launchCol.setCellValueFactory(new PropertyValueFactory<>("Launch"));
-
-    	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
-    	data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
-    	priorityCoursesListTable.setItems(data);
-    	
-    	super.initialize(location, resources);
-   		logo.setImage(logoImage);
+	    	totalEligibleStudentCourseMap.putAll(registeredStudentsCourseMap);
+	
+	    	HashMap<Course, ArrayList<UserCoursesDoneWrapper>> tempMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
+	    	    	  	
+	    	for(Course courseEnquiry : enquiredStudentsCourseMap.keySet()) {
+	    		boolean courseFound = false;
+	    		for(Course course : totalEligibleStudentCourseMap.keySet()) {
+		    		if(course.getCourseId() == courseEnquiry.getCourseId()) {	    			
+		    			totalEligibleStudentCourseMap.get(course).addAll(enquiredStudentsCourseMap.get(courseEnquiry));	    			
+	                    courseFound = true;
+	                    break;
+		    		}	   
+	    		}
+	            if(!courseFound)
+	            tempMap.put(courseEnquiry,enquiredStudentsCourseMap.get(courseEnquiry));
+	    	}
+	    	totalEligibleStudentCourseMap.putAll(tempMap);
+	    	
+	    	//Course Type choice box : 
+	    	List<CourseType> courseTypeList = new CourseTypeHelper().getCoursesType();    	 
+	    	for(CourseType courseId : courseTypeList) {
+	    		courseType.getItems().add(courseId.getCourseTypeName());
+	    	}
+	    	
+	    	EventHandler<ActionEvent> eventCourseType = new EventHandler<ActionEvent>() { 
+	    		
+	            public void handle(ActionEvent e) { 
+	            	int index = courseType.getItems().indexOf(courseType.getValue());
+	            	courseTypeNameId = courseTypeList.get(index).getCourseTypeId();
+	            	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();  
+	            	
+	            	Integer rowNumber = 0;
+	            	
+	            	ArrayList<SegmentType> segmentTypeList = (ArrayList<SegmentType>) new SegmentTypeHelper().getSegmentTypeList();
+	
+		            for(Course course : totalEligibleStudentCourseMap.keySet()) {  	
+		                      	
+		           		for(SegmentType segmentType : segmentTypeList) {
+		           				           			
+		           			count = 0;
+		    	    		timeWiseCount = 0;
+		    	    		
+		    	    		Button launchButton = new Button("Launch");
+		    	    		
+		    	    		Hyperlink numberOfStudent = new Hyperlink();
+		    	    		
+		    	    		ChoiceBox<String> facultyName = null;
+		    
+		    	    		ChoiceBox<String> availableTime = new ChoiceBox<String>();    	    			
+		    	    		availableTime.setId(""+rowNumber);
+		    		    	// TimeSlots Choice Box : 
+		    	            List<TimeSlots> timeSlotsList = new TimeSlotsHelper().getTimeSlotsList();    
+		    	            //availableTime.setValue("ALL");
+		    	            for(TimeSlots timeSlot : timeSlotsList) {
+		    	            	availableTime.getItems().add(timeSlot.getTimeSlotsDescription());	    	            		
+		    	            }
+		    	            	
+		    	            EventHandler<ActionEvent> eventAvailable = new EventHandler<ActionEvent>() { 
+		    	                public void handle(ActionEvent e) { 
+		    		               	int index = availableTime.getItems().indexOf(availableTime.getValue());
+		    	                   
+		    	                   	timeSlotsId = timeSlotsList.get(index).getTimeSlotsId();
+		    	                   	descriptionForPreferedTime = timeSlotsList.get(index).getTimeSlotsDescription();
+		    	
+		    	                	ChoiceBox<String> facultyName = new ChoiceBox<String>();
+		    	    				//Faculty Ids Choice Box :
+		    	    		    	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
+		    	    		    	List<FacultySkills> userIdList = new FacultySkillsHelper().getAvailableFaculty(timeSlotsId,course.getCourseId());
+		    	    		    	
+		    	    		    	
+		    	    		    	for(UserProfile faculty : facultyList) {
+		    	    	            	for(FacultySkills id : userIdList) {
+		    	    	            		int User = faculty.getUserId();
+		    	    	            		int id1 = id.getUserId();
+		    	    	            		if(User==id1) {
+		    	    	            			facultyName.getItems().add(faculty.getFirstName());
+		    	    	            			System.out.println("added");
+		    	    	            			break;
+		    	    	            		}
+		    	    	            	}
+		    	    	            }	    	    	         
+		    	    	            
+		    	    		    	EventHandler<ActionEvent> eventCreatedBy = new EventHandler<ActionEvent>() { 
+		    	    		            public void handle(ActionEvent e) { 
+		    	    		            	int index = facultyName.getItems().indexOf(facultyName.getValue());
+		    	    		            	descriptionForFacultyName = facultyName.getValue();
+		    	    		            	facultyUserId = userIdList.get(index).getUserId();
+		    	    		            }
+		    	    		        }; 	
+		    	    		        facultyName.setOnAction(eventCreatedBy);        
+		    	    		    	/*******************************************************/
+		    	                   	
+		    	                    getTimewiseNumberOfStudents(course, segmentType, timeSlotsId, availableTime, true, facultyName, launchButton, numberOfStudent);
+		    	                    	      	                    	
+		    	                 }
+		    	            }; 	
+		    	            availableTime.setOnAction(eventAvailable);
+		    	            // Launch Button Event Handler	    	           
+		    		    	EventHandler <ActionEvent> eventLaunchButton = new EventHandler<ActionEvent>() {
+		    					@Override
+		    					public void handle(ActionEvent event) {
+		    						boolean batchExist = new BatchDetailsHelper().doBatchExist(course.getCourseId(),timeSlotsId,facultyUserId,segmentType.getSegmentTypeId());
+		    						if(!batchExist) {
+		    							doLaunch = true;
+			    		            	Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+			    		            	Parent myNewScene;
+			    		            	try {
+			    		            		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/BatchLauncher.fxml"));
+			    		            		myNewScene = loader.load();
+			    		            		
+			    		            		Course courseEnquiry = null;
+			    	    					
+			    	    					for(Course courseEnquiry1 : enquiredStudentsCourseMap.keySet()) {
+			    	    						
+			    	    						if(courseEnquiry1.getCourseId()==course.getCourseId()) {
+			    	    							courseEnquiry = courseEnquiry1;
+			    	    							break;
+			    	    						}
+			    	    	            	
+			    	    	            	}
+			    		            		
+			    		            		BatchLauncherController batchLauncherController = loader.getController();			
+			    		            		batchLauncherController.setStudentDetail(		    		            				
+			    		            				course, 
+			    		            				registeredStudentsCourseMap.get(course), 
+			    	    							enquiredStudentsCourseMap.get(courseEnquiry),
+			    	    							segmentType,	    		            				
+			    		            				descriptionForPreferedTime,
+			    		            				descriptionForFacultyName);
+			    		            		
+			    		            		Scene scene = new Scene(myNewScene);
+			    		                	stage.setScene(scene);
+			    		                	stage.setTitle("Attendance Records");
+			    		                	stage.show();
+			    		            	} catch (IOException ee) {
+			    		            		ee.printStackTrace();
+			    		            	}
+			    		            }
+		    						else {
+		    							
+		    							
+//		    							start(null);
+//		    							If you don't want it to be modal (block other windows), use:
+//	
+//		    							dialog.initModality(Modality.NONE);
+		    							Stage stage = (Stage) launchButton.getScene().getWindow();
+		    					    	Parent myNewScene;
+		    							try {
+		    								myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/ExistBatchPopUpWindow.fxml"));
+		    								Scene scene = new Scene(myNewScene);
+		    						    	stage.setScene(scene);
+		    						    	stage.setTitle("My New Scene");
+		    						    	stage.show();
+		    							} catch (IOException e) {
+		    								e.printStackTrace();
+		    							}
+		    						}
+		    					}
+		    				};
+		    				launchButton.setOnAction(eventLaunchButton); 
+		    		    	/*******************************************************/ 
+		    		        // Hyper Link for the Number of the Student : 	    		        
+		    		        EventHandler <ActionEvent> eventNumberOfStudent = new EventHandler<ActionEvent>() {
+		    					@Override
+		    					public void handle(ActionEvent e) 
+		    	                { 
+		    	                    Parent myNewScene = null;
+		    	    				try {
+		    	    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/NumberOfStudents.fxml"));
+		    	    					myNewScene = loader.load();
+		    	    					
+		    	    					NumberOfStudentsController numberOfStudentsController = loader.getController();
+		    	    					
+		    	    					Course courseEnquiry = null;
+		    	    					
+		    	    					for(Course courseEnquiry1 : enquiredStudentsCourseMap.keySet()) {
+		    	    						
+		    	    						if(courseEnquiry1.getCourseId()==course.getCourseId()) {
+		    	    							courseEnquiry = courseEnquiry1;
+		    	    							break;
+		    	    						}
+		    	    	            	
+		    	    	            	}
+		    	    					numberOfStudentsController.displayBatchDetails(
+		    	    							registeredStudentsCourseMap.get(course), 
+		    	    							enquiredStudentsCourseMap.get(courseEnquiry));
+		    	    					
+		    	    	            	
+		    	    				} catch (IOException e1) {
+		    	    					e1.printStackTrace();
+		    	    				}
+		    	                	Stage stage = (Stage) numberOfStudent.getScene().getWindow();
+		    	                	Scene scene = new Scene(myNewScene);
+		    	                	stage.setScene(scene);
+		    	                	stage.setTitle("Main Scene");
+		    	                	stage.show();
+		    	                } 
+		    				};
+		    				numberOfStudent.setOnAction(eventNumberOfStudent); 		    	    			   	    			    	                
+		    	            rowNumber = getTimewiseNumberOfStudents(course, segmentType, 4, availableTime, false, facultyName, launchButton, numberOfStudent);		    	            	    	            
+		            	}
+		    	   	}	    	    		           	
+		    	    data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
+		    	    priorityCoursesListTable.setItems(data);      	    	   
+	            }                  
+	        }; 	
+	        courseType.setOnAction(eventCourseType);
+	
+	    	coursesCol.setCellValueFactory(new PropertyValueFactory<>("Course"));
+	    	segmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("SegmentType"));
+	    	avaialbleTimeCol.setCellValueFactory(new PropertyValueFactory<>("AvailableTime"));
+	    	noOfStudentsCol.setCellValueFactory(new PropertyValueFactory<>("NumberOfStudentsLink"));
+	    	beginDateCol.setCellValueFactory(new PropertyValueFactory<>("BeginDate"));
+	    	facultyNameCol.setCellValueFactory(new PropertyValueFactory<>("FacultyName"));
+	    	totalRevenueCol.setCellValueFactory(new PropertyValueFactory<>("TotalRevenue"));
+	    	launchCol.setCellValueFactory(new PropertyValueFactory<>("Launch"));
+	
+	    	priorityListOfCoursesWrapperList  = new ArrayList<PriorityListOfCoursesWrapper>();
+	    	data =FXCollections.observableArrayList(priorityListOfCoursesWrapperList);
+	    	priorityCoursesListTable.setItems(data);
+	    	
+	    	super.initialize(location, resources);
+	   		logo.setImage(logoImage);
    	}
 
+    public void start(final Stage primaryStage) {
+	    Button btn = new Button();
+	    btn.setText("Open Dialog");
+	    btn.setOnAction(
+	        new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent event) {
+	                final Stage dialog = new Stage();
+	                dialog.initModality(Modality.APPLICATION_MODAL);
+	                dialog.initOwner(primaryStage);
+	                VBox dialogVbox = new VBox(20);
+	                dialogVbox.getChildren().add(new Text("This is a Dialog"));
+	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+	                dialog.setScene(dialogScene);
+	                dialog.show();
+	            }
+	         });
+	    }
+    
     public int getTimewiseNumberOfStudents(Course course, SegmentType segmentType, Integer timeSlotId,
     		ChoiceBox<String> availableTime, boolean isRowToBeRemoved, ChoiceBox<String> facultyName, Button launchButton, Hyperlink numberOfStudent) {    // 1,2,3,4	
     	

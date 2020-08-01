@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,7 +14,6 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.CheckComboBox;
 
-import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.beans.TimeSlots;
@@ -194,10 +192,7 @@ public class SignUpFormController extends ParentFXMLController {
     void validateActive(ActionEvent event) {}
     @FXML
     void cancelClick(ActionEvent event) throws IOException {
-    	
-        
-
-    	
+	
     	System.out.println(event);
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene = loader.load(getClass().getResource("../../common/testClient/FrontScreenFxml.fxml").openStream());
@@ -339,7 +334,7 @@ public class SignUpFormController extends ParentFXMLController {
             public void handle(ActionEvent e) { 
             	int index = createdBy.getItems().indexOf(createdBy.getValue());
             	createdByUserId = facultyList.get(index).getUserId();
-            	String description = facultyList.get(index).getFirstName();
+            	//String description = facultyList.get(index).getFirstName();
             }
         }; 	
         createdBy.setOnAction(eventCreatedBy);

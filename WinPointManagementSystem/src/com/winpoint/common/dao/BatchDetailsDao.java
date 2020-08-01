@@ -254,7 +254,7 @@ public class BatchDetailsDao {
 
 
 
-	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId) {
+	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId, Integer segmentTypeId) {
 		
 		boolean batchExist = false;
 		
@@ -265,7 +265,7 @@ public class BatchDetailsDao {
 			
 			String query1 = "SELECT BEGIN_DATE\n" + 
 					"from BATCH_DETAILS\n" + 
-					"where COURSE_ID = "+ courseId +" and BATCH_TIME = "+ timeSlotsId +" and FACULTY_USER_ID = "+ facultyUserId +"";
+					"where COURSE_ID = "+ courseId +" and BATCH_TIME = "+ timeSlotsId +" and FACULTY_USER_ID = "+ facultyUserId +" and SEGMENT_TYPE_ID = "+ segmentTypeId +"";
 			
 			ResultSet resultSet = statement.executeQuery(query1);
 			

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.winpoint.common.beans.Course;
-import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.dao.PriorityCoursesListDao;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
