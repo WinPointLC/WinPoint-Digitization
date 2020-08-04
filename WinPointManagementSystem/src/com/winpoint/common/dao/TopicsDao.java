@@ -15,13 +15,14 @@ import com.winpoint.common.beans.Rules;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.EditBatchDetailsWrapper;
 import com.winpoint.common.wrappers.ProgressTrackingWrapper;
 
 public class TopicsDao {
 	Set<Integer> topicIdsSet = new HashSet<>();
 	public List<Topic> getTopicsList(int courseId) {
 		List<Topic> topicsList = new ArrayList<Topic>();
-		topicsList.add(new Topic("Functions",20));
+		//topicsList.add(new Topic("Functions",20));
 		//ResultSet resultSet = null;
 		
 		try(Connection connection = ConnectionManager.getConnection()){
@@ -73,7 +74,6 @@ public class TopicsDao {
 					topicIdsSet.add(topicId);	
 					} 
 			  }
-					
 				String query1 = "select TOPIC_ID, TOPIC_NAME,TOPIC_DURATION from TOPICS where COURSE_ID= "+courseId+ "and TOPIC_ID not in "+ "("; 
 				for(int topicId : topicIdsSet) {
 					query1 = query1+topicId+",";
@@ -130,6 +130,7 @@ public class TopicsDao {
 			while(resultSet1.next()) {
 				lecDuration=Integer.parseInt(resultSet1.getString("LECTURE_DURATION"));
 				}
+			//merge q4 and 5
 			String query4="SELECT COUNT(TOPIC_ID) AS TOTAL_TOPICS from TOPICS WHERE COURSE_ID="+courseId;
 			resultSet2 = statement.executeQuery(query4);
 			while(resultSet2.next()) {
@@ -159,15 +160,37 @@ public class TopicsDao {
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
 		return progressTrackingWrapper;
 	}
-	Float getDuration(Integer lecDuration) {
-		float duration=0f;
-		int minutes=lecDuration%100;
-		int hours=lecDuration/100;
-		duration=(hours+(minutes/60.0f));
-		return duration;
+		public   ArrayList<Topic> getTopicNamesForComboBox(int courseId) {
+			ArrayList<Topic> topicNamesList = new ArrayList<Topic>();
+			ResultSet resultSet=null; 
+			
+			try(Connection connection = ConnectionManager.getConnection()){
+				Statement statement = connection.createStatement();
+				String query="SELECT TOPIC_ID,TOPIC_NAME FROM TOPICS WHERE COURSE_ID="+courseId;
+				resultSet = statement.executeQuery(query);
+				 while(resultSet.next()) {
+					topicNamesList.add(new Topic(resultSet.getInt("TOPIC_ID"),null,
+							resultSet.getString("TOPIC_NAME"),null));
+				 }
+			} 
+			
+			catch (SQLServerException e) {
+				e.printStackTrace();
+			} 
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		
+		return topicNamesList;
 	}
+		 Float getDuration(Integer lecDuration) {
+				float duration=0f;
+				int minutes=lecDuration%100;
+				int hours=lecDuration/100;
+				duration=(hours+(minutes/60.0f));
+				return duration;
+			}
 
 }
