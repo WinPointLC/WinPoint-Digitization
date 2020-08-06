@@ -45,7 +45,7 @@ import javafx.stage.Stage;
 public class ManageRevenueContoller extends ParentFXMLController{
 
 	
-	UserCoursesDoneWrapper userId;
+	UserCoursesDoneWrapper user;  // name to be changed
 	ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	int selectedCourseId;
@@ -102,6 +102,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 
     @FXML
     private Button submit;
+	private int userProfile;
 
     @FXML
     void validateBatchNumber(ActionEvent event) {
@@ -147,6 +148,13 @@ public class ManageRevenueContoller extends ParentFXMLController{
     @FXML
     void submitFrame(ActionEvent event) throws IOException {
     	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	// Converting in the date Format : 
     	LocalDate ldFirstPaymentDate = firstAmountDate.getValue();
     	Calendar cFirstPaymentDate =  Calendar.getInstance();
@@ -180,32 +188,10 @@ public class ManageRevenueContoller extends ParentFXMLController{
     	Date recieveDate = recieveDate1;
     	Date firstPaymentDate = firstPaymentDate1;
     	
-    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
-    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userId,recieveDate);
-    	
-    	new ManageRevenueHelper().getRevenueDetailList(manageRevenueObject);
-    	
-       //********************************************//  It goes in studentcoursesinstallmentdetails
     	
     	
-    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(userId,courseId,firstPaymentDate);
     	
-    	new StudentCourseInstallmentHelper().getPaymentDetail(studentCourseInstallmentObject);
-    	
-    	/***************************************************/   	
-    	
-    	Parent myNewScene = null;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
-		try {
-			myNewScene = loader.load();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		if(isEnquired) {
+    	if(isEnquired) {
 			/* 
 			 * 
 			 * 
@@ -230,7 +216,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			DaoHelper daoHelper = new DaoHelper();
 			//daoHelper.function(this.userId,enquiryDetailsHelper.getEnquiryDetailsOfStudent(this.userId),courseId,batchId);
 			try {
-				daoHelper.function(this.userId,courseId,batchId);
+				daoHelper.function(this.user,courseId,batchId);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -242,12 +228,36 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			 * 
 			 * */
 			
-			listOfEnquiredStudents1.remove(this.userId);
+			listOfEnquiredStudents1.remove(this.user);
 
 		}else {
-			listOfRegisteredStudents1.remove(this.userId);
+			listOfRegisteredStudents1.remove(this.user);
 		}
-				
+    	
+    	int latestUserId = new DaoHelper().accessLatestUserId();
+    	
+    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
+    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
+    	
+    	new ManageRevenueHelper().getRevenueDetailList(manageRevenueObject);
+    	
+       //********************************************//  It goes in studentcoursesinstallmentdetails
+    	   	
+    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);
+    	
+    	new StudentCourseInstallmentHelper().getPaymentDetail(studentCourseInstallmentObject);
+    	
+    	/***************************************************/   	
+    	
+    	Parent myNewScene = null;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
+		try {
+			myNewScene = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		CoursesNameController coursesNameController = loader.getController();
 		coursesNameController.setListOfStudents(
 				listOfRegisteredStudents1, 
@@ -367,12 +377,15 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			int preferedTime, 
 			int facultyId,
 			boolean isEnquired, 
-			String generatedBatchName, Integer selectedbatchId2) {
+			String generatedBatchName, 
+			Integer selectedbatchId2
+			) {
 				
+		this.userProfile = userProfile;
 		this.generatedBatchName1 = generatedBatchName;
 		this.selectedbatchId = selectedbatchId2;
 		this.isEnquired = isEnquired;
-		this.userId = enquiredStudent;
+		this.user = enquiredStudent;
 		this.listOfRegisteredStudents1.addAll(listOfRegisteredStudents1);
 		this.listOfEnquiredStudents1.addAll(listOfEnquiredStudents1);
 		this.selectedCourseId = selectedCourseId1;

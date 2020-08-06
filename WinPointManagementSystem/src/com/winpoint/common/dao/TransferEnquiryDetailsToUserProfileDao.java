@@ -72,8 +72,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 		System.out.println("Function call");
 		int accessedUserId = accessLatestUserId();
 		System.out.println("GOT THE ID : "+accessedUserId);
-		
-		
+				
 		EnquiryDetails enquiryDetails = (EnquiryDetails)user.getUserProfile();
 		int id = enquiryDetails.getEnquiryId();
 		System.out.println("ID : "+id);

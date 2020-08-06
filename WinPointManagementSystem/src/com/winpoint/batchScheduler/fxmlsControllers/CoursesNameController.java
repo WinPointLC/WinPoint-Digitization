@@ -99,7 +99,9 @@ public class CoursesNameController extends ParentFXMLController{
 			int selectedCourseId1, 
 			int selectedSegmentTypeId1, 
 			int preferedTime1, 
-			int facultyId1, String generatedBatchName1, Integer selectedbatchId) {
+			int facultyId1, 
+			String generatedBatchName1, 
+			Integer selectedbatchId) {
 
 		this.selectedbatchId = selectedbatchId;
    		listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
@@ -151,6 +153,7 @@ public class CoursesNameController extends ParentFXMLController{
    	   		 			System.out.println("REGISTERED GENERATED BATCH NAME : "+generatedBatchName); 	   		 			
    	   		 		  		 			
 	   	   		 		manageRevenueController.setStudentData(
+	   	   		 				
 		   	   		 			registeredStudent, 
 		   	   		 			listOfRegisteredStudents1, 
 		   	   					listOfEnquiredStudents1, 
@@ -161,6 +164,7 @@ public class CoursesNameController extends ParentFXMLController{
 		   	   					false,
 		   	   					generatedBatchName,
 		   	   					selectedbatchId
+		   	   					
 	   	   		 			);
    	   		 			
    	   		             	Stage stage = (Stage) addStudent.getScene().getWindow();

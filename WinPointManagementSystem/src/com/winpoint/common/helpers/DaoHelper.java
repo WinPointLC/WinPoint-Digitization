@@ -22,4 +22,7 @@ public class DaoHelper {
 		new TransferEnquiryDetailsToUserProfileDao().function(userId, courseId, batchId);
 	}
 	
+	public Integer accessLatestUserId() {
+		return new TransferEnquiryDetailsToUserProfileDao().accessLatestUserId();
+	}
 }		

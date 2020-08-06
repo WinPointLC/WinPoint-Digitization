@@ -27,7 +27,7 @@ public class StudentCourseDetails {
 	private int percentageAttendance;
 	private BatchDetails batchDetails;
 	/**
-	 * @param userId
+	 * @param user
 	 * @param batchId
 	 * @param isFeedbackGiven
 	 * @param isCertificateGiven
