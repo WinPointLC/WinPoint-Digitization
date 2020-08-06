@@ -9,9 +9,7 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.BatchDetails;
-import com.winpoint.common.beans.Course;
 
-//import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import com.winpoint.common.beans.StudentCourseDetails;
@@ -19,7 +17,6 @@ import com.winpoint.common.helpers.AttendanceHelper;
 import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
-import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsDao {
@@ -94,7 +91,7 @@ public class StudentCourseDetailsDao {
 					"WHERE COURSES.COURSE_ID IN \r\n" + 
 					"	(SELECT STUDENT_COURSE_DETAILS.COURSE_ID FROM STUDENT_COURSE_DETAILS where STUDENT_COURSE_DETAILS.USER_ID=" + userId + "and courses.stream_Id = 3 ) and STUDENT_COURSE_DETAILS.USER_ID=" + userId;
 			resultSet = statement.executeQuery(query);
-			int i = 1;
+
 			while(resultSet.next()) {
 				int courseId = resultSet.getInt("COURSE_ID");
 				String courseName = resultSet.getString("COURSE_NAME");
@@ -103,7 +100,7 @@ public class StudentCourseDetailsDao {
 				String streamName = resultSet.getString("STREAM_NAME");
 				int courseAggr = resultSet.getInt("COURSE_AGGR");
 				StudentCourseDetails secQuest = new StudentCourseDetails(userId, courseId, courseName, logoLocation, courseTypeName, streamName, courseAggr);
-				i++;
+				
 				studentGACourseDetailsList.add(secQuest);
 			}
 		} 
@@ -293,6 +290,34 @@ public class StudentCourseDetailsDao {
 		
 		return studentCourseDetailsList;
 	}
+
+	//Group A - Inserting the data - Abhishek
+//	public void create(Integer userId, Integer courseId, Integer batchId) {
+//		
+//		try(Connection connection = ConnectionManager.getConnection()){
+//			Statement statement = connection.createStatement();
+//			
+//			String query = "INSERT INTO STUDENT_COURSE_DETAILS\n" + 
+//					"(\n" + 
+//					"	USER_ID,\n" + 
+//					"	COURSE_ID,\n" + 
+//					"	BATCH_ID\n" + 
+//					")\n" + 
+//					"VALUES\n" + 
+//					"(\n" + 
+//					"	"+userId+",\n" + 
+//					"	"+courseId+",\n" + 
+//					"	"+batchId+"\n" + 
+//					")";
+//			
+//			statement.executeUpdate(query);
+//		} 
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		
+//	}
 
 	/*private int getUserBatchId(int userId, int courseId) {
 		// TODO Auto-generated method stub

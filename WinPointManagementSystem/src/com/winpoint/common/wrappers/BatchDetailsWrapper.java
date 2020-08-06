@@ -34,8 +34,9 @@ public class BatchDetailsWrapper {
 		this.count = count;
 	}
 
-	public BatchDetailsWrapper(String batchName, String courseName, String facultyName, String batchTimeDescription, Date startDate,
+	public BatchDetailsWrapper(Integer batchId, String batchName, String courseName, String facultyName, String batchTimeDescription, Date startDate,
 			Date endDate, Integer createdBy, Date createdDate, Button add) {
+		this.batchId = batchId;
 		this.batchName = batchName;
 		this.courseName = courseName;
 		this.facultyName = facultyName;

@@ -1,9 +1,6 @@
 package com.winpoint.common.dao;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.util.sql.DateConverter;
 import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
 
 public class UserProfileDao {
+	
+	
+	
 	public boolean updateUserProfile(UserProfile userProfile){
 		
 		try(Connection connection = ConnectionManager.getConnection()){
@@ -209,10 +209,7 @@ public class UserProfileDao {
 		
 		return coursesString.toString();
 	}
-	
-	
-	// 
-	
+	 
 	public ArrayList<UserProfile> getRegisteredUsers(){
 		
 		List<UserProfile> userProfileList = new ArrayList<UserProfile>();
@@ -311,5 +308,71 @@ public class UserProfileDao {
 		return  studentList;
 		
 	}
+
+
+//	public void create(Integer userId, List<EnquiryDetails> list) {
+//		//java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
+//		java.sql.Date sqlBirthDate = new java.sql.Date(list.get(userId).getBirthDate().getTime());
+//		
+//		try(Connection connection = ConnectionManager.getConnection()){
+//			Statement statement = connection.createStatement();
+//			
+//			String query = "INSERT INTO USER_PROFILE\n" + 
+//					"(\n" + 
+//					"	FIRST_NAME,\n" + 
+//					"	LAST_NAME,\n" + 
+//					"	EMAIL_ID,\n" + 
+//					"	MOBILE_NUMBER,\n" + 
+//					"	ADDRESS,\n" + 
+//					"	BIRTHDATE,\n" + 
+//					"	COLLEGE,\n" + 
+//					"	DEGREE,\n" + 
+//					"	BRANCH,\n" + 
+//					"	PASSWORD,\n" + 
+//					"	OCCUPATION,\n" + 
+//					"	ORGANIZATION,\n" + 
+//					"	DESIGNATION,\n" + 
+//					"	DOMAIN,\n" + 
+//					"	ROLE,\n" + 
+//					"	EXPERIENCE,\n" + 
+//					"	GENDER,\n" + 
+//					"	YEAR_OF_GRADUATION,\n" + 
+//					"	TIME_SLOTS_IDS,\n" + 
+//					"	SEGMENT_TYPE_ID,\n" + 
+//					"	COURSE_ALREADY_DONE,\n" + 
+//					"	ACTIVE_STATUS\n" + 
+//					")\n" + 
+//					"VALUES(\n" + 
+//					"'"+list.get(userId).getFirstName()+"',\n" + 
+//					"'"+list.get(userId).getLastName()+"',\n" + 
+//					"'"+list.get(userId).getEmail()+"',\n" + 
+//					"'"+list.get(userId).getMobileNumber()+"',\n" + 
+//					"'"+list.get(userId).getAddress()+"',\n" + 
+//					"'"+sqlBirthDate+"',\n" + 
+//					"'"+list.get(userId).getCollege()+"',\n" + 
+//					"'"+list.get(userId).getDegree()+"',\n" + 
+//					"'"+list.get(userId).getBranch()+"',\n" + 
+//					"'"+list.get(userId).getFirstName()+"@"+sqlBirthDate+"',\n" + 
+//					"'"+list.get(userId).getOccupation()+"',\n" + 
+//					"'"+list.get(userId).getOrganisation()+"',\n" + 
+//					"'"+list.get(userId).getDesignation()+"',\n" + 
+//					"'"+list.get(userId).getDomain()+"',\n" + 
+//					"'"+list.get(userId).getRole()+"',\n" + 
+//					""+list.get(userId).getExperience()+",\n" + 
+//					"'"+list.get(userId).getGender()+"',\n" + 
+//					""+list.get(userId).getYearOfGraduation()+",\n" + 
+//					"'"+list.get(userId).getTimeSlotsId()+"',\n" + 
+//					""+list.get(userId).getSegmentTypeId()+",\n" + 
+//					"'"+list.get(userId).getCourseAlreadyDone()+"',\n" + 
+//					""+list.get(userId).getActiveStatus()+"\n" + 
+//					")";
+//			
+//			statement.executeUpdate(query);
+//		} 
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 	
 }

@@ -24,7 +24,7 @@ public class BatchDetailsDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query1 = "SELECT BATCH.BATCH_NAME, COURSE.COURSE_NAME, U.FIRST_NAME+' '+U.LAST_NAME AS FACULTY , T.TIME_SLOTS_DESCRIPTION, BATCH.BEGIN_DATE, BATCH.END_DATE, BATCH.CREATED_BY, BATCH.CREATED_DATE\n" + 
+			String query1 = "SELECT BATCH.BATCH_ID, BATCH.BATCH_NAME, COURSE.COURSE_NAME, U.FIRST_NAME+' '+U.LAST_NAME AS FACULTY , T.TIME_SLOTS_DESCRIPTION, BATCH.BEGIN_DATE, BATCH.END_DATE, BATCH.CREATED_BY, BATCH.CREATED_DATE\n" + 
 					"FROM BATCH_DETAILS BATCH\n" + 
 					"INNER JOIN COURSES COURSE\n" + 
 					"ON  BATCH.COURSE_ID = COURSE.COURSE_ID\n" + 
@@ -38,7 +38,9 @@ public class BatchDetailsDao {
 			ResultSet rs = statement.executeQuery(query1);
 			
 			while(rs.next()) {
-				batchDetailsWrapperList.add(new BatchDetailsWrapper(rs.getString("BATCH_NAME"),
+				batchDetailsWrapperList.add(new BatchDetailsWrapper(
+						rs.getInt("BATCH_ID"),
+						rs.getString("BATCH_NAME"),
 						rs.getString("COURSE_NAME"),
 						rs.getString("FACULTY"),
 						rs.getString("TIME_SLOTS_DESCRIPTION"),

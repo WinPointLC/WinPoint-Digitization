@@ -29,6 +29,13 @@ import javafx.stage.Stage;
 
 public class BatchDetailsController extends ParentFXMLController{
 
+	
+		int selectedCourseId1;
+		int selectedSegmentTypeId1; 
+		int preferedTime1;
+		int facultyId1;
+		String generatedBatchName1;
+	
 		Stage primaryStage;		
 
 	    @FXML
@@ -69,11 +76,11 @@ public class BatchDetailsController extends ParentFXMLController{
 	    
 	    private Button add;
 
-		private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents;
+		private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1;//= new ArrayList<UserCoursesDoneWrapper>();
 
-		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents;
+		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1;// = new ArrayList<UserCoursesDoneWrapper>();
 
-	    @FXML
+		@FXML
 	    void cancelFrame(ActionEvent event) {
 	    	Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Parent myNewScene;
@@ -88,10 +95,26 @@ public class BatchDetailsController extends ParentFXMLController{
 			}
 	    }
 	    
-	    void setListOfStudent(ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents, ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents) {
-	    	this.listOfRegisteredStudents = listOfRegisteredStudents;
-	    	this.listOfEnquiredStudents = listOfEnquiredStudents;
-	    }
+	    void setListOfStudent(
+	    		ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents, 
+	    		ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents, 
+	    		Integer courseId, 
+	    		int selectedSegmentTypeId, 
+	    		Integer batchTime, 
+	    		Integer facultyId, String generatedBatchName) {
+	    	listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
+	    	
+	    	listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
+	    	
+	    	listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
+	    	listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
+	    	
+	    	selectedCourseId1 = courseId;
+			selectedSegmentTypeId1 = selectedSegmentTypeId; 
+			preferedTime1 = batchTime;
+			facultyId1 = facultyId;
+			generatedBatchName1 = generatedBatchName;
+  	   }
 
     @Override
    	public void initialize(URL location, ResourceBundle resources) {
@@ -121,16 +144,26 @@ public class BatchDetailsController extends ParentFXMLController{
 				@Override
 				public void handle(ActionEvent event) {
 					Parent myNewScene = null;
-    				try {
-    					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
-    					myNewScene = loader.load();
+    				FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
+					try {
+						myNewScene = loader.load();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-    					CoursesNameController coursesNameController = loader.getController();
-    					coursesNameController.setListOfStudents(listOfRegisteredStudents, listOfEnquiredStudents);
-    	            	
-    				} catch (IOException e1) {
-    					e1.printStackTrace();
-    				}
+					CoursesNameController coursesNameController = loader.getController();
+							coursesNameController.setListOfStudents(
+							listOfRegisteredStudents1, 
+							listOfEnquiredStudents1,
+							selectedCourseId1,
+							selectedSegmentTypeId1,
+							preferedTime1,
+							facultyId1,
+							generatedBatchName1,
+							batchDetail.getBatchId()
+							);
+					
                 	Stage stage = (Stage) add.getScene().getWindow();
                 	Scene scene = new Scene(myNewScene);
                 	stage.setScene(scene);
@@ -139,12 +172,13 @@ public class BatchDetailsController extends ParentFXMLController{
 				}
 			};
 			add.setOnAction(eventAddButton); 
-   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchName(), batchDetail.getCourseName(), batchDetail.getFacultyName(), batchDetail.getBatchTimeDescription(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
+   			batchDetailsWrapperList.add(new BatchDetailsWrapper(batchDetail.getBatchId(), batchDetail.getBatchName(), batchDetail.getCourseName(), batchDetail.getFacultyName(), batchDetail.getBatchTimeDescription(), batchDetail.getStartDate(), batchDetail.getEndDate(), batchDetail.getCreatedBy(), batchDetail.getCreatedDate(),add));
    		}
    		
    		ObservableList<BatchDetailsWrapper> batchDetailRecords = FXCollections.observableArrayList(batchDetailsWrapperList);
 
    		batchDetails.setItems((ObservableList<BatchDetailsWrapper>) batchDetailRecords);
+
    		
    	}
 }

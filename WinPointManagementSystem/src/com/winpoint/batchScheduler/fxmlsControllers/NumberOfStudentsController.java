@@ -96,9 +96,7 @@ import javafx.stage.Stage;
 	   	    
 	   	    // hash map - array list of student - one student at each time
 	   	    List<NumberOfStudentWrapper> noOfStudentWrapperList = new ArrayList<NumberOfStudentWrapper>();
-	   	    
-	   	   
-	   	    
+
 	   	    System.out.println("Size of registered Array List (  ) : "+ListOfRegisteredStudents.size());
 	   	    for(UserCoursesDoneWrapper userCoursesDoneWrapper : ListOfRegisteredStudents) {
 	   	    	

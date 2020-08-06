@@ -3,10 +3,9 @@ package com.winpoint.common.helpers;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.EnquiryDetails;
-import com.winpoint.common.dao.BatchDetailsDao;
 import com.winpoint.common.dao.EnquiryDetailsDao;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 
 public class EnquiryDetailsHelper {
@@ -23,6 +22,10 @@ public class EnquiryDetailsHelper {
 	public List<EnquiryDetails> getEnquiryDetails(){
 		return new EnquiryDetailsDao().getEnquiryDetails();
 	}
+	
+	public List<EnquiryDetails> getEnquiryDetailsOfStudent(Integer userId){
+		return new EnquiryDetailsDao().getEnquiryDetailsOfStudent(userId);
+	}
 
 	public void create(EnquiryDetails enquiryDetailsObject) throws SQLException {
 		new EnquiryDetailsDao().create(enquiryDetailsObject);
@@ -35,5 +38,4 @@ public class EnquiryDetailsHelper {
 	public EnquiryDetails getStartDate() {
 		return new EnquiryDetailsDao().getStartDate();
 	}
-	
 }

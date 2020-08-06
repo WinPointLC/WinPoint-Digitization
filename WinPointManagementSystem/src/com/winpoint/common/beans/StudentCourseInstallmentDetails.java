@@ -2,6 +2,8 @@ package com.winpoint.common.beans;
 
 import java.util.Date;
 
+
+
 public class StudentCourseInstallmentDetails {
 	private Integer userId;
 	private Integer courseId;
@@ -19,6 +21,13 @@ public class StudentCourseInstallmentDetails {
 	private Date actualInstallment3Date;
 	private Integer dueAmount;
 	
+	public StudentCourseInstallmentDetails(Integer userId2, Integer courseId, Date firstPaymentDate) {
+		// TODO Auto-generated constructor stub
+		this.userId = userId2;
+		this.courseId = courseId;
+		this.actualInstallment1Date = firstPaymentDate;
+	}
+
 	
 	public StudentCourseInstallmentDetails(Integer actualInstallment1, Date actualInstallment1Date, 
 			Integer actualInstallment2, Date actualInstallment2Date,Integer actualInstallment3, Date actualInstallment3Date, Integer dueAmount) {
@@ -55,13 +64,6 @@ public class StudentCourseInstallmentDetails {
 		this.actualInstallment3 = actualInstallment3;
 		this.actualInstallment3Date = actualInstallment3Date;
 		this.dueAmount = dueAmount;
-	}
-
-
-
-	public StudentCourseInstallmentDetails(Date firstPaymentDate) {
-		// TODO Auto-generated constructor stub
-		this.actualInstallment1Date = firstPaymentDate;
 	}
 
 	public Integer getUserId() {

@@ -192,9 +192,9 @@ public class EnquiryDetails extends UserProfile {
 //	"WHERE ACTIVE_STATUS = 1"; 
 
 
-	public EnquiryDetails(int enquiryId, String firstName, String lastName, String emailId, String mobileNo, Boolean eligibility,
+	public EnquiryDetails(int enquiryId, String firstName, String lastName, String emailId, Date birthDate, String mobileNo, Boolean eligibility,
 			String coursesInterestedIn, String timeSlotsId, String coursesAlreadyDone, int segmetTypeId) {
-		super(firstName,lastName,emailId,mobileNo,timeSlotsId,coursesAlreadyDone,segmetTypeId);
+		super(firstName,lastName,emailId,birthDate,mobileNo,timeSlotsId,coursesAlreadyDone,segmetTypeId);
 		this.enquiryId= enquiryId;
 		this.eligibility=eligibility;
 		this.coursesInterestedIn=coursesInterestedIn;	

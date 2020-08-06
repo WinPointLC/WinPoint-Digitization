@@ -121,15 +121,13 @@ public class SignUpFormController extends ParentFXMLController {
     private HBox courseAlreadyDoneHbox;   
     @FXML
     private HBox availableTimeHBox;
-//   s
+
     @FXML
     private ChoiceBox<String> segmentType = new ChoiceBox<>();
     @FXML
     private ChoiceBox<String> degreeChoice = new ChoiceBox<>(); 
     String[] choices= {"F.Y","S.E","T.E", "F.E"};
-    
-    
-    
+       
     @FXML
     void validateActiveStatus(ActionEvent event) {}
     @FXML

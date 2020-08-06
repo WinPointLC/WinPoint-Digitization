@@ -63,7 +63,7 @@ public class PriorityCoursesListDao {
 
 	try(Connection connection = ConnectionManager.getConnection()){
 		Statement statement = connection.createStatement();
-		String query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n" + 
+		String query = "SELECT BIRTHDATE,USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n" + 
 				"				EMAIL_ID,USER_CATEGORY_ID, SEGMENT_TYPE_ID FROM USER_PROFILE\n" + 
 				"				WHERE ACTIVE_STATUS = 1\n" + 
 				"				AND USER_CATEGORY_ID=1\n" + 
@@ -83,7 +83,7 @@ public class PriorityCoursesListDao {
 		}
 			
 		
-			UserProfile userProfile=new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), resultSet.getString("LAST_NAME"), 
+			UserProfile userProfile=new UserProfile(resultSet.getDate("BIRTHDATE"),resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), resultSet.getString("LAST_NAME"), 
 					resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getInt("USER_CATEGORY_ID"),
 					resultSet.getString("TIME_SLOTS_IDS"),resultSet.getInt("SEGMENT_TYPE_ID"));
 			
@@ -127,7 +127,7 @@ public class PriorityCoursesListDao {
 		ResultSet resultSet=null;
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			String query = "SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,MOBILE_NO,\n" + 
+			String query = "SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,BIRTH_DATE,MOBILE_NO,\n" + 
 					"ELIGIBILITY,COURSE_INTERESTED_IN,TIME_SLOTS_ID,COURSE_ALREADY_DONE,\n" + 
 					" SEGMENT_TYPE_ID FROM ENQUIRY_DETAILS\n" + 
 					"WHERE ACTIVE_STATUS = 1";
@@ -138,7 +138,7 @@ public class PriorityCoursesListDao {
 				
 				
 			EnquiryDetails en = new EnquiryDetails(resultSet.getInt("ENQUIRY_ID"),resultSet.getString("FIRST_NAME"),
-					resultSet.getString("LAST_NAME"),resultSet.getString("EMAIL_ID"),resultSet.getString("MOBILE_NO"),
+					resultSet.getString("LAST_NAME"),resultSet.getString("EMAIL_ID"),resultSet.getDate("BIRTH_DATE"),resultSet.getString("MOBILE_NO"),
 					eligibility,resultSet.getString("COURSE_INTERESTED_IN"),resultSet.getString("TIME_SLOTS_ID"),
 					resultSet.getString("COURSE_ALREADY_DONE"),resultSet.getInt("SEGMENT_TYPE_ID"));
 				HashSet<String>coursesDone = new HashSet<>();
@@ -182,7 +182,13 @@ public class PriorityCoursesListDao {
 				}
 			}
 			//System.out.println("Course : "+course.getCourseName()+" Size :  "+user.size());
+
+
 			coursesStudentsEligibleMap.put(course,user);
+//			for(UserCoursesDoneWrapper registered : coursesStudentsEligibleMap.get(course)) {
+//	    			   System.out.println("Student Registered : "+registered.getUserProfile().getFirstName());
+//	    	
+//	    	}
 		}
 		return coursesStudentsEligibleMap;
 	}
@@ -208,8 +214,12 @@ public class PriorityCoursesListDao {
 				
 			}
 			//System.out.println("Course : "+course.getCourseName()+" Size :  "+enquiryList.size());
-			coursesEnquiredStudetnsMap.put(course, enquiryList);
 
+
+			coursesEnquiredStudetnsMap.put(course, enquiryList);
+//	    	for(UserCoursesDoneWrapper registered : coursesEnquiredStudetnsMap.get(course)) {	    		
+//	    			System.out.println("Student Enquired : "+registered.getUserProfile().getFirstName());	    		
+//	    	}
 		}
 		
 		return coursesEnquiredStudetnsMap;

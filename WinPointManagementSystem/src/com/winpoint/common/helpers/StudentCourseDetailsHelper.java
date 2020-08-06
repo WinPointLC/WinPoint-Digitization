@@ -3,11 +3,9 @@ package com.winpoint.common.helpers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
-import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsHelper {
@@ -41,6 +39,11 @@ public class StudentCourseDetailsHelper {
 		// TODO Auto-generated method stub
 		return new StudentCourseDetailsDao().getStudentCourseDetailList(userId, streamId, courseTypeId);
 	}
+
+//	public void create(Integer userId, Integer courseId, Integer batchId) {
+//		// TODO Auto-generated method stub
+//		new StudentCourseDetailsDao().create(userId, courseId, batchId);
+//	}
 
 
 

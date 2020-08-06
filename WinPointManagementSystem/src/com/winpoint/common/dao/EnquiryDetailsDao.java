@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 	
 
@@ -15,67 +14,32 @@ import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EnquiryDetailsDao {
-
-	public List<EnquiryDetails> getEnquiryDetailsList() {
-
-		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
-
-
-//		try {
-//			enquiryDetailsList.add(new EnquiryDetails(10, "Aayush ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
-//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
-//					12, 1, "Passed", true));
-//
-//			enquiryDetailsList.add(new EnquiryDetails(11, "Shraddha ", "Padalkar", "shraddha8888@gmail.com", "9820910220", "MUMBAI",
-//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "FEMALE", 2021, "Shraddha", true, 3, "Purva", 7,
-//					12, 1, "Passed", true));
-//
-//		} catch (ParseException e) {
+	
+	// Group A - to delete the data from ENQUIRY_DETAILS - Abhishek
+//	public void deleteEnquiryDetailsOfStudent(Integer userId) {
+//		
+//		try(Connection connection = ConnectionManager.getConnection()){
+//			Statement statement = connection.createStatement();
+//			String query2 = "DELETE FROM ENQUIRY_DETAILS\n" + 
+//					"WHERE ENQUIRY_ID = "+userId;
+//			statement.executeUpdate(query2);
+//		}
+//		catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-
-		return enquiryDetailsList;
-
-	}
-
-//  GROUP A
-	public ArrayList<EnquiryDetails> getEligibleUsers(){
-
-		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
-
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-
-
-			//we have to access the course name from the previous screen
-//			String q2 = "SELECT E.FIRST_NAME, E.LAST_NAME\n" +
-//					"FROM ENQUIRY_DETAILS AS E\n" +
-//					"JOIN COURSES AS C\n" +
-//					"ON CAST(E.COURSE_ALREADY_DONE AS VARCHAR(30)) = C.PRE_REQUISITE\n" +
-//					"WHERE C.COURSE_NAME = 'writing skills'";
-			String q2 = "SELECT * FROM ENQUIRY_DETAILS";
-			ResultSet rs = statement.executeQuery(q2);
-
-			while(rs.next()) {
-				enquiryDetailsList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
-			}
-
-		}
-		catch (SQLException e) {
-			enquiryDetailsList = null;
-			e.printStackTrace();
-		}
-		return  (ArrayList<EnquiryDetails>) enquiryDetailsList;
-	}
-
-	public ArrayList<EnquiryDetails> getEnquiryDetails(){
+//	}
+	
+	
+	// Group A - To access the Data of a particular student for Manage revenue Screen - Abhishek
+	public ArrayList<EnquiryDetails> getEnquiryDetailsOfStudent(Integer userId){
 
 		List<EnquiryDetails> enquiryDetailList = new ArrayList<EnquiryDetails>();
 
-		try(Connection connection = ConnectionManager.getConnection()){
+		Connection connection = ConnectionManager.getConnection();
+		try{
 			Statement statement = connection.createStatement();
-			String query2 = "SELECT * FROM ENQUIRY_DETAILS"+
-					"";
+			String query2 = "SELECT * FROM ENQUIRY_DETAILS"
+					+ " WHERE ENQUIRY_ID = "+userId;
 			ResultSet rs = statement.executeQuery(query2);
 			while(rs.next()) {
 				enquiryDetailList.add(new EnquiryDetails(
@@ -117,6 +81,7 @@ public class EnquiryDetailsDao {
 		}
 		return  (ArrayList<EnquiryDetails>) enquiryDetailList;
 	}
+	
 	// group A - for inserting the values in the table.( SIGNUP FORM ) ~ Abhishek
 	public void create(EnquiryDetails enquiryDetails) throws SQLException {
 		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
@@ -251,6 +216,109 @@ public class EnquiryDetailsDao {
 		}
 		return startDate;
 		
+	}
+	
+
+	public List<EnquiryDetails> getEnquiryDetailsList() {
+
+		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
+
+
+//		try {
+//			enquiryDetailsList.add(new EnquiryDetails(10, "Aayush ", "Agarwal", "aayush.aka44@gmail.com", "9820910220", "MUMBAI",
+//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "MALE", 2021, "AAyush", true, 3, "Rishabh", 7,
+//					12, 1, "Passed", true));
+//
+//			enquiryDetailsList.add(new EnquiryDetails(11, "Shraddha ", "Padalkar", "shraddha8888@gmail.com", "9820910220", "MUMBAI",
+//					new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "VIT", "B. TECH", "IT", 4, new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998"), "FEMALE", 2021, "Shraddha", true, 3, "Purva", 7,
+//					12, 1, "Passed", true));
+//
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+
+		return enquiryDetailsList;
+
+	}
+
+//  GROUP A
+	public ArrayList<EnquiryDetails> getEligibleUsers(){
+
+		List<EnquiryDetails> enquiryDetailsList = new ArrayList<EnquiryDetails>();
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+
+			//we have to access the course name from the previous screen
+//			String q2 = "SELECT E.FIRST_NAME, E.LAST_NAME\n" +
+//					"FROM ENQUIRY_DETAILS AS E\n" +
+//					"JOIN COURSES AS C\n" +
+//					"ON CAST(E.COURSE_ALREADY_DONE AS VARCHAR(30)) = C.PRE_REQUISITE\n" +
+//					"WHERE C.COURSE_NAME = 'writing skills'";
+			String q2 = "SELECT * FROM ENQUIRY_DETAILS";
+			ResultSet rs = statement.executeQuery(q2);
+
+			while(rs.next()) {
+				enquiryDetailsList.add(new EnquiryDetails(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME")));
+			}
+
+		}
+		catch (SQLException e) {
+			enquiryDetailsList = null;
+			e.printStackTrace();
+		}
+		return  (ArrayList<EnquiryDetails>) enquiryDetailsList;
+	}
+
+	public ArrayList<EnquiryDetails> getEnquiryDetails(){
+
+		List<EnquiryDetails> enquiryDetailList = new ArrayList<EnquiryDetails>();
+
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			String query2 = "SELECT * FROM ENQUIRY_DETAILS"+
+					"";
+			ResultSet rs = statement.executeQuery(query2);
+			while(rs.next()) {
+				enquiryDetailList.add(new EnquiryDetails(
+						rs.getInt("ENQUIRY_ID"), 
+						rs.getString("FIRST_NAME"),
+						rs.getString("LAST_NAME"),
+						rs.getString("EMAIL_ID"),
+						rs.getString("MOBILE_NO"),
+						rs.getString("ADDRESS"),
+						rs.getDate("BIRTH_DATE"),
+						rs.getString("COLLEGE"),
+						rs.getString("DEGREE"),
+						rs.getString("BRANCH"),
+						rs.getString("OCCUPATION"),
+						rs.getString("ORGANISATION"),
+						rs.getString("DESIGNATION"),
+						rs.getString("DOMAIN"),
+						rs.getString("ROLE"),
+						rs.getInt("EXPERIENCE"),
+						rs.getInt("CREATED_BY"),
+						rs.getDate("DATE_OF_ENQUIRY"),
+						rs.getString("GENDER"),
+						rs.getInt("YEAR_OF_GRADUATION"),
+						rs.getString("RECOMMENDATION"),
+						rs.getBoolean("ELIGIBILITY"),
+						rs.getString("COURSE_INTERESTED_IN"),
+						rs.getString("REFERENCE"),
+						rs.getString("TIME_SLOTS_ID"),
+						rs.getString("COURSE_ALREADY_DONE"),
+						rs.getDate("START_DATE"),
+						rs.getInt("SEGMENT_TYPE_ID"),
+						rs.getString("SUGGESTION"),
+						rs.getBoolean("ACTIVE_STATUS")));
+			}
+		}
+		catch (SQLException e) {
+			enquiryDetailList = null;
+			e.printStackTrace();
+		}
+		return  (ArrayList<EnquiryDetails>) enquiryDetailList;
 	}
 	
 }

@@ -13,7 +13,7 @@ public class CoursesNameWrapper {
 	
 	public CoursesNameWrapper(String firstName, String lastName, boolean enquired, boolean registered, CheckBox checkBox, Button addStudent){
 		
-		fullName = firstName + " " + lastName;
+		this.fullName = firstName+" "+lastName;
 		this.enquired = enquired;
 		this.registered = registered;
 		this.checkBox = checkBox;

@@ -130,18 +130,22 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
     	
 	    	registeredStudentsCourseMap  = new PriorityCoursesListHelper().getRegisteredStudentListWithCourses();//key is course bean and value UserCoursesDoneWrapper(userProfile beand and oursesDone)
 	    	enquiredStudentsCourseMap = new PriorityCoursesListHelper().getEnquiredStudentListWithCourses();//course bean and enquiry details array list    
-	    	    	    	
-	    	totalEligibleStudentCourseMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
+	    	    	    
+	    	totalEligibleStudentCourseMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();    	
 	    	
-	    	totalEligibleStudentCourseMap.putAll(registeredStudentsCourseMap);
-	
+	    	for(Course course : registeredStudentsCourseMap.keySet()) {	    		
+	    		ArrayList<UserCoursesDoneWrapper> registeredList = new ArrayList<UserCoursesDoneWrapper>(registeredStudentsCourseMap.get(course));	
+	    		totalEligibleStudentCourseMap.put(course,registeredList);
+	    	}	
 	    	HashMap<Course, ArrayList<UserCoursesDoneWrapper>> tempMap = new HashMap<Course, ArrayList<UserCoursesDoneWrapper>>();
 	    	    	  	
 	    	for(Course courseEnquiry : enquiredStudentsCourseMap.keySet()) {
 	    		boolean courseFound = false;
 	    		for(Course course : totalEligibleStudentCourseMap.keySet()) {
 		    		if(course.getCourseId() == courseEnquiry.getCourseId()) {	    			
-		    			totalEligibleStudentCourseMap.get(course).addAll(enquiredStudentsCourseMap.get(courseEnquiry));	    			
+	    	    		
+	    	    		totalEligibleStudentCourseMap.get(course).addAll(enquiredStudentsCourseMap.get(courseEnquiry));	
+
 	                    courseFound = true;
 	                    break;
 		    		}	   
@@ -209,7 +213,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 		    	    	            		int id1 = id.getUserId();
 		    	    	            		if(User==id1) {
 		    	    	            			facultyName.getItems().add(faculty.getFirstName());
-		    	    	            			System.out.println("added");
+		    	    	            			//System.out.println("added");
 		    	    	            			break;
 		    	    	            		}
 		    	    	            	}
@@ -241,21 +245,21 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 			    		            	Parent myNewScene;
 			    		            	try {
 			    		            		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/BatchLauncher.fxml"));
-			    		            		myNewScene = loader.load();
+			    		            		myNewScene = loader.load();			    		            		
 			    		            		
-			    		            		Course courseEnquiry = null;
+			    		            		BatchLauncherController batchLauncherController = loader.getController();	
+			    		            				    	    					
+			    	    					Course courseEnquiry = null;
 			    	    					
 			    	    					for(Course courseEnquiry1 : enquiredStudentsCourseMap.keySet()) {
 			    	    						
 			    	    						if(courseEnquiry1.getCourseId()==course.getCourseId()) {
 			    	    							courseEnquiry = courseEnquiry1;
 			    	    							break;
-			    	    						}
-			    	    	            	
+			    	    						}			    	    	            	
 			    	    	            	}
-			    		            		
-			    		            		BatchLauncherController batchLauncherController = loader.getController();			
-			    		            		batchLauncherController.setStudentDetail(		    		            				
+
+			    		            		batchLauncherController.setBatchDetail(		    		            				
 			    		            				course, 
 			    		            				registeredStudentsCourseMap.get(course), 
 			    	    							enquiredStudentsCourseMap.get(courseEnquiry),
@@ -272,12 +276,6 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 			    		            	}
 			    		            }
 		    						else {
-		    							
-		    							
-//		    							start(null);
-//		    							If you don't want it to be modal (block other windows), use:
-//	
-//		    							dialog.initModality(Modality.NONE);
 		    							Stage stage = (Stage) launchButton.getScene().getWindow();
 		    					    	Parent myNewScene;
 		    							try {

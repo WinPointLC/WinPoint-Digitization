@@ -149,9 +149,10 @@ public class UserProfile {
 		this.lastName = lastName;
 	}
 	
-	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+	public UserProfile(Date birthDate, Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			Integer userCategoryId, String timeSlotsId, Integer segmentTypeId) {
 		super();
+		this.birthDate = birthDate;
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -384,12 +385,13 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		
 	}
 
-	public UserProfile(String firstName2, String lastName2, String emailId, String mobileNo, String timeSlotsId2,
+	public UserProfile(String firstName2, String lastName2, String emailId, Date birthDate, String mobileNo, String timeSlotsId2,
 			String coursesAlreadyDone, int segmetTypeId) {
 		// TODO Auto-generated constructor stub
 		this.firstName=firstName2;
 		this.lastName=lastName2;
 		this.email=emailId;
+		this.birthDate=birthDate;
 		this.mobileNumber=mobileNo;
 		this.timeSlotsId=timeSlotsId2;
 		this.courseAlreadyDone=coursesAlreadyDone;
@@ -399,6 +401,11 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 	public UserProfile(String Name, int userId) {
 		// TODO Auto-generated constructor stub
 		this.firstName = Name;
+		this.userId = userId;
+	}
+
+	public UserProfile(int userId) {
+		// TODO Auto-generated constructor stub
 		this.userId = userId;
 	}
 

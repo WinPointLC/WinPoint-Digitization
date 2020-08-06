@@ -10,8 +10,6 @@ import com.winpoint.common.dao.BatchDetailsDao;
 import com.winpoint.common.dao.EnquiryDetailsDao;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
 
-
-
 public class BatchDetailsHelper {
 		
 	public List<BatchDetailsWrapper> getBatchDetailsList() {

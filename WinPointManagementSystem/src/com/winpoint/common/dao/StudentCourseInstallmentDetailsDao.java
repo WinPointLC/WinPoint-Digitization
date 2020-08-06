@@ -1,14 +1,11 @@
 package com.winpoint.common.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-import com.winpoint.common.beans.ManageRevenue;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
@@ -16,13 +13,12 @@ import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 public class StudentCourseInstallmentDetailsDao {
 	
 	
-	//GROUP A ~ FOR REVENUE MANAGEMENT SCREEN TO INSERT IN PLANNED INSTALLMENT
-	
+	//GROUP A ~ FOR REVENUE MANAGEMENT SCREEN TO INSERT IN PLANNED INSTALLMENT	
 	public void getPaymentDetail(StudentCourseInstallmentDetails revenueDetail){
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			
+		
 			java.sql.Date sqActualInstallmentDate = new java.sql.Date(revenueDetail.getActualInstallment1Date().getTime());
 			
 			String query = "\n" + 
@@ -32,16 +28,14 @@ public class StudentCourseInstallmentDetailsDao {
 					"COURSE_ID"+","+
 					"ACTUAL_INSTALLMENT1_DATE)\n "+
 					"VALUES("+
-					1+","+
-					1+",'"+
+					revenueDetail.getUserId()+","+
+					revenueDetail.getCourseId()+",'"+
 					sqActualInstallmentDate+"')";
 				
 			 System.out.println(query);
-			 statement.executeQuery(query);
+			 statement.executeUpdate(query);
 			
-
-		}catch(SQLException e) {
-			
+		}catch(SQLException e) {			
 			e.printStackTrace();
 		}
 			
