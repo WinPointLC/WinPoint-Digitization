@@ -36,6 +36,9 @@ public class UserProfile {
 	private Integer segmentTypeId;
 	private String courseAlreadyDone;
 	private Boolean activeStatus;
+	
+	
+
 	/**
 	 * @param userId
 	 * @param firstName
@@ -68,7 +71,152 @@ public class UserProfile {
 	 * @param courseAlreadyDone
 	 * @param activeStatus
 	 */
+	
+	public UserProfile(
+			int userId,
+			String firstName, 
+			String lastName, 
+			String email, 
+			String mobileNumber,
+			String address,
+			java.sql.Date birthDate, 
+			String college, 
+			String degree, 
+			String branch,
+			String photoLocation, 
+			String password,
+			int securityQuestionId, 
+			String securityAnswer,
+			int userCategoryId, 
+			String occupation,
+			String organisation, 
+			String designation, 
+			String domain,
+			String role, 
+			int experience, 
+			int createdBy,
+			java.sql.Date createDate,
+			String gender, 
+			int yearOfGraduation, 
+			String timeSlotsId,
+			int segmentTypeId, 
+			String courseAlreadyDone, 
+			boolean activeStatus) {
+		// TODO Auto-generated constructor stub
+		
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.yearOfGraduation = yearOfGraduation;
+		this.photoLocation = photoLocation;
+		this.password = password;
+		this.gender = gender;
+		this.securityQuestionId = securityQuestionId;
+		this.securityAnswer = securityAnswer;
+		this.userCategoryId = userCategoryId;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.createdBy = createdBy;
+		this.createDate = createDate;
+		this.timeSlotsId = timeSlotsId;
+		this.segmentTypeId = segmentTypeId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.activeStatus = activeStatus;
+		
+		
+	}
+	
+	
+		public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
+			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
+			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
+			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
+			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.college = college;
+		this.degree = degree;
+		this.branch = branch;
+		this.yearOfGraduation = yearOfGraduation;
+		this.photoLocation = photoLocation;
+		this.password = password;
+		this.gender = gender;
+		this.securityQuestionId = securityQuestionId;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		this.userCategoryId = userCategoryId;
+		this.occupation = occupation;
+		this.organisation = organisation;
+		this.designation = designation;
+		this.domain = domain;
+		this.role = role;
+		this.experience = experience;
+		this.createdBy = createdBy;
+		this.createDate = createDate;
+		this.timeSlotsId = timeSlotsId;
+		this.segmentTypeId = segmentTypeId;
+		this.courseAlreadyDone = courseAlreadyDone;
+		this.activeStatus = activeStatus;
+	}
 
+	
+//	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
+//			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
+//			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
+//			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
+//			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
+//			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
+//		super();
+//		this.userId = userId;
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.mobileNumber = mobileNumber;
+//		this.address = address;
+//		this.birthDate = birthDate;
+//		this.college = college;
+//		this.degree = degree;
+//		this.branch = branch;
+//		this.yearOfGraduation = yearOfGraduation;
+//		this.photoLocation = photoLocation;
+//		this.password = password;
+//		this.gender = gender;
+//		this.securityQuestionId = securityQuestionId;
+//		this.securityAnswer = securityAnswer;
+//		this.userCategoryId = userCategoryId;
+//		this.occupation = occupation;
+//		this.organisation = organisation;
+//		this.designation = designation;
+//		this.domain = domain;
+//		this.role = role;
+//		this.experience = experience;
+//		this.createdBy = createdBy;
+//		this.createDate = createDate;
+//		this.timeSlotsId = timeSlotsId;
+//		this.segmentTypeId = segmentTypeId;
+//		this.courseAlreadyDone = courseAlreadyDone;
+//		this.activeStatus = activeStatus;
+//	}
+	
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, Integer securityQuestionId, String securityAnswer, Integer userCategoryId,
@@ -101,6 +249,7 @@ public class UserProfile {
 		this.createDate = createDate;
 	}
 
+	
 	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
 			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
@@ -131,8 +280,8 @@ public class UserProfile {
 		this.domain = domain;
 		this.role = role;
 		this.experience = experience;
-		/*this.createdBy = createdBy;
-		this.createDate = createDate;*/
+		this.createdBy = createdBy;
+		this.createDate = createDate;
 	}
 	// Abhishek
 	public UserProfile(String firstName, String lastName, int userId) {
@@ -192,44 +341,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		this.college = college;
 	}
 
-	public UserProfile(Integer userId, String firstName, String lastName, String email, String mobileNumber,
-			String address, Date birthDate, String college, String degree, String branch, Integer yearOfGraduation,
-			String photoLocation, String password, String gender, Integer securityQuestionId, String securityQuestion,
-			String securityAnswer, Integer userCategoryId, String occupation, String organisation, String designation,
-			String domain, String role, Integer experience, Integer createdBy, Date createDate, String timeSlotsId,
-			Integer segmentTypeId, String courseAlreadyDone, Boolean activeStatus) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
-		this.birthDate = birthDate;
-		this.college = college;
-		this.degree = degree;
-		this.branch = branch;
-		this.yearOfGraduation = yearOfGraduation;
-		this.photoLocation = photoLocation;
-		this.password = password;
-		this.gender = gender;
-		this.securityQuestionId = securityQuestionId;
-		this.securityQuestion = securityQuestion;
-		this.securityAnswer = securityAnswer;
-		this.userCategoryId = userCategoryId;
-		this.occupation = occupation;
-		this.organisation = organisation;
-		this.designation = designation;
-		this.domain = domain;
-		this.role = role;
-		this.experience = experience;
-		this.createdBy = createdBy;
-		this.createDate = createDate;
-		this.timeSlotsId = timeSlotsId;
-		this.segmentTypeId = segmentTypeId;
-		this.courseAlreadyDone = courseAlreadyDone;
-		this.activeStatus = activeStatus;
-	}
+
 	
 	
 	
@@ -408,6 +520,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		// TODO Auto-generated constructor stub
 		this.userId = userId;
 	}
+
 
 	/**
 	 * @return the userId

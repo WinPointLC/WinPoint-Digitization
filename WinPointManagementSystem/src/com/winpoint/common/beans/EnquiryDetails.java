@@ -50,8 +50,8 @@ public class EnquiryDetails extends UserProfile {
 	@param segmentTypeId;
 	@param suggestion;
 	@param activeStatus;
-	*/
-
+	*/	
+	
 	public EnquiryDetails(String firstName, String lastName, String email, String mobileNumber,
 			String address, Date birthDate, String college, String degree, String branch, String occupation,
 			String organisation, String designation, String domain, String role, Integer experience, Integer createdBy,

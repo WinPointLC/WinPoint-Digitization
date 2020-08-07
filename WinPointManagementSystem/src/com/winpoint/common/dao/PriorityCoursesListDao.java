@@ -36,9 +36,14 @@ public class PriorityCoursesListDao {
 			for(String s:resultSet.getString("PRE_REQUISITE").split(",")) {
 				coursesPre.add(s);
 			}
-			coursesList.put(new Course(resultSet.getInt("COURSE_ID"), resultSet.getString("COURSE_NAME"),
-					resultSet.getInt("FEES"), resultSet.getInt("STREAM_ID"), resultSet.getInt("COURSE_TYPE_ID"),
-					resultSet.getInt("DURATION")), coursesPre);
+			coursesList.put(new Course(
+					resultSet.getInt("COURSE_ID"), 
+					resultSet.getString("COURSE_NAME"),
+					resultSet.getInt("FEES"), 
+					resultSet.getInt("STREAM_ID"), 
+					resultSet.getInt("COURSE_TYPE_ID"),
+					resultSet.getInt("DURATION")), 
+					coursesPre);
 		}		
 	}
 	
@@ -63,8 +68,7 @@ public class PriorityCoursesListDao {
 
 	try(Connection connection = ConnectionManager.getConnection()){
 		Statement statement = connection.createStatement();
-		String query = "SELECT BIRTHDATE,USER_ID,FIRST_NAME,LAST_NAME,COURSE_ALREADY_DONE,USER_ID,MOBILE_NUMBER,TIME_SLOTS_IDS,\n" + 
-				"				EMAIL_ID,USER_CATEGORY_ID, SEGMENT_TYPE_ID FROM USER_PROFILE\n" + 
+		String query = "SELECT * FROM USER_PROFILE\n" + 
 				"				WHERE ACTIVE_STATUS = 1\n" + 
 				"				AND USER_CATEGORY_ID=1\n" + 
 				"				";
@@ -83,9 +87,37 @@ public class PriorityCoursesListDao {
 		}
 			
 		
-			UserProfile userProfile=new UserProfile(resultSet.getDate("BIRTHDATE"),resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), resultSet.getString("LAST_NAME"), 
-					resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getInt("USER_CATEGORY_ID"),
-					resultSet.getString("TIME_SLOTS_IDS"),resultSet.getInt("SEGMENT_TYPE_ID"));
+			UserProfile userProfile=new UserProfile(
+					resultSet.getInt("USER_ID"),
+					resultSet.getString("FIRST_NAME"),
+					resultSet.getString("LAST_NAME"),
+					resultSet.getString("EMAIL_ID"), 
+					resultSet.getString("MOBILE_NUMBER"),
+					resultSet.getString("ADDRESS"),
+					resultSet.getDate("BIRTHDATE"),
+					resultSet.getString("COLLEGE"),
+					resultSet.getString("DEGREE"),
+					resultSet.getString("BRANCH"),
+					resultSet.getString("PHOTO_LOCATION"),
+					resultSet.getString("PASSWORD"),
+					resultSet.getInt("SECURITY_QUESTION_ID"),
+					resultSet.getString("SECURITY_ANSWER"),
+					resultSet.getInt("USER_CATEGORY_ID"),
+					resultSet.getString("OCCUPATION"),
+					resultSet.getString("ORGANIZATION"),
+					resultSet.getString("DESIGNATION"),
+					resultSet.getString("DOMAIN"),
+					resultSet.getString("ROLE"),
+					resultSet.getInt("EXPERIENCE"),
+					resultSet.getInt("CREATED_BY"),
+					resultSet.getDate("CREATED_DATE"),
+					resultSet.getString("GENDER"),
+					resultSet.getInt("YEAR_OF_GRADUATION"),
+					resultSet.getString("TIME_SLOTS_IDS"),
+					resultSet.getInt("SEGMENT_TYPE_ID"),
+					resultSet.getString("COURSE_ALREADY_DONE"),
+					resultSet.getBoolean("ACTIVE_STATUS")			
+					);
 			
 			coursesDoneMap.put(resultSet.getInt("USER_ID"),new UserCoursesDoneWrapper(userProfile, coursesDone));
 			
@@ -127,9 +159,7 @@ public class PriorityCoursesListDao {
 		ResultSet resultSet=null;
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			String query = "SELECT ENQUIRY_ID,FIRST_NAME,LAST_NAME,EMAIL_ID,BIRTH_DATE,MOBILE_NO,\n" + 
-					"ELIGIBILITY,COURSE_INTERESTED_IN,TIME_SLOTS_ID,COURSE_ALREADY_DONE,\n" + 
-					" SEGMENT_TYPE_ID FROM ENQUIRY_DETAILS\n" + 
+			String query = "SELECT * FROM ENQUIRY_DETAILS\n" + 
 					"WHERE ACTIVE_STATUS = 1";
 			
 			resultSet = statement.executeQuery(query);
@@ -137,10 +167,38 @@ public class PriorityCoursesListDao {
 			boolean eligibility=resultSet.getInt("ELIGIBILITY")==0?true:false;
 				
 				
-			EnquiryDetails en = new EnquiryDetails(resultSet.getInt("ENQUIRY_ID"),resultSet.getString("FIRST_NAME"),
-					resultSet.getString("LAST_NAME"),resultSet.getString("EMAIL_ID"),resultSet.getDate("BIRTH_DATE"),resultSet.getString("MOBILE_NO"),
-					eligibility,resultSet.getString("COURSE_INTERESTED_IN"),resultSet.getString("TIME_SLOTS_ID"),
-					resultSet.getString("COURSE_ALREADY_DONE"),resultSet.getInt("SEGMENT_TYPE_ID"));
+			EnquiryDetails en = new EnquiryDetails(
+					resultSet.getInt("ENQUIRY_ID"),
+					resultSet.getString("FIRST_NAME"),
+					resultSet.getString("LAST_NAME"),
+					resultSet.getString("EMAIL_ID"),
+					resultSet.getString("MOBILE_NO"),
+					resultSet.getString("ADDRESS"),
+					resultSet.getDate("BIRTH_DATE"),
+					resultSet.getString("COLLEGE"),
+					resultSet.getString("DEGREE"),
+					resultSet.getString("BRANCH"),
+					resultSet.getString("OCCUPATION"),
+					resultSet.getString("ORGANISATION"),
+					resultSet.getString("DESIGNATION"),
+					resultSet.getString("DOMAIN"),
+					resultSet.getString("ROLE"),
+					resultSet.getInt("EXPERIENCE"),
+					resultSet.getInt("CREATED_BY"),
+					resultSet.getDate("DATE_OF_ENQUIRY"),
+					resultSet.getString("GENDER"),
+					resultSet.getInt("YEAR_OF_GRADUATION"),
+					resultSet.getString("RECOMMENDATION"),
+					eligibility,
+					resultSet.getString("COURSE_INTERESTED_IN"),
+					resultSet.getString("REFERENCE"),
+					resultSet.getString("TIME_SLOTS_ID"),
+					resultSet.getString("COURSE_ALREADY_DONE"),
+					resultSet.getDate("START_DATE"),
+					resultSet.getInt("SEGMENT_TYPE_ID"),
+					resultSet.getString("SUGGESTION"),
+					resultSet.getBoolean("ACTIVE_STATUS"));
+			
 				HashSet<String>coursesDone = new HashSet<>();
 				HashSet<String>coursesInterestedIn = new HashSet<>();
 				for(String course: resultSet.getString("COURSE_ALREADY_DONE").split(",")) {

@@ -19,7 +19,6 @@ import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.DaoHelper;
-import com.winpoint.common.helpers.EnquiryDetailsHelper;
 import com.winpoint.common.helpers.ManageRevenueHelper;
 import com.winpoint.common.helpers.OrganizationTypeHelper;
 import com.winpoint.common.helpers.PaymentTypeHelper;
@@ -149,12 +148,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
     void submitFrame(ActionEvent event) throws IOException {
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
     	// Converting in the date Format : 
     	LocalDate ldFirstPaymentDate = firstAmountDate.getValue();
     	Calendar cFirstPaymentDate =  Calendar.getInstance();
@@ -216,7 +209,20 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			DaoHelper daoHelper = new DaoHelper();
 			//daoHelper.function(this.userId,enquiryDetailsHelper.getEnquiryDetailsOfStudent(this.userId),courseId,batchId);
 			try {
-				daoHelper.function(this.user,courseId,batchId);
+			
+		    	int latestUserId = new DaoHelper().accessLatestUserId();
+		    	
+		    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
+		    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
+		    	
+		    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);    	
+		        
+		    	/***************************************************/   
+		    	
+				daoHelper.functionEnquiredStudent(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);
+				
+				
+		    	
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -231,23 +237,23 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			listOfEnquiredStudents1.remove(this.user);
 
 		}else {
+			
+
+	    	int latestUserId = new DaoHelper().accessLatestUserId();
+	    	
+	    	
+	    	
+	    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
+	    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
+	    	
+	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);    	
+			
+//	    	daoHelper.function(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);
+	    	
 			listOfRegisteredStudents1.remove(this.user);
 		}
+    
     	
-    	int latestUserId = new DaoHelper().accessLatestUserId();
-    	
-    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
-    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
-    	
-    	new ManageRevenueHelper().getRevenueDetailList(manageRevenueObject);
-    	
-       //********************************************//  It goes in studentcoursesinstallmentdetails
-    	   	
-    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);
-    	
-    	new StudentCourseInstallmentHelper().getPaymentDetail(studentCourseInstallmentObject);
-    	
-    	/***************************************************/   	
     	
     	Parent myNewScene = null;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));

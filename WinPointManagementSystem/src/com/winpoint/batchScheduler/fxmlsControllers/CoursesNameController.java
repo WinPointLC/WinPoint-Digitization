@@ -136,7 +136,7 @@ public class CoursesNameController extends ParentFXMLController{
    	   		   		EventHandler<ActionEvent> eventaddStudent = new EventHandler<ActionEvent>() { 
    	   		             public void handle(ActionEvent e) 
    	   		             { 
-   	   		           System.out.println("Entered into the Handler registered");
+//   	   		           System.out.println("Entered into the Handler registered");
    	   		                FXMLLoader loader = new FXMLLoader();
    	   		             	Parent myNewScene = null;
    	   		 				try {
@@ -146,11 +146,11 @@ public class CoursesNameController extends ParentFXMLController{
    	   		 					e1.printStackTrace();
    	   		 				}
    	   		 				
-   	   		 			System.out.println("User : "+registeredStudent.getUserProfile().getUserId());
+//   	   		 			System.out.println("User : "+registeredStudent.getUserProfile().getUserId());
    	   		 			
    	   		 			ManageRevenueContoller manageRevenueController = loader.getController();
 
-   	   		 			System.out.println("REGISTERED GENERATED BATCH NAME : "+generatedBatchName); 	   		 			
+//   	   		 			System.out.println("REGISTERED GENERATED BATCH NAME : "+generatedBatchName); 	   		 			
    	   		 		  		 			
 	   	   		 		manageRevenueController.setStudentData(
 	   	   		 				
@@ -183,8 +183,8 @@ public class CoursesNameController extends ParentFXMLController{
    		}
    		
    		for( UserCoursesDoneWrapper enquiredStudent: listOfEnquiredStudents1 ) {
-   			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-   			System.out.println((EnquiryDetails)enquiredStudent.getUserProfile());
+//   			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//   			System.out.println((EnquiryDetails)enquiredStudent.getUserProfile());
 //   			System.out.println("Enquired : "+enquiredStudent.getUserProfile().getFirstName());
    			Button addStudent = new Button("Add Student");
    			
@@ -203,7 +203,7 @@ public class CoursesNameController extends ParentFXMLController{
 	 				
 	 				ManageRevenueContoller manageRevenueController = loader.getController();
 	   		 				
-	 				System.out.println("Enquired GENERATED BATCH NAME : "+generatedBatchName); 	   		 			
+//	 				System.out.println("Enquired GENERATED BATCH NAME : "+generatedBatchName); 	   		 			
 	 				
 	   		 		manageRevenueController.setStudentData(
 	   		 					enquiredStudent,

@@ -101,7 +101,7 @@ public class BatchDetailsDao {
 					""+ batchDetails.getCreatedBy() +",\n" + 
 					"'"+ sqlCreatedDate +"')\n" + 
 					"";
-			System.out.println(query);
+//			System.out.println(query);
 			statement.executeUpdate(query);
 			
 		}
