@@ -237,23 +237,16 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			listOfEnquiredStudents1.remove(this.user);
 
 		}else {
-			
-
-	    	int latestUserId = new DaoHelper().accessLatestUserId();
-	    	
-	    	
 	    	
 	    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
-	    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
+	    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userProfileId,recieveDate);
 	    	
-	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);    	
+	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(userProfileId,courseId,firstPaymentDate);    	
 			
 //	    	daoHelper.function(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);
 	    	
 			listOfRegisteredStudents1.remove(this.user);
 		}
-    
-    	
     	
     	Parent myNewScene = null;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
@@ -296,10 +289,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			public void handle(ActionEvent event) {
 				int index = segmentType.getItems().indexOf(segmentType.getValue());
 				segmentTypeId = segmentTypeList.get(index).getSegmentTypeId();
-				String description = segmentTypeList.get(index).getSegmentTypeName();				
-				System.out.println("Index : "+index);
-            	System.out.println("SegementTypeId : "+ segmentTypeId);
-            	System.out.println("Description : "+ description);
 			}
 		};
     	segmentType.setOnAction(eventSegmentType);
@@ -314,10 +303,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			public void handle(ActionEvent event) {
 				int index = revenueType.getItems().indexOf(revenueType.getValue());
 				revenueTypeId = revenueTypeList.get(index).getRevenueTypeId();
-				String description = revenueTypeList.get(index).getRevenueTypeName();				
-				System.out.println("Index : "+index);
-            	System.out.println("RevenueTypeId : "+ segmentTypeId);
-            	System.out.println("Description : "+ description);
 			}
 		};
 		revenueType.setOnAction(eventRevenueType);
@@ -332,10 +317,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			public void handle(ActionEvent event) {
 				int index = organization.getItems().indexOf(organization.getValue());
 				organizationTypeId = organizationTypeList.get(index).getOrganizationTypeId();
-				String description = organizationTypeList.get(index).getOrganizationTypeName();				
-				System.out.println("Index : "+index);
-            	System.out.println("RevenueTypeId : "+ organizationTypeId);
-            	System.out.println("Description : "+ description);
 			}
 		};
 		organization.setOnAction(eventOrganizationType);
@@ -350,10 +331,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			public void handle(ActionEvent event) {
 				int index = paymentMode.getItems().indexOf(paymentMode.getValue());
 				paymentTypeId = paymentTypeList.get(index).getPaymentTypeId();
-				String description = paymentTypeList.get(index).getPaymentTypeName();				
-				System.out.println("Index : "+index);
-            	System.out.println("RevenueTypeId : "+ paymentTypeId);
-	           	System.out.println("Description : "+ description);
 	        }
 		};
 		paymentMode.setOnAction(eventPaymentType);
@@ -363,16 +340,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
    	}
-
-//	public void setStudentData(int userProfileId1, int selectedSegmentTypeId, String generatedBatchName, int selectedCourseId) {
-//		this.userProfileId = userProfileId1;
-//		segmentTypeId = selectedSegmentTypeId;
-//		generatedBatchName1 = generatedBatchName;
-//		selectedCourseId1 = selectedCourseId;
-//		System.out.println("User : "+userProfileId);
-//		batchNumber.setText(generatedBatchName1);
-//		
-//	}
 
 	public void setStudentData(
 			UserCoursesDoneWrapper enquiredStudent, 

@@ -53,6 +53,8 @@ public class TransferEnquiryDetailsToUserProfileDao {
 //		 *  2). insert into studentcourseDetail
 //		 *  3). delete from enquiry detail
 			
+		
+		int latestUserId = accessLatestUserId();
 
 		EnquiryDetails enquiryDetails = (EnquiryDetails)user.getUserProfile();
 		int id = enquiryDetails.getEnquiryId();
@@ -65,6 +67,12 @@ public class TransferEnquiryDetailsToUserProfileDao {
 		java.sql.Date sqlRecieveDate = new java.sql.Date(revenueDetail.getRecieveDate().getTime());
 		java.sql.Date sqActualInstallmentDate = new java.sql.Date(studentCourseInstallmentObject.getActualInstallment1Date().getTime());
 		
+		int active; 
+		if(enquiryDetails.getActiveStatus()) {
+			active = 1;
+		}else {
+			active = 0;
+		}
 		
 		    PreparedStatement insertUserProfile = null;
 		    PreparedStatement insertStudentCourseDetail = null;
@@ -120,7 +128,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 							"'"+enquiryDetails.getTimeSlotsId()+"',\n" + 
 							""+enquiryDetails.getSegmentTypeId()+",\n" + 
 							"'"+enquiryDetails.getCourseAlreadyDone()+"',\n" + 
-							""+enquiryDetails.getActiveStatus()+"\n" + 
+							""+active+"\n" + 
 							")";
 
 
@@ -133,7 +141,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 							")\n" + 
 							"VALUES\n" + 
 							"(\n" + 
-							"	"+id+",\n" + 
+							"	"+latestUserId+",\n" + 
 							"	"+courseId+",\n" + 
 							"	"+batchId+"\n" + 
 							")";
@@ -171,7 +179,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 					"COURSE_ID"+","+
 					"ACTUAL_INSTALLMENT1_DATE)\n "+
 					"VALUES("+
-					studentCourseInstallmentObject.getUserId()+","+
+					latestUserId+","+
 					studentCourseInstallmentObject.getCourseId()+",'"+
 					sqActualInstallmentDate+"')";
 		    
@@ -232,14 +240,14 @@ public class TransferEnquiryDetailsToUserProfileDao {
 	public void functionRegisteredStudent(UserCoursesDoneWrapper user, Integer courseId, Integer batchId, ManageRevenue revenueDetail, StudentCourseInstallmentDetails studentCourseInstallmentObject) throws SQLException {
 		// TODO Auto-generated method stub
 
-		EnquiryDetails enquiryDetails = (EnquiryDetails)user.getUserProfile();
-		int id = enquiryDetails.getEnquiryId();
+		UserProfile userDetails = user.getUserProfile();
+		int id = userDetails.getUserId();
 		System.out.println("ID : "+id);
-		if(enquiryDetails.getBirthDate()==null) {
+		if(userDetails.getBirthDate()==null) {
 			System.out.println("*************NULL****************");
 		}
 		
-		java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
+		java.sql.Date sqlBirthDate = new java.sql.Date(userDetails.getBirthDate().getTime());
 		java.sql.Date sqlRecieveDate = new java.sql.Date(revenueDetail.getRecieveDate().getTime());
 		java.sql.Date sqActualInstallmentDate = new java.sql.Date(studentCourseInstallmentObject.getActualInstallment1Date().getTime());
 		
@@ -297,7 +305,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 					"COURSE_ID"+","+
 					"ACTUAL_INSTALLMENT1_DATE)\n "+
 					"VALUES("+
-					studentCourseInstallmentObject.getUserId()+","+
+					id+","+
 					studentCourseInstallmentObject.getCourseId()+",'"+
 					sqActualInstallmentDate+"')";
 
