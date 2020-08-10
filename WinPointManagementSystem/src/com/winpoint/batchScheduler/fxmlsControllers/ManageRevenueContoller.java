@@ -105,8 +105,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
     
     //Abhishek 
     @FXML
-    void submitFrame(ActionEvent event) throws IOException {
-    	
+    void submitClick(ActionEvent event) {    	
     	// Converting in the date Format :
     	// First Payment Date -
     	LocalDate ldFirstPaymentDate = firstAmountDate.getValue();

@@ -112,7 +112,7 @@
          </BorderPane.margin>
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitFrame" prefHeight="25.0" prefWidth="250.0" text="Submit" HBox.hgrow="ALWAYS" />
+            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitClick" prefHeight="25.0" prefWidth="250.0" text="Submit" HBox.hgrow="ALWAYS" />
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
          <padding>
