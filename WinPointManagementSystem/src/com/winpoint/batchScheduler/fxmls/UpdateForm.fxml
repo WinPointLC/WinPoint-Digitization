@@ -49,7 +49,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="47.0" layoutY="169.0" prefHeight="23.0" prefWidth="135.0" text="DOB:">
+                  <Label layoutX="47.0" layoutY="169.0" prefHeight="23.0" prefWidth="135.0" text="Date of Birth:">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -161,13 +161,13 @@
             <Insets bottom="25.0" left="25.0" right="25.0" />
          </BorderPane.margin>
          <children>
-            <Button fx:id="cancelFrame" mnemonicParsing="false" onAction="#validateCancelFrame" prefWidth="100.0" text="Cancel">
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelClick" prefWidth="100.0" text="Cancel">
                <HBox.margin>
                   <Insets bottom="25.0" left="25.0" top="25.0" />
                </HBox.margin>
             </Button>
             <Region prefHeight="75.0" prefWidth="97.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="resetFrame" mnemonicParsing="false" onAction="#validateResetFrame" prefWidth="100.0" text="Reset" HBox.hgrow="ALWAYS">
+            <Button fx:id="reset" mnemonicParsing="false" onAction="#resetClick" prefWidth="100.0" text="Reset" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="25.0" top="25.0" />
                </HBox.margin>

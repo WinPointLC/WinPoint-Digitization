@@ -68,9 +68,9 @@ public class UpdateFormController extends ParentFXMLController {
     @FXML
     private CheckBox activeStatus;
     @FXML
-    private Button cancelFrame;
+    private Button cancel;
     @FXML
-    private Button resetFrame;
+    private Button reset;
     @FXML
     private Button submitFrame;
     @FXML
@@ -178,7 +178,7 @@ public class UpdateFormController extends ParentFXMLController {
     }
     
     @FXML
-    void validateResetFrame(ActionEvent event) {
+    void resetClick(ActionEvent event) {
     	
     	 firstName.clear();
       	 lastName.clear();
@@ -205,12 +205,12 @@ public class UpdateFormController extends ParentFXMLController {
     }
     
     @FXML
-    void validateCancelFrame(ActionEvent event) {
+    void cancelClick(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
 			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
-			Stage stage = (Stage) cancelFrame.getScene().getWindow();
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("My New Scene");
