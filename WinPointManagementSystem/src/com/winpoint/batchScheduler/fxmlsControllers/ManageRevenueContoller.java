@@ -19,12 +19,10 @@ import com.winpoint.common.beans.SegmentType;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.DaoHelper;
-import com.winpoint.common.helpers.ManageRevenueHelper;
 import com.winpoint.common.helpers.OrganizationTypeHelper;
 import com.winpoint.common.helpers.PaymentTypeHelper;
 import com.winpoint.common.helpers.RevenueTypeHelper;
 import com.winpoint.common.helpers.SegmentTypeHelper;
-import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.event.ActionEvent;
@@ -266,7 +264,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 				preferedTime,
 				facultyId,
 				generatedBatchName1,
-				selectedbatchId
+				selectedbatchId, null
 		);
 		
     	Stage stage = (Stage) submit.getScene().getWindow();

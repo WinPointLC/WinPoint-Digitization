@@ -230,23 +230,16 @@ public class PriorityCoursesListDao {
 		
 		for(Course course : courseList.keySet()) {
 			ArrayList<UserCoursesDoneWrapper>user= new ArrayList<>();//coursesStudentsEligibleMap.get(course);
-			//coursesStudentsEligibleMap.put(course,new ArrayList<>());
 			for(int userId : studentsList.keySet()) {
 				if((!(studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))
 						&& studentsList.get(userId).getCoursesDoneSet().containsAll(courseList.get(course))) || (courseList.get(course).contains("0") 
 								&& !studentsList.get(userId).getCoursesDoneSet().contains(Integer.toString(course.getCourseId())))){					
 					user.add(studentsList.get(userId));	
-					//System.out.println("Course : "+course.getCourseName()+" Name :  "+userId);
 				}
 			}
-			//System.out.println("Course : "+course.getCourseName()+" Size :  "+user.size());
-
 
 			coursesStudentsEligibleMap.put(course,user);
-//			for(UserCoursesDoneWrapper registered : coursesStudentsEligibleMap.get(course)) {
-//	    			   System.out.println("Student Registered : "+registered.getUserProfile().getFirstName());
-//	    	
-//	    	}
+
 		}
 		return coursesStudentsEligibleMap;
 	}
@@ -259,39 +252,22 @@ public class PriorityCoursesListDao {
 				
 		for(Course course : courseList.keySet()) {
 			ArrayList<UserCoursesDoneWrapper> enquiryList = new ArrayList<>();
-
-			//coursesEnquiredStudetnsMap.put(course, new ArrayList<>());
 			for(EnquiryDetails enquiry : EnquiredStudentsCoursesMap.keySet()) {
 				if( (!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId())))  &&
 						((courseList.get(course).contains("0"))||EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course)))    
 						&&  (EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId())))) {
 					
 					enquiryList.add(new UserCoursesDoneWrapper(enquiry, EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet()));
-					//System.out.println("Course : "+course.getCourseName()+" Name :  "+enquiry.getFirstName());
 				}
 				
 			}
-			//System.out.println("Course : "+course.getCourseName()+" Size :  "+enquiryList.size());
-
-
 			coursesEnquiredStudetnsMap.put(course, enquiryList);
-//	    	for(UserCoursesDoneWrapper registered : coursesEnquiredStudetnsMap.get(course)) {	    		
-//	    			System.out.println("Student Enquired : "+registered.getUserProfile().getFirstName());	    		
-//	    	}
 		}
 		
 		return coursesEnquiredStudetnsMap;
 	}
 		
 }
-
-//!EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().contains(Integer.toString(course.getCourseId()))
-
-//EnquiredStudentsCoursesMap.get(enquiry).getCoursesInterestedInSet().contains(Integer.toString(course.getCourseId()))
-
-//EnquiredStudentsCoursesMap.get(enquiry).getCoursesAlreadyDoneSet().containsAll(courseList.get(course))
-
-//(courseList.get(course).contains("0"))
 
 
 

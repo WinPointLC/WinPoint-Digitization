@@ -213,7 +213,6 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 		    	    	            		int id1 = id.getUserId();
 		    	    	            		if(User==id1) {
 		    	    	            			facultyName.getItems().add(faculty.getFirstName());
-		    	    	            			//System.out.println("added");
 		    	    	            			break;
 		    	    	            		}
 		    	    	            	}

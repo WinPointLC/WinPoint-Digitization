@@ -291,9 +291,7 @@ public class SignUpFormController extends ParentFXMLController {
 		Integer segmentTypeId1 = segmentTypeId; 
 		String suggestion1 = suggestion.getText(); 
 		Boolean activeStatus1 = active.isSelected();
-		
-
-		
+			
     	/*******************************************************/
 				
 		// Object Passing to the bean class : 

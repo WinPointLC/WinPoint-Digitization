@@ -161,7 +161,8 @@ public class BatchDetailsController extends ParentFXMLController{
 							preferedTime1,
 							facultyId1,
 							generatedBatchName1,
-							batchDetail.getBatchId()
+							batchDetail.getBatchId(),
+							batchDetail.getStartDate()
 							);
 					
                 	Stage stage = (Stage) add.getScene().getWindow();

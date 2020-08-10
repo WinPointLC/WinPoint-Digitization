@@ -105,7 +105,7 @@ public class BatchLauncherController extends ParentFXMLController {
 	    @FXML
 	    void validateSetLectureDuration(ActionEvent event) {
 
-	    	System.out.println("Total : "+totalHours);
+//	    	System.out.println("Total : "+totalHours);
 	    	String lectureDurationString = lectureDuration.getText();
 	    	lectureDuration1 = Integer.parseInt(lectureDurationString);		
 	    	totalNumberOfLectures1 = (totalHours*60/lectureDuration1);	
@@ -120,7 +120,7 @@ public class BatchLauncherController extends ParentFXMLController {
 			
 			//Given Date in String format
 			String oldDate = "2020-09-23";  
-			System.out.println("Date before Addition: "+oldDate);
+//			System.out.println("Date before Addition: "+oldDate);
 			//Specifying date format that matches the given date
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -136,7 +136,7 @@ public class BatchLauncherController extends ParentFXMLController {
 			//Date after adding the days to the given date
 			String newDate = sdf.format(c.getTime());  
 			//Displaying the new Date after addition of Days
-			System.out.println("Date after Addition: "+newDate);
+//			System.out.println("Date after Addition: "+newDate);
 			
 			try {
 		        endDate.setValue(LOCAL_DATE(newDate));
@@ -230,9 +230,9 @@ public class BatchLauncherController extends ParentFXMLController {
 				Parent myNewScene = null;
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/BatchDetails.fxml"));
-					System.out.println("After the Address");
+//					System.out.println("After the Address");
 					myNewScene = loader.load();
-					System.out.println("My");
+//					System.out.println("My");
 					// Passing the Data to the next Screen.
 				   	BatchDetailsController batchDetailsController =  loader.getController();
 				   	batchDetailsController.setListOfStudent(
@@ -289,9 +289,9 @@ public class BatchLauncherController extends ParentFXMLController {
 			listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
 			listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
 			
-			System.out.println(listOfRegisteredStudents1);
-			System.out.println(listOfEnquiredStudents1);
-			System.out.println("Dataset");
+//			System.out.println(listOfRegisteredStudents1);
+//			System.out.println(listOfEnquiredStudents1);
+//			System.out.println("Dataset");
 			
 			selectedSegmentTypeId = segmentType.getSegmentTypeId();
 			courseName = course.getCourseName();
