@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.dao.EnquiryDetailsDao;
-import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 
 public class EnquiryDetailsHelper {

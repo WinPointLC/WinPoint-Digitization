@@ -5,15 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.winpoint.common.beans.FacultySkills;
-import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class FacultySkillsDao {
 	
+	// Abhishek
 	public List<FacultySkills> getAvailableFaculty(Integer timeSlotsId, Integer courseId){
 		
 		List<FacultySkills> availableFaculty = new ArrayList<FacultySkills>();

@@ -3,7 +3,6 @@ package com.winpoint.common.helpers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.dao.UserProfileDao;
 import com.winpoint.common.wrappers.BatchIndividualFeedbackScreenWrapper;
@@ -38,7 +37,4 @@ public class UserProfileHelper {
 	    return new UserProfileDao().getStudentListForBatch(batchId);
 	}
 
-//	public void create(Integer userId, List<EnquiryDetails> list) {
-//		 new UserProfileDao().create(userId,list);
-//	}
 }
