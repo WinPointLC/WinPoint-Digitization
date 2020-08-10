@@ -42,7 +42,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class BatchLauncherController extends ParentFXMLController {
-		
+			
+		String selectedcourseName;
+		String prefreredTimeName;
+	
 		int selectedSegmentTypeId;
 	
 		Course course = new Course();
@@ -242,7 +245,9 @@ public class BatchLauncherController extends ParentFXMLController {
 				   			selectedSegmentTypeId, 
 				   			batchTime,
 				   			facultyId,
-				   			generatedBatchName
+				   			generatedBatchName,
+				   			selectedcourseName,
+				   			prefreredTimeName
 				   			);
 		            	
 				} catch (IOException e1) {
@@ -266,7 +271,10 @@ public class BatchLauncherController extends ParentFXMLController {
 	        BatchDetailsWrapper countBatch = new BatchDetailsHelper().countNumberOfBatches(courseId);
 	        int count = countBatch.getCount()+1;
 	        generatedBatchName = courseTypeName.toUpperCase()+"-"+courseName.toUpperCase()+"-"+currentYear+"-"+count;       
-	       	        
+	       	    
+	        selectedcourseName = courseName;
+	        prefreredTimeName = preferedTime;
+	        
 	    	batchName.setText(generatedBatchName);
 	       	timeChoice.setText(preferedTime.toUpperCase());
 	    	facultyId.setText(descriptionForFacultyName.toUpperCase());
@@ -288,10 +296,6 @@ public class BatchLauncherController extends ParentFXMLController {
 			
 			listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
 			listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
-			
-//			System.out.println(listOfRegisteredStudents1);
-//			System.out.println(listOfEnquiredStudents1);
-//			System.out.println("Dataset");
 			
 			selectedSegmentTypeId = segmentType.getSegmentTypeId();
 			courseName = course.getCourseName();

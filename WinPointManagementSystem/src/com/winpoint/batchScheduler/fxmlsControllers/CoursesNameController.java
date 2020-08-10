@@ -35,6 +35,8 @@ import javafx.stage.Stage;
 
 public class CoursesNameController extends ParentFXMLController{
 	
+	String selectedcourseName;
+	String prefreredTimeName;
 	int selectedbatchId;
 	int selectedCourseId;
 	int selectedSegmentTypeId; 
@@ -103,12 +105,6 @@ public class CoursesNameController extends ParentFXMLController{
     	TimeSlots timeSlotsName = timeSlotNamelist.get(preferedTime);		
     	
     	
-//    	EmailUtilityScreenController emailUtilityScreenController = new EmailUtilityScreenController();
-//    	emailUtilityScreenController.setEmailDetails(listOfEmailIds,courseName,startDate,timeSlotsName);
-    	
-//    	EmailUtility sendEmailObject = new EmailUtility();
-//    	sendEmailObject.sendEmail(listOfEmailIds,courseName,startDate,timeSlotsName);
-    	
     	// Navigation for the next Screen : 
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EmailUtilityScreen.fxml"));
     	Parent myNewScene;
@@ -116,7 +112,16 @@ public class CoursesNameController extends ParentFXMLController{
 			myNewScene = loader.load();
 			
 			EmailUtilityScreenController emailUtilityScreenController = loader.getController();
-			emailUtilityScreenController.sendEmail(listOfEmailIds, courseName, startDate, timeSlotsName);
+			emailUtilityScreenController.sendEmail(listOfEmailIds, selectedcourseName, startDate, prefreredTimeName);
+			emailUtilityScreenController.setStudentData(
+					listOfRegisteredStudents1, 
+					listOfEnquiredStudents1, 
+					selectedCourseId, 
+					selectedSegmentTypeId,
+					preferedTime, 
+					facultyId, 
+					generatedBatchName, 
+					selectedbatchId);
 			
 			Stage stage = (Stage) email.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
@@ -137,13 +142,16 @@ public class CoursesNameController extends ParentFXMLController{
 			int preferedTime1, 
 			int facultyId1, 
 			String generatedBatchName1, 
-			Integer selectedbatchId, Date startDate) {
+			Integer selectedbatchId, Date startDate, String selectedcourseName2, String prefreredTimeName2) {
 
 		this.startDate = startDate;
 		this.selectedbatchId = selectedbatchId;
-   		listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
-   		listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
+   		this.listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
+   		this.listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
    		
+   		
+   		selectedcourseName = selectedcourseName2;
+   		prefreredTimeName = prefreredTimeName2;
    		selectedCourseId = selectedCourseId1;
 		selectedSegmentTypeId = selectedSegmentTypeId1; 
 		preferedTime = preferedTime1;

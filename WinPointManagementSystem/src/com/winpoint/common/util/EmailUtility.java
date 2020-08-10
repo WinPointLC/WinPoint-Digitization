@@ -112,19 +112,5 @@ public class EmailUtility {
 					 System.out.println("1");
 					 boolean WasEmailSent = false; 
 			     }
-				
-				
-				
-				
-//				try {
-//					transport.close();
-//				} catch (MessagingException e) {
-//					// TODO Auto-generated catch block
-//					System.out.println("2");
-//					e.printStackTrace();
-//				}
 		}
-				
-	
-	
 }

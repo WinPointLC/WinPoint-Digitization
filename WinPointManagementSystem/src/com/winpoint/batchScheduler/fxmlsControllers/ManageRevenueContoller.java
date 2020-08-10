@@ -264,7 +264,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 				preferedTime,
 				facultyId,
 				generatedBatchName1,
-				selectedbatchId, null
+				selectedbatchId, null, null, null
 		);
 		
     	Stage stage = (Stage) submit.getScene().getWindow();

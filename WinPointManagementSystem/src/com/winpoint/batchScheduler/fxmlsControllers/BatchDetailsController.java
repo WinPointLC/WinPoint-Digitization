@@ -29,7 +29,9 @@ import javafx.stage.Stage;
 
 public class BatchDetailsController extends ParentFXMLController{
 
-	
+		String selectedcourseName;
+		String prefreredTimeName;
+		
 		int selectedCourseId1;
 		int selectedSegmentTypeId1; 
 		int preferedTime1;
@@ -101,7 +103,7 @@ public class BatchDetailsController extends ParentFXMLController{
 	    		Integer courseId, 
 	    		int selectedSegmentTypeId, 
 	    		Integer batchTime, 
-	    		Integer facultyId, String generatedBatchName) {
+	    		Integer facultyId, String generatedBatchName, String selectedcourseName1, String prefreredTimeName1) {
 	    	listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	    	
 	    	listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
@@ -114,6 +116,9 @@ public class BatchDetailsController extends ParentFXMLController{
 			preferedTime1 = batchTime;
 			facultyId1 = facultyId;
 			generatedBatchName1 = generatedBatchName;
+			
+			selectedcourseName = selectedcourseName1;
+			prefreredTimeName = selectedcourseName1;
   	   }
 
     @Override
@@ -162,7 +167,9 @@ public class BatchDetailsController extends ParentFXMLController{
 							facultyId1,
 							generatedBatchName1,
 							batchDetail.getBatchId(),
-							batchDetail.getStartDate()
+							batchDetail.getStartDate(),
+							selectedcourseName,
+							prefreredTimeName
 							);
 					
                 	Stage stage = (Stage) add.getScene().getWindow();

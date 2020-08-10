@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.util.EmailUtility;
+import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +23,9 @@ import javafx.stage.Stage;
 public class EmailUtilityScreenController {
 
 	ArrayList<String> listOfEmailIds;
-	CourseType courseName;
+	String courseName;
 	Date startDate;
-	TimeSlots timeSlotsName;
+	String timeSlotsName;
 	String emailSubject;
 	String emailmessage;
 	
@@ -36,6 +37,14 @@ public class EmailUtilityScreenController {
 
     @FXML
     private TextField messageTextBox;
+	private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents = new ArrayList<UserCoursesDoneWrapper>();
+	private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents = new ArrayList<UserCoursesDoneWrapper>();
+	private int selectedCourseId;
+	private int selectedSegmentTypeId;
+	private int preferedTime;
+	private int facultyId;
+	private String generatedBatchName1;
+	private Integer selectedbatchId;
 
     @FXML
     void setFrame(ActionEvent event) {    //eventSendEmail name to be changed
@@ -43,31 +52,40 @@ public class EmailUtilityScreenController {
     	EmailUtility sendEmailObject = new EmailUtility();
     	sendEmailObject.sendEmail(listOfEmailIds,subjectTextBox.getText(),messageTextBox.getText());
     	
-    	// Navigation for the next Screen : 
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
-    	Parent myNewScene;
+    	Parent myNewScene = null;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/CoursesName.fxml"));
 		try {
 			myNewScene = loader.load();
-			
-			EmailUtilityScreenController emailUtilityScreenController = loader.getController();
-			emailUtilityScreenController.sendEmail(listOfEmailIds, courseName, startDate, timeSlotsName);
-			
-			Stage stage = (Stage) setButton.getScene().getWindow();
-	    	Scene scene = new Scene(myNewScene);
-	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
-	    	stage.show(); 
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}   	
+		}
+	
+		CoursesNameController coursesNameController = loader.getController();
+		coursesNameController.setListOfStudents(
+				listOfRegisteredStudents, 
+				listOfEnquiredStudents,
+				selectedCourseId,
+				selectedSegmentTypeId,
+				preferedTime,
+				facultyId,
+				generatedBatchName1,
+				selectedbatchId, null, null, null
+		);
+		
+    	Stage stage = (Stage) setButton.getScene().getWindow();
+    	Scene scene = new Scene(myNewScene);
+    	stage.setScene(scene);
+    	stage.setTitle("Main Scene");
+    	stage.show();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
    		
    	}
 
-	public void sendEmail(ArrayList<String> listOfEmailIds, CourseType courseName, Date startDate,
-			TimeSlots timeSlotsName) {
+	public void sendEmail(ArrayList<String> listOfEmailIds, String courseName, Date startDate,
+			String timeSlotsName) {
 		// TODO Auto-generated method stub
 		this.listOfEmailIds = listOfEmailIds;
 		this.courseName = courseName;
@@ -82,4 +100,31 @@ public class EmailUtilityScreenController {
 		messageTextBox.setText(emailmessage);
 		
 	}
+	
+	public void setStudentData(
+			ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1,
+			ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1, 
+			int selectedCourseId1, 
+			int selectedSegmentTypeId,
+			int preferedTime, 
+			int facultyId,
+			String generatedBatchName, 
+			Integer selectedbatchId2
+			) {
+				
+//		this.userProfile = userProfile;
+		this.generatedBatchName1 = generatedBatchName;
+		this.selectedbatchId = selectedbatchId2;
+//		this.isEnquired = isEnquired;
+//		this.user = enquiredStudent;
+		this.listOfRegisteredStudents.addAll(listOfRegisteredStudents1);
+		this.listOfEnquiredStudents.addAll(listOfEnquiredStudents1);
+		this.selectedCourseId = selectedCourseId1;
+		this.selectedSegmentTypeId = selectedSegmentTypeId;
+		this.preferedTime = preferedTime;
+		this.facultyId = facultyId;
+		
+//		batchNumber.setText(generatedBatchName1);
+	}
+
 }
