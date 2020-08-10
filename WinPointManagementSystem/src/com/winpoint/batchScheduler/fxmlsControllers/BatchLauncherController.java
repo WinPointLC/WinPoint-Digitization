@@ -60,8 +60,7 @@ public class BatchLauncherController extends ParentFXMLController {
 		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1;
 		private Integer totalHours;	
 		CourseType courseType_Name;
-		Course course = new Course();		
-			
+		Course course = new Course();				
 	    @FXML
 	    private TextField lectureDuration;
 	    @FXML
@@ -94,9 +93,10 @@ public class BatchLauncherController extends ParentFXMLController {
 	    void validateTimeChoice(MouseEvent event) {}
 	    @FXML
 	    void validateFacultyId(ActionEvent event) {}
-
+	/*******************************************************************************************************************/
+	    
 	    @FXML
-	    void validateSetLectureDuration(ActionEvent event) {
+	    void setClick(ActionEvent event) {
 
 	    	String lectureDurationString = lectureDuration.getText();
 	    	lectureDuration1 = Integer.parseInt(lectureDurationString);		
@@ -135,7 +135,7 @@ public class BatchLauncherController extends ParentFXMLController {
 	    }
 	
 	    @FXML
-	    void cancelFrame(ActionEvent event) {
+	    void cancelClick(ActionEvent event) {
 	    	Stage stage = (Stage) launch.getScene().getWindow();
 	    	Parent myNewScene;
 			try {
@@ -150,7 +150,7 @@ public class BatchLauncherController extends ParentFXMLController {
 	    }
 
 	    @FXML
-	    void launchFrame(ActionEvent event) throws SQLException {	
+	    void launchClick(ActionEvent event) throws SQLException {	
 	
 	    	// Accessing Data :
 	    	// Accessing the timeSlots -

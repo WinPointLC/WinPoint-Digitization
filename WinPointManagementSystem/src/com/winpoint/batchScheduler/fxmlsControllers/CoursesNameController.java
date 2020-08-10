@@ -35,51 +35,38 @@ import javafx.stage.Stage;
 
 public class CoursesNameController extends ParentFXMLController{
 	
-	String selectedcourseName;
-	String prefreredTimeName;
 	int selectedbatchId;
 	int selectedCourseId;
 	int selectedSegmentTypeId; 
 	int preferedTime;
 	int facultyId;
-	String generatedBatchName;
 	private Date startDate;
+	String selectedcourseName;
+	String prefreredTimeName;	
+	String generatedBatchName;
+	
 	
     @FXML
     private ImageView logo;
-
-    @FXML
-    private TableView<CoursesNameWrapper> courseName;
-    
-    @FXML
-    private TableColumn<String, CoursesNameWrapper> student;
-
-    @FXML
-    private TableColumn<Boolean, CoursesNameWrapper> enquired;
-
-    @FXML
-    private TableColumn<Boolean, CoursesNameWrapper> registered;
-
-    @FXML
-    private TableColumn<CheckBox, CoursesNameWrapper> checkBox;
-
-    @FXML
-    private TableColumn<Button, CoursesNameWrapper> add;
-    
-//	private CheckBox checkbox = null;
-	
     @FXML
     private Button cancel;
-
     @FXML
     private Button email;
-
+    @FXML
+    private TableView<CoursesNameWrapper> courseName;
+    @FXML
+    private TableColumn<String, CoursesNameWrapper> student;
+    @FXML
+    private TableColumn<Boolean, CoursesNameWrapper> enquired;
+    @FXML
+    private TableColumn<Boolean, CoursesNameWrapper> registered;
+    @FXML
+    private TableColumn<CheckBox, CoursesNameWrapper> checkBox;
+    @FXML
+    private TableColumn<Button, CoursesNameWrapper> add;
 	private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
-
 	private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
-	
 	private ArrayList<String> listOfEmailIds = new ArrayList<String>();
-
 
     @FXML
     void cancelFrame(ActionEvent event) {
@@ -98,7 +85,7 @@ public class CoursesNameController extends ParentFXMLController{
 
     @FXML
     void emailFrame(ActionEvent event) {
-    	// Email function access from util.
+    	
     	
     	CourseType courseName = new CourseTypeHelper().getCourseTypeName(selectedCourseId);
     	List<TimeSlots> timeSlotNamelist = new TimeSlotsHelper().getTimeSlotsList();
@@ -111,6 +98,7 @@ public class CoursesNameController extends ParentFXMLController{
 		try {
 			myNewScene = loader.load();
 			
+			// Loader of the next Screen
 			EmailUtilityScreenController emailUtilityScreenController = loader.getController();
 			emailUtilityScreenController.sendEmail(listOfEmailIds, selectedcourseName, startDate, prefreredTimeName);
 			emailUtilityScreenController.setStudentData(

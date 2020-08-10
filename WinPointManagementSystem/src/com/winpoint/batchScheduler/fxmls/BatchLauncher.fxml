@@ -76,7 +76,7 @@
                   <Label fx:id="facultyId" prefHeight="29.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="timeChoice" prefHeight="28.0" prefWidth="323.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label fx:id="totalNumberOfLectures" prefHeight="31.0" prefWidth="397.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="setLectureDuration" mnemonicParsing="false" onAction="#validateSetLectureDuration" prefHeight="27.0" prefWidth="75.0" text="Set" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                  <Button fx:id="setLectureDuration" mnemonicParsing="false" onAction="#setClick" prefHeight="27.0" prefWidth="75.0" text="Set" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="323.0" />
                      </GridPane.margin>
@@ -98,9 +98,9 @@
             <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
          </padding>
          <children>
-            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelFrame" prefHeight="75.0" prefWidth="100.0" text="Cancel" />
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelClick" prefHeight="75.0" prefWidth="100.0" text="Cancel" />
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="launch" mnemonicParsing="false" onAction="#launchFrame" prefHeight="75.0" prefWidth="100.0" text="Launch" />
+            <Button fx:id="launch" mnemonicParsing="false" onAction="#launchClick" prefHeight="75.0" prefWidth="100.0" text="Launch" />
          </children>
       </HBox>
    </bottom>
