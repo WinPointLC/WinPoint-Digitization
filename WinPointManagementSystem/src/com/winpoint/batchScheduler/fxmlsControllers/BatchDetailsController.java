@@ -155,6 +155,7 @@ public class BatchDetailsController extends ParentFXMLController{
 			}
 	    }
 	    
+		// Setting Data passed from the Previous Screen :
 	    void setListOfStudent(
 	    		ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents, 
 	    		ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents, 

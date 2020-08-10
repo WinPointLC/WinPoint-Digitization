@@ -9,11 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import com.winpoint.common.beans.CourseType;
-import com.winpoint.common.beans.TimeSlots;
 import com.winpoint.common.controllers.ParentFXMLController;
-import com.winpoint.common.helpers.CourseTypeHelper;
-import com.winpoint.common.helpers.TimeSlotsHelper;
 import com.winpoint.common.wrappers.CoursesNameWrapper;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
@@ -35,6 +31,7 @@ import javafx.stage.Stage;
 
 public class CoursesNameController extends ParentFXMLController{
 	
+	// Required Variables are Declared :
 	int selectedbatchId;
 	int selectedCourseId;
 	int selectedSegmentTypeId; 
@@ -44,8 +41,6 @@ public class CoursesNameController extends ParentFXMLController{
 	String selectedcourseName;
 	String prefreredTimeName;	
 	String generatedBatchName;
-	
-	
     @FXML
     private ImageView logo;
     @FXML
@@ -67,9 +62,10 @@ public class CoursesNameController extends ParentFXMLController{
 	private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	private ArrayList<String> listOfEmailIds = new ArrayList<String>();
-
+	/******************************************************************************************************************************/
+	
     @FXML
-    void cancelFrame(ActionEvent event) {
+    void cancelClick(ActionEvent event) {
     	Stage stage = (Stage) cancel.getScene().getWindow();
     	Parent myNewScene;
 		try {
@@ -84,14 +80,8 @@ public class CoursesNameController extends ParentFXMLController{
     }
 
     @FXML
-    void emailFrame(ActionEvent event) {
-    	
-    	
-    	CourseType courseName = new CourseTypeHelper().getCourseTypeName(selectedCourseId);
-    	List<TimeSlots> timeSlotNamelist = new TimeSlotsHelper().getTimeSlotsList();
-    	TimeSlots timeSlotsName = timeSlotNamelist.get(preferedTime);		
-    	
-    	
+    void sendEmail(ActionEvent event) {
+
     	// Navigation for the next Screen : 
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../batchScheduler/fxmls/EmailUtilityScreen.fxml"));
     	Parent myNewScene;
@@ -109,7 +99,8 @@ public class CoursesNameController extends ParentFXMLController{
 					preferedTime, 
 					facultyId, 
 					generatedBatchName, 
-					selectedbatchId);
+					selectedbatchId
+				);
 			
 			Stage stage = (Stage) email.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
@@ -118,10 +109,10 @@ public class CoursesNameController extends ParentFXMLController{
 	    	stage.show(); 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-    	    	
+		}	    	
     }
     
+    // Setting Data passed from the Previous Screen :
 	public void setListOfStudents (
 			ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents,
 			ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents, 
@@ -135,8 +126,7 @@ public class CoursesNameController extends ParentFXMLController{
 		this.startDate = startDate;
 		this.selectedbatchId = selectedbatchId;
    		this.listOfRegisteredStudents1.addAll(listOfRegisteredStudents);
-   		this.listOfEnquiredStudents1.addAll(listOfEnquiredStudents);
-   		
+   		this.listOfEnquiredStudents1.addAll(listOfEnquiredStudents); 		
    		
    		selectedcourseName = selectedcourseName2;
    		prefreredTimeName = prefreredTimeName2;
@@ -156,7 +146,10 @@ public class CoursesNameController extends ParentFXMLController{
 
    		List<CoursesNameWrapper> coursesNameWrapperList = new ArrayList<CoursesNameWrapper>();
    		
+   		// Registered List : 
    		for( UserCoursesDoneWrapper registeredStudent: listOfRegisteredStudents1 ) {
+   			
+   			// Setting data as required : 
    			HashSet<Integer> timeSlotsIdsSet = new HashSet<Integer>();
    	    	String timeSlotsIdString = registeredStudent.getUserProfile().getTimeSlotsId();
    			StringTokenizer st = new StringTokenizer(timeSlotsIdString,",");
@@ -164,16 +157,16 @@ public class CoursesNameController extends ParentFXMLController{
    				int timeSlotIdOfStudent=Integer.parseInt(st.nextToken());
    				timeSlotsIdsSet.add(timeSlotIdOfStudent);	
    			}
+   			
+   			// Filter for time slots :
    			for( Integer time : timeSlotsIdsSet ) {
    				if( time == preferedTime ) {
    					CheckBox checkbox = new CheckBox("Email");
    					EventHandler<ActionEvent> eventAddEmailId = new EventHandler<ActionEvent>() {					
 						@Override
 						public void handle(ActionEvent event) {
-							// TODO Auto-generated method stub
-							// Selected
-//							System.out.println("Welcome to handler");
-					        if (checkbox.isSelected()) {
+							// Selected : Adding data to the list.
+							if (checkbox.isSelected()) {
 					        	checkbox.setSelected(true);
 					        	listOfEmailIds.add(registeredStudent.getUserProfile().getEmail());
 					        }
@@ -181,16 +174,11 @@ public class CoursesNameController extends ParentFXMLController{
 					        	checkbox.setSelected(false);	
 					        	listOfEmailIds.remove(registeredStudent.getUserProfile().getEmail());
 					        }
-					    	
-//					    	for(String email : listOfEmailIds) {
-//					    		System.out.println(email);
-//					    	}
-					    	
 						}
 					};
 					checkbox.setOnAction(eventAddEmailId);
 
-
+					// Add Student : 
    					Button addStudent = new Button("Add Student"); 
    	   		   		EventHandler<ActionEvent> eventaddStudent = new EventHandler<ActionEvent>() { 
    	   		             public void handle(ActionEvent e) 
@@ -200,12 +188,11 @@ public class CoursesNameController extends ParentFXMLController{
    	   		 				try {
    	   		 					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
    	   		 				} catch (IOException e1) {
-   	   		 					// TODO Auto-generated catch block
    	   		 					e1.printStackTrace();
    	   		 				}
    	   		 			
-   	   		 			ManageRevenueContoller manageRevenueController = loader.getController();	   		 			
-   	   		 		  		 			
+   	   		 			// Manage Revenue Controller :
+   	   		 			ManageRevenueContoller manageRevenueController = loader.getController();	   		 					 			
 	   	   		 		manageRevenueController.setStudentData(
 	   	   		 				
 		   	   		 			registeredStudent, 
@@ -229,22 +216,19 @@ public class CoursesNameController extends ParentFXMLController{
    	   		             } 
    	   		         }; 
    	   	   			addStudent.setOnAction(eventaddStudent);
-//   	   	   			checkbox = new CheckBox();
    	   	   			coursesNameWrapperList.add(new CoursesNameWrapper(registeredStudent.getUserProfile().getFirstName(),
    	   	   					registeredStudent.getUserProfile().getLastName(), false, true, checkbox, addStudent));
    				}
    			}
    		}
    		
+   		// Enquired List :
    		for( UserCoursesDoneWrapper enquiredStudent: listOfEnquiredStudents1 ) {
    			CheckBox checkbox = new CheckBox("Email");
 				EventHandler<ActionEvent> eventAddEmailId = new EventHandler<ActionEvent>() {					
 				@Override
 				public void handle(ActionEvent event) {
-					// TODO Auto-generated method stub
 					// Selected
-//					System.out.println("Welcome to handler");
-
 					if (checkbox.isSelected()) {
 			        	checkbox.setSelected(true);
 			        	listOfEmailIds.add(enquiredStudent.getUserProfile().getEmail());
@@ -253,16 +237,12 @@ public class CoursesNameController extends ParentFXMLController{
 			        	checkbox.setSelected(false);	
 			        	listOfEmailIds.remove(enquiredStudent.getUserProfile().getEmail());
 			        }
-//			    	
-//			    	for(String email : listOfEmailIds) {
-//			    		System.out.println(email);
-//			    	}
 				}
 			};
 			checkbox.setOnAction(eventAddEmailId);
 
-			Button addStudent = new Button("Add Student");
-   			
+			// Add Button :
+			Button addStudent = new Button("Add Student");			
 	   		EventHandler<ActionEvent> eventaddStudent = new EventHandler<ActionEvent>() { 
 	             public void handle(ActionEvent e) 
 	             { 
@@ -272,12 +252,11 @@ public class CoursesNameController extends ParentFXMLController{
 	 				try {
 	 					myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ManageRevenue.fxml").openStream());
 	 				} catch (IOException e1) {
-	 					// TODO Auto-generated catch block
 	 					e1.printStackTrace();
 	 				}
 	 				
+	 				// Manage Revenue :
 	 				ManageRevenueContoller manageRevenueController = loader.getController();
-	   		 		
 	   		 		manageRevenueController.setStudentData(
 	   		 					enquiredStudent,
 	   		 					listOfRegisteredStudents1,
@@ -299,20 +278,16 @@ public class CoursesNameController extends ParentFXMLController{
 	             } 
 	         }; 
    			addStudent.setOnAction(eventaddStudent);
-//   			checkbox = new CheckBox();
-   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiredStudent.getUserProfile().getFirstName(), enquiredStudent.getUserProfile().getLastName(), true, false, checkbox, addStudent));
+   			coursesNameWrapperList.add(new CoursesNameWrapper(enquiredStudent.getUserProfile().getFirstName(),
+   					enquiredStudent.getUserProfile().getLastName(), true, false, checkbox, addStudent));
    		}
-   		
-//   		email.setOnAction(eventEmailIds);
-   		
-   		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);
-	    
-	    courseName.setItems((ObservableList<CoursesNameWrapper>) courseNameRecords);
-		
+   		ObservableList<CoursesNameWrapper> courseNameRecords = FXCollections.observableArrayList(coursesNameWrapperList);  
+	    courseName.setItems((ObservableList<CoursesNameWrapper>) courseNameRecords);		
 	}
 
     public void initialize(URL location, ResourceBundle resources) {
     	
+    	// Adding logo :
     	super.initialize(location, resources);
    		logo.setImage(logoImage);
    		
