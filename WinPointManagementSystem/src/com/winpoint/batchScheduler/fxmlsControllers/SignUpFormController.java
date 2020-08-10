@@ -47,9 +47,7 @@ import javafx.stage.Stage;
 
 public class SignUpFormController extends ParentFXMLController {
 
-	SignUpFormController signUpFormController;// = new SignUpFormController();
-	
-	//private Integer timeSlotsId1;
+	SignUpFormController signUpFormController;
 	private Integer createdByUserId;
 	private Integer segmentTypeId;
 	
@@ -121,7 +119,6 @@ public class SignUpFormController extends ParentFXMLController {
     private HBox courseAlreadyDoneHbox;   
     @FXML
     private HBox availableTimeHBox;
-
     @FXML
     private ChoiceBox<String> segmentType = new ChoiceBox<>();
     @FXML
@@ -215,28 +212,50 @@ public class SignUpFormController extends ParentFXMLController {
             active.setSelected(true);
         else
             active.setSelected(false);
-    	/*******************************************************/ 
-
-    	
+    	/************************************************************************************************************************************/ 
+	
     	// Conversion of the Date Functions : 
+        //Date of Birth -
     	LocalDate ldDobBox = dobBox.getValue();
     	Calendar cDobBox =  Calendar.getInstance();
     	cDobBox.set(ldDobBox.getYear(), ldDobBox.getMonthValue(), ldDobBox.getDayOfMonth());
     	Date dateDobBox = cDobBox.getTime();
-    	
+    	//Date of Enquiry -
     	LocalDate ldDateOfEnquiry = dobBox.getValue();
     	Calendar cDateOfEnquiry =  Calendar.getInstance();
     	cDateOfEnquiry.set(ldDateOfEnquiry.getYear(), ldDateOfEnquiry.getMonthValue(), ldDateOfEnquiry.getDayOfMonth());
     	Date dateDateOfEnquiry = cDateOfEnquiry.getTime();
-    	
+    	//Start Date -
     	LocalDate ldStartDate = dobBox.getValue();
     	Calendar cStartDate =  Calendar.getInstance();
     	cStartDate.set(ldStartDate.getYear(), ldStartDate.getMonthValue(), ldStartDate.getDayOfMonth());
     	Date dateStartDate = cDateOfEnquiry.getTime();
-    	/*******************************************************/
+    	/************************************************************************************************************************************/ 
     	
     	// Declaration of the required Variables : 
-   		String firstName1 = firstName.getText();
+    	//list for  course Interested IN
+    	String courseInterestedInfinalString = "";
+    		for(Integer string : courseInterestedInSetOfIds) {
+    			courseInterestedInfinalString += string.toString()+",";
+    			System.out.println("Interested String : "+string);
+    		}
+    	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+    	//list for timeSlots id
+   		String availableTimeSlotsIdfinalString = "";
+   			for(Integer string : availableTimeSetOfIds) {
+    			availableTimeSlotsIdfinalString += string.toString()+",";
+    			System.out.println("timeSlots String : "+string);
+    		}
+    	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+		// list for course Already Done
+		String coursesAlreadyDonefinalString = "";
+		for(Integer string : courseAlreadyDoneSetOfIds) {
+			coursesAlreadyDonefinalString += string.toString()+",";
+			System.out.println("Already String : "+string);
+		}
+		coursesAlreadyDonefinalString = coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1);   		
+    	
+    	String firstName1 = firstName.getText();
 		String lastName1 = lastName.getText();
 		String emailId1 = emailId.getText();
 		String mobileNo1 = mobileNumber.getText();
@@ -257,43 +276,16 @@ public class SignUpFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		String recommendation1 = recommendation.getText(); 
 		Boolean eligibility1 = eligible.isSelected();
-		
-		//list for  course Interested IN
-		String courseInterestedInfinalString = "";
-		for(Integer string : courseInterestedInSetOfIds) {
-			courseInterestedInfinalString += string.toString()+",";
-			System.out.println("Interested String : "+string);
-		}
-		courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
-		
 		String coursesInterestedIn1 = courseInterestedInfinalString;
 		String reference1 = referance.getText();
-		
-		//list for timeSlots id
-		String availableTimeSlotsIdfinalString = "";
-		for(Integer string : availableTimeSetOfIds) {
-			availableTimeSlotsIdfinalString += string.toString()+",";
-			System.out.println("timeSlots String : "+string);
-		}
-		courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
 		String time = availableTimeSlotsIdfinalString;
-		
-		// list for course Already Done
-		String coursesAlreadyDonefinalString = "";
-		for(Integer string : courseAlreadyDoneSetOfIds) {
-			coursesAlreadyDonefinalString += string.toString()+",";
-			System.out.println("Already String : "+string);
-		}
-		coursesAlreadyDonefinalString = coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1);
-		String courseAlreadyDone1= coursesAlreadyDonefinalString;
-		
+		String courseAlreadyDone1= coursesAlreadyDonefinalString;	
 		Date startDate1 = dateStartDate;
 		Integer segmentTypeId1 = segmentTypeId; 
 		String suggestion1 = suggestion.getText(); 
-		Boolean activeStatus1 = active.isSelected();
-			
-    	/*******************************************************/
-				
+		Boolean activeStatus1 = active.isSelected();		
+    	/************************************************************************************************************************************/ 		
+		
 		// Object Passing to the bean class : 
     	EnquiryDetails enquiryDetails1 = new EnquiryDetails(firstName1,lastName1,emailId1,mobileNo1,
     			address1,birthDate1,college1,degree1,branch1,occupation1,organisation1,designation1,
@@ -316,11 +308,10 @@ public class SignUpFormController extends ParentFXMLController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    	
     	//Faculty Ids Choice Box :
     	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
     	for(UserProfile faculty : facultyList) {
@@ -330,17 +321,16 @@ public class SignUpFormController extends ParentFXMLController {
             public void handle(ActionEvent e) { 
             	int index = createdBy.getItems().indexOf(createdBy.getValue());
             	createdByUserId = facultyList.get(index).getUserId();
-            	//String description = facultyList.get(index).getFirstName();
             }
         }; 	
         createdBy.setOnAction(eventCreatedBy);
-    	/*******************************************************/
+    	/************************************************************************************************************************************/ 
     	    	
     	// TimeSlots Choice Box : 
         List<TimeSlots> availableTimeSlotsList = new TimeSlotsHelper().getTimeSlotsList();
         HashMap<String, Integer> timeSlotsSet = new HashMap<String, Integer>();
     	for(TimeSlots timeSlot : availableTimeSlotsList) {
-    		timeSlotsList.add(timeSlot.getTimeSlotsDescription());//courses.getCoursetyoeNmae + " - " +courses.getCourseName
+    		timeSlotsList.add(timeSlot.getTimeSlotsDescription());
     		timeSlotsSet.put(timeSlot.getTimeSlotsDescription(), timeSlot.getTimeSlotsId());
        	}    	
     	CheckComboBox<String> availableTimeCheckComboBox = new CheckComboBox<>(timeSlotsList);
@@ -354,7 +344,7 @@ public class SignUpFormController extends ParentFXMLController {
     	     }
     	 });
     	availableTimeHBox.getChildren().add(availableTimeCheckComboBox); 	
-    	/*******************************************************/
+    	/************************************************************************************************************************************/ 
     	
     	// SegmentType Choice Box : 
     	List<SegmentType> segmentTypeList = new SegmentTypeHelper().getSegmentTypeList();    	    	    	
@@ -368,14 +358,14 @@ public class SignUpFormController extends ParentFXMLController {
 			}
 		};
     	segmentType.setOnAction(eventSegmentType);
-    	/*******************************************************/    
+    	/************************************************************************************************************************************/ 
     	
     	//Courses Interested In Combo Box :     	
-      	List<SignUpFormCourseListWrapper> CoursesList = new CourseHelper().getCourseNamesList();   // getAllCoursesList	
+      	List<SignUpFormCourseListWrapper> CoursesList = new CourseHelper().getCourseNamesList(); 	
       	HashMap<String, Integer> courseInterestedInSet = new HashMap<String, Integer>(); 
       	HashMap<String, Integer> courseAlreadyDoneSet = new HashMap<String, Integer>();
     	for(SignUpFormCourseListWrapper courses : CoursesList) {
-    		coursesList.add(courses.getCourseTypeName()+"-"+courses.getCourseName());//courses.getCoursetyoeNmae + " - " +courses.getCourseName
+    		coursesList.add(courses.getCourseTypeName()+"-"+courses.getCourseName());
     		courseInterestedInSet.put(courses.getCourseTypeName()+"-"+courses.getCourseName(), courses.getCourseId());
     		courseAlreadyDoneSet.put(courses.getCourseTypeName()+"-"+courses.getCourseName(), courses.getCourseId());
     	}    	
@@ -390,7 +380,7 @@ public class SignUpFormController extends ParentFXMLController {
     	     }
     	 });
     	coursesInterestedInHbox.getChildren().add(coursesInterestedIn); 	
-    	/*******************************************************/
+    	/************************************************************************************************************************************/ 
     	
         //Courses Already Done  :    
        	CheckComboBox<String> coursesAlreadyDone = new CheckComboBox<>(coursesList);
@@ -404,7 +394,7 @@ public class SignUpFormController extends ParentFXMLController {
     	     }
     	 });
       	courseAlreadyDoneHbox.getChildren().add(coursesAlreadyDone);
-    	/*******************************************************/
+    	/************************************************************************************************************************************/ 
    
         // Degree Choice Box : 
         degreeChoice.getItems().addAll(choices);

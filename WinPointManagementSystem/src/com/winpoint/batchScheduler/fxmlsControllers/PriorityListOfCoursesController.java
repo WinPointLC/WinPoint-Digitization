@@ -52,66 +52,51 @@ import javafx.stage.Stage;
 
 public class PriorityListOfCoursesController extends ParentFXMLController{
 		
+		// Declaring required Variables :
 		boolean doLaunch = false;
 		private String descriptionForPreferedTime;
 		private String descriptionForFacultyName;
 		private Integer courseTypeNameId;
 		private Integer timeSlotsId;
 		private Integer facultyUserId;
-				
-		ObservableList<PriorityListOfCoursesWrapper> data;		
-		
-		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> registeredStudentsCourseMap;
-		
-		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> enquiredStudentsCourseMap;
-		
-		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> totalEligibleStudentCourseMap;
-		
-		List<PriorityListOfCoursesWrapper> priorityListOfCoursesWrapperList;
-		
-	    @FXML
-	    private TableView<PriorityListOfCoursesWrapper> priorityCoursesListTable;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, String> coursesCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, String> segmentTypeCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, ChoiceBox<String>> avaialbleTimeCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, String> noOfStudentsCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, Date> beginDateCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, ChoiceBox<String>> facultyNameCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper,Integer> totalRevenueCol;
-
-	    @FXML
-	    private TableColumn<PriorityListOfCoursesWrapper, Button> launchCol;	    
-
-	    @FXML
-	    private ChoiceBox<String> courseType;
-	    
 	    private int count;
 	    private int timeWiseCount;
-	    @FXML
-	    void validateCourseType(MouseEvent event) {
-	    	    	
-	    }
-
-	    @FXML
+				
+		ObservableList<PriorityListOfCoursesWrapper> data;		
+		List<PriorityListOfCoursesWrapper> priorityListOfCoursesWrapperList;
+		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> registeredStudentsCourseMap;		
+		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> enquiredStudentsCourseMap;		
+		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> totalEligibleStudentCourseMap;
+			
+		@FXML
 	    private ImageView logo;
-
-	    @FXML
+		@FXML
 	    private Button cancelbutton;
-
+		@FXML
+		private ChoiceBox<String> courseType;
+	    @FXML
+	    private TableView<PriorityListOfCoursesWrapper> priorityCoursesListTable;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, String> coursesCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, String> segmentTypeCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper,Integer> totalRevenueCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, Button> launchCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, String> noOfStudentsCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, Date> beginDateCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, ChoiceBox<String>> avaialbleTimeCol;
+	    @FXML
+	    private TableColumn<PriorityListOfCoursesWrapper, ChoiceBox<String>> facultyNameCol;
+	    
+	   
+	    @FXML
+	    void validateCourseType(MouseEvent event) {}
+	   
 	    @FXML
 	    void cancelFrame(ActionEvent event) throws IOException {
 
@@ -371,8 +356,8 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
-	         });
-	    }
+	       });
+	}
     
     public int getTimewiseNumberOfStudents(Course course, SegmentType segmentType, Integer timeSlotId,
     		ChoiceBox<String> availableTime, boolean isRowToBeRemoved, ChoiceBox<String> facultyName, Button launchButton, Hyperlink numberOfStudent) {    // 1,2,3,4	
