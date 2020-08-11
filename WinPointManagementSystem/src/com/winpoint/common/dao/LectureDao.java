@@ -164,5 +164,22 @@ public ArrayList<Integer> getLectureCoverageIds(Integer lecnum,Integer batchId){
 	return  lecCoverageIds;
 	
 }
+public void updateLectureDetails(EditBatchDetailsWrapper updateLecDetails,Integer batchId,Integer lecnum) {
+	java.sql.Date sqlLecDate = new java.sql.Date(updateLecDetails.getLectureDate().getTime());
+	try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();
+		
+		String query = "UPDATE LECTURE SET LECTURE_DATE ='"+sqlLecDate+
+				"', START_TIME ='"+updateLecDetails.getStartTime()+"', \r\n" + 
+				"LECTURE_DURATION ='"+ updateLecDetails.getLectureDuration()+
+				"', COMMENTS ='"+updateLecDetails.getComments()+
+				"',LECTURE_COVERAGE='"+updateLecDetails.getLecCoverage() +"'\r\n" + 
+				"WHERE BATCH_ID = "+batchId+" AND LECTURE_NUMBER= "+lecnum;
+		int resultSet = statement.executeUpdate(query);
 
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
 }

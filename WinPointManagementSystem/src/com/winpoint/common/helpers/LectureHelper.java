@@ -22,4 +22,7 @@ public class LectureHelper {
 	public ArrayList<EditBatchDetailsWrapper> getLectureNumber(Integer batchId){
 		return new LectureDao().getLectureNumber(batchId);
 	}
+	public void updateLectureDetails(EditBatchDetailsWrapper updateLecDetails,Integer batchId,Integer lecnum) {
+		new LectureDao().updateLectureDetails(updateLecDetails,batchId,lecnum);
+	}
 }

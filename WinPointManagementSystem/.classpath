@@ -13,7 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/Winpoint/WinPointSolutions/2020/CommonJarFiles/mssql-jdbc-7.2.2.jre8.jar"/>
-	<classpathentry kind="lib" path="D:/Winpoint/WinPointSolutions/2020/CommonJarFiles/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/mssql-jdbc-8.2.2.jre8 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/SUHASI/Downloads/controlsfx-8.40.11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
