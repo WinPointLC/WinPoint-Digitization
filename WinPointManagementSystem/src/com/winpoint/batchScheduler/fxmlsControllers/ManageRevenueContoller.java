@@ -139,6 +139,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
     	Date recieveDate = recieveDate1;
     	Date firstPaymentDate = firstPaymentDate1;
     	
+    	DaoHelper daoHelper = new DaoHelper();
     	if(isEnquired) {
 			/* 
 			 * 
@@ -159,7 +160,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			 *
 			 * 
 			 * */
-			DaoHelper daoHelper = new DaoHelper();
+			
 			try {
 		    	int latestUserId = new DaoHelper().accessLatestUserId();
 		    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
@@ -184,6 +185,13 @@ public class ManageRevenueContoller extends ParentFXMLController{
 	    	
 	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(userProfileId,courseId,firstPaymentDate);    	
 		
+	    	try {
+				daoHelper.functionRegisteredStudent(user, courseId, batchId, manageRevenueObject, studentCourseInstallmentObject);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			listOfRegisteredStudents1.remove(this.user);
 		}
     	

@@ -5,15 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.beans.ManageRevenue;
 import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.beans.UserProfile;
-import com.winpoint.common.helpers.EnquiryDetailsHelper;
-import com.winpoint.common.helpers.StudentCourseDetailsHelper;
-import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 
@@ -247,14 +243,12 @@ public class TransferEnquiryDetailsToUserProfileDao {
 			System.out.println("*************NULL****************");
 		}
 		
-		java.sql.Date sqlBirthDate = new java.sql.Date(userDetails.getBirthDate().getTime());
 		java.sql.Date sqlRecieveDate = new java.sql.Date(revenueDetail.getRecieveDate().getTime());
 		java.sql.Date sqActualInstallmentDate = new java.sql.Date(studentCourseInstallmentObject.getActualInstallment1Date().getTime());
 		
 		
 		    PreparedStatement insertUserProfile = null;
 		    PreparedStatement insertStudentCourseDetail = null;
-		    PreparedStatement deleteEnquiryDetails = null;
 		    PreparedStatement insertManageRevenue = null;
 		    PreparedStatement insertStudentCourseInstalment = null;
 
