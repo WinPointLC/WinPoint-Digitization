@@ -9,7 +9,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.CheckComboBox;
@@ -52,6 +56,8 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 	ArrayList<EditBatchDetailsWrapper> allTopicsList=new ArrayList<EditBatchDetailsWrapper>();
 	ObservableList<String> topicsList = FXCollections.observableArrayList();
 	ArrayList<String> recievedData= new ArrayList<String>() ;
+	List<EditBatchDetailsWrapper> lectureList=null;
+	Integer sesDuration;
 	int lecnum;
     @FXML
     private Button backButton;
@@ -116,14 +122,75 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     	courseId = Integer.parseInt(recievedData.get(2));
     	courseName = recievedData.get(3);
     	batchName.setText(batchNameValue);
-    	//int lecnum;
-    	List<EditBatchDetailsWrapper> lectureList = new LectureHelper().getLectureNumber(batchId);
+    	
+    	lectureList = new LectureHelper().getLectureNumber(batchId);
    		for(EditBatchDetailsWrapper e :lectureList) {
    			selectLecture.getItems().add("Lecture "+e.getLectureNumber().toString());
    			
    		}
-   		EventHandler<ActionEvent> lectureDetails = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent event) {
+   		
+
+   		ArrayList<Topic> allTopicsList= new TopicsHelper().getTopicNamesForComboBox(courseId);
+   		ObservableList<String>allTopicsNamesList=FXCollections.observableArrayList();
+   		for(Topic topic : allTopicsList) {
+   			allTopicsNamesList.add(topic.getTopicName());
+   			allTopicsMap.put(topic.getTopicId(), topic.getTopicName());
+   		}
+   		
+   		topicsCoveredComboBox=new CheckComboBox<String>(allTopicsNamesList);
+   		
+   		topicsCoveredComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+   	     public void onChanged(ListChangeListener.Change<? extends String> c) {
+   	    	//System.out.println(topicsCoveredComboBox.getCheckModel().getCheckedItems()); 
+   	         }
+   	 });
+   		lectureCoverageHBox.getChildren().add(topicsCoveredComboBox);
+   	}
+    
+
+    @FXML
+    void addLectureToBatch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addStudentToLecture(ActionEvent event) {
+    	Stage stage = (Stage) addStudent.getScene().getWindow();
+    	Parent myNewScene=null;
+		try {
+			myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/SignUpForm.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	Scene scene = new Scene(myNewScene);
+    	stage.setScene(scene);
+    	stage.setTitle("Enquiry Details");
+    	stage.show();
+    }
+
+    @FXML
+    void editStudentInLecture(ActionEvent event) {
+    	FXMLLoader loader = new FXMLLoader();
+    	Parent myNewScene=null;
+		try {
+			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	Stage stage = (Stage) editStudent.getScene().getWindow();
+    	Scene scene = new Scene(myNewScene);
+    	stage.setScene(scene);
+    	stage.setTitle("Main Scene");
+    	stage.show();
+    }
+    
+    @FXML
+    void getLectureList(ActionEvent event) {
+    	//EventHandler<ActionEvent> lectureDetails = new EventHandler<ActionEvent>() { 
+          //  public void handle(ActionEvent event) {
+    	topicsCoveredComboBox.getCheckModel().clearChecks();
             	int index=selectLecture.getItems().indexOf(selectLecture.getValue());
             	lecnum=lectureList.get(index).getLectureNumber();
             	editBatchDetails= new LectureHelper().getLectureDetails(courseId,lecnum,batchId);
@@ -135,6 +202,7 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
             		catch (NullPointerException e) {
             	    }
                 	lectureStartTime.setText(editBatchDetails.getStartTime());
+                	//System.out.println(getDuration(Integer.parseInt(editBatchDetails.getLectureDuration())));
                 	lectureSessionDuration.setText(getDuration(new Integer(editBatchDetails.getLectureDuration())).toString());
                 	lectureComments.setText(editBatchDetails.getComments());
                 	
@@ -142,56 +210,17 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
                 	EditBatchDetailsWrapper editBatchDetails= new LectureHelper().getLectureDetails(courseId, lecnum, batchId);
                		ArrayList<Integer> topicsIdsList = editBatchDetails.getTopicsList();
                		for(Integer topicId : topicsIdsList) {
-               			System.out.println(topicId);
-               			
+               			//System.out.println(topicId);
                			topicsCoveredComboBox.getCheckModel().check(allTopicsMap.get(topicId));
-               			//topicsNamesList.add(topicId.getTopicName());
+               				
                		}
             	
-            }
+           // }
             
             
-   		};
+   		//};
    		
-   		selectLecture.setOnAction(lectureDetails);
-
-   		ArrayList<Topic> allTopicsList= new TopicsHelper().getTopicNamesForComboBox(courseId);
-   		ObservableList<String>allTopicsNamesList=FXCollections.observableArrayList();
-   		for(Topic topic : allTopicsList) {
-   			allTopicsNamesList.add(topic.getTopicName());
-   			allTopicsMap.put(topic.getTopicId(), topic.getTopicName());
-   		}
-   		
-   		topicsCoveredComboBox=new CheckComboBox<String>(allTopicsNamesList);
-   		//topicsCoveredComboBox.getCheckModel().checkIndices(0, 1);
-   		topicsCoveredComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-   	     public void onChanged(ListChangeListener.Change<? extends String> c) {
-   	    	System.out.println(topicsCoveredComboBox.getCheckModel().getCheckedItems()); 
-   	         }
-   	 });
-   		lectureCoverageHBox.getChildren().add(topicsCoveredComboBox);
-   		
-   	}
-    
-
-    @FXML
-    void addLectureToBatch(ActionEvent event) {
-
-    }
-
-    @FXML
-    void addStudentToLecture(ActionEvent event) {
-
-    }
-
-    @FXML
-    void editStudentInLecture(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void getLectureList(ActionEvent event) {
-    	
+   		//selectLecture.setOnAction(lectureDetails);
     	
     }
    
@@ -232,32 +261,60 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     
     @FXML
     void resetLectureDetails(ActionEvent event) {
-
+    	lectureDate.setValue(null);
+    	lectureStartTime.setText("");
+    	lectureSessionDuration.setText("");
+    	lectureComments.setText("");
+    	topicsCoveredComboBox.getCheckModel().clearChecks();
     }
-
+ 
     @FXML
     void saveLectureDetails(ActionEvent event) {
-//    	LocalDate lecDate = lectureDate.getValue();
-//    	Calendar cBeginDate =  Calendar.getInstance();
-//    	cBeginDate.set(lecDate.getYear(), lecDate.getMonthValue(), lecDate.getDayOfMonth());
-//    	Date lecBeginDate = cBeginDate.getTime();
-//    	String lecTime=lectureStartTime.getText();
-//    	String duration=lectureSessionDuration.getText();
-//    	String lecComments=lectureComments.getText();
-//    	EditBatchDetailsWrapper updateLecDetails=new EditBatchDetailsWrapper(lecBeginDate,lecTime,duration,lecComments);
-//    	new LectureHelper().updateLectureDetails(updateLecDetails);
-//    	//Date lecDate=lectureDate.getValue();
+    	String updatedLecCoverage="";
+    	LocalDate lecDate = lectureDate.getValue();
+    	Calendar cBeginDate =  Calendar.getInstance();
+    	cBeginDate.set(lecDate.getYear(), lecDate.getMonthValue(), lecDate.getDayOfMonth());
+    	
+    	Date lecBeginDate = cBeginDate.getTime();
+    	String lecTime=lectureStartTime.getText();
+    	String duration=lectureSessionDuration.getText();
+    	String lecComments=lectureComments.getText();
+    	getUpdatedDuration(duration);
+    
+//    	System.out.println(allTopicsMap);
+//    	System.out.println(topicsCoveredComboBox.getCheckModel().getCheckedItems());
+  
+    	for(int i=0;i<topicsCoveredComboBox.getCheckModel().getCheckedItems().size();i++) {
+			for(Entry<Integer,String> entry : allTopicsMap.entrySet()) {
+				if(entry.getValue().equals(topicsCoveredComboBox.getCheckModel().getCheckedItems().get(i))) {
+					updatedLecCoverage+=entry.getKey()+",";    				
+				}
+			}
+    	}
+    	updatedLecCoverage=updatedLecCoverage.substring(0,updatedLecCoverage.length()-1);
+    	EditBatchDetailsWrapper updateLecDetails=new EditBatchDetailsWrapper(lecBeginDate,lecTime,sesDuration.toString(),lecComments,updatedLecCoverage);
+    	new LectureHelper().updateLectureDetails(updateLecDetails,batchId,lecnum);
+    	
+    	//System.out.println(updatedLecCoverage);
     }
    
     @FXML
     void saveUpdatedBatchDetails(ActionEvent event) {
 
     }
-    Float getDuration(Integer lecDuration) {
+    Integer getUpdatedDuration(String duration){ 
+    	float y =Float.parseFloat(duration);//2.75
+    	int hours=(int)y;//2
+    	float mins=(y-hours)*100;//75
+    	int minutes=(int)(mins*0.6);//45
+    	sesDuration =(hours*100)+(minutes);
+    	return sesDuration;
+    }
+    Float getDuration(Integer lecDuration) {//0230
 		float duration=0f;
-		int minutes=lecDuration%100;
-		int hours=lecDuration/100;
-		duration=(hours+(minutes/60.0f));
+		int minutes=lecDuration%100;//30
+		int hours=lecDuration/100;//2
+		duration=(hours+(minutes/60.0f));//2.5
 		return duration;
 	}
     public static final LocalDate LOCAL_DATE (String dateString){
@@ -269,6 +326,13 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
    	public void initialize(URL location, ResourceBundle resources) {
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
+    	ArrayList<String> data = new ArrayList<>();
+    	data.add("1");
+    	data.add("Batch 1");
+    	data.add("1");
+    	data.add("Course 1");
+    	
+    	setRecievedData(data);
     }
     
 

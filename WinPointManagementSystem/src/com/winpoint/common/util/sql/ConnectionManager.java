@@ -12,13 +12,14 @@ public class ConnectionManager {
 		SQLServerDataSource dataSource = new SQLServerDataSource();
 		dataSource.setUser("sa");
 
-//		dataSource.setPassword("winpoint");
-		dataSource.setPassword("Dockersql123");
-
+	dataSource.setPassword("winpoint");
+		//dataSource.setPassword("Dockersql123");
+		
 //		dataSource.setPassword("@Shradz8888");
 		//dataSource.setPassword("Dockersql123");
 //		dataSource.setServerName("SHRIRANGMHALGI\\SQLEXPRESS");
-		dataSource.setServerName("localhost");
+	//	dataSource.setServerName("localhost");
+		dataSource.setServerName("LAPTOP-9I4HINV6\\\\MSSQL1");
 //		dataSource.setServerName("DESKTOP-ARN90J1");
 		dataSource.setPortNumber(Integer.parseInt("1433"));
 		dataSource.setDatabaseName("WinPoint-Digitization");
