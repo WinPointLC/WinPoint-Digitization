@@ -175,9 +175,7 @@ public class BatchDetailsController extends ParentFXMLController{
 			generatedBatchName1 = generatedBatchName;
 			selectedcourseName = selectedcourseName1;
 			prefreredTimeName = selectedcourseName1;
-  	   }
-
-	   
+  	   }	   
 }
 
 

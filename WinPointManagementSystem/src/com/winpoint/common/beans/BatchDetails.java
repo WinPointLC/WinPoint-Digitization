@@ -20,7 +20,7 @@ public class BatchDetails {
 	private String batchName;
 	private Integer batchTime;
 	private Integer currentLectureNumber;
-	private Integer lectureDuration; 
+	private String lectureDuration; 
 	private String facultyName;
 	private Integer totalNumberOfLectures;
 	private Integer segmentTypeId;
@@ -50,7 +50,7 @@ public class BatchDetails {
 	
 	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
-			Integer lectureDuration, String facultyName, Integer totalNumberOfLectures) {
+			String lectureDuration, String facultyName, Integer totalNumberOfLectures) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -69,7 +69,7 @@ public class BatchDetails {
 
 	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
-			Integer lectureDuration, String facultyName) {
+			String lectureDuration, String facultyName) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -109,7 +109,7 @@ public class BatchDetails {
 	}
 	public BatchDetails(Integer batchId, Integer courseId, Integer facultyId, Date startDate, Date endDate,
 			Integer createdBy, Date createdDate, String batchName, Integer batchTime, Integer currentLectureNumber,
-			Integer lectureDuration) {
+			String lectureDuration) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -141,7 +141,7 @@ public class BatchDetails {
 //	
 
 	//shraddha
-	public BatchDetails(String batchId,String batchNumber1, String courseName,Integer courseId,Integer lectureDuration1, Integer totalNumberOfLecture1, Integer facultyId1,
+	public BatchDetails(String batchId,String batchNumber1, String courseName,Integer courseId,String lectureDuration1, Integer totalNumberOfLecture1, Integer facultyId1,
 			Integer timeChoice1,Date beginDate1, Date endDate1) {
 		// TODO Auto-generated constructor stub
 		
@@ -165,7 +165,7 @@ public class BatchDetails {
 
 	// GROUP A - to insert the data in the table - Abhishek
 	public BatchDetails(String batchName, Integer batchTime, Integer courseId, Integer facultyId, Date startDate,
-			Integer currentLectureNumber, Integer lectureDuration, Integer totalNumberOfLectures,
+			Integer currentLectureNumber, String lectureDuration, Integer totalNumberOfLectures,
 			Integer segmentTypeId, Date endDate, Integer createdBy, Date createdDate) {
 		// TODO Auto-generated constructor stub
 		this.batchName = batchName;
@@ -211,11 +211,11 @@ public class BatchDetails {
 		this.currentLectureNumber = currentLectureNumber;
 	}
 
-	public Integer getLectureDuration() {
+	public String getLectureDuration() {
 		return lectureDuration;
 	}
 
-	public void setLectureDuration(Integer lectureDuration) {
+	public void setLectureDuration(String lectureDuration) {
 		this.lectureDuration = lectureDuration;
 	}
 

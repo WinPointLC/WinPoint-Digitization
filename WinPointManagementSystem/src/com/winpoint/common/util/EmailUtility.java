@@ -27,7 +27,6 @@ public class EmailUtility {
 				emailAddress[count] = new InternetAddress(email);
 				count++;
 			} catch (AddressException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -94,10 +93,9 @@ public class EmailUtility {
 						System.out.println("E");
 						msg.setContent(messageText, "text/html");
 						System.out.println("F");
-						
-					
 						transport = mailSession.getTransport("smtp");
 						System.out.println("4");
+						
 						transport.connect(host, user, pass);
 					
 						System.out.println("3");

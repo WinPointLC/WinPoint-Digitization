@@ -54,7 +54,7 @@ public class BatchLauncherController extends ParentFXMLController {
 		int selectedSegmentTypeId;
 		int selectedCourseId;
 		int courseTypeId;
-		int lectureDuration1;
+		Integer lectureDuration1;
 	    int totalNumberOfLectures1;
 		private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1;
 		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1;
@@ -189,7 +189,7 @@ public class BatchLauncherController extends ParentFXMLController {
 	       	Integer facultyId = timeSlotsMap.get(facultyName);       	
 	       	Date startDate = dateBeginDate;   	
 	       	Integer currentLectureNumber = 0;
-	       	Integer lectureDuration = lectureDuration1; 
+	       	String lectureDuration = lectureDuration1.toString(); 
 	       	Integer totalNumberOfLectures = totalNumberOfLectures1;
 	       	Integer segmentTypeId = selectedSegmentTypeId;       	
 	       	Date endDate = dateEndDate;   	
