@@ -26,6 +26,8 @@ import com.winpoint.common.helpers.TimeSlotsHelper;
 import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -41,6 +43,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -150,7 +153,7 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     void validateEmailId(ActionEvent event) {}
     @FXML
-    void validateExperience(ActionEvent event) {}
+    void validateExperience(InputMethodEvent event) {}
     @FXML
     void validateFirstName(ActionEvent event) {}
     @FXML
@@ -174,7 +177,9 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     void validateSuggestion(ActionEvent event) {}
     @FXML
-    void validateYearOfGraduation(ActionEvent event) {}
+    void validateYearOfGraduation(InputMethodEvent event) {
+    	System.out.println();
+    }
     @FXML
     void validatecourseAlreadyDone(ActionEvent event) {}
     @FXML
@@ -201,17 +206,16 @@ public class SignUpFormController extends ParentFXMLController {
     @FXML
     void submitClick(ActionEvent event) throws ParseException,IOException, SQLException{
    	
-    	String firstName1 = firstName.getText();
-		String lastName1 = lastName.getText();
-		String emailId1 = emailId.getText();
-		String mobileNo1 = mobileNumber.getText();
-		String address1 = address.getText();
+    	
 		
 		LocalDate ldDobBox = dobBox.getValue();
 		LocalDate ldDateOfEnquiry = dobBox.getValue();
 		LocalDate ldStartDate = dobBox.getValue();
-		
-//		Date birthDate1 = dateDobBox;
+		String firstName1 = firstName.getText();
+		String lastName1 = lastName.getText();
+		String emailId1 = emailId.getText();
+		String mobileNo1 = mobileNumber.getText();
+		String address1 = address.getText();
 		String college1 =  college.getText();
 		String degree1 = degreeChoice.getValue();
 		String branch1 = branch.getText();
@@ -220,35 +224,30 @@ public class SignUpFormController extends ParentFXMLController {
 		String designation1 = designation.getText();
 		String domain1 = domain.getText();
 		String role1 = role.getText();
-		Integer experience1;// = Integer.parseInt(experience.getText());
+		String recommendation1 = recommendation.getText(); 
+		String suggestion1 = suggestion.getText();
+		String reference1 = referance.getText();	 
+		String gender1 = gender.getText();
+		
+		Integer experience1;
 		String experienceString = experience.getText();
-		System.out.println("Experiance = "+experienceString+"1234");
 		if(experienceString.length()!=0) {
-//			System.out.println("if Block : "+Integer.parseInt(experience.getText()));
-			experience1 = Integer.parseInt(experience.getText());			
+			experience1 = Integer.parseInt(experienceString);			
 		}else {
-//			System.out.println("Else Block : "+experience.getText()+"wdfwerv");
 			experience1 = 0;
 		}
-		Integer createdBy1 = createdByUserId; 
-//		Date dateOfEnquiry1 = dateDateOfEnquiry;
-		String gender1 = gender.getText();
-		Integer yearOfGraduation1;// = Integer.parseInt(yearOfGraduation.getText());
-		String yearOfGraduationString = yearOfGraduation.getText();
+		
+		Integer yearOfGraduation1;
+		String yearOfGraduationString = yearOfGraduation.getText(); 
 		if(yearOfGraduationString.length()!=0) {
-			yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
+			yearOfGraduation1 = Integer.parseInt(yearOfGraduationString);
 		}else {
 			yearOfGraduation1 = 0;
 		}
-		String recommendation1 = recommendation.getText(); 
-		Boolean eligibility1 = eligible.isSelected();
-//		String coursesInterestedIn1 = courseInterestedInfinalString;
-		String reference1 = referance.getText();
-//		String time = availableTimeSlotsIdfinalString;
-//		String courseAlreadyDone1= coursesAlreadyDonefinalString;	
-//		Date startDate1 = dateStartDate;
+		
 		Integer segmentTypeId1 = segmentTypeId; 
-		String suggestion1 = suggestion.getText(); 
+		Integer createdBy1 = createdByUserId; 
+		Boolean eligibility1 = eligible.isSelected();
 		Boolean activeStatus1 = active.isSelected();		
     	/************************************************************************************************************************************/ 		
     	
@@ -262,6 +261,7 @@ public class SignUpFormController extends ParentFXMLController {
 				 college1 != null &&
 				 degree1 != null &&
 				 branch1 != null &&
+				 
 						 ldDateOfEnquiry != null &&
 				 gender1 != null &&
 				 yearOfGraduation1 != null &&
@@ -312,21 +312,21 @@ public class SignUpFormController extends ParentFXMLController {
     	String courseInterestedInfinalString = "";
     		for(Integer string : courseInterestedInSetOfIds) {
     			courseInterestedInfinalString += string.toString()+",";
-    			System.out.println("Interested String : "+string);
+//    			System.out.println("Interested String : "+string);
     		}
     	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
     	//list for timeSlots id
    		String availableTimeSlotsIdfinalString = "";
    			for(Integer string : availableTimeSetOfIds) {
     			availableTimeSlotsIdfinalString += string.toString()+",";
-    			System.out.println("timeSlots String : "+string);
+//    			System.out.println("timeSlots String : "+string);
     		}
     	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
 		// list for course Already Done
 		String coursesAlreadyDonefinalString = "";
 		for(Integer string : courseAlreadyDoneSetOfIds) {
 			coursesAlreadyDonefinalString += string.toString()+",";
-			System.out.println("Already String : "+string);
+//			System.out.println("Already String : "+string);
 		}
 		if(coursesAlreadyDonefinalString!="") {
 			coursesAlreadyDonefinalString = coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1); 
@@ -379,6 +379,25 @@ public class SignUpFormController extends ParentFXMLController {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
+    	experience.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                	experience.setText(oldValue);
+                }
+            }
+        });
+       	yearOfGraduation.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                	yearOfGraduation.setText(oldValue);
+                }
+            }
+        });
+    	
+    	
     	
     	//Faculty Ids Choice Box :
     	List<UserProfile> facultyList = new UserProfileHelper().getFaculty();    	 
@@ -476,7 +495,6 @@ public class SignUpFormController extends ParentFXMLController {
     public static boolean isInteger(String s) {
 	    return isInteger(s,10);
 	}
-
 	public static boolean isInteger(String s, int radix) {
 	    if(s.isEmpty()) return false;
 	    for(int i = 0; i < s.length(); i++) {
@@ -487,6 +505,5 @@ public class SignUpFormController extends ParentFXMLController {
 	        if(Character.digit(s.charAt(i),radix) < 0) return false;
 	    }
 	    return true;
-	}
-          
+	}     
 }
