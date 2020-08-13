@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.controllers.ParentFXMLController;
 import com.winpoint.common.helpers.EnquiryDetailsHelper;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,9 +71,9 @@ public class UpdateFormController extends ParentFXMLController {
     @FXML
     private CheckBox activeStatus;
     @FXML
-    private Button cancelFrame;
+    private Button cancel;
     @FXML
-    private Button resetFrame;
+    private Button reset;
     @FXML
     private Button submitFrame;
     @FXML
@@ -120,6 +123,16 @@ public class UpdateFormController extends ParentFXMLController {
     
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+    	
+    	yearOfGraduation.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
+                	yearOfGraduation.setText(oldValue);
+                }
+            }
+        });
+    	
     	// Setting the Degree Choice Box :
     	degree.getItems().addAll(choices);
     	// Adding the logo :
@@ -157,28 +170,58 @@ public class UpdateFormController extends ParentFXMLController {
 		String coursesAlreadyDone1 = coursesAlreadyDone.getText();
 		String suggestion = suggestions.getText();
 		Boolean activeStatus1 = activeStatus.isSelected();
-    	// Setting the values in the bean : 
-		EnquiryDetails enquiryDetailsObject = new EnquiryDetails(enquiryId, firstName1,lastName1,emailId1,
-				mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
-				role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,suggestion,activeStatus1);
-    	new EnquiryDetailsHelper().update(enquiryDetailsObject);
-    	// Navigation Next Screen : 
-    	FXMLLoader loader = new FXMLLoader();
-    	Parent myNewScene;
-		try {
-			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
-			Stage stage = (Stage) submitFrame.getScene().getWindow();
-	    	Scene scene = new Scene(myNewScene);
-	    	stage.setScene(scene);
-	    	stage.setTitle("My New Scene");
-	    	stage.show();  
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		if(		
+			firstName1 != null &&
+			lastName1 != null &&
+			emailId1 != null &&
+		    mobileNo1 != null &&
+			college1 != null &&
+			degree1 != null &&
+			branch1 != null &&
+			gender1 != null &&
+			yearOfGraduation1 != null &&
+			activeStatus1 != null		
+						) {	
+		
+	    	// Setting the values in the bean : 
+			EnquiryDetails enquiryDetailsObject = new EnquiryDetails(enquiryId, firstName1,lastName1,emailId1,
+					mobileNo1,college1,degree1,branch1,occupation1,organisation1,designation1,domain1,
+					role1,experience1,gender1,yearOfGraduation1,coursesInterestedIn1,coursesAlreadyDone1,suggestion,activeStatus1);
+	    	new EnquiryDetailsHelper().update(enquiryDetailsObject);
+	    	// Navigation Next Screen : 
+	    	FXMLLoader loader = new FXMLLoader();
+	    	Parent myNewScene;
+			try {
+				myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
+				Stage stage = (Stage) submitFrame.getScene().getWindow();
+		    	Scene scene = new Scene(myNewScene);
+		    	stage.setScene(scene);
+		    	stage.setTitle("My New Scene");
+		    	stage.show();  
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			// Navigation for the next Screen : 
+	    	FXMLLoader loader = new FXMLLoader();
+	    	Parent myNewScene;
+			try {
+				myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/ErrorMessage.fxml").openStream());
+				Stage stage = (Stage) submitFrame.getScene().getWindow();
+		    	Scene scene = new Scene(myNewScene);
+		    	stage.setScene(scene);
+		    	stage.setTitle("My New Scene");
+		    	stage.show(); 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
     }
     
     @FXML
-    void validateResetFrame(ActionEvent event) {
+    void resetClick(ActionEvent event) {
     	
     	 firstName.clear();
       	 lastName.clear();
@@ -205,12 +248,12 @@ public class UpdateFormController extends ParentFXMLController {
     }
     
     @FXML
-    void validateCancelFrame(ActionEvent event) {
+    void cancelClick(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader();
     	Parent myNewScene;
 		try {
 			myNewScene = loader.load(getClass().getResource("../../batchScheduler/fxmls/EnquiryDetails.fxml").openStream());
-			Stage stage = (Stage) cancelFrame.getScene().getWindow();
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Scene scene = new Scene(myNewScene);
 	    	stage.setScene(scene);
 	    	stage.setTitle("My New Scene");

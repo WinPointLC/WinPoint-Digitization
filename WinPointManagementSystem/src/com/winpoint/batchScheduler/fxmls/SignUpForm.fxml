@@ -36,9 +36,21 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="1200.0">
                            <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="NOTE : * feilds are Mandatory to fill.">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="25.0" />
+                                 </VBox.margin>
+                              </HBox>
                               <HBox prefHeight="27.0" prefWidth="537.0">
                                  <children>
-                                    <Label prefHeight="25.0" prefWidth="200.0" text="First Name  :">
+                                    <Label prefHeight="25.0" prefWidth="200.0" text="First Name* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -51,7 +63,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Last Name :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Last Name* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -64,7 +76,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Email ID :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Email ID* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -77,7 +89,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Mobile Number : ">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Mobile Number* : ">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -90,7 +102,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Address :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Address* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -103,7 +115,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Date of Birth :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Date of Birth* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -116,7 +128,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Gender :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Gender* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -129,7 +141,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="200.0" text="College :">
+                                    <Label prefHeight="17.0" prefWidth="200.0" text="College* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -142,7 +154,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Degree :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Degree* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -155,7 +167,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Branch :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Branch* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -220,12 +232,12 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Year Of Graduation :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Year Of Graduation* :">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="yearOfGraduation" onAction="#validateYearOfGraduation" prefWidth="500.0" />
+                                    <TextField fx:id="yearOfGraduation" onInputMethodTextChanged="#validateYearOfGraduation" prefWidth="500.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="25.0" />
@@ -246,12 +258,12 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Experience  :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Experience ( in months)  :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="experience" onAction="#validateExperience" prefWidth="500.0" />
+                                    <TextField fx:id="experience" onInputMethodTextChanged="#validateExperience" prefWidth="500.0" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="25.0" />
@@ -272,7 +284,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Courses Interested In :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Courses Interested In* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -285,7 +297,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Eligibility : ">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Eligibility* : ">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -311,7 +323,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Available Time :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Available Time* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -337,7 +349,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Date Of Enquiry :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Date Of Enquiry* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -363,7 +375,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Start Date : ">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Start Date* : ">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -376,7 +388,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Segment Type :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Segment Type* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -402,7 +414,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Active Status :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Active Status* :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

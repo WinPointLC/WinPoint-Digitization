@@ -40,118 +40,79 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ManageRevenueContoller extends ParentFXMLController{
-
 	
-	UserCoursesDoneWrapper user;  // name to be changed
-	ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
-	ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
+	
 	int selectedCourseId;
 	int selectedSegmentTypeId;
 	int preferedTime;
 	int facultyId;
-	boolean isEnquired;
 	int selectedbatchId;
-	
 	private Integer segmentTypeId;
 	private Integer revenueTypeId;
 	private Integer organizationTypeId;
 	private Integer paymentTypeId;
 	private Integer userProfileId;
-	
+	boolean isEnquired;
 	private String generatedBatchName1;
-	//private Integer selectedCourseId1;
+	UserCoursesDoneWrapper user;  
+	ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
+	ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1 = new ArrayList<UserCoursesDoneWrapper>();
 	
 	@FXML
     private TextField recieptNumber;
-
     @FXML
     private TextField payerDescription;
-
     @FXML
     private TextField batchNumber;
-    
     @FXML
     private ChoiceBox<String> segmentType = new ChoiceBox<>();
-    
     @FXML
     private ChoiceBox<String> revenueType = new ChoiceBox<>();
-
     @FXML
     private ChoiceBox<String> organization = new ChoiceBox<>();
-  
     @FXML
     private ChoiceBox<String> paymentMode = new ChoiceBox<>();
-    
     @FXML
     private TextField checkNumber;
-
     @FXML
     private TextField revenueAmount;
-
     @FXML
     private DatePicker recieptDate;
-    
     @FXML
     private DatePicker firstAmountDate;
-
     @FXML
     private ImageView logo;
-
     @FXML
     private Button submit;
-	private int userProfile;
+	
 
     @FXML
-    void validateBatchNumber(ActionEvent event) {
-
-    }
-
+    void validateBatchNumber(ActionEvent event) {}
     @FXML
-    void validateCheckNumber(ActionEvent event) {
-
-    }
-
+    void validateCheckNumber(ActionEvent event) {}
     @FXML
-    void validateFirstAmountDate(ActionEvent event) {
-
-    }
-
+    void validateFirstAmountDate(ActionEvent event) {}
     @FXML
-    void validatePayerDescription(ActionEvent event) {
-
-    }
-
+    void validatePayerDescription(ActionEvent event) {}
     @FXML
-    void validateRecieptNumber(ActionEvent event) {
-
-    }
-
+    void validateRecieptNumber(ActionEvent event) {}
     @FXML
-    void validateRevenueAmount(ActionEvent event) {
-
-    }
-
+    void validateRevenueAmount(ActionEvent event) {}
     @FXML
-    void validateRevenueType(MouseEvent event) {
-
-    }
-
+    void validateRevenueType(MouseEvent event) {}
     @FXML
-    void validateReciepteDate(ActionEvent event) {
-
-    }
+    void validateReciepteDate(ActionEvent event) {}
     
     //Abhishek 
     @FXML
-    void submitFrame(ActionEvent event) throws IOException {
-    	
-    	
-    	// Converting in the date Format : 
+    void submitClick(ActionEvent event) {    	
+    	// Converting in the date Format :
+    	// First Payment Date -
     	LocalDate ldFirstPaymentDate = firstAmountDate.getValue();
     	Calendar cFirstPaymentDate =  Calendar.getInstance();
     	cFirstPaymentDate.set(ldFirstPaymentDate.getYear(), ldFirstPaymentDate.getMonthValue(), ldFirstPaymentDate.getDayOfMonth());
     	Date firstPaymentDate1 = cFirstPaymentDate.getTime();
-    	
+    	// Receipt Date - 
     	LocalDate ldRecieptDate = recieptDate.getValue();
     	Calendar cRecieptDate =  Calendar.getInstance();
     	cRecieptDate.set(ldRecieptDate.getYear(), ldRecieptDate.getMonthValue(), ldRecieptDate.getDayOfMonth());
@@ -164,24 +125,21 @@ public class ManageRevenueContoller extends ParentFXMLController{
        	}  	
     	
     	// Declaration of required Variable :
-    	Integer revenueDetailId = 6; // = object.getRevenueDetailId();
+    	Integer revenueDetailId = 6; 
     	Integer revenueType1 = revenueTypeId;
     	String recieptNumber1 = recieptNumber.getText();
     	String payerDescription1 = payerDescription.getText();
-    	Integer courseId = selectedCourseId; // = objectOfBatchDetail.getCourseId();
-    	Integer batchId = selectedbatchId; // = objectOfBatchDetail.getBatchId();
+    	Integer courseId = selectedCourseId; 
+    	Integer batchId = selectedbatchId; 
     	float revenueAmount1= Float.parseFloat(revenueAmount.getText());
     	Integer paymentMode1 = paymentTypeId;
     	String checkNumber1= checkNumber.getText();
     	Integer segmentType1 = segmentTypeId;
     	Integer organization1 = organizationTypeId;
-    	Integer userId = userProfileId;//userProfileId; 
     	Date recieveDate = recieveDate1;
     	Date firstPaymentDate = firstPaymentDate1;
     	
-    	
-    	
-    	
+    	DaoHelper daoHelper = new DaoHelper();
     	if(isEnquired) {
 			/* 
 			 * 
@@ -202,47 +160,38 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			 *
 			 * 
 			 * */
-			//EnquiryDetailsHelper enquiryDetailsHelper = new EnquiryDetailsHelper();
 			
-			DaoHelper daoHelper = new DaoHelper();
-			//daoHelper.function(this.userId,enquiryDetailsHelper.getEnquiryDetailsOfStudent(this.userId),courseId,batchId);
 			try {
-			
 		    	int latestUserId = new DaoHelper().accessLatestUserId();
-		    	
 		    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
 		    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,latestUserId,recieveDate);
-		    	
 		    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(latestUserId,courseId,firstPaymentDate);    	
 		        
 		    	/***************************************************/   
 		    	
-				daoHelper.functionEnquiredStudent(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);
-				
-				
+				daoHelper.functionEnquiredStudent(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);		
 		    	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+			/*
+			 * remove the data from the list and pass it back again
+			 * */
+			listOfEnquiredStudents1.remove(this.user);
+
+		}else {   	
+	    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
+	    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userProfileId,recieveDate);
+	    	
+	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(userProfileId,courseId,firstPaymentDate);    	
+		
+	    	try {
+				daoHelper.functionRegisteredStudent(user, courseId, batchId, manageRevenueObject, studentCourseInstallmentObject);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			/*
-			 * 
-			 * remove the data from the list and pass it back again
-			 * 
-			 * */
-			
-			listOfEnquiredStudents1.remove(this.user);
-
-		}else {
-	    	
-	    	ManageRevenue manageRevenueObject = new ManageRevenue(revenueDetailId,revenueType1,recieptNumber1,payerDescription1,
-	    			courseId,batchId,revenueAmount1,paymentMode1,checkNumber1,segmentType1,organization1,userProfileId,recieveDate);
-	    	
-	    	StudentCourseInstallmentDetails studentCourseInstallmentObject = new StudentCourseInstallmentDetails(userProfileId,courseId,firstPaymentDate);    	
-			
-//	    	daoHelper.function(this.user,courseId,batchId,manageRevenueObject,studentCourseInstallmentObject);
-	    	
 			listOfRegisteredStudents1.remove(this.user);
 		}
     	
@@ -251,10 +200,9 @@ public class ManageRevenueContoller extends ParentFXMLController{
 		try {
 			myNewScene = loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		// Loader Of the next Screen : 
 		CoursesNameController coursesNameController = loader.getController();
 		coursesNameController.setListOfStudents(
 				listOfRegisteredStudents1, 
@@ -339,6 +287,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
    		logo.setImage(logoImage);
    	}
 
+    // Setting data passed by the previous Screen : 
 	public void setStudentData(
 			UserCoursesDoneWrapper enquiredStudent, 
 			ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1,
@@ -352,7 +301,6 @@ public class ManageRevenueContoller extends ParentFXMLController{
 			Integer selectedbatchId2
 			) {
 				
-		this.userProfile = userProfile;
 		this.generatedBatchName1 = generatedBatchName;
 		this.selectedbatchId = selectedbatchId2;
 		this.isEnquired = isEnquired;

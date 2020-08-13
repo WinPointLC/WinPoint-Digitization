@@ -34,10 +34,10 @@ public class BatchDetailsController extends ParentFXMLController{
 		int selectedSegmentTypeId1; 
 		int preferedTime1;
 		int facultyId1;
+		Stage primaryStage;		
 		String generatedBatchName1;
 		String selectedcourseName;
-		String prefreredTimeName;		
-		Stage primaryStage;		
+		String prefreredTimeName;				
 		private Button add;
 		private ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents1;
 		private ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents1;		
@@ -70,6 +70,7 @@ public class BatchDetailsController extends ParentFXMLController{
 	    @Override
 	   	public void initialize(URL location, ResourceBundle resources) {
 	    	
+	    	// Adding logo :
 	    	super.initialize(location, resources);
 	   		logo.setImage(logoImage);
 	   		
@@ -122,7 +123,8 @@ public class BatchDetailsController extends ParentFXMLController{
 								batchDetail.getBatchId(),
 								batchDetail.getStartDate(),
 								selectedcourseName,
-								prefreredTimeName);
+								prefreredTimeName
+								);
 						
 	                	Stage stage = (Stage) add.getScene().getWindow();
 	                	Scene scene = new Scene(myNewScene);
@@ -139,8 +141,8 @@ public class BatchDetailsController extends ParentFXMLController{
 	    }
 	    
 		@FXML
-	    void cancelFrame(ActionEvent event) {
-	    	Stage stage = (Stage) cancel.getScene().getWindow();
+		void cancelClick(ActionEvent event) {	    	
+			Stage stage = (Stage) cancel.getScene().getWindow();
 	    	Parent myNewScene;
 			try {
 				myNewScene = FXMLLoader.load(getClass().getResource("../../batchScheduler/fxmls/BatchLauncher.fxml"));
@@ -153,6 +155,7 @@ public class BatchDetailsController extends ParentFXMLController{
 			}
 	    }
 	    
+		// Setting Data passed from the Previous Screen :
 	    void setListOfStudent(
 	    		ArrayList<UserCoursesDoneWrapper> listOfRegisteredStudents, 
 	    		ArrayList<UserCoursesDoneWrapper> listOfEnquiredStudents, 
@@ -172,9 +175,7 @@ public class BatchDetailsController extends ParentFXMLController{
 			generatedBatchName1 = generatedBatchName;
 			selectedcourseName = selectedcourseName1;
 			prefreredTimeName = selectedcourseName1;
-  	   }
-
-	   
+  	   }	   
 }
 
 

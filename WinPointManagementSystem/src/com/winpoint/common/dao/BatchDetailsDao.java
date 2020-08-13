@@ -5,12 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.BatchDetails;
-import com.winpoint.common.beans.EnquiryDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
 
@@ -61,9 +59,7 @@ public class BatchDetailsDao {
 		return  (List<BatchDetailsWrapper>) batchDetailsWrapperList;
 		
 	}
-	
-	
-	
+		
 	//GROUP A - For Inserting the Data in BatchDetails - Abhishek
 	public void create(BatchDetails batchDetails) throws SQLException {
 		java.sql.Date sqlCreatedDate = new java.sql.Date(batchDetails.getCreatedDate().getTime());
@@ -101,15 +97,12 @@ public class BatchDetailsDao {
 					""+ batchDetails.getCreatedBy() +",\n" + 
 					"'"+ sqlCreatedDate +"')\n" + 
 					"";
-//			System.out.println(query);
 			statement.executeUpdate(query);
 			
 		}
-
 		
 	}
-	
-	
+		
 	//Group A - for counting the NO. of batches - Abhishek
 	public BatchDetailsWrapper getcountNumberOfBatches(Integer courseId) {
 		BatchDetailsWrapper count = null;
@@ -136,8 +129,7 @@ public class BatchDetailsDao {
 		} 
 		return count ;
 		
-	}
-	
+	}	
 	
 	//GroupB
 	public List<BatchDetails> getBatchDetailsList1() {
@@ -167,38 +159,6 @@ public class BatchDetailsDao {
 		return  (ArrayList<BatchDetails>) batchDetailsList1;
 		
 	}
-
-	
-	//group A - for inserting the values in the table. ~ Shraddha
-//	public void create(BatchDetails batchDetails) throws SQLException {
-//		java.sql.Date sqlBeginDate = new java.sql.Date( batchDetails.getStartDate().getTime());
-//		java.sql.Date sqlEndDate = new java.sql.Date( batchDetails.getEndDate().getTime());
-//		
-//	
-//		try(Connection connection = ConnectionManager.getConnection()){
-//			Statement statement = connection.createStatement();
-//			String query = "\n" +
-//					"INSERT INTO BATCH_DETAILS \n" +
-//					"(BATCH_NAME, \n" +
-//					"LECTURE_DURATION, \n" +
-//					"TOTAL_NUMBER_OF_LECTURES, \n" +
-//					"FACULTY_USER_ID, \n" +
-//					"BATCH_TIME, \n" +
-//					"BEGIN_DATE, \n" +
-//					"END_DATE)\n" +
-//					"VALUES("+
-//					batchDetails.getBatchName()+"','"+
-//					batchDetails.getLectureDuration()+"','"+
-//					batchDetails.getTotalNumberOfLectures()+"','"+
-//					batchDetails.getFacultyId()+"','"+
-//					batchDetails.getBatchTime()+"','"+
-//					sqlBeginDate+"','"+
-//					sqlEndDate+"')";
-//			
-//			System.out.println(query);
-//			statement.executeUpdate(query);
-//		}
-//	}
 	
 	public ArrayList<BatchDetailsWrapper> getWrapperListOfBatches(Integer courseId){
 		ArrayList<BatchDetailsWrapper> batchList = new ArrayList<>();
@@ -243,7 +203,7 @@ public class BatchDetailsDao {
 			while(resultSet.next()) {
 				batchDetails = new BatchDetails(resultSet.getInt("BATCH_ID"), resultSet.getInt("COURSE_ID"), resultSet.getInt("FACULTY_USER_ID"), resultSet.getDate("BEGIN_DATE"), resultSet.getDate("END_DATE"),
 						resultSet.getInt("CREATED_BY"), resultSet.getDate("CREATED_DATE"), resultSet.getString("BATCH_NAME"), resultSet.getInt("BATCH_TIME"), resultSet.getInt("CURRENT_LECTURE_NUMBER"),
-			Integer.parseInt(resultSet.getString("LECTURE_DURATION")), resultSet.getString("FACULTY_NAME"), resultSet.getInt("TOTAL_NUMBER_OF_LECTURES"));
+			resultSet.getString("LECTURE_DURATION"), resultSet.getString("FACULTY_NAME"), resultSet.getInt("TOTAL_NUMBER_OF_LECTURES"));
 			}
 		} 
 		catch (SQLException e) {
@@ -253,8 +213,6 @@ public class BatchDetailsDao {
 		return batchDetails;
 		
 	}
-
-
 
 	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId, Integer segmentTypeId) {
 		

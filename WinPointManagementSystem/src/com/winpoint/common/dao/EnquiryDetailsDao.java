@@ -182,7 +182,7 @@ public class EnquiryDetailsDao {
 					"        WHERE ENQUIRY_ID="+ enquiryDetailsObject.getEnquiryId()+"\n" +
 					"        " +
 					"";
-				System.out.println(query1);
+//				System.out.println(query1);
 				statement.executeUpdate(query1);
 		}
 		catch (SQLException e) {

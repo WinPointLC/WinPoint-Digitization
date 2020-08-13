@@ -223,7 +223,7 @@ public class PriorityCoursesListDao {
 	}
 		
 
-	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesStudentsEligibleMap() {
+	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> getCoursesStudentsEligibleMap() {
 		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
 		HashMap<Integer, UserCoursesDoneWrapper> studentsList = getActiveStudentsList();
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>>coursesStudentsEligibleMap = new HashMap<>();
@@ -245,7 +245,7 @@ public class PriorityCoursesListDao {
 	}
 	
 	
-	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesEligibleEnquiredStudentsMaps() {
+	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> getCoursesEligibleEnquiredStudentsMaps() {
 		HashMap< Course, HashSet<String>>courseList = getCoursePreRequisites();
 		HashMap<EnquiryDetails, EnquiredStudetnsCourseWrapper>EnquiredStudentsCoursesMap = getEligibleEnquiryDetails();
 		HashMap<Course, ArrayList<UserCoursesDoneWrapper>> coursesEnquiredStudetnsMap = new HashMap<>();

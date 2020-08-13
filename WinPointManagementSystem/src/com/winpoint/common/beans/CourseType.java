@@ -27,15 +27,7 @@ public class CourseType {
 		this.courseTypeName = courseTypeName;
 	}
 
-//	public CourseType(String courseTypeName) {
-//		// TODO Auto-generated constructor stub
-//		
-//	}
-
-
-
 	public CourseType(String courseTypeName) {
-		// TODO Auto-generated constructor stub
 		this.courseTypeName = courseTypeName;
 	}
 
@@ -47,13 +39,6 @@ public class CourseType {
 	}
 	
 	/**
-	 * @param courseTypeId the courseTypeId to set
-	 */
-	public void setCourseTypeId(Integer courseTypeId) {
-		courseTypeId = courseTypeId;
-	}
-	
-	/**
 	 * @return the courseTypeName
 	 */
 	public String getCourseTypeName() {
@@ -61,24 +46,10 @@ public class CourseType {
 	}
 	
 	/**
-	 * @param courseTypeName the courseTypeName to set
-	 */
-	public void setCourseTypeName(String courseTypeName) {
-		courseTypeName = courseTypeName;
-	}
-	
-	/**
 	 * @return the createdBy
 	 */
 	public Integer getCreatedBy() {
 		return createdBy;
-	}
-	
-	/**
-	 * @param createdBy the createdBy to set
-	 */
-	public void setCreatedBy(Integer createdBy) {
-		createdBy = createdBy;
 	}
 	
 	/**

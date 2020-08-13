@@ -21,21 +21,28 @@ public class EmailUtility {
 		
 		
 		Address [] emailAddress = new Address[listOfEmailIds.size()];
+//		Address [] emailAddress = new Address[2];
 		int count = 0;
 		for(String email : listOfEmailIds) {
 			try {
 				emailAddress[count] = new InternetAddress(email);
 				count++;
 			} catch (AddressException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
+//				try {
+//					emailAddress[0] = new InternetAddress("dixitabhishek239@gmail.com");
+//					emailAddress[1] = new InternetAddress("abhishek.dixit@moderncoe.edu.in");
+//				} catch (AddressException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 		
 				String host = "smtp.gmail.com";
-				String user="winpointlc@gmail.com";//Your E-mail-Id
-				String pass="winpoint@123";      //your e-mail account password
+				String user="winpointlc@gmail.com";  //Your E-mail-Id
+				String pass="winpoint@123"; //your e-mail account password
 
 				String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 //				String to = "dixitabhishek239@gmail.com"; //recipient E-mail-Id
@@ -71,7 +78,7 @@ public class EmailUtility {
 				props.put("mail.transport.protocol.", "smtp");
 				props.put("mail.smtp.auth", "true");
 				//props.put("mail.smtp.", "true");
-				props.put("mail.smtp.port", "465");//port number 465 for Secure (SSL) and we can also            use port no 587 for Secure (TLS)
+				props.put("mail.smtp.port", "465");//port number 465 for Secure (SSL) and we can also use port no 587 for Secure (TLS)
 				props.put("mail.smtp.socketFactory.fallback", "false");
 				props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
 			
@@ -94,10 +101,9 @@ public class EmailUtility {
 						System.out.println("E");
 						msg.setContent(messageText, "text/html");
 						System.out.println("F");
-						
-					
 						transport = mailSession.getTransport("smtp");
 						System.out.println("4");
+						
 						transport.connect(host, user, pass);
 					
 						System.out.println("3");

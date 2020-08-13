@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.winpoint.batchScheduler.fxmlsControllers.SignUpFormController;
-import com.winpoint.batchScheduler.fxmlsControllers.UpdateFormController;
 import com.winpoint.common.controllers.ParentFXMLController;
 
 import javafx.event.ActionEvent;

@@ -15,6 +15,7 @@ public class EditBatchDetailsWrapper {
 	private String lectureDuration;
 	private String comments;
 	ArrayList<Integer> topicsList;
+	private String lecCoverage;
 	public EditBatchDetailsWrapper(Integer lectureNumber, Date lectureDate, String startTime, String lectureDuration,
 			String comments,ArrayList<Integer> topicsList) {
 		super();
@@ -26,13 +27,30 @@ public class EditBatchDetailsWrapper {
 		this.topicsList=topicsList;
 	}
 	
-	public EditBatchDetailsWrapper(Date lectureDate, String startTime, String lectureDuration, String comments) {
+	
+	public String getLecCoverage() {
+		return lecCoverage;
+	}
+
+
+	public void setLecCoverage(String lecCoverage) {
+		this.lecCoverage = lecCoverage;
+	}
+
+
+	
+
+
+	public EditBatchDetailsWrapper( Date lectureDate, String startTime, String lectureDuration,
+			String comments, String lecCoverage) {
 		super();
 		this.lectureDate = lectureDate;
 		this.startTime = startTime;
 		this.lectureDuration = lectureDuration;
 		this.comments = comments;
+		this.lecCoverage = lecCoverage;
 	}
+
 
 	public Integer getLectureNumber() {
 		return lectureNumber;

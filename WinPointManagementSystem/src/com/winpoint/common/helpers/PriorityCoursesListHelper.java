@@ -10,10 +10,10 @@ import com.winpoint.common.wrappers.UserCoursesDoneWrapper;
 public class PriorityCoursesListHelper {
 	
 	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> getEnquiredStudentListWithCourses() {
-		return new PriorityCoursesListDao().coursesEligibleEnquiredStudentsMaps();
+		return new PriorityCoursesListDao().getCoursesEligibleEnquiredStudentsMaps();
 	}
 	
 	public HashMap<Course, ArrayList<UserCoursesDoneWrapper>> getRegisteredStudentListWithCourses() {
-		return new PriorityCoursesListDao().coursesStudentsEligibleMap();
+		return new PriorityCoursesListDao().getCoursesStudentsEligibleMap();
 	}
 }
