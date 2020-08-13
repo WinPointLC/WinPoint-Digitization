@@ -19,7 +19,7 @@ import com.winpoint.common.util.sql.ConnectionManager;
 
 public class FeedbackQuestionsDao {
 
-	public ArrayList<FeedbackQuestions> getFeedbackQuestions() {
+	public ArrayList<FeedbackQuestions> getFeedbackQuestions(int feedbackQuestionCategoryId) {
 		
 		ArrayList<FeedbackQuestions> feedbackQuestionsList = new ArrayList<FeedbackQuestions>();
 		
@@ -28,17 +28,17 @@ public class FeedbackQuestionsDao {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query = "select FEEDBACK_QUESTION_ID, FEEDBACK_QUESTION, FEEDBACK_QUESTION_TYPE from FEEDBACK_QUESTIONS";
+			String query = "select FEEDBACK_QUESTION_ID, FEEDBACK_QUESTION, FEEDBACK_QUESTION_TYPE_ID from FEEDBACK_QUESTIONS WHERE FEEDBACK_CATEGORY_ID =" + feedbackQuestionCategoryId;
 			resultSet = statement.executeQuery(query);
 			
 			while(resultSet.next()) {
 				int feedbackQuestionId = resultSet.getInt("FEEDBACK_QUESTION_ID");
 				String feedbackQuestion = resultSet.getString("FEEDBACK_QUESTION");
-				Integer feedbackQuestionTypeId = resultSet.getInt("FEEDBACK_QUESTION_TYPE");
-				FeedbackQuestions feedbackQuestions = new FeedbackQuestions();
-				feedbackQuestions.setFeedbackQuestionId(feedbackQuestionId);
+				Integer feedbackQuestionTypeId = resultSet.getInt("FEEDBACK_QUESTION_TYPE_ID");
+				FeedbackQuestions feedbackQuestions = new FeedbackQuestions(feedbackQuestionId, feedbackQuestion, feedbackQuestionTypeId);
+				/*feedbackQuestions.setFeedbackQuestionId(feedbackQuestionId);
 				feedbackQuestions.setFeedbackQuestion(feedbackQuestion);
-				feedbackQuestions.setFeedbackQuestionTypeId(feedbackQuestionTypeId);
+				feedbackQuestions.setFeedbackQuestionTypeId(feedbackQuestionTypeId);*/
 				feedbackQuestionsList.add(feedbackQuestions);
 			}
 		} 

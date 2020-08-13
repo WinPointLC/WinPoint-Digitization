@@ -24,8 +24,8 @@ public class CourseFeedbackHelper {
 		return new CourseFeedbackDao().getFeedbackCount(courseId);
 	}
 	
-	public void createUserCourseFeedback(CourseFeedback userCourseFeedback) {
-		new CourseFeedbackDao().createUserCourseFeedback(userCourseFeedback);
+	public void createUserCourseFeedback(int userId, CourseFeedback[] userCourseFeedback) {
+		new CourseFeedbackDao().createUserCourseFeedback(userId, userCourseFeedback);
 	}
 
 }

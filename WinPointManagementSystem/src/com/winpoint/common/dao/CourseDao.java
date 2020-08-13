@@ -5,10 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.CourseBatchDetail;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
@@ -56,7 +59,25 @@ public ArrayList<Course> getBatchCourseDurationList() {
 					"		ON COURSES.COURSE_TYPE_ID = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
 					"WHERE " + streamId + "= STREAMS.STREAM_ID and " + courseTypeId + " = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
 					"ORDER BY STREAMS.STREAM_ID, COURSE_TYPE.COURSE_TYPE_ID, COURSES.COURSE_ID";
-			
+			/*query = "SELECT			\r\n" + 
+					"		COURSES.COURSE_ID, \r\n" + 
+					"		COURSES.COURSE_NAME, \r\n" + 
+					"		LOGO_LOCATION,\r\n" + 
+					"		BATCH_DETAILS.BATCH_ID,\r\n" + 
+					"		BATCH_NAME,\r\n" + 
+					"		STUDENT_COURSE_DETAILS.USER_ID\r\n" + 
+					"FROM\r\n" + 
+					"		STREAMS STREAMS JOIN COURSES COURSES \r\n" + 
+					"		ON STREAMS.STREAM_ID = COURSES.STREAM_ID \r\n" + 
+					"			JOIN COURSE_TYPE COURSE_TYPE\r\n" + 
+					"		ON COURSES.COURSE_TYPE_ID = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
+					"		JOIN BATCH_DETAILS\r\n" + 
+					"		ON BATCH_DETAILS.COURSE_ID  = COURSES.COURSE_ID\r\n" + 
+					"		JOIN STUDENT_COURSE_DETAILS\r\n" + 
+					"		ON STUDENT_COURSE_DETAILS.BATCH_ID = BATCH_DETAILS.BATCH_ID\r\n" + 
+					"WHERE  STREAMS.STREAM_ID = 1 and COURSE_TYPE.COURSE_TYPE_ID = 1 AND STUDENT_COURSE_DETAILS.BATCH_ID IN (BATCH_DETAILS.BATCH_ID)\r\n" + 
+					"ORDER BY COURSES.COURSE_ID, BATCH_ID\r\n" + 
+					"";*/
 			resultSet = statement.executeQuery(query);
 			
 			while(resultSet.next()) {
@@ -171,6 +192,98 @@ public ArrayList<Course> getBatchCourseDurationList() {
 			e.printStackTrace();
 		}
 		return userCourses;
+	}
+
+
+	public ArrayList<CourseBatchDetail> getCourseBatchDetail(int streamId, int courseTypeId) {
+		// TODO Auto-generated method stub
+		ArrayList<CourseBatchDetail> courseList = new ArrayList<CourseBatchDetail>();
+		
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+
+			/*String query = "SELECT			\r\n" + 
+					"		COURSES.COURSE_ID, \r\n" + 
+					"		COURSES.COURSE_NAME, \r\n" + 
+					"		LOGO_LOCATION,\r\n" + 
+					"		BATCH_DETAILS.BATCH_ID,\r\n" + 
+					"		BATCH_NAME,\r\n" + 
+					"		STUDENT_COURSE_DETAILS.USER_ID\r\n" + 
+					"FROM\r\n" + 
+					"		STREAMS STREAMS JOIN COURSES COURSES \r\n" + 
+					"		ON STREAMS.STREAM_ID = COURSES.STREAM_ID \r\n" + 
+					"			JOIN COURSE_TYPE COURSE_TYPE\r\n" + 
+					"		ON COURSES.COURSE_TYPE_ID = COURSE_TYPE.COURSE_TYPE_ID\r\n" + 
+					"		JOIN BATCH_DETAILS\r\n" + 
+					"		ON BATCH_DETAILS.COURSE_ID  = COURSES.COURSE_ID\r\n" + 
+					"		JOIN STUDENT_COURSE_DETAILS\r\n" + 
+					"		ON STUDENT_COURSE_DETAILS.BATCH_ID = BATCH_DETAILS.BATCH_ID\r\n" + 
+					"WHERE  STREAMS.STREAM_ID = 1 and COURSE_TYPE.COURSE_TYPE_ID = 1 AND STUDENT_COURSE_DETAILS.BATCH_ID IN (BATCH_DETAILS.BATCH_ID)\r\n" + 
+					"ORDER BY COURSES.COURSE_ID, BATCH_ID";*/
+			String query = "SELECT			\r\n" + 
+					"							COURSES.COURSE_ID, \r\n" + 
+					"							COURSES.COURSE_NAME, \r\n" + 
+					"							LOGO_LOCATION \r\n" + 
+					"							--BATCH_DETAILS.BATCH_ID, \r\n" + 
+					"							--BATCH_NAME\r\n" + 
+					"							--STUDENT_COURSE_DETAILS.USER_ID \r\n" + 
+					"					FROM\r\n" + 
+					"							STREAMS STREAMS JOIN COURSES COURSES  \r\n" + 
+					"							ON STREAMS.STREAM_ID = COURSES.STREAM_ID  \r\n" + 
+					"								JOIN COURSE_TYPE COURSE_TYPE\r\n" + 
+					"							ON COURSES.COURSE_TYPE_ID = COURSE_TYPE.COURSE_TYPE_ID \r\n" + 
+					"							--JOIN BATCH_DETAILS\r\n" + 
+					"							--ON BATCH_DETAILS.COURSE_ID  = COURSES.COURSE_ID \r\n" + 
+					"							--JOIN STUDENT_COURSE_DETAILS\r\n" + 
+					"							--ON STUDENT_COURSE_DETAILS.BATCH_ID = BATCH_DETAILS.BATCH_ID \r\n" + 
+					"					WHERE  STREAMS.STREAM_ID = 1 and COURSE_TYPE.COURSE_TYPE_ID = 1 \r\n" + 
+					"					ORDER BY COURSES.COURSE_ID";		
+			resultSet = statement.executeQuery(query);
+						
+			while(resultSet.next()) {
+				int courseId = resultSet.getInt("course_id");
+				String courseName = resultSet.getString("course_name");
+				String logoLocation = resultSet.getString("logo_location");
+				CourseBatchDetail course = new CourseBatchDetail(courseId, courseName, streamId, courseTypeId, logoLocation, null);
+				courseList.add(course);
+			}
+			for (CourseBatchDetail course : courseList) {
+				ArrayList<String> batchNameList = new ArrayList<>();
+				String query2 = "SELECT BATCH_ID, BATCH_NAME FROM BATCH_DETAILS WHERE COURSE_ID = " + course.getCourseId();
+				ResultSet resultSet2 = statement.executeQuery(query2);
+				while(resultSet2.next()) {
+					int batchId = resultSet2.getInt("batch_Id");
+					String batchName = resultSet2.getString("batch_name");
+					batchNameList.add(batchId + "/" + batchName);
+				}
+				course.setBatchListName(batchNameList);
+			}
+			for (CourseBatchDetail course : courseList) {
+				int studentCount=0;
+				ArrayList<String> batchNameList =  course.getBatchListName();
+				
+				for(int i=0; i<batchNameList.size(); i++) {
+					String batchName = batchNameList.get(i);
+					String query3 = "SELECT COUNT(*) AS TOTAL_BATCH_STUDENTS FROM STUDENT_COURSE_DETAILS WHERE BATCH_ID =  " + batchName.substring(0, batchName.indexOf('/'));
+					ResultSet resultSet3 = statement.executeQuery(query3);
+					while(resultSet3.next()) {
+						studentCount = resultSet3.getInt("TOTAL_BATCH_STUDENTS");
+						System.out.println("StudentCount = " + studentCount);
+					}
+					batchNameList.set(i, batchName + "/" + studentCount);
+				}
+				course.setBatchListName(batchNameList);
+			}
+		} 
+		catch (SQLServerException e) {	
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		return courseList;
 	}
 }
 

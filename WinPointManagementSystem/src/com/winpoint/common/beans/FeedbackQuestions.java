@@ -69,6 +69,13 @@ public class FeedbackQuestions {
 		this.feedbackCategoryId = feedbackCategoryId;
 	}
 
+	public FeedbackQuestions(int feedbackQuestionId, String feedbackQuestion, Integer feedbackQuestionTypeId) {
+		// TODO Auto-generated constructor stub
+		this.feedbackQuestionId = feedbackQuestionId;
+		this.feedbackQuestion = feedbackQuestion;
+		this.feedbackQuestionTypeId = feedbackQuestionTypeId;
+	}
+
 	public Integer getFeedbackCategoryId() {
 		return feedbackCategoryId;
 	}
