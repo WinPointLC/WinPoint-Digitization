@@ -182,4 +182,54 @@ public void updateLectureDetails(EditBatchDetailsWrapper updateLecDetails,Intege
 		e.printStackTrace();
 	}
 }
+public void addLecToBatch(Integer batchId) {
+	// TODO Auto-generated method stub
+	try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();
+		
+		String query = "INSERT INTO LECTURE(BATCH_ID,LECTURE_NUMBER)\r\n" + 
+				"VALUES ("+batchId+", (SELECT MAX(LECTURE_NUMBER)+1 FROM LECTURE WHERE BATCH_ID="+batchId+")) ";
+		System.out.println(query);
+		int resultSet = statement.executeUpdate(query);
+
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+public void delLecFromBatch(Integer batchId,Integer lecNum) {
+	// TODO Auto-generated method stub
+	try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();
+		
+//		String query="SELECT MAX(LECTURE_NUMBER) FROM LECTURE WHERE BATCH_ID="+batchId;
+//		ResultSet resultSet=statement.executeQuery(query);
+//		System.out.println(resultSet);
+		String query = "DELETE FROM LECTURE WHERE BATCH_ID="+batchId+" AND LECTURE_NUMBER="+lecNum;
+		System.out.println(query);
+		int resultSet = statement.executeUpdate(query);
+
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+public EditBatchDetailsWrapper accessMaxLecture(Integer batchId) {
+	EditBatchDetailsWrapper maxlec=null;
+	try(Connection connection = ConnectionManager.getConnection()){
+		Statement statement = connection.createStatement();
+		//int maxlec;
+		
+	String query="SELECT MAX(LECTURE_NUMBER)AS MAX_LEC_COUNT FROM LECTURE WHERE BATCH_ID="+batchId;
+		ResultSet resultSet=statement.executeQuery(query);
+		while(resultSet.next()) {
+			 maxlec=new EditBatchDetailsWrapper(resultSet.getInt("MAX_LEC_COUNT"));
+		}
+		
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return maxlec;
+}
 }

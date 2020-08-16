@@ -11,6 +11,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.BatchDetailsWrapper;
+import com.winpoint.common.wrappers.EditBatchDetailsWrapper;
 
 public class BatchDetailsDao {
 	
@@ -241,5 +242,22 @@ public class BatchDetailsDao {
 		}
 			
 		return batchExist;	}
+	public void updateBatchDetails(BatchDetails updatedBatchDetails, Integer batchId) {
+		java.sql.Date sqlbeginDate = new java.sql.Date(updatedBatchDetails.getStartDate().getTime());
+		java.sql.Date sqlendDate = new java.sql.Date(updatedBatchDetails.getEndDate().getTime());
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "UPDATE BATCH_DETAILS SET BEGIN_DATE='"+sqlbeginDate+
+					"',END_DATE='"+sqlendDate+"' ,LECTURE_DURATION ='"
+					+updatedBatchDetails.getLectureDuration()+"' WHERE BATCH_ID="+batchId;
+			System.out.println(query);
+			int resultSet = statement.executeUpdate(query);
+
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

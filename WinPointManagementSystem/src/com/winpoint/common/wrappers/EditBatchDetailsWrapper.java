@@ -28,6 +28,12 @@ public class EditBatchDetailsWrapper {
 	}
 	
 	
+	public EditBatchDetailsWrapper(Integer lectureNumber) {
+		super();
+		this.lectureNumber = lectureNumber;
+	}
+
+
 	public String getLecCoverage() {
 		return lecCoverage;
 	}
