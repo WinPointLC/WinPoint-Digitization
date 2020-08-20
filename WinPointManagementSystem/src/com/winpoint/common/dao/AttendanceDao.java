@@ -101,8 +101,8 @@ public class AttendanceDao {
 //	}	
 	
 	
-	public ObservableList<ObservableList<String>> getStudentsAttendanceForBatch(Integer batchId){
-		ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
+	public ObservableList<ObservableList> getStudentsAttendanceForBatch(Integer batchId){
+		ObservableList<ObservableList> data = FXCollections.observableArrayList();
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement1 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			Statement statement2 = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -132,20 +132,29 @@ public class AttendanceDao {
 				resultSet2.beforeFirst();
 				while(resultSet2.next()) {
 					//String[] status = new String[columnCount];
-					StringTokenizer absentStudents = new StringTokenizer(resultSet2.getString("ABSENTEES"), ",");
-					List<Integer> absentStudentsList = new ArrayList<>();
-					
-					while(absentStudents.hasMoreTokens()) {
-						absentStudentsList.add(Integer.parseInt(absentStudents.nextToken()));
+					if(resultSet2.getString("ABSENTEES") != null) {
+						StringTokenizer absentStudents = new StringTokenizer(resultSet2.getString("ABSENTEES"), ",");
+						List<Integer> absentStudentsList = new ArrayList<>();
+						
+						while(absentStudents.hasMoreTokens()) {
+							absentStudentsList.add(Integer.parseInt(absentStudents.nextToken()));
+						}
+						
+						if(absentStudentsList.isEmpty()) {
+							row.add("P");
+						}else {
+							if(absentStudentsList.contains(userId)) {
+								//Absent
+								row.add("A");
+							}else {
+								//Present
+								row.add("P");
+							} 
+						}
 					}
-					
-					if(absentStudentsList.contains(userId)) {
-						//Absent
-						row.add("Absent");
-					}else {
-						//Present
-						row.add("Present");
-					} 
+					else {
+						row.add(" ");
+					}
 				}
 				data.add(row);
 			}			
@@ -157,7 +166,7 @@ public class AttendanceDao {
 	}
 	
 	public int getPercentageStudenAttendanceForBatch(int userId, int batchId) {
-		int percentage = 0;
+		float percentage = 0f;
 		int present=0;
 		int noOfLectures=0;
 		try(Connection connection = ConnectionManager.getConnection()){
@@ -180,18 +189,18 @@ public class AttendanceDao {
 						absentStudentsList.add(Integer.parseInt(absentStudents.nextToken()));
 					}
 					
-					if(absentStudentsList.contains(userId)) {
-						//Absent
+					if(!absentStudentsList.contains(userId)) {
+						//Present
 						present++;
 					}
 					noOfLectures++;
-					percentage = (present/noOfLectures) * 100;
-					System.out.println("Percentage = " + percentage);
+					percentage = ((float)present/(float)noOfLectures) * 100f;
+					//System.out.println("Percentage = " + percentage);
 			}			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return percentage;
+		return (int)percentage;
 	}
 }

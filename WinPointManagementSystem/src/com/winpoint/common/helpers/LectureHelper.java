@@ -35,4 +35,8 @@ public class LectureHelper {
 	public EditBatchDetailsWrapper accessMaxLecture(Integer batchId){
 		return new LectureDao().accessMaxLecture(batchId);
 	}
+	
+	public void updateLectureAttendance(ArrayList<String> absenteeNames, Integer lectureNumber, Integer batchId) {
+		new LectureDao().updateLectureAttendance(absenteeNames, lectureNumber, batchId);
+	}
 }
