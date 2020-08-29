@@ -100,8 +100,8 @@
                         </HBox>
                         <TableView fx:id="updateAttendanceRecordTable" editable="true" minHeight="400.0" minWidth="300.0" prefHeight="437.0" prefWidth="424.0" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="updateAttendanceRecordTableStudentColumn" editable="false" prefWidth="75.0" text="Students" />
-                            <TableColumn fx:id="updateAttendanceRecordTableAttendanceColumn" prefWidth="75.0" text="Attendance" />
+                            <TableColumn fx:id="updateAttendanceRecordTableStudentColumn" editable="false" prefWidth="75.0" sortable="false" text="Students" />
+                            <TableColumn fx:id="updateAttendanceRecordTableAttendanceColumn" prefWidth="75.0" sortable="false" text="Attendance" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

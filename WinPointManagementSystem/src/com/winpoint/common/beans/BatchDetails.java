@@ -181,6 +181,13 @@ public class BatchDetails {
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
+	
+	public BatchDetails(Date startDate, Date endDate, String lectureDuration) {
+		super();
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.lectureDuration = lectureDuration;
+	}
 
 	public BatchDetails(java.sql.Date date) {
 		// TODO Auto-generated constructor stub

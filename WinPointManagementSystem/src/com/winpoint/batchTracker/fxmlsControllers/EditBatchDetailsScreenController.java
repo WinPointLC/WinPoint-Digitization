@@ -18,9 +18,11 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.CheckComboBox;
 
+import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.controllers.ParentFXMLController;
+import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.helpers.LectureHelper;
 import com.winpoint.common.helpers.StreamHelper;
 import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
@@ -58,6 +60,7 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 	ArrayList<String> recievedData= new ArrayList<String>() ;
 	List<EditBatchDetailsWrapper> lectureList=null;
 	Integer sesDuration;
+	Integer lectureDuration;
 	int lecnum;
     @FXML
     private Button backButton;
@@ -150,7 +153,7 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 
     @FXML
     void addLectureToBatch(ActionEvent event) {
-
+    		new LectureHelper().addLecToBatch(batchId);
     }
 
     @FXML
@@ -202,7 +205,6 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
             		catch (NullPointerException e) {
             	    }
                 	lectureStartTime.setText(editBatchDetails.getStartTime());
-                	//System.out.println(getDuration(Integer.parseInt(editBatchDetails.getLectureDuration())));
                 	lectureSessionDuration.setText(getDuration(new Integer(editBatchDetails.getLectureDuration())).toString());
                 	lectureComments.setText(editBatchDetails.getComments());
                 	
@@ -256,7 +258,11 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
 
     @FXML
     void removeLectureFromBatch(ActionEvent event) {
-
+    	EditBatchDetailsWrapper maxLecNum=new LectureHelper().accessMaxLecture(batchId);
+    	System.out.println(maxLecNum.getLectureNumber());
+    	new LectureHelper().delLecFromBatch(batchId,maxLecNum.getLectureNumber());
+    	
+    	//System.out.println(lecnum);
     }
     
     @FXML
@@ -300,7 +306,18 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
    
     @FXML
     void saveUpdatedBatchDetails(ActionEvent event) {
-
+    	LocalDate bDate = batchStartDate.getValue();
+    	Calendar cBeginDate =  Calendar.getInstance();
+    	cBeginDate.set(bDate.getYear(), bDate.getMonthValue(), bDate.getDayOfMonth());
+    	Date batchBeginDate = cBeginDate.getTime();
+    	LocalDate eDate = batchEndDate.getValue();
+    	Calendar cEndDate =  Calendar.getInstance();
+    	cEndDate.set(eDate.getYear(), eDate.getMonthValue(), eDate.getDayOfMonth());
+    	Date batchEndDate = cEndDate.getTime();
+    	String lDuration=estimateLectureDuration.getText();
+    	getUpdatedLecDuration(lDuration);
+    	BatchDetails updatedBatchDetails= new BatchDetails(batchBeginDate,batchEndDate,lectureDuration.toString());
+    	new BatchDetailsHelper().updateBatchDetails(updatedBatchDetails,batchId);
     }
     Integer getUpdatedDuration(String duration){ 
     	float y =Float.parseFloat(duration);//2.75
@@ -309,6 +326,14 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
     	int minutes=(int)(mins*0.6);//45
     	sesDuration =(hours*100)+(minutes);
     	return sesDuration;
+    }
+    Integer getUpdatedLecDuration(String lDuration){ 
+    	float y =Float.parseFloat(lDuration);//2.75
+    	int hours=(int)y;//2
+    	float mins=(y-hours)*100;//75
+    	int minutes=(int)(mins*0.6);//45
+    	lectureDuration =(hours*100)+(minutes);
+    	return lectureDuration;
     }
     Float getDuration(Integer lecDuration) {//0230
 		float duration=0f;

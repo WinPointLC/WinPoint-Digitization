@@ -41,6 +41,10 @@ public class BatchDetailsHelper {
 	public boolean doBatchExist(Integer courseId, Integer timeSlotsId, Integer facultyUserId, Integer segmentTypeId) {
 		return new BatchDetailsDao().doBatchExist(courseId,timeSlotsId,facultyUserId,segmentTypeId);
 	}
+	public void updateBatchDetails(BatchDetails updatedBatchDetails, Integer batchId) {
+		// TODO Auto-generated method stub
+		new BatchDetailsDao().updateBatchDetails(updatedBatchDetails,batchId);
+	}
 	
 
 }

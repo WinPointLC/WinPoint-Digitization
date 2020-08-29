@@ -25,4 +25,18 @@ public class LectureHelper {
 	public void updateLectureDetails(EditBatchDetailsWrapper updateLecDetails,Integer batchId,Integer lecnum) {
 		new LectureDao().updateLectureDetails(updateLecDetails,batchId,lecnum);
 	}
+	public void addLecToBatch(Integer batchId) {
+		new LectureDao().addLecToBatch(batchId);
+	}
+	public void delLecFromBatch(Integer batchId,Integer lecNum) {
+		// TODO Auto-generated method stub
+		new LectureDao().delLecFromBatch(batchId,lecNum);
+	}
+	public EditBatchDetailsWrapper accessMaxLecture(Integer batchId){
+		return new LectureDao().accessMaxLecture(batchId);
+	}
+	
+	public void updateLectureAttendance(ArrayList<String> absenteeNames, Integer lectureNumber, Integer batchId) {
+		new LectureDao().updateLectureAttendance(absenteeNames, lectureNumber, batchId);
+	}
 }

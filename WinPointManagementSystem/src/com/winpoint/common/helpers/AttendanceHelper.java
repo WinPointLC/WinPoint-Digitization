@@ -13,7 +13,7 @@ public class AttendanceHelper {
 //		return new AttendanceDao().getStudentAttendanceForBatch(batchId);
 //	}
 	
-	public ObservableList<ObservableList<String>> getStudentAttendanceForBatch(Integer batchId){
+	public ObservableList<ObservableList> getStudentAttendanceForBatch(Integer batchId){
 		return new AttendanceDao().getStudentsAttendanceForBatch(batchId);
 	}
 
