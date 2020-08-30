@@ -349,7 +349,9 @@ public class EnquiryDetailsDao {
 						courseDone += courseId+"/"+rs.getString("NAME")+",";
 					}
 				}
-				courseDone = courseDone.substring(0,courseDone.length()-1);
+				if(courseDone!="") {
+					courseDone = courseDone.substring(0,courseDone.length()-1);
+				}
 				enquiry.setCourseAlreadyDone(courseDone);
 			}
 		}
