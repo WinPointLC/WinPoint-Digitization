@@ -465,7 +465,7 @@ public class SignUpFormController extends ParentFXMLController {
     	     		courseInterestedInSetOfIds.add(courseInterestedInSet.get(course));
     	     	} 	         
     	     }
-    	 });
+    	});
     	coursesInterestedInHbox.getChildren().add(coursesInterestedIn); 	
     	/************************************************************************************************************************************/ 
     	

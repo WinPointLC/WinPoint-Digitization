@@ -3,6 +3,7 @@ package com.winpoint.batchScheduler.fxmlsControllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -84,6 +85,7 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	List<EnquiryDetailsWrapper> enquiryDetailsWrapperList  = new ArrayList<EnquiryDetailsWrapper>();
     	// Populating in Table
         for(EnquiryDetails enquiryDetail : enquiryDetailsList){
+        	
         	update = new Button("Update");
         	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
                 public void handle(ActionEvent e) 
@@ -107,6 +109,9 @@ public class EnquiryDetailsController extends ParentFXMLController{
                 } 
             }; 	
         	update.setOnAction(event);	
+        	
+        	
+        	
         	enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),
         	enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
         }

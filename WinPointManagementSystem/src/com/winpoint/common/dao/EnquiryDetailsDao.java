@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import java.util.ArrayList;
 import java.util.List;
-	
+import java.util.StringTokenizer;
 
 import com.winpoint.common.beans.EnquiryDetails;
 
@@ -176,13 +176,14 @@ public class EnquiryDetailsDao {
 					"        EXPERIENCE="+ enquiryDetailsObject.getExperience()+",\n" +
 					"        GENDER='"+ enquiryDetailsObject.getGender()+"',\n" +
 					"        YEAR_OF_GRADUATION="+ enquiryDetailsObject. getYearOfGraduation()+",\n" +
+					"        COURSE_INTERESTED_IN='"+ enquiryDetailsObject. getCoursesInterestedIn()+"',\n" +
 					"        COURSE_ALREADY_DONE='"+ enquiryDetailsObject.getCourseAlreadyDone()+"',\n" +
 					"        SUGGESTION='"+ enquiryDetailsObject.getSuggestion()+"',\n" +
 					"        ACTIVE_STATUS='"+ enquiryDetailsObject. getActiveStatus()+"'\n" +
 					"        WHERE ENQUIRY_ID="+ enquiryDetailsObject.getEnquiryId()+"\n" +
 					"        " +
 					"";
-//				System.out.println(query1);
+				System.out.println(query1);
 				statement.executeUpdate(query1);
 		}
 		catch (SQLException e) {
@@ -277,9 +278,9 @@ public class EnquiryDetailsDao {
 
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			String query2 = "SELECT * FROM ENQUIRY_DETAILS"+
+			String query = "SELECT * FROM ENQUIRY_DETAILS"+
 					"";
-			ResultSet rs = statement.executeQuery(query2);
+			ResultSet rs = statement.executeQuery(query);
 			while(rs.next()) {
 				enquiryDetailList.add(new EnquiryDetails(
 						rs.getInt("ENQUIRY_ID"), 
@@ -312,6 +313,44 @@ public class EnquiryDetailsDao {
 						rs.getInt("SEGMENT_TYPE_ID"),
 						rs.getString("SUGGESTION"),
 						rs.getBoolean("ACTIVE_STATUS")));
+			}
+			for(EnquiryDetails enquiry: enquiryDetailList) {
+				String coursesInterestedIn = enquiry.getCoursesInterestedIn();
+				StringTokenizer st1 = new StringTokenizer(coursesInterestedIn,",");
+				String coursesInterested = "";
+				while(st1.hasMoreTokens()) {
+					int courseId =Integer.parseInt(st1.nextToken());
+					query = "SELECT C.COURSE_ID, CT.COURSE_TYPE_NAME+'-'+C.COURSE_NAME AS NAME, C.COURSE_TYPE_ID\n" + 
+							"FROM COURSES C\n" + 
+							"INNER JOIN COURSE_TYPE CT\n" + 
+							"ON C.COURSE_TYPE_ID = CT.COURSE_TYPE_ID\n" + 
+							"WHERE C.COURSE_ID = "+courseId;
+					rs = statement.executeQuery(query);
+					
+					while(rs.next()) {
+						coursesInterested += courseId+"/"+rs.getString("NAME")+",";
+					}
+				}
+				coursesInterested = coursesInterested.substring(0,coursesInterested.length()-1);
+				enquiry.setCoursesInterestedIn(coursesInterested);
+				String coursesAlreadyDone = enquiry.getCourseAlreadyDone();				
+				StringTokenizer st2 = new StringTokenizer(coursesAlreadyDone, ",");
+				String courseDone = "";
+				while(st2.hasMoreTokens()) {
+					int courseId =Integer.parseInt(st2.nextToken());
+					query = "SELECT C.COURSE_ID, CT.COURSE_TYPE_NAME+'-'+C.COURSE_NAME AS NAME, C.COURSE_TYPE_ID\n" + 
+							"FROM COURSES C\n" + 
+							"INNER JOIN COURSE_TYPE CT\n" + 
+							"ON C.COURSE_TYPE_ID = CT.COURSE_TYPE_ID\n" + 
+							"WHERE C.COURSE_ID = "+courseId;
+					rs = statement.executeQuery(query);
+					
+					while(rs.next()) {
+						courseDone += courseId+"/"+rs.getString("NAME")+",";
+					}
+				}
+				courseDone = courseDone.substring(0,courseDone.length()-1);
+				enquiry.setCourseAlreadyDone(courseDone);
 			}
 		}
 		catch (SQLException e) {
