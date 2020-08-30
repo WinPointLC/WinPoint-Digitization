@@ -86,6 +86,15 @@ public class EnquiryDetailsController extends ParentFXMLController{
     	// Populating in Table
         for(EnquiryDetails enquiryDetail : enquiryDetailsList){
         	
+        	HashMap<Integer, String> CoursesMap = new HashMap<Integer, String>();
+        	
+        	String courseName = enquiryDetail.getCoursesInterestedIn();
+        	String course[] = courseName.split(",");
+        	for(String string: course) {
+        		String[] split = string.split("/");
+        		CoursesMap.put(Integer.parseInt(split[0]),split[1]);
+        	}
+        	
         	update = new Button("Update");
         	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
                 public void handle(ActionEvent e) 
@@ -110,10 +119,15 @@ public class EnquiryDetailsController extends ParentFXMLController{
             }; 	
         	update.setOnAction(event);	
         	
-        	
+        	String listofcourses = "";
+        	for(String s: CoursesMap.values()) {
+        		System.out.println(s);
+        		listofcourses += s + ",";
+        	}
+        	listofcourses = listofcourses.substring(0, listofcourses.length()-1);
         	
         	enquiryDetailsWrapperList.add(new EnquiryDetailsWrapper(enquiryDetail.getFirstName(),
-        	enquiryDetail.getLastName(),enquiryDetail.getCoursesInterestedIn(),enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
+        	enquiryDetail.getLastName(),listofcourses,enquiryDetail.getEligibility(),enquiryDetail.getSuggestion(),update));
         }
     	ObservableList<EnquiryDetailsWrapper> data =FXCollections.observableArrayList(enquiryDetailsWrapperList);
 		detailsTable.setItems(data);
