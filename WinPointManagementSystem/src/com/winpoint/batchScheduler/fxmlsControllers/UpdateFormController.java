@@ -49,9 +49,13 @@ public class UpdateFormController extends ParentFXMLController {
 	CheckComboBox<String> coursesInterestedInCheckComboBox = new CheckComboBox<>(coursesList);
 	CheckComboBox<String> coursesAlreadyDoneComboBox = new CheckComboBox<>(coursesList);
 	
-	
 	HashMap<String, Integer> courseInterestedInMap = new HashMap<String, Integer>(); 
   	HashMap<String, Integer> courseAlreadyDoneMap = new HashMap<String, Integer>();
+	
+  	HashMap<Integer, String> tempMapInterested = new HashMap<Integer, String>();
+  	HashMap<Integer, String> tempMapAlready = new HashMap<Integer, String>();
+//	HashMap<String, Integer> courseInterestedInMap = new HashMap<String, Integer>(); 
+//  	HashMap<String, Integer> courseAlreadyDoneMap = new HashMap<String, Integer>();
 	
 	// Declaration of required Variables : 
 	private EnquiryDetails enquiryDetails = new EnquiryDetails();
@@ -189,21 +193,42 @@ public class UpdateFormController extends ParentFXMLController {
 		Integer yearOfGraduation1 = Integer.parseInt(yearOfGraduation.getText());
 		
     	//list for  course Interested IN
-    	String courseInterestedInfinalString = "";
-    		for(Integer id : courseInterestedInSetOfIds) {
-    			courseInterestedInfinalString += id.toString()+",";
-    			System.out.println("Interested String : "+id);
-    		}
-    	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
-		// list for course Already Done
+//    	String courseInterestedInfinalString = "";
+//    		for(Integer id : courseInterestedInSetOfIds) {
+//    			courseInterestedInfinalString += id.toString()+",";
+//    			System.out.println("Interested String : "+id);
+//    		}
+//    	courseInterestedInfinalString = courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+		String courseInterestedInfinalString = "";
+		for(int i=0;i<coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems().size();i++) {
+			for(Entry<Integer,String> entry : tempMapInterested.entrySet()) {
+				if(entry.getValue().equals(coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems().get(i))) {
+					courseInterestedInfinalString+=entry.getKey()+",";    				
+				}
+			}
+    	}
+		courseInterestedInfinalString=courseInterestedInfinalString.substring(0,courseInterestedInfinalString.length()-1);
+
 		String coursesAlreadyDonefinalString = "";
-		for(Integer id : courseAlreadyDoneSetOfIds) {
-			coursesAlreadyDonefinalString += id.toString()+",";
-			System.out.println("Already String : "+id);
-		}
-		if(coursesAlreadyDonefinalString!="") {
-			coursesAlreadyDonefinalString = coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1); 
-		}
+		for(int i=0;i<coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems().size();i++) {
+			for(Entry<Integer,String> entry : tempMapAlready.entrySet()) {
+				if(entry.getValue().equals(coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems().get(i))) {
+					coursesAlreadyDonefinalString+=entry.getKey()+",";    				
+				}
+			}
+    	}
+		coursesAlreadyDonefinalString=coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1);
+
+		
+		// list for course Already Done
+//		String coursesAlreadyDonefinalString = "";
+//		for(Integer id : courseAlreadyDoneSetOfIds) {
+//			coursesAlreadyDonefinalString += id.toString()+",";
+//			System.out.println("Already String : "+id);
+//		}
+//		if(coursesAlreadyDonefinalString!="") {
+//			coursesAlreadyDonefinalString = coursesAlreadyDonefinalString.substring(0,coursesAlreadyDonefinalString.length()-1); 
+//		}
 		String suggestion = suggestions.getText();
 		Boolean activeStatus1 = activeStatus.isSelected();
 		
@@ -342,61 +367,83 @@ public class UpdateFormController extends ParentFXMLController {
 		
 		//Courses Interested In Combo Box :     	
       	List<SignUpFormCourseListWrapper> CoursesList = new CourseHelper().getCourseNamesList(); 	
-      	HashMap<String, Integer> courseInterestedInMap = new HashMap<String, Integer>(); 
-      	HashMap<String, Integer> courseAlreadyDoneMap = new HashMap<String, Integer>();
+//      	HashMap<String, Integer> courseInterestedInMap = new HashMap<String, Integer>(); 
+//      	HashMap<String, Integer> courseAlreadyDoneMap = new HashMap<String, Integer>();
     	for(SignUpFormCourseListWrapper courses : CoursesList) {
     		coursesList.add(courses.getCourseTypeName()+"-"+courses.getCourseName());
     		courseInterestedInMap.put(courses.getCourseTypeName()+"-"+courses.getCourseName(), courses.getCourseId());
     		courseAlreadyDoneMap.put(courses.getCourseTypeName()+"-"+courses.getCourseName(), courses.getCourseId());
+    		tempMapInterested.put(courses.getCourseId(), courses.getCourseTypeName()+"-"+courses.getCourseName());
+    		tempMapAlready.put(courses.getCourseId(), courses.getCourseTypeName()+"-"+courses.getCourseName());
     	}    	
 //    	CheckComboBox<String> coursesInterestedInCheckComboBox = new CheckComboBox<>(coursesList);
     	
-    	HashSet<String> tempCoursesInterestedInList = new HashSet<String>();   
-       	coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
-    	    	 System.out.println(coursesInterestedInCheckComboBox.getCheckModel().getCheckedIndices());
-
-//    	    	 System.out.println(coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems());
-    	         tempCoursesInterestedInList.addAll(coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems());
-    	         courseInterestedInSetOfIds = new HashSet<Integer>();
-    	    	 for(String course : tempCoursesInterestedInList) {
-//    	    		courseInterestedInSetOfIds.clear();
-    	     		courseInterestedInSetOfIds.add(courseInterestedInMap.get(course));
-//    	     		System.out.println("Ids: "+courseInterestedInMap.get(course));
-    	     	} 	         
-    	     }
-    	});
-      	courseInterestedInHBox.getChildren().add(coursesInterestedInCheckComboBox); 	
+//    	HashSet<String> tempCoursesInterestedInList = new HashSet<String>();   
+//       	coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+//    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
+//    	    	 System.out.println(coursesInterestedInCheckComboBox.getCheckModel().getCheckedIndices());
+//
+////    	    	 System.out.println(coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems());
+//    	         tempCoursesInterestedInList.addAll(coursesInterestedInCheckComboBox.getCheckModel().getCheckedItems());
+//    	         courseInterestedInSetOfIds = new HashSet<Integer>();
+//    	    	 for(String course : tempCoursesInterestedInList) {
+////    	    		courseInterestedInSetOfIds.clear();
+//    	     		courseInterestedInSetOfIds.add(courseInterestedInMap.get(course));
+////    	     		System.out.println("Ids: "+courseInterestedInMap.get(course));
+//    	     	} 	         
+//    	     }
+//    	});
+//      	courseInterestedInHBox.getChildren().add(coursesInterestedInCheckComboBox); 	
+    	
+    	
+//    	for(Integer Id : tempMap.keySet()) {
+//   			//System.out.println(topicId);
+//    		coursesInterestedInCheckComboBox.getCheckModel().check(tempMap.get(Id));
+//   				
+//   		}
+//    	courseInterestedInHBox.getChildren().add(coursesInterestedInCheckComboBox);
+    	
+    	
+    	
+    	
       //Courses Already Done  :    
 //       	CheckComboBox<String> coursesAlreadyDoneComboBox = new CheckComboBox<>(coursesList);
       	
-    	HashSet<String> tempCourseAlreadyDoneList = new HashSet<String>();
-    	coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
-    	         tempCourseAlreadyDoneList.addAll(coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems());
-    	         courseAlreadyDoneSetOfIds = new HashSet<Integer>();
-    	         for(String course : tempCourseAlreadyDoneList) {
-//    	        	courseAlreadyDoneSetOfIds.clear();
-    	        	courseAlreadyDoneSetOfIds.add(courseAlreadyDoneMap.get(course));
-    	         }
-    	     }
-    	 });
-    	courseAlreadyDoneHBox.getChildren().add(coursesAlreadyDoneComboBox);
+//    	HashSet<String> tempCourseAlreadyDoneList = new HashSet<String>();
+//    	coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+//    	     public void onChanged(ListChangeListener.Change<? extends String> c) {
+//    	         tempCourseAlreadyDoneList.addAll(coursesAlreadyDoneComboBox.getCheckModel().getCheckedItems());
+//    	         courseAlreadyDoneSetOfIds = new HashSet<Integer>();
+//    	         for(String course : tempCourseAlreadyDoneList) {
+////    	        	courseAlreadyDoneSetOfIds.clear();
+//    	        	courseAlreadyDoneSetOfIds.add(courseAlreadyDoneMap.get(course));
+//    	         }
+//    	     }
+//    	 });
+//    	courseAlreadyDoneHBox.getChildren().add(coursesAlreadyDoneComboBox);
       	
 		HashMap<Integer, String> selectedCourseInterestedInMap = new HashMap<Integer, String>();
-		String clubedCourseIneterestedIn = enquiryDetails.getCoursesInterestedIn();	
+		String clubedCourseIneterestedIn = enquiryDetails.getCoursesInterestedIn();	// courseid/coursetype-coursename,
 		String interestedCourses[] = clubedCourseIneterestedIn.split(",");
 		for(String string: interestedCourses) {
 			String[] split = string.split("/");
 			selectedCourseInterestedInMap.put(Integer.parseInt(split[0]), split[1]);
 		}
 		
-		for(Integer i: selectedCourseInterestedInMap.keySet()) {
-			coursesInterestedInCheckComboBox.getCheckModel().check(selectedCourseInterestedInMap.get(i)); 		
-//			System.out.println(i+" "+selectedCourseInterestedInMap.get(i));
-		}
+//		for(Integer i: selectedCourseInterestedInMap.keySet()) {
+//			coursesInterestedInCheckComboBox.getCheckModel().check(selectedCourseInterestedInMap.get(i)); 		
+////			System.out.println(i+" "+selectedCourseInterestedInMap.get(i));
+//		}
 		
-		
+		for(Integer Id : selectedCourseInterestedInMap.keySet()) {
+   			//System.out.println(topicId);
+    		coursesInterestedInCheckComboBox.getCheckModel().check(tempMapInterested.get(Id));
+   				
+   		}
+    	courseInterestedInHBox.getChildren().add(coursesInterestedInCheckComboBox);
+
+    	
+    	
 		if(enquiryDetails.getCourseAlreadyDone()!="") {
 			HashMap<Integer, String> selectedCourseAlreadyDoneMap = new HashMap<Integer, String>();
 			String clubedCourseAlreadyDone = enquiryDetails.getCourseAlreadyDone();	
@@ -406,10 +453,16 @@ public class UpdateFormController extends ParentFXMLController {
 				String[] split = string.split("/");
 				selectedCourseAlreadyDoneMap.put(Integer.parseInt(split[0]), split[1]);
 			}
-			for(Integer i: selectedCourseAlreadyDoneMap.keySet()) {
-				coursesAlreadyDoneComboBox.getCheckModel().check(selectedCourseAlreadyDoneMap.get(i)); 	
-//	 			System.out.println(i+" "+selectedCourseAlreadyDoneMap.get(i));
-			}
+//			for(Integer i: selectedCourseAlreadyDoneMap.keySet()) {
+//				coursesAlreadyDoneComboBox.getCheckModel().check(selectedCourseAlreadyDoneMap.get(i)); 	
+////	 			System.out.println(i+" "+selectedCourseAlreadyDoneMap.get(i));
+//			}
+			for(Integer Id : selectedCourseAlreadyDoneMap.keySet()) {
+	   			//System.out.println(topicId);
+				coursesAlreadyDoneComboBox.getCheckModel().check(tempMapAlready.get(Id));
+	   				
+	   		}
+			courseAlreadyDoneHBox.getChildren().add(coursesAlreadyDoneComboBox);
 		}		
 		suggestions.setText(enquiryDetails.getSuggestion());
 		activeStatus.setSelected(enquiryDetails.getActiveStatus());		
