@@ -351,13 +351,13 @@ public class EditBatchDetailsScreenController extends ParentFXMLController {
    	public void initialize(URL location, ResourceBundle resources) {
    		super.initialize(location, resources);
    		logo.setImage(logoImage);
-    	ArrayList<String> data = new ArrayList<>();
-    	data.add("1");
-    	data.add("Batch 1");
-    	data.add("1");
-    	data.add("Course 1");
-    	
-    	setRecievedData(data);
+//    	ArrayList<String> data = new ArrayList<>();
+//    	data.add("1");
+//    	data.add("Batch 1");
+//    	data.add("1");
+//    	data.add("Course 1");
+//    	
+//    	setRecievedData(data);
     }
     
 

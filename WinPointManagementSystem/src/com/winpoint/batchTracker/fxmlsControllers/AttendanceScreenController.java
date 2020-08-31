@@ -141,7 +141,8 @@ public class AttendanceScreenController extends ParentFXMLController{
 //        		if(updateAttendanceRecordTable.getColumns().get(1).getCellObservableValue(i).getValue().toString() == "A") {
 //        			newAbsenteeList.add(updateAttendanceRecordTable.getColumns().get(0).getCellObservableValue(i).getValue().toString());
 //        		}
-        		System.out.println(updateAttendanceRecordTable.getColumns().get(1).getCellObservableValue(0));
+        		//System.out.println(updateAttendanceRecordTable.getColumns().get(1).getCellFactory().call(updateAttendanceRecordTableAttendanceColumn));
+        		//System.out.println(updateAttendanceRecordTable.getColumns().get(1).getCellObservableValue(0));
         		if(updateAttendanceRecordTable.getColumns().get(1).getCellData(i).equals(" ")) {
         			entryFlag = true;
         			break;
@@ -154,11 +155,11 @@ public class AttendanceScreenController extends ParentFXMLController{
         	System.out.println(newAbsenteeList);
         	//Store Data in DB
         	
-//        	if(!entryFlag) {
-//        		new LectureHelper().updateLectureAttendance(newAbsenteeList, lectureNumber, batchId);
-//        	}else {
-//        		System.out.println("Enter all records!!!");
-//        	}
+        	if(!entryFlag) {
+        		new LectureHelper().updateLectureAttendance(newAbsenteeList, lectureNumber, batchId);
+        	}else {
+        		System.out.println("Enter all records!!!");
+        	}
         	
         	//Update and Display Data
         	displayTable();
@@ -234,14 +235,14 @@ public class AttendanceScreenController extends ParentFXMLController{
 				return new SimpleStringProperty(param.getValue().get(0).toString());
 			}
 		});
-//		updateAttendanceRecordTableAttendanceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
-//
-//			@Override
-//			public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-//				// TODO Auto-generated method stub
-//				return new SimpleStringProperty(param.getValue().get(1).toString());
-//			}
-//		});
+		updateAttendanceRecordTableAttendanceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
+
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+				// TODO Auto-generated method stub
+				return new SimpleStringProperty(param.getValue().get(1).toString());
+			}
+		});
 		
 		 Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> cellFactory = new Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>>() {				
 			 @Override
