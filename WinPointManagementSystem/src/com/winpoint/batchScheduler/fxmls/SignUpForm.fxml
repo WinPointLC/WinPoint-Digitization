@@ -258,7 +258,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label prefHeight="23.0" prefWidth="200.0" text="Experience ( in months)  :">
+                                    <Label prefHeight="23.0" prefWidth="200.0" text="Experience* ( in months)  :">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
