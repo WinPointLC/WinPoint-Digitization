@@ -1,30 +1,29 @@
 package com.winpoint.common.testClient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.StringTokenizer;
+
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 public class test {
 
 	public static void main(String args[]) {
 	
-		System.out.println("Function Call");
-		int x = 1;
-		String z = "khbvh";
-		Boolean b = isInteger(z);
-		System.out.println(b);
-		System.out.println("End");
-		
-	}
-	public static boolean isInteger(String s) {
-	    return isInteger(s,10);
-	}
+		HashMap<Integer, String> id = new HashMap<>();
 
-	public static boolean isInteger(String s, int radix) {
-	    if(s.isEmpty()) return false;
-	    for(int i = 0; i < s.length(); i++) {
-	        if(i == 0 && s.charAt(i) == '-') {
-	            if(s.length() == 1) return false;
-	            else continue;
-	        }
-	        if(Character.digit(s.charAt(i),radix) < 0) return false;
-	    }
-	    return true;
+		String courseInterestedIn = "1-A,2-B,3-C,4-D,5-E";
+		String array[] = courseInterestedIn.split(",");
+		
+		for(String s: array) {
+			String[] split = s.split("-");
+			id.put(Integer.parseInt(split[0]), split[1]);
+		}
+		
+		for(Integer i: id.keySet()) {
+			System.out.println(i);
+		}
+		
 	}
 }
