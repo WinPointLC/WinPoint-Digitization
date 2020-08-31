@@ -112,7 +112,7 @@ public class TransferEnquiryDetailsToUserProfileDao {
 							"'"+enquiryDetails.getCollege()+"',\n" + 
 							"'"+enquiryDetails.getDegree()+"',\n" + 
 							"'"+enquiryDetails.getBranch()+"',\n" + 
-							"'"+enquiryDetails.getFirstName()+"@"+sqlBirthDate+"',\n" + 
+							"'"+enquiryDetails.getFirstName()+"@"+123+"',\n" + 
 							"'"+enquiryDetails.getOccupation()+"',\n" + 
 							"'"+enquiryDetails.getOrganisation()+"',\n" + 
 							"'"+enquiryDetails.getDesignation()+"',\n" + 
