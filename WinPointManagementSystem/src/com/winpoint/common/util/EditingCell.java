@@ -18,14 +18,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
 public class EditingCell extends TableCell<ObservableList, String> {
-    private TextField textField;
+    public TextField textField;
+    public TableCell thisCell;
 //    TableColumn<ObservableList, String> column;
     public EditingCell() {
     	
     }
-//    public EditingCell(TableColumn<ObservableList, String> param) {
-//    	this.column = param;
-//    }
+    public EditingCell(TableCell<ObservableList, String> param) {
+    	this.thisCell = param;
+    }
 //    
 //    public TableColumn<ObservableList, String> getColumn() {
 //		return column;
@@ -87,6 +88,7 @@ public class EditingCell extends TableCell<ObservableList, String> {
             public void handle(KeyEvent t) {
                 if (t.getCode() == KeyCode.ENTER) {
                     commitEdit(textField.getText());
+                    thisCell.setText(textField.getText());
                 } else if (t.getCode() == KeyCode.ESCAPE) {
                     cancelEdit();
                 } else if (t.getCode() == KeyCode.TAB) {
