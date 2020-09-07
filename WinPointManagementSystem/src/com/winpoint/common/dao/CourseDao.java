@@ -26,7 +26,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 		getBatchCourseDurationList.add(new Course(4));
 		
 		return getBatchCourseDurationList;
-		
+		//changes are saved
 
 	}
 	
