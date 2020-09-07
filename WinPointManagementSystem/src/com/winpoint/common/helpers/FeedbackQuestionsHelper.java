@@ -13,8 +13,8 @@ import com.winpoint.common.dao.QuestionBankDao;
 import com.winpoint.common.dao.StreamDao;
 
 public class FeedbackQuestionsHelper {
-	public ArrayList<FeedbackQuestions> getFeedbackQuestions(){
-		return new FeedbackQuestionsDao().getFeedbackQuestions();
+	public ArrayList<FeedbackQuestions> getFeedbackQuestions(int feedbackQuestionCategoryId){
+		return new FeedbackQuestionsDao().getFeedbackQuestions(feedbackQuestionCategoryId);
 	}
 	
 	public ArrayList<FeedbackQuestions> getResponsesQuestion(Integer feedbackCategoryId){

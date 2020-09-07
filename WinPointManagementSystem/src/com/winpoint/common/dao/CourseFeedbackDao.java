@@ -151,13 +151,15 @@ public class CourseFeedbackDao {
 
 	
 
-	public void createUserCourseFeedback(CourseFeedback userCourseFeedback) {
+	public void createUserCourseFeedback(int userId, CourseFeedback[] userCourseFeedback) {
 		try(Connection connection = ConnectionManager.getConnection()){
-		Statement statement = connection.createStatement();			
-		String query = "INSERT INTO STUDENT_COURSE_DETAILS (USER_ID, COURSE_ID, FEEDBACK_QUESTION_ID, RESPONSE) "
-				+ "VALUES (" + userCourseFeedback.getUserId() + ","+ userCourseFeedback.getCourseId() + "," + userCourseFeedback.getFeedbackId() + "," + userCourseFeedback.getStudentResponse() +")" ;
-		System.out.println(query);
-		statement.executeUpdate(query);
+		Statement statement = connection.createStatement();		
+		for(CourseFeedback courseFeedback : userCourseFeedback) {
+			String query = "INSERT INTO COURSE_FEEDBACK (USER_ID, COURSE_ID, FEEDBACK_QUESTION_ID, RESPONSE) "
+				+ "VALUES (" + userId + ","+ courseFeedback.getCourseId() + "," + courseFeedback.getFeedbackId() + "," + courseFeedback.getStudentResponse() +")" ;
+			System.out.println(query);
+			statement.executeUpdate(query);
+		}
 		
 	} 
 	catch (SQLServerException e) {

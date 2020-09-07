@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.UserProfile;
@@ -251,4 +252,135 @@ public class UserProfileDao {
 		
 		return  studentList;	
 	}
+<<<<<<< HEAD
+
+
+	public UserProfile getUserProfile(int userId) {
+		// TODO Auto-generated method stub
+		UserProfile userProfile = null;
+		ResultSet resultSet = null;
+		
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			
+			String query = "SELECT FIRST_NAME, LAST_NAME, EMAIL_ID, PASSWORD, USER_CATEGORY.USER_CATEGORY_ID, USER_CATEGORY_NAME, EMPLOYEE_CATEGORY.EMPLOYEE_CATEGORY_ID,\r\n" + 
+					"PHOTO_LOCATION, MOBILE_NUMBER, ADDRESS, BIRTHDATE, COLLEGE, DEGREE, BRANCH, YEAR_OF_GRADUATION, SECURITY_QUESTION_ID, SECURITY_ANSWER, OCCUPATION,\r\n" + 
+					"ORGANIZATION, DESIGNATION, DOMAIN, ROLE, EXPERIENCE, GENDER\r\n" + 
+					"FROM USER_PROFILE JOIN USER_CATEGORY\r\n" + 
+					"ON USER_PROFILE.USER_CATEGORY_ID = USER_CATEGORY.USER_CATEGORY_ID\r\n" + 
+					"LEFT OUTER JOIN EMPLOYEE_DETAILS D\r\n" + 
+					"ON USER_PROFILE.USER_ID = D.USER_ID\r\n" + 
+					"LEFT OUTER JOIN EMPLOYEE_CATEGORY\r\n" + 
+					"ON D.EMPLOYEE_CATEGORY_ID = EMPLOYEE_CATEGORY.EMPLOYEE_CATEGORY_ID\r\n" + 
+					"WHERE USER_PROFILE.USER_ID = '" + userId + 
+					""; 
+					
+			resultSet = statement.executeQuery(query);
+			if(resultSet.next()) {
+				String firstName = resultSet.getString("first_name");
+				String lastName = resultSet.getString("last_name");
+				String emailId = resultSet.getString("EMAIL_ID");
+				String password = resultSet.getString("PASSWORD");
+				Integer userCategoryId = resultSet.getInt("USER_CATEGORY_ID");
+				//String userCategoryName = resultSet.getString("USER_CATEGORY_NAME");
+				//String employeeCategoryId = resultSet.getString("EMPLOYEE_CATEGORY_ID");
+				String photoLocation = resultSet.getString("PHOTO_LOCATION");
+				String mobileNumber = resultSet.getString("Mobile_NUMBER");
+				String address = resultSet.getString("ADDRESS");
+				Date birthDate = DateConverter.convertSqlToUtilDate(resultSet.getDate("BIRTHDATE"));				
+				String college = resultSet.getString("COLLEGE");
+				String degree = resultSet.getString("DEGREE");
+				String branch = resultSet.getString("BRANCH");
+				Integer yearOfGraduation = resultSet.getInt("YEAR_OF_GRADUATION");
+				Integer securityQuestionId = resultSet.getInt("SECURITY_QUESTION_ID");
+				String securityQuestion = "Question";
+				String securityAnswer = resultSet.getString("SECURITY_ANSWER");
+				String occupation = resultSet.getString("OCCUPATION");
+				String organisation = resultSet.getString("ORGANIZATION");
+				String designation = resultSet.getString("DESIGNATION");
+				String domain = resultSet.getString("DOMAIN");
+				String role = resultSet.getString("ROLE");
+				Integer experience = resultSet.getInt("EXPERIENCE");
+				String gender = resultSet.getString("GENDER");
+	           
+				userProfile = new UserProfile(userId, firstName, lastName, emailId, mobileNumber,
+						address, birthDate, college, degree, branch, yearOfGraduation,
+						photoLocation, password, gender, securityQuestionId, securityQuestion,
+						securityAnswer, userCategoryId, occupation, organisation, designation,
+						domain, role, experience);
+			}
+		}catch(SQLException sqe){
+			
+		}
+		return userProfile;
+	}
+
+
+//	public void create(Integer userId, List<EnquiryDetails> list) {
+//		//java.sql.Date sqlBirthDate = new java.sql.Date(enquiryDetails.getBirthDate().getTime());
+//		java.sql.Date sqlBirthDate = new java.sql.Date(list.get(userId).getBirthDate().getTime());
+//		
+//		try(Connection connection = ConnectionManager.getConnection()){
+//			Statement statement = connection.createStatement();
+//			
+//			String query = "INSERT INTO USER_PROFILE\n" + 
+//					"(\n" + 
+//					"	FIRST_NAME,\n" + 
+//					"	LAST_NAME,\n" + 
+//					"	EMAIL_ID,\n" + 
+//					"	MOBILE_NUMBER,\n" + 
+//					"	ADDRESS,\n" + 
+//					"	BIRTHDATE,\n" + 
+//					"	COLLEGE,\n" + 
+//					"	DEGREE,\n" + 
+//					"	BRANCH,\n" + 
+//					"	PASSWORD,\n" + 
+//					"	OCCUPATION,\n" + 
+//					"	ORGANIZATION,\n" + 
+//					"	DESIGNATION,\n" + 
+//					"	DOMAIN,\n" + 
+//					"	ROLE,\n" + 
+//					"	EXPERIENCE,\n" + 
+//					"	GENDER,\n" + 
+//					"	YEAR_OF_GRADUATION,\n" + 
+//					"	TIME_SLOTS_IDS,\n" + 
+//					"	SEGMENT_TYPE_ID,\n" + 
+//					"	COURSE_ALREADY_DONE,\n" + 
+//					"	ACTIVE_STATUS\n" + 
+//					")\n" + 
+//					"VALUES(\n" + 
+//					"'"+list.get(userId).getFirstName()+"',\n" + 
+//					"'"+list.get(userId).getLastName()+"',\n" + 
+//					"'"+list.get(userId).getEmail()+"',\n" + 
+//					"'"+list.get(userId).getMobileNumber()+"',\n" + 
+//					"'"+list.get(userId).getAddress()+"',\n" + 
+//					"'"+sqlBirthDate+"',\n" + 
+//					"'"+list.get(userId).getCollege()+"',\n" + 
+//					"'"+list.get(userId).getDegree()+"',\n" + 
+//					"'"+list.get(userId).getBranch()+"',\n" + 
+//					"'"+list.get(userId).getFirstName()+"@"+sqlBirthDate+"',\n" + 
+//					"'"+list.get(userId).getOccupation()+"',\n" + 
+//					"'"+list.get(userId).getOrganisation()+"',\n" + 
+//					"'"+list.get(userId).getDesignation()+"',\n" + 
+//					"'"+list.get(userId).getDomain()+"',\n" + 
+//					"'"+list.get(userId).getRole()+"',\n" + 
+//					""+list.get(userId).getExperience()+",\n" + 
+//					"'"+list.get(userId).getGender()+"',\n" + 
+//					""+list.get(userId).getYearOfGraduation()+",\n" + 
+//					"'"+list.get(userId).getTimeSlotsId()+"',\n" + 
+//					""+list.get(userId).getSegmentTypeId()+",\n" + 
+//					"'"+list.get(userId).getCourseAlreadyDone()+"',\n" + 
+//					""+list.get(userId).getActiveStatus()+"\n" + 
+//					")";
+//			
+//			statement.executeUpdate(query);
+//		} 
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
+	
+=======
+>>>>>>> db5c7d332b1b5a0b62d101bb0de1925c868c1a44
 }

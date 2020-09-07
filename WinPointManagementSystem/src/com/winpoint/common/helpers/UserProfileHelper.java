@@ -37,4 +37,15 @@ public class UserProfileHelper {
 	    return new UserProfileDao().getStudentListForBatch(batchId);
 	}
 
+<<<<<<< HEAD
+	public UserProfile getUserProfile(int userId) {
+		// TODO Auto-generated method stub
+		return new UserProfileDao().getUserProfile(userId);
+	}
+
+//	public void create(Integer userId, List<EnquiryDetails> list) {
+//		 new UserProfileDao().create(userId,list);
+//	}
+=======
+>>>>>>> db5c7d332b1b5a0b62d101bb0de1925c868c1a44
 }
