@@ -17,6 +17,7 @@ import com.winpoint.common.helpers.AttendanceHelper;
 import com.winpoint.common.helpers.BatchDetailsHelper;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsDao {
@@ -172,8 +173,8 @@ public class StudentCourseDetailsDao {
 			}
 			return  assignmentsScreenWrapperList;
 	}
-	public ArrayList<EvaluationScreenWrapperParent> getStudentEvaluationDetails(Integer batchId) {		
-		ArrayList<EvaluationScreenWrapperParent> evaluationScreenWrapperList = new ArrayList<>();
+	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId) {		
+		ArrayList<EvaluationScreenWrapper> evaluationScreenWrapperList = new ArrayList<>();
 			ResultSet resultSet = null;
 			try(Connection connection = ConnectionManager.getConnection()){
 				Statement statement = connection.createStatement();
@@ -185,7 +186,7 @@ public class StudentCourseDetailsDao {
 					
 					String gradeId=(resultSet.getString("GRADE_ID"));
 					String certificateGiven=(resultSet.getString("CERTIFICATE_GIVEN"));
-					evaluationScreenWrapperList.add(new EvaluationScreenWrapperParent(resultSet.getString("FIRST_NAME"),
+					evaluationScreenWrapperList.add(new EvaluationScreenWrapper(resultSet.getString("FIRST_NAME"),
 							resultSet.getString("LAST_NAME"),resultSet.getInt("USER_ID"),null,
 							resultSet.getInt("COURSE_AGGR"),gradeId,certificateGiven));
 					
