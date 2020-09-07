@@ -67,7 +67,7 @@ public class StudentCourseInstallmentDetailsDao {
 					"INNER JOIN\r\n" + 
 					"PAYMENT_MODE AS pm\r\n" + 
 					"ON pm.PAYMENT_MODE_ID = rd.PAYMENT_MODE_ID\r\n" + 
-					"WHERE scd1.COURSE_ID =(SELECT DISTINCT COURSE_ID FROM STUDENT_COURSE_DETAILS WHERE BATCH_ID = " + batchId + ")";
+					"WHERE scd1.COURSE_ID =(SELECT DISTINCT COURSE_ID FROM STUDENT_COURSE_DETAILS WHERE BATCH_ID = " + batchId + ") AND scd1.BATCH_ID =" + batchId;
 			
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()) {

@@ -154,8 +154,8 @@ public class StudentCourseDetailsDao {
 				Statement statement = connection.createStatement();
 				
 				String query1="SELECT FIRST_NAME,LAST_NAME,FEE_STATUS,COURSEWARE_ISSUED,ASSIGNMENTS_ISSUED,ASSIGNMENTS_SUBMITTED\r\n" + 
-						"FROM USER_PROFILE u,STUDENT_COURSE_DETAILS s,BATCH_DETAILS b\r\n" + 
-						"WHERE u.USER_ID=s.USER_ID AND b.BATCH_ID="+batchId+" AND b.COURSE_ID=s.COURSE_ID";
+						"FROM USER_PROFILE u,STUDENT_COURSE_DETAILS s\r\n" + 
+						"WHERE u.USER_ID=s.USER_ID AND s.BATCH_ID="+batchId;
 				resultSet1=statement.executeQuery(query1);
 				while(resultSet1.next()) {
 					String coursewareIssued=(resultSet1.getBoolean("COURSEWARE_ISSUED"))? "YES" : "NO";

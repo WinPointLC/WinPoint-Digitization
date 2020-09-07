@@ -255,13 +255,13 @@ public class AttendanceScreenController extends ParentFXMLController{
 		updateAttendanceRecordTableAttendanceColumn.setCellFactory(cellFactory);
 	            
 		
-    	ArrayList<String> data = new ArrayList<>();
-    	data.add("1");
-    	data.add("Batch 1");
-    	data.add("1");
-    	data.add("Course 1");
-    	
-    	setRecievedData(data);
+//    	ArrayList<String> data = new ArrayList<>();
+//    	data.add("1");
+//    	data.add("Batch 1");
+//    	data.add("1");
+//    	data.add("Course 1");
+//    	
+//    	setRecievedData(data);
 	}
 	
 }
