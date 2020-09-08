@@ -8,6 +8,7 @@ import java.util.Date;
 public class EvaluationType {
 	private Integer evaluationTypeId;
 	private String evaluationTypeName;
+	private String offlineCheck;
 	private Integer createdBy;
 	private Date createdDate;
 	
@@ -25,6 +26,21 @@ public class EvaluationType {
 		this.createdDate = createdDate;
 	}
 	
+	public String getOfflineCheck() {
+		return offlineCheck;
+	}
+
+	public void setOfflineCheck(String offlineCheck) {
+		this.offlineCheck = offlineCheck;
+	}
+
+	public EvaluationType(int evaluationTypeId, String evaluationTypeName, String offlineCheck) {
+		// TODO Auto-generated constructor stub
+		this.evaluationTypeId = evaluationTypeId;
+		this.evaluationTypeName = evaluationTypeName;
+		this.offlineCheck = offlineCheck;
+	}
+
 	/**
 	 * @return the evaluationTypeId
 	 */

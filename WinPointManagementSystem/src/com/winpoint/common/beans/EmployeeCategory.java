@@ -26,6 +26,13 @@ public class EmployeeCategory {
 		this.createdDate = createdDate;
 	}
 	
+	public EmployeeCategory(int employeeCategoryId, String employeeCategoryName) {
+		// TODO Auto-generated constructor stub
+		this.employeeCategoryId = employeeCategoryId;
+		this.employeeCategoryName = employeeCategoryName;
+		
+	}
+
 	/**
 	 * @return the employeeCategoryId
 	 */

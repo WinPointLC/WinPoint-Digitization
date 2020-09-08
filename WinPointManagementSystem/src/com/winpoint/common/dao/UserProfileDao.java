@@ -266,7 +266,10 @@ public class UserProfileDao {
 		}
 		return  studentList;	
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d996c3385a6aacf2c0786640f2802229f1e3650
 
 
 	public UserProfile getUserProfile(int userId) {
@@ -398,5 +401,8 @@ public class UserProfileDao {
 //
 //	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d996c3385a6aacf2c0786640f2802229f1e3650
 }
