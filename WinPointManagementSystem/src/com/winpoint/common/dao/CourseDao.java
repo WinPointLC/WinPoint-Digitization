@@ -11,11 +11,8 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
-<<<<<<< HEAD
 import com.winpoint.common.beans.CourseBatchDetail;
 import com.winpoint.common.beans.CourseType;
-=======
->>>>>>> db5c7d332b1b5a0b62d101bb0de1925c868c1a44
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
