@@ -7,8 +7,8 @@ import com.winpoint.common.dao.EvaluationTypeDao;
 
 public class EvaluationTypeHelper {
 
-	public List<EvaluationType> getEvaluationList() {
-		return new EvaluationTypeDao().getEvaluationList();
+	public List<EvaluationType> getEvaluationTypeList() {
+		return new EvaluationTypeDao().getEvaluationTypeList();
 	}
 
 	

@@ -12,7 +12,7 @@ import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EvaluationTypeDao {
 
-	public List<EvaluationType> getEvaluationList() {
+	public List<EvaluationType> getEvaluationTypeList() {
 		// TODO Auto-generated method stub
 			
 			List<EvaluationType> evaluationTypeList = new ArrayList<EvaluationType>();

@@ -10,9 +10,9 @@ import java.util.List;
 import com.winpoint.common.beans.FeedbackCategory;
 import com.winpoint.common.util.sql.ConnectionManager;
 
-public class FeedBackCategoryDao {
+public class FeedbackCategoryDao {
 
-	public List<FeedbackCategory> getFeedBackCategoryList() {
+	public List<FeedbackCategory> getFeedbackCategoryList() {
 		// TODO Auto-generated method stub
 		
 		List<FeedbackCategory> feedbackCategoryList = new ArrayList<FeedbackCategory>();
