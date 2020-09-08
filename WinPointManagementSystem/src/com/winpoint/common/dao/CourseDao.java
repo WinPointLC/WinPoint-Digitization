@@ -5,21 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
-<<<<<<< HEAD
 
 import com.winpoint.common.beans.CourseBatchDetail;
-import com.winpoint.common.beans.CourseType;
 
-=======
-import com.winpoint.common.beans.CourseBatchDetail;
-import com.winpoint.common.beans.CourseType;
->>>>>>> 9d996c3385a6aacf2c0786640f2802229f1e3650
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
@@ -196,18 +188,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 	}
 
 
-	public List<Course> getUserCourseList(int userId, int streamId, int courseTypeId) {
-		// TODO Auto-generated method stub
-		ArrayList<Course> userCourses = new ArrayList<>();
-		try(Connection connection = ConnectionManager.getConnection()){
-			Statement statement = connection.createStatement();
-			String query = "";
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return userCourses;
-	}
+	
 
 
 	public ArrayList<CourseBatchDetail> getCourseBatchDetail(int streamId, int courseTypeId) {

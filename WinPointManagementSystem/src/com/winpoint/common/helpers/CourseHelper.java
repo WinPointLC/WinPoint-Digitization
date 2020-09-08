@@ -32,11 +32,7 @@ public class CourseHelper {
 		return new CourseDao().getCoursesNamesList();
 	}
 
-	public List<Course> getUserCourseList(int userId, int streamId, int courseTypeId) {
-		// TODO Auto-generated method stub
-		return new CourseDao().getUserCourseList(userId, streamId, courseTypeId);
-	}
-
+	
 	public ArrayList<CourseBatchDetail> getCourseBatchDetail(int streamId, int courseTypeId){
 		return new CourseDao().getCourseBatchDetail(streamId, courseTypeId);
 	}
