@@ -29,6 +29,20 @@ public class GradingSystem {
 		this.createdDate = createdDate;
 	}
 	
+	
+
+	public GradingSystem(String gradeId, Integer marksLowerLimit, Integer marksHigherLimit) {
+		super();
+		this.gradeId = gradeId;
+		this.marksLowerLimit = marksLowerLimit;
+		this.marksHigherLimit = marksHigherLimit;
+	}
+
+
+
+	
+
+
 	/**
 	 * @return the gradeId
 	 */
