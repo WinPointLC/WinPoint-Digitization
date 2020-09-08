@@ -6,6 +6,7 @@ import java.util.List;
 import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
+import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsHelper {
@@ -19,7 +20,7 @@ public class StudentCourseDetailsHelper {
 	public ArrayList<AssignmentsScreenWrapper> getAssignmentScreenWrapperList(Integer batchId){
 		return new StudentCourseDetailsDao().getAssignmentScreenWrapperList(batchId);
 	}
-	public ArrayList<EvaluationScreenWrapperParent> getStudentEvaluationDetails(Integer batchId){
+	public ArrayList<EvaluationScreenWrapper> getStudentEvaluationDetails(Integer batchId){
 		return new StudentCourseDetailsDao().getStudentEvaluationDetails(batchId);
 	}
 
