@@ -12,9 +12,9 @@ import com.winpoint.common.util.sql.ConnectionManager;
 
 public class EmployeeCategoryDao {
 
-	public List<EmployeeCategory> getEmployeeCategory(){
+	public List<EmployeeCategory> getEmployeeCategoryList(){
 		
-		List<EmployeeCategory> EmployeeCategoryList = new ArrayList<EmployeeCategory>();
+		List<EmployeeCategory> employeeCategoryList = new ArrayList<EmployeeCategory>();
 	
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -25,15 +25,15 @@ public class EmployeeCategoryDao {
 			ResultSet rs = statement.executeQuery(query);
 		
 			while(rs.next()) {
-				EmployeeCategoryList.add(new EmployeeCategory(rs.getInt("EMPLOYEE_CATEGORY_ID"), rs.getString("EMPLOYEE_CATEGORY_NAME")));
+				employeeCategoryList.add(new EmployeeCategory(rs.getInt("EMPLOYEE_CATEGORY_ID"), rs.getString("EMPLOYEE_CATEGORY_NAME")));
 			}
 		
 		}catch(SQLException e) {
-			EmployeeCategoryList = null;
+			employeeCategoryList = null;
 			e.printStackTrace();
 		}
 	
-		return EmployeeCategoryList;
+		return employeeCategoryList;
 	
 	}
 

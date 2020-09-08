@@ -7,8 +7,8 @@ import com.winpoint.common.dao.EmployeeCategoryDao;
 
 public class EmployeeCategoryHelper {
 
-	public List<EmployeeCategory> getEmployeeCategory(){
-		return new EmployeeCategoryDao().getEmployeeCategory();
+	public List<EmployeeCategory> getEmployeeCategoryList(){
+		return new EmployeeCategoryDao().getEmployeeCategoryList();
 		
 	}
 	

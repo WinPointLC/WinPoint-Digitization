@@ -8,7 +8,7 @@ import com.winpoint.common.dao.ReminderTypeDao;
 
 
 public class ReminderTypeHelper {
-	public List<ReminderType> getReminderType() {
-		return new ReminderTypeDao().getReminderType();
+	public List<ReminderType> getReminderTypeList() {
+		return new ReminderTypeDao().getReminderTypeList();
 	}
 }

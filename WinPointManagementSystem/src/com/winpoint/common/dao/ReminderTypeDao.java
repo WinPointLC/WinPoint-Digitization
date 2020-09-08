@@ -11,7 +11,7 @@ import com.winpoint.common.beans.ReminderType;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class ReminderTypeDao {
-	public List<ReminderType> getReminderType() {
+	public List<ReminderType> getReminderTypeList() {
 		List<ReminderType> reminderTypeList = new ArrayList<>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
