@@ -20,12 +20,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.winpoint.common.beans.BatchDetails;
 import com.winpoint.common.beans.Course;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.FeedbackQuestions;
 import com.winpoint.common.beans.QuestionBank;
 import com.winpoint.common.beans.Result;
 import com.winpoint.common.beans.Stream;
+import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.beans.TopicWisePerformance;
 import com.winpoint.common.beans.UserProfile;
@@ -36,6 +38,7 @@ import com.winpoint.common.helpers.FeedbackQuestionsHelper;
 import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.ResultHelper;
 import com.winpoint.common.helpers.StreamHelper;
+import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 
 /**
  * Servlet implementation class LoginServ
@@ -65,29 +68,61 @@ public class AnalyticsServlet extends ParentWEBController {
 		System.out.println("From Analytics Servlet");
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
 	    String json = "";
-	    if(br != null){
-	    	json = br.readLine();
-	    }
-	    	    
+	        	    
 	    Gson gson = new Gson();
-	    int courseId = 0;
-	    Course course = gson.fromJson(json, Course.class);
-		if(course != null) 
-		   courseId = course.getCourseId();
-		
-        HttpSession session = request.getSession(false);
-		int userId = (int) session.getAttribute("userId");
-
-		ArrayList<TopicWisePerformance > topicPerfoList = new AnalyticsHelper().getStudentTestAnalysis(userId, courseId);
-		
-        String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "Analytics.jsp'}");
+	    		
+		String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "Analytics.jsp'}");
         String json2 = null;
-        
-        if (topicPerfoList != null) {
-        	json2 = gson.toJson(topicPerfoList);
-        }
-        
-        String jsonString = "[" + json1  + "," + json2 + "]";
+        String json3 = null;
+        String jsonString = null;
+		String getInfoParam = request.getParameter("getInfoParam");
+		System.out.println("action = " + getInfoParam);
+		int courseId = 0;
+		int userId = 0;
+		if(getInfoParam.equals("courseDetails")) {
+			
+		    if(br != null){
+		    	json = br.readLine();
+		    }
+		   
+			UserProfile userProfile = gson.fromJson(json, UserProfile.class);
+			ArrayList <StudentCourseDetails>studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList(userProfile.getUserId());
+			
+			if (studentCourseDetailsList != null) {
+	        	json2 = gson.toJson(studentCourseDetailsList);
+	        }
+			
+			ArrayList <StudentCourseDetails>studentGACourseDetailsList = new StudentCourseDetailsHelper().getStudentGACourseDetailsList(userProfile.getUserId());
+			
+			if (studentGACourseDetailsList != null) {
+	        	json3 = gson.toJson(studentGACourseDetailsList);
+	        }
+			jsonString = "[" + json1  + "," + json2 + "," + json3 + "]";
+		}
+		else if(getInfoParam.equals("topicDetails")) {
+			String view = request.getParameter("view");
+			
+			if(view.equals("ClientDash")){
+				
+			    Course course = gson.fromJson(json, Course.class);
+				if(course != null) 
+				   courseId = course.getCourseId();
+				
+		        HttpSession session = request.getSession(false);
+				userId = (int) session.getAttribute("userId");	
+			}
+			else if (view.equals("userModal")) {
+				StudentCourseDetails studentCourseDetail = gson.fromJson(json, StudentCourseDetails.class);
+				userId = studentCourseDetail.getUserId();
+				courseId = studentCourseDetail.getCourseId();
+			}
+			ArrayList<TopicWisePerformance > topicPerfoList = new AnalyticsHelper().getStudentTestAnalysis(userId, courseId);
+	        if (topicPerfoList != null) {
+	        	json2 = gson.toJson(topicPerfoList);
+	        }
+	        jsonString = "[" + json1  + "," + json2 + "]";
+		}
+        System.out.println("AnalyticsjsonString: " + jsonString);
 	    PrintWriter writer = response.getWriter();
 		writer.println(jsonString);
 		writer.flush();

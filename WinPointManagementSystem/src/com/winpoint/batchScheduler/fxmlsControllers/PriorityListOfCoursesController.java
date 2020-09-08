@@ -141,7 +141,7 @@ public class PriorityListOfCoursesController extends ParentFXMLController{
 	    	totalEligibleStudentCourseMap.putAll(tempMap);
 	    	
 	    	//Course Type choice box : 
-	    	List<CourseType> courseTypeList = new CourseTypeHelper().getCoursesType();    	 
+	    	List<CourseType> courseTypeList = new CourseTypeHelper().getCourseType();    	 
 	    	for(CourseType courseId : courseTypeList) {
 	    		courseType.getItems().add(courseId.getCourseTypeName());
 	    	}

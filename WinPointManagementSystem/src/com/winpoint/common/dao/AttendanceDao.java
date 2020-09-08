@@ -100,7 +100,6 @@ public class AttendanceDao {
 //		return attendanceScreenWrapperList;	
 //	}	
 	
-	
 	public ObservableList<ObservableList> getStudentsAttendanceForBatch(Integer batchId){
 		ObservableList<ObservableList> data = FXCollections.observableArrayList();
 		try(Connection connection = ConnectionManager.getConnection()){

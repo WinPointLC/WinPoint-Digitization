@@ -28,14 +28,14 @@ import com.winpoint.common.helpers.StreamHelper;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends ParentWEBController {
+@WebServlet("/StreamListServlet")
+public class StreamListServlet extends ParentWEBController {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public StreamListServlet() {
         super();
     }
 
@@ -43,14 +43,18 @@ public class LoginServlet extends ParentWEBController {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("From StreamListServlet");
+		List<Stream> streamList = new StreamHelper().getStreamList();
+		Gson gson = new Gson();
+		String streamListJSON = gson.toJson(streamList);
+		request.setAttribute("streamList", streamListJSON);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("From LoginServlet");
+		System.out.println("From StreamListServlet");
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		
 	    String json = "";

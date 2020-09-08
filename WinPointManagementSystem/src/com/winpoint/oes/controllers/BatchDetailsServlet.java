@@ -31,6 +31,7 @@ import com.winpoint.common.helpers.LoginHelper;
 import com.winpoint.common.helpers.StreamHelper;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 import com.winpoint.common.helpers.StudentCourseInstallmentHelper;
+import com.winpoint.common.helpers.UserProfileHelper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
@@ -96,8 +97,8 @@ public class BatchDetailsServlet extends ParentWEBController {
 			else if(batchInfoParam.equals("evaluation")){
 				/* marks of all students  --> STUDENT_COURSE_DETAILS*/
 				System.out.println("From Evaluation");
-				ArrayList<EvaluationScreenWrapperParent> studentsEvaluationDetailsList = new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId);
-				for(EvaluationScreenWrapperParent x : studentsEvaluationDetailsList) {
+				ArrayList<EvaluationScreenWrapper> studentsEvaluationDetailsList = new StudentCourseDetailsHelper().getStudentEvaluationDetails(batchId);
+				for(EvaluationScreenWrapper x : studentsEvaluationDetailsList) {
 				   System.out.println(x.getAttendance());
 				}
 				json1 = gson.toJson(studentsEvaluationDetailsList);
@@ -110,18 +111,22 @@ public class BatchDetailsServlet extends ParentWEBController {
 			}
 			else if(batchInfoParam.equals("attendance")){
 				/*Percentage of Attendance of all the students for this batch */
-				ObservableList<ObservableList<String>> attendanceList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
+				//ObservableList<ObservableList<String>> attendanceList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
+				ObservableList<ObservableList> attendanceList = new AttendanceHelper().getStudentAttendanceForBatch(batchId);
 				//int i=0;
-				for (ObservableList<String> temp : attendanceList) {
+				/*for (ObservableList<String> temp : attendanceList) {
 					for(int i=0; i<temp.size(); i++) {
 					    String temp1 = temp.get(i);
 					    System.out.print(temp1 +" ");
 					}
-					
-					//System.out.println();
-				}
-				
+				}*/
 				json1 = gson.toJson(attendanceList);
+			}
+			else if(batchInfoParam.equals("studentDetails")) {
+				System.out.println("From BatchDetails-studentDetails");
+				ArrayList<UserProfile> usersList = new UserProfileHelper().getStudentListForBatch(batchId);
+				json1 = gson.toJson(usersList);
+				System.out.println("UserList: " + json1);
 			}
 			//json1 = gson.toJson(feeRecordsOfBatch);
 		   //String jsonString = "[" + json1  + "," + json2 + "," + json3 + "," + json4 + "," + json5 + "]";

@@ -58,9 +58,10 @@ public class Course {
 		this.createdDate = createdDate;
 	}
 	
-	public Course(int courseId, String courseName, int streamId, int courseTypeId, String iconLocation) {
+	public Course(int courseId, String courseName, int courseFees, int streamId, int courseTypeId, String iconLocation) {
 		this.courseId = courseId;
 		this.courseName = courseName;
+		this.courseFees = courseFees;
 		this.streamId = streamId;
 		this.courseTypeId = courseTypeId;
 		this.iconLocation = iconLocation;

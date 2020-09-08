@@ -11,11 +11,10 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.Course;
-<<<<<<< HEAD
+
 import com.winpoint.common.beans.CourseBatchDetail;
 import com.winpoint.common.beans.CourseType;
-=======
->>>>>>> db5c7d332b1b5a0b62d101bb0de1925c868c1a44
+
 import com.winpoint.common.beans.Test;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.SignUpFormCourseListWrapper;
@@ -54,6 +53,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 					"	COURSE_TYPE.COURSE_TYPE_NAME,*/\r\n" + 
 					"	COURSES.COURSE_ID,\r\n" + 
 					"	COURSES.COURSE_NAME,\r\n" + 
+					"	COURSES.FEES,\r\n" + 
 					"	LOGO_LOCATION\r\n" + 
 					"	FROM \r\n" + 
 					"	STREAMS STREAMS JOIN COURSES COURSES\r\n" + 
@@ -86,8 +86,9 @@ public ArrayList<Course> getBatchCourseDurationList() {
 			while(resultSet.next()) {
 				int courseId = resultSet.getInt("course_id");
 				String courseName = resultSet.getString("course_name");
+				int courseFees = resultSet.getInt("fees");
 				String logoLocation = resultSet.getString("logo_location");
-				Course course = new Course(courseId, courseName, streamId, courseTypeId, logoLocation);
+				Course course = new Course(courseId, courseName, courseFees, streamId, courseTypeId, logoLocation);
 				courseList.add(course);
 			}
 		} 
@@ -126,9 +127,10 @@ public ArrayList<Course> getBatchCourseDurationList() {
 					"			ON CRS.COURSE_ID = TD.COURSE_ID\r\n" + 
 					"				JOIN USER_TEST_DETAILS UTD\r\n" + 
 					"				ON TD.TEST_DETAIL_ID = UTD.TEST_DETAIL_ID\r\n" + 
-					"WHERE UTD.USER_ID = " + userId + "AND CRS.COURSE_ID = " + courseId ;
+					"WHERE UTD.USER_ID = " + userId + " AND CRS.COURSE_ID = " + courseId ;
+			System.out.println(query);
 			resultSet = statement.executeQuery(query);
-			
+			boolean added = false;
 			while(resultSet.next()) {
 				String courseName = resultSet.getString("COURSE_NAME");
 				String evaluationTypeName = resultSet.getString("EVALUATION_TYPE_NAME");
@@ -138,8 +140,14 @@ public ArrayList<Course> getBatchCourseDurationList() {
 				int marksRceived = resultSet.getInt("MARKS_RECEIVED");
 				int attempted = resultSet.getInt("ATTEMPTED");
 				Test test = new Test(userId, courseName, evaluationTypeName, testDetailId, testFees, fee_status, marksRceived, attempted);
+				added= true;
+				System.out.println(test.getCourseName());
 				testList.add(test);
 			}
+			if(added)
+				System.out.println("Record added to list");
+			else
+				System.out.println("Record not added to the list");
 		}
 		catch (SQLServerException e) {
 			e.printStackTrace();
@@ -227,6 +235,7 @@ public ArrayList<Course> getBatchCourseDurationList() {
 			String query = "SELECT			\r\n" + 
 					"							COURSES.COURSE_ID, \r\n" + 
 					"							COURSES.COURSE_NAME, \r\n" + 
+					"							COURSES.FEES, \r\n" +
 					"							LOGO_LOCATION \r\n" + 
 					"							--BATCH_DETAILS.BATCH_ID, \r\n" + 
 					"							--BATCH_NAME\r\n" + 
@@ -240,15 +249,17 @@ public ArrayList<Course> getBatchCourseDurationList() {
 					"							--ON BATCH_DETAILS.COURSE_ID  = COURSES.COURSE_ID \r\n" + 
 					"							--JOIN STUDENT_COURSE_DETAILS\r\n" + 
 					"							--ON STUDENT_COURSE_DETAILS.BATCH_ID = BATCH_DETAILS.BATCH_ID \r\n" + 
-					"					WHERE  STREAMS.STREAM_ID = 1 and COURSE_TYPE.COURSE_TYPE_ID = 1 \r\n" + 
-					"					ORDER BY COURSES.COURSE_ID";		
+					"					WHERE  STREAMS.STREAM_ID = " + streamId + " and COURSE_TYPE.COURSE_TYPE_ID = " + courseTypeId + "\r\n" + 
+					"					ORDER BY COURSES.COURSE_ID";	
+			System.out.println(query);
 			resultSet = statement.executeQuery(query);
 						
 			while(resultSet.next()) {
 				int courseId = resultSet.getInt("course_id");
 				String courseName = resultSet.getString("course_name");
+				int courseFees =  resultSet.getInt("fees");
 				String logoLocation = resultSet.getString("logo_location");
-				CourseBatchDetail course = new CourseBatchDetail(courseId, courseName, streamId, courseTypeId, logoLocation, null);
+				CourseBatchDetail course = new CourseBatchDetail(courseId, courseName, courseFees, streamId, courseTypeId, logoLocation, null);
 				courseList.add(course);
 			}
 			for (CourseBatchDetail course : courseList) {

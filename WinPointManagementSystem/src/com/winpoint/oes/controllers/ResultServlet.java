@@ -96,7 +96,7 @@ public class ResultServlet extends ParentWEBController {
 	  
         String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "FeedBackForm.jsp'}");
         String json2 = null;
-        ArrayList<FeedbackQuestions> feedbackQuestionsList = new FeedbackQuestionsHelper().getFeedbackQuestions();
+        ArrayList<FeedbackQuestions> feedbackQuestionsList = new FeedbackQuestionsHelper().getFeedbackQuestions(2);
         if (feedbackQuestionsList != null) {
         	json2 = gson.toJson(feedbackQuestionsList);
         }

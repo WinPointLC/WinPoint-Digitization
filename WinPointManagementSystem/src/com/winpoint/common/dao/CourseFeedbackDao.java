@@ -156,7 +156,7 @@ public class CourseFeedbackDao {
 		Statement statement = connection.createStatement();		
 		for(CourseFeedback courseFeedback : userCourseFeedback) {
 			String query = "INSERT INTO COURSE_FEEDBACK (USER_ID, COURSE_ID, FEEDBACK_QUESTION_ID, RESPONSE) "
-				+ "VALUES (" + userId + ","+ courseFeedback.getCourseId() + "," + courseFeedback.getFeedbackId() + "," + courseFeedback.getStudentResponse() +")" ;
+				+ "VALUES (" + userId + ","+ courseFeedback.getCourseId() + "," + courseFeedback.getFeedbackId() + ", '" + courseFeedback.getStudentResponse() +"' )" ;
 			System.out.println(query);
 			statement.executeUpdate(query);
 		}

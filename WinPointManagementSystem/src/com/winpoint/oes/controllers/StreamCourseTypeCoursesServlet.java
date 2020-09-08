@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.winpoint.common.beans.Course;
+import com.winpoint.common.beans.CourseBatchDetail;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.UserProfile;
@@ -60,7 +61,14 @@ public class StreamCourseTypeCoursesServlet extends ParentWEBController {
 		Course course = gson.fromJson(json, Course.class);
 		int streamId =  course.getStreamId();
 		int courseTypeId =  course.getCourseTypeId();
-		List<Course> courseList = new CourseHelper().getCourseList(streamId, courseTypeId);
+		System.out.println("StreamId = " + streamId + "CourseTypeId = " + courseTypeId);
+		ArrayList<CourseBatchDetail> courseList = new CourseHelper().getCourseBatchDetail(streamId, courseTypeId);
+		for(CourseBatchDetail courseBatchDetail : courseList) {
+			System.out.println(courseBatchDetail.getCourseName());
+			for(String batchList: courseBatchDetail.getBatchListName()) {
+				System.out.println( courseBatchDetail.getCourseName() + ":" +  batchList);
+			}
+		}
 		//Total Number of participants
 		//Include List of Batches for every course --> STUDENT_COURSE_DETAILS
 		if(courseList != null) {

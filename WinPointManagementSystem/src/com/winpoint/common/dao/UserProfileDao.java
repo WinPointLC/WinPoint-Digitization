@@ -227,11 +227,11 @@ public class UserProfileDao {
 	public ArrayList<UserProfile> getStudentListForBatch(Integer batchId){
 		
 		ArrayList<UserProfile> studentList = new ArrayList<UserProfile>();
-		
+		String query = null;
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
 			
-			String query = "SELECT up.USER_ID, up.FIRST_NAME, up.LAST_NAME\r\n" + 
+			query = "SELECT up.USER_ID, up.FIRST_NAME, up.LAST_NAME, up.EMAIL_ID, up.COLLEGE, up.MOBILE_NUMBER, up.COURSE_ALREADY_DONE\r\n" + 
 					"FROM USER_PROFILE AS up\r\n" + 
 					"INNER JOIN \r\n" + 
 					"STUDENT_COURSE_DETAILS AS scd\r\n" + 
@@ -242,17 +242,31 @@ public class UserProfileDao {
 			
 			while(resultSet.next()) {
 				studentList.add(new UserProfile(resultSet.getInt("USER_ID"), resultSet.getString("FIRST_NAME"), 
-								resultSet.getString("LAST_NAME"), null, null, null));
+								resultSet.getString("LAST_NAME"), resultSet.getString("EMAIL_ID"), resultSet.getString("MOBILE_NUMBER"), resultSet.getString("COLLEGE")));
 			}
-			
+			String coursesDone = "";
+			for(UserProfile user : studentList) {
+				System.out.println("From UserProfile : userName = " + user.getFirstName());
+				query = "SELECT COURSES.COURSE_NAME FROM  STUDENT_COURSE_DETAILS AS SC\r\n" + 
+						"INNER JOIN COURSES\r\n" + 
+						"ON SC.COURSE_ID = COURSES.COURSE_ID\r\n" + 
+						"WHERE SC.COURSE_ID IN (SELECT SC.COURSE_ID FROM STUDENT_COURSE_DETAILS WHERE SC.USER_ID = " + user.getUserId() + ")";
+				resultSet = statement.executeQuery(query);
+				coursesDone = "";
+				while(resultSet.next()) {
+					coursesDone += resultSet.getString("COURSE_NAME") + ",";
+				}
+				coursesDone = coursesDone.substring(0, coursesDone.length()-1);
+				System.out.println("Courses done = " + coursesDone);
+				user.setCourseAlreadyDone(coursesDone);
+			}
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return  studentList;	
 	}
-<<<<<<< HEAD
+
 
 
 	public UserProfile getUserProfile(int userId) {
@@ -272,8 +286,8 @@ public class UserProfileDao {
 					"ON USER_PROFILE.USER_ID = D.USER_ID\r\n" + 
 					"LEFT OUTER JOIN EMPLOYEE_CATEGORY\r\n" + 
 					"ON D.EMPLOYEE_CATEGORY_ID = EMPLOYEE_CATEGORY.EMPLOYEE_CATEGORY_ID\r\n" + 
-					"WHERE USER_PROFILE.USER_ID = '" + userId + 
-					""; 
+					"WHERE USER_PROFILE.USER_ID = " + userId ; 
+					//""; 
 					
 			resultSet = statement.executeQuery(query);
 			if(resultSet.next()) {
@@ -309,8 +323,11 @@ public class UserProfileDao {
 						securityAnswer, userCategoryId, occupation, organisation, designation,
 						domain, role, experience);
 			}
+			else {
+				System.out.println("UserProfileDao : NO USER FOUND");
+			}
 		}catch(SQLException sqe){
-			
+			System.out.println("UserProfileDao : EXCEPTION" + sqe);
 		}
 		return userProfile;
 	}
@@ -381,6 +398,5 @@ public class UserProfileDao {
 //
 //	}
 	
-=======
->>>>>>> db5c7d332b1b5a0b62d101bb0de1925c868c1a44
+
 }

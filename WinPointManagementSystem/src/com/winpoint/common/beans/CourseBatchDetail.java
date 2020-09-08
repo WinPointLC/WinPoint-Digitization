@@ -12,8 +12,8 @@ public class CourseBatchDetail extends Course{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CourseBatchDetail(int courseId, String courseName, int streamId, int courseTypeId, String iconLocation, ArrayList<String> batchNameList) {
-		super(courseId, courseName, streamId, courseTypeId, iconLocation);
+	public CourseBatchDetail(int courseId, String courseName, int courseFees, int streamId, int courseTypeId, String iconLocation, ArrayList<String> batchNameList) {
+		super(courseId, courseName, courseFees, streamId, courseTypeId, iconLocation);
 		this.batchNameList  = batchNameList;
 		// TODO Auto-generated constructor stub
 	}

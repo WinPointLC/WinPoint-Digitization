@@ -76,6 +76,7 @@ public class TestSelectServlet extends ParentWEBController {
 		   String json2 = gson.toJson(testsList);
 		  		   
 		   String jsonString = "[" + json1  + "," + json2 + "]";
+		   System.out.println(jsonString);
 		   PrintWriter writer = response.getWriter();
 		   writer.println(jsonString);
 		   writer.flush();		   

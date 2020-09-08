@@ -29,7 +29,8 @@ public class CourseTypeHelper {
 	}
 
 	
-	public List<CourseType> getCoursesType() {
+	public List<CourseType> getCourseType() {
+		System.out.println("From CourseTypeHelper");
 		return new CourseTypeDao().getCoursesType();
 	}
 }
