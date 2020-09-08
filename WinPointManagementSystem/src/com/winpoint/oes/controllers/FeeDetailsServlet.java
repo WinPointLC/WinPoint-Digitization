@@ -4,40 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUpgradeHandler;
-import javax.servlet.http.Part;
-
 import com.google.gson.Gson;
-import com.winpoint.common.beans.Stream;
 import com.winpoint.common.beans.StudentCourseFeesBean;
-import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.controllers.ParentWEBController;
 import com.winpoint.common.helpers.FeeDetailsHelper;
-import com.winpoint.common.helpers.LoginHelper;
-import com.winpoint.common.helpers.StreamHelper;
 import com.winpoint.common.helpers.StudentCourseDetailsHelper;
 
 /**
