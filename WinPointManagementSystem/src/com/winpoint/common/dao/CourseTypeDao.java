@@ -207,4 +207,44 @@ public class CourseTypeDao {
 
 		
 	}
+
+	public void createCourseTypeList(ArrayList<CourseType> newCourseList) {
+
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(CourseType courseList: newCourseList) {
+			String query = "INSERT INTO COURSE_TYPE VALUES("+courseList.getCourseTypeName()+",NULL,NULL";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+
+	public void deleteCourseTypeList(ArrayList<Integer> deleteCourseList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteCourseString = new StringBuilder();
+			for(int courseId: deleteCourseList) {
+				deleteCourseString.append(courseId);
+				deleteCourseString.append(',');
+			}
+			deleteCourseString.deleteCharAt(deleteCourseString.length()-1);
+			String query ="DELETE FROM COURSE_TYPE\n" + 
+					"WHERE COURSE_TYPE_ID IN ("+ deleteCourseString.toString() +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
+	}
 }
