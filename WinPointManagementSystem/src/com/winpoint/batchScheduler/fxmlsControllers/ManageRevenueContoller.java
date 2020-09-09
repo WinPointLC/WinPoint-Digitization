@@ -269,7 +269,7 @@ public class ManageRevenueContoller extends ParentFXMLController{
 		/***************************************************/
     	
 		// Payment Type choice Box : 
-		List<PaymentType> paymentTypeList = new  PaymentTypeHelper().getPaymentTypeDaoList();
+		List<PaymentType> paymentTypeList = new  PaymentTypeHelper().getPaymentTypeList();
 		for(PaymentType paymentTypeObject : paymentTypeList) {
 			paymentMode.getItems().add(paymentTypeObject.getPaymentTypeName());
 		}

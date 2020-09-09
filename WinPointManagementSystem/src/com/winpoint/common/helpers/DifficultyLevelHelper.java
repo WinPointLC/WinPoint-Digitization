@@ -7,8 +7,8 @@ import com.winpoint.common.dao.DifficultyLevelDao;
 
 public class DifficultyLevelHelper {
 
-	public List<DifficultyLevel> getDifficultyLevelsList() {
-		return new DifficultyLevelDao().getDifficultyLevelsList();
+	public List<DifficultyLevel> getDifficultyLevelList() {
+		return new DifficultyLevelDao().getDifficultyLevelList();
 	}
 
 }

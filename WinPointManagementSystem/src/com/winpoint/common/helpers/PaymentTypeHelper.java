@@ -7,8 +7,8 @@ import com.winpoint.common.dao.PaymentTypeDao;
 
 public class PaymentTypeHelper {
 
-	public List<PaymentType> getPaymentTypeDaoList(){
-		return new PaymentTypeDao().getPaymentTypeDaoList();
+	public List<PaymentType> getPaymentTypeList(){
+		return new PaymentTypeDao().getPaymentTypeList();
 	}
 
 	

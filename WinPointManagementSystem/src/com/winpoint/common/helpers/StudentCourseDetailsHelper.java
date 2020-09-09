@@ -7,7 +7,6 @@ import com.winpoint.common.beans.StudentCourseDetails;
 import com.winpoint.common.dao.StudentCourseDetailsDao;
 import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
 import com.winpoint.common.wrappers.EvaluationScreenWrapper;
-import com.winpoint.common.wrappers.EvaluationScreenWrapperParent;
 
 public class StudentCourseDetailsHelper {
 	public ArrayList<StudentCourseDetails> getStudentCourseDetailsList(int userId){

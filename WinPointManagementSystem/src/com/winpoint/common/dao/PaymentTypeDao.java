@@ -13,9 +13,9 @@ import com.winpoint.common.util.sql.ConnectionManager;
 public class PaymentTypeDao {
 
 	
-	public List<PaymentType> getPaymentTypeDaoList(){
+	public List<PaymentType> getPaymentTypeList(){
 		
-		List<PaymentType> paymentTypeDaoList = new ArrayList<PaymentType>();
+		List<PaymentType> paymentTypeList = new ArrayList<PaymentType>();
 		
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
@@ -26,13 +26,13 @@ public class PaymentTypeDao {
 			ResultSet rs = statement.executeQuery(query);
 			
 			while(rs.next()) {
-				paymentTypeDaoList.add(new PaymentType(rs.getInt("PAYMENT_MODE_ID"), rs.getString("PAYMENT_MODE_NAME")));
+				paymentTypeList.add(new PaymentType(rs.getInt("PAYMENT_MODE_ID"), rs.getString("PAYMENT_MODE_NAME")));
 			}			
 		}catch(SQLException e) {
-			paymentTypeDaoList = null;
+			paymentTypeList = null;
 			e.printStackTrace();
 		}
-		return paymentTypeDaoList;	
+		return paymentTypeList;	
 	}
 	
 }

@@ -5,11 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.CourseType;
 import com.winpoint.common.beans.Test;
@@ -184,7 +181,7 @@ public class CourseTypeDao {
 	}
 
 	//group A priorityList Aayush
-	public List<CourseType> getCoursesType() {
+	public List<CourseType> getCoursesTypeList() {
 		
 		List<CourseType> courseTypeIdNameList = new ArrayList<>();
 		

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.winpoint.common.beans.Topic;
 import com.winpoint.common.dao.TopicsDao;
-import com.winpoint.common.wrappers.EditBatchDetailsWrapper;
 import com.winpoint.common.wrappers.ProgressTrackingWrapper;
 
 public class TopicsHelper {

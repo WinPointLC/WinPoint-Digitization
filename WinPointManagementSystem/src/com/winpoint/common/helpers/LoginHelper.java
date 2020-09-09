@@ -1,7 +1,5 @@
 package com.winpoint.common.helpers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.winpoint.common.beans.UserProfile;
 import com.winpoint.common.dao.LoginDao;

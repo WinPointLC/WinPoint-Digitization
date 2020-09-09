@@ -7,11 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.winpoint.common.beans.Rules;
 import com.winpoint.common.beans.SecurityQuestions;
-import com.winpoint.common.beans.Stream;
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class SecurityQuestionsDao {

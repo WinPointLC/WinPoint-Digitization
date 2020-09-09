@@ -63,7 +63,7 @@ public class DifficultyLevelServlet extends ParentWEBController {
 		Gson gson = new Gson();
 		Course course = gson.fromJson(json, Course.class);
 		
-		List<DifficultyLevel> testsList = new DifficultyLevelHelper().getDifficultyLevelsList();
+		List<DifficultyLevel> testsList = new DifficultyLevelHelper().getDifficultyLevelList();
 				
 		if(testsList != null) {		  
 		   String json1 = gson.toJson("{ 'success': 'true', 'location': '" + jspURL + "TestSelectPage.jsp'}");

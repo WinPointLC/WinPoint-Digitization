@@ -10,6 +10,4 @@ public class EvaluationTypeHelper {
 	public List<EvaluationType> getEvaluationTypeList() {
 		return new EvaluationTypeDao().getEvaluationTypeList();
 	}
-
-	
 }

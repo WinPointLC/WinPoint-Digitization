@@ -46,7 +46,7 @@ public class CourseFeedbackServlet extends ParentWEBController {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("From CourseFeedbackServlet GET");
-		ArrayList<FeedbackQuestions> feedbackQuestionsList = new FeedbackQuestionsHelper().getFeedbackQuestions(1);
+		ArrayList<FeedbackQuestions> feedbackQuestionsList = new FeedbackQuestionsHelper().getFeedbackQuestionsList(1);
 		Gson gson = new Gson();
 		String feedbackQuestionsListJSON = gson.toJson(feedbackQuestionsList);
 		request.setAttribute("feedbackQuestionsList", feedbackQuestionsListJSON);
