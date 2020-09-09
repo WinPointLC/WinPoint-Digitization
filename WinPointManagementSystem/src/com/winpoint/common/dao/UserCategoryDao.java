@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.winpoint.common.beans.SecurityQuestions;
 import com.winpoint.common.beans.UserCategory;
 import com.winpoint.common.util.sql.ConnectionManager;
 

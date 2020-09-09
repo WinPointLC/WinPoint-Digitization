@@ -5,33 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.omg.CORBA.StructMember;
-
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import com.winpoint.common.beans.Lecture;
-import com.winpoint.common.beans.Rules;
-import com.winpoint.common.beans.SecurityQuestions;
-import com.winpoint.common.beans.Stream;
-import com.winpoint.common.beans.StudentCourseDetails;
-import com.winpoint.common.beans.StudentCourseInstallmentDetails;
 import com.winpoint.common.util.sql.ConnectionManager;
-import com.winpoint.common.wrappers.AttendanceScreenWrapper;
-import com.winpoint.common.wrappers.FeeRecordsScreenWrapper;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
+
 
 public class AttendanceDao {
 //	public ArrayList<AttendanceScreenWrapper> getStudentAttendanceForBatch(Integer batchId){

@@ -6,18 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.QuestionBank;
 import com.winpoint.common.beans.Result;
-import com.winpoint.common.beans.TestFeedback;
-import com.winpoint.common.beans.UserProfile;
+
 import com.winpoint.common.util.sql.ConnectionManager;
-import com.winpoint.common.wrappers.AssignmentsScreenWrapper;
-import com.winpoint.common.wrappers.EvaluationScreenWrapper;
 
 public class UserTestDetailsDao {
 		
@@ -55,7 +51,7 @@ public class UserTestDetailsDao {
 		int testDetailId = 0;
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			int userTestId = 0;
+//			int userTestId = 0;
 			
 			String query = "SELECT TEST_DETAIL_ID FROM TEST_DETAILS WHERE TEST_NUMBER =1 AND COURSE_ID = " + courseId;
 			ResultSet resultSet = statement.executeQuery(query);
