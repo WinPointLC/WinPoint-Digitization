@@ -35,11 +35,11 @@ public class CourseTypeHelper {
 		return new CourseTypeDao().getCoursesTypeList();
 	}
 	
-	public void createCourseType(ArrayList<CourseType> newCourseList) {
-		 new CourseTypeDao().createCourseTypeList(newCourseList);
+	public void createCourseType(ArrayList<CourseType> newCourseTypeArrayList) {
+		 new CourseTypeDao().createCourseTypeList(newCourseTypeArrayList);
 	}
 	
-	public void deleteCourseType(ArrayList<Integer> deleteCourseList) {
-		 new CourseTypeDao().deleteCourseTypeList(deleteCourseList);
+	public void deleteCourseType(ArrayList<Integer> deleteCourseTypeArrayList) {
+		 new CourseTypeDao().deleteCourseTypeList(deleteCourseTypeArrayList);
 	}
 }

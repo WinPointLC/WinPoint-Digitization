@@ -208,13 +208,13 @@ public class CourseTypeDao {
 		
 	}
 
-	public void createCourseTypeList(ArrayList<CourseType> newCourseList) {
+	public void createCourseTypeList(ArrayList<CourseType> newCourseTypeArrayList) {
 
 		try(Connection connection = ConnectionManager.getConnection()){			
 			Statement statement = connection.createStatement();
 			
-			for(CourseType courseList: newCourseList) {
-			String query = "INSERT INTO COURSE_TYPE VALUES("+courseList.getCourseTypeName()+",NULL,NULL";
+			for(CourseType courseList: newCourseTypeArrayList) {
+			String query = "INSERT INTO COURSE_TYPE VALUES("+courseList.getCourseTypeName()+",NULL,NULL)";
 			statement.executeQuery(query);
 			}
 		} 
@@ -226,17 +226,17 @@ public class CourseTypeDao {
 		} 
 	}
 
-	public void deleteCourseTypeList(ArrayList<Integer> deleteCourseList) {
+	public void deleteCourseTypeList(ArrayList<Integer> deleteCourseTypeArrayList) {
 		try(Connection connection = ConnectionManager.getConnection()){
 			Statement statement = connection.createStatement();
-			StringBuilder deleteCourseString = new StringBuilder();
-			for(int courseId: deleteCourseList) {
-				deleteCourseString.append(courseId);
-				deleteCourseString.append(',');
+			StringBuilder deleteCourseTypeString = new StringBuilder();
+			for(int courseId: deleteCourseTypeArrayList) {
+				deleteCourseTypeString.append(courseId);
+				deleteCourseTypeString.append(',');
 			}
-			deleteCourseString.deleteCharAt(deleteCourseString.length()-1);
+			deleteCourseTypeString.deleteCharAt(deleteCourseTypeString.length()-1);
 			String query ="DELETE FROM COURSE_TYPE\n" + 
-					"WHERE COURSE_TYPE_ID IN ("+ deleteCourseString.toString() +")";
+					"WHERE COURSE_TYPE_ID IN ("+ deleteCourseTypeString.toString() +")";
 			statement.executeQuery(query);
 		} 
 		catch (SQLServerException e) {

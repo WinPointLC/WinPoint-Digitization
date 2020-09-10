@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.EmployeeCategory;
 import com.winpoint.common.util.sql.ConnectionManager;
 
@@ -36,6 +37,50 @@ public class EmployeeCategoryDao {
 		return employeeCategoryList;
 	
 	}
+	
+	//===============================================================================================
+
+	public void createEmployeeCategoryList(ArrayList<EmployeeCategory> newEmployeeCategoryList) {
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+		
+			for(EmployeeCategory EmployeeCategoryList: newEmployeeCategoryList) {
+			String query = "INSERT INTO EMPLOYEE_CATEGORY VALUES ("+EmployeeCategoryList.getEmployeeCategoryName()+",NULL,NULL)";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+
+	public void deleteEmployeeCategoryList(ArrayList<Integer> deleteEmployeeCategoryArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteEmployeeCategoryString = new StringBuilder();
+			for(int EmployeeCategoryId: deleteEmployeeCategoryArrayList) {
+				deleteEmployeeCategoryString.append(EmployeeCategoryId);
+				deleteEmployeeCategoryString.append(',');
+			}
+			deleteEmployeeCategoryString.deleteCharAt(deleteEmployeeCategoryString.length()-1);
+			String query ="DELETE FROM EMPLOYEE_CATEGORY \n" +  
+					"WHERE EMPLOYEE_CATEGORY_ID IN ("+ deleteEmployeeCategoryString.toString() +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+	
+	
+	
+	
 
 	
 }

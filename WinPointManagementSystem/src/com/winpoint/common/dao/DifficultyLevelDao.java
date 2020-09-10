@@ -39,6 +39,49 @@ public class DifficultyLevelDao {
 			e1.printStackTrace();
 		} 
 		return difficultyLevelsList;
+	}
+	
+	//===============================================================================================
+
+	public void createDifficultyLevelList(ArrayList<DifficultyLevel> newDifficultyLevelArrayList) {
+
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(DifficultyLevel DifficultyLevelList: newDifficultyLevelArrayList) {
+			String query = "INSERT INTO DIFFICULTY_LEVEL VALUES ("+DifficultyLevelList.getDifficultyLevelName()+",NULL,NULL)";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+
+	public void deleteDifficultyLevelList(ArrayList<Integer> deleteDifficultyLevelArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteDifficultyLevelString = new StringBuilder();
+			for(int DifficultyLevelId: deleteDifficultyLevelArrayList) {
+				deleteDifficultyLevelString.append(DifficultyLevelId);
+				deleteDifficultyLevelString.append(',');
+			}
+			deleteDifficultyLevelString.deleteCharAt(deleteDifficultyLevelString.length()-1);
+			String query ="DELETE FROM DIFFICULTY_LEVEL \n" + 
+					"WHERE DIFFICULTY_LEVEL_ID IN  ("+ deleteDifficultyLevelString.toString() +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
 		
 	}
+	//===============================================================================================
+
 }

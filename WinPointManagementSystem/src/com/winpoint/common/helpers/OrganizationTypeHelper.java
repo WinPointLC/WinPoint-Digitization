@@ -1,5 +1,6 @@
 package com.winpoint.common.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.OrganizationType;
@@ -11,4 +12,15 @@ public class OrganizationTypeHelper {
 		return new OrganizationTypeDao().getOrganizationTypeList();
 	}
 	
+
+	//===============================================================================================
+
+
+public void createOrganizationType(ArrayList<OrganizationType> newOrganizationTypeArrayList) {
+		 new OrganizationTypeDao().createOrganizationTypeList(newOrganizationTypeArrayList);
+	}
+	
+	public void deleteOrganizationType(ArrayList<Integer> deleteOrganizationTypeArrayList) {
+		 new OrganizationTypeDao().deleteOrganizationTypeList(deleteOrganizationTypeArrayList);
+	}
 }
