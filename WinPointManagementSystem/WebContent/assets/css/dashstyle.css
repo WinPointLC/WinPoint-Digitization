@@ -1,0 +1,106 @@
+.main-panel>.content{
+	margin-top: 30px;
+
+}
+.navbarDropdownMenuLink{
+	background: purple;
+}
+.blinking{
+    animation:blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: #000; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+}
+.main-panel>.navbar {
+    margin-bottom: 0;
+    margin-top: 20px;}
+
+.nav-item{
+	padding:10px 5px;
+}
+#techCont{
+	padding: 10px 30px;
+}
+.modal-title{
+	text-align: center;
+	
+}
+.navbar .notification {
+  
+    min-width: 13px;
+   height: 13px;
+    border-radius: 25px;
+   
+}
+
+#btn-mod{
+	border:none;
+}
+#modal-btn{
+	border:none;
+	padding: 0px 0px;
+	margin: 5px 5px;
+}
+#modal-btn2{
+	border:none;
+	padding: 0px 0px;
+	margin: 5px 5px;
+}
+.chart-container{
+	position: relative;
+	height:100%;
+	 width:100%;
+	 display: block;
+	 margin: auto;
+	
+}
+
+.main-panel>.navbar{
+	margin-top: 2px;
+}
+
+#drop11{
+margin: auto;
+}
+#crd{
+	padding: 50px 50px;
+}
+.modal{
+	overflow: auto;
+}
+.col2{
+	width:40vw; 
+}
+.btn{
+	display: block;
+	margin: auto;
+}
+#head-mod{
+	width: 100%;	
+}	
+
+#welcome{
+	display: block;
+	margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 0.77rem;
+}
+#marquee{
+	margin-top: 2%;
+}
+.card-category{
+	color: black;
+}
+.card-icon{
+	padding: 0px;
+}
+#attendance{
+	text-align: center;
+	font-weight: bold;	
+}

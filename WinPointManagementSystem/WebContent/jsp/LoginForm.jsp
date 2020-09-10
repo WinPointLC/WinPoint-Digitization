@@ -21,7 +21,7 @@
 				email: emailVal,
 				password: passwordVal
 			};
-
+alert(myData);
 			$.ajax({
 				type: 'POST',
 				url: servletURL + 'LoginServlet',
@@ -34,13 +34,8 @@
 					var locationJson = eval('(' + responseJson1 + ')');
 					if (locationJson.success) {
 						var strResJSON = JSON.stringify(responseJson2);
-						if(responseJson2.userCategoryId == 1){
-							window.location.href = locationJson.location + "?varid=" + encodeURIComponent(strResJSON);
-						}
-						else{
-						   var streamJSON = JSON.stringify(responseJson3);
-						   window.location.href = locationJson.location + "?varid=" + encodeURIComponent(strResJSON) + encodeURIComponent(streamJSON);
-						}
+						var streamJSON = JSON.stringify(responseJson3);
+						window.location.href = locationJson.location + "?varid=" + encodeURIComponent(strResJSON)+ encodeURIComponent(streamJSON);
 					}
 					else {
 						$('#ajaxGetUserServletResponse').text(responseText);

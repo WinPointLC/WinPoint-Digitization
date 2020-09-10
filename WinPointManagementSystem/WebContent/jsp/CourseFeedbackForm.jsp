@@ -1,22 +1,120 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Feedback Form</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Feedback</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="../css/feedback.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style2.css">
 </head>
+
 <body class="">
   <div class="wrapper ">
+  <!--  <div class="sidebar" data-color="purple" data-background-color="white">
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          WINPOINT
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#0">
+              <i class="material-icons">dashboard</i>
+              <p>User Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">laptop</i>
+              <p>Course Registration</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">laptop</i>
+              <p>Online Evaluation</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">poll</i>
+              <p>Analytics</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="material-icons">show_chart</i>
+              <p>Result</p>
+            </a>
+          </li>
+          <li class="nav-item active  ">
+            <a class="nav-link active" href="./feedback.html">
+              <i class="material-icons">feedback</i>
+              <p>Feedback</p>
+            </a>
+          </li>
+                  
+        </ul> ul ends heer 
+      </div>.sidebar-wrapper ends here 
+    </div>.sidebar ends here 
+    <div class="main-panel">
+    
+      navba
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+            <ul class="navbar-nav">
+              <li class="nav-item" id="user">
+              USER
+            </li>
+              
 
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+         </ul>
+          </div>
+        </div>
+      </nav>
+      End Navbar 
+      <div class="content">
+        <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="card card-plain">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Feedback</h4>
+                
+         </div></div>
+         -->
+
+    
       <!-- instructions -->
 
       <div class="content">
@@ -27,9 +125,9 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title "></h4>
                   <p class="card-category">Following are some statements regarding the course. Rate your degree of concurrence with each of these statements on a scale of (1) to (5), where<br>
-                  (1)Strongly Disagree, (2) Disagree, (3)Cant say/Neutral, (4)Agree, (5)Strongly Agree</p>
+                  (1)Strongly Disagree, (2) Disagree, (3)Can't say/Neutral, (4)Agree, (5)Strongly Agree</p>
                 </div>
-                <form  name="myForm"  onsubmit= "info()">
+                <form  name="myForm"  onsubmit="getFeedbackInfo()">
                 
                 <div class="card-body">
                   <div class="table-responsive">
@@ -551,24 +649,17 @@ better comprehension of topics covered.</td>
                           
 
               <div class="btn-submit">                  
-          <button type="submit" class="btn btn-primary" onclick= "con()" >Submit</button>
+          <button type="submit" class="btn btn-primary" >Submit</button>
       </div>
 </form>
 
     </div><!-- mainpanel ends here -->
   </div><!-- .wrapper ends here-->
 
-
-
-
-
-
-
-
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 
   <!-- Plugin for the Perfect Scrollbar -->
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -628,7 +719,7 @@ better comprehension of topics covered.</td>
   <script src="assets/js/material-dashboard.min.js?v=2.1.2" type="text/javascript"></script>
   <script type="text/javascript">
 
-    function info(){
+    function getFeedbackInfo(){
 
       var tr1=$("input[name=inlineRadioOptions1]:checked").val();
       var tr2=$("input[name=inlineRadioOptions2]:checked").val();
@@ -646,7 +737,7 @@ better comprehension of topics covered.</td>
       var c=$("input[name=yes]:checked").val();
       var d=$("input[name=oveRall]:checked").val();
 
-      var information={
+      var feedbackInfo={
         coverage:tr1,
         subject_knowledge:tr2,
         training_skills:tr3,
@@ -668,29 +759,11 @@ better comprehension of topics covered.</td>
       //alert("hello");
       var myJSON=JSON.stringify(information);
       alert(myJSON);
-
-
-    }
-
-
-
-
+}
 
 function con(){
   confirm("Are you sure?");
 }
-
-
-
-
-   
-
-  
-
-  </script>
-
- 
-         
-
-  </body>
+</script>
+</body>
 </html>

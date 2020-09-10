@@ -1,0 +1,219 @@
+#d1{
+	margin-left: 10px;
+	//min-height:500px;
+	
+}
+
+.course_card{
+	width:330px;
+	margin-left: 30px;
+	
+}
+
+ .disabled-link{
+     color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
+    }
+
+
+#rec{
+	position: absolute;
+	margin-top:20px;
+}
+
+#cp{
+	position: absolute;
+	margin-top:20px;
+	margin-left: 200px;
+}
+
+.d_d{
+	position: absolute;
+	margin-top: 0px;
+}
+
+#hr1{
+	margin-top:-20px;
+}
+
+#c_fltr
+{
+	position: absolute;
+	margin-top:10px;
+	margin-left: 1090px;
+}
+
+#c_fltr_1
+{
+	position: absolute;
+	margin-top:10px;
+	margin-left: 900px;
+}
+
+.c_c{
+	position: absolute;
+	margin-top: 40px;
+}
+
+.course_logo{
+	width:120px;
+	height:120px;
+	margin-top:0px;
+	position: absolute;
+
+}
+
+#pc{
+	width: 500px;
+	height: 500px;
+	margin-left: 0px;
+	
+}
+
+#not{
+	margin-top:10px;
+	position :absolute;
+}
+
+.g_icon{
+	position:absolute;
+	margin-left:270px;
+	margin-top:-2px;
+	
+}
+
+.cb{
+    width: 15px;
+    height: 15px;
+    margin-top:0px;
+    margin-left:105px;
+    
+	 
+}
+
+.modal_styling {
+  position: relative;
+  background-color: #FFF;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px; 
+  
+}
+
+
+
+// extra styling
+.page-wrapper {
+  text-align: center;
+}
+
+button.modal-btn {
+  border: 1px solid steelblue;
+  background: #FFF;
+  color: steelblue;
+  padding: 10px 20px;
+  font-size: 16px;
+  &:hover {
+     background: steelblue;
+    color: #FFF;
+  }
+}
+
+.mfp-close:focus {
+  border: 1px solid steelblue;
+}
+
+#tech{
+	position: absolute;
+	margin-top:80px;
+	width: 935px;
+	margin-left: 15px;position: absolute;
+	z-index: 2!important; 
+}
+
+#head{
+	margin-left:320px;
+}
+
+#card_body{
+
+	margin-left:-12px;
+	position: absolute;
+	margin-top: 75px;
+	height: 100px;
+	width: 960px;
+	//z-index: 1!important; 
+}
+
+#card_con{
+position: absolute;
+	margin-top: 33px;
+	margin-left:362px;
+   //z-index: 100!important; 
+
+}
+
+.course_cards
+{
+	position: absolute;
+	margin-top: 178px;
+	margin-left:10px;
+	
+	z-index:100!important;
+
+	
+
+}
+
+#ann{
+	margin-left:150px;
+}
+
+#main-content{
+margin-top: -17px;
+margin-bottom:100px;
+ 
+}
+
+#db_nav{
+margin-top: -22px;
+}
+
+#logout_btn{
+
+    z-index: 100; 
+}
+
+#Tech-cards{
+	
+	margin-bottom: 100px;
+}
+.footer{
+	 position: fixed;
+    height: 50px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+	margin-left:255px;
+    margin-bottom: 0px;
+	z-index: 0;
+	
+}
+
+.card-link{
+	color: #8d0599!important;
+}
+
+
+.modal-title-notif{
+	margin-left:150px;
+	color: #8d0599!important;
+	
+}
+
+
+

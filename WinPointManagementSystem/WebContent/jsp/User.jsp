@@ -361,8 +361,9 @@
           var arr = searchString.split('&');
           var data= arr[0].split('=')[1];
           var userProfile = decodeURIComponent(data);
+          alert(userProfile);
           var userProfile1 =  eval('(' + userProfile + ')');
-          //alert("Client is " + userProfile1.userId + ":" + userProfile1.photoLocation+ " " + userProfile1.lastName);
+          alert("Client is " + userProfile1.userId + ":" + userProfile1.photoLocation+ " " + userProfile1.lastName);
           //alert(userProfile1);
           userId = userProfile1.userId;
           var photoLocation = userProfile1.photoLocation;

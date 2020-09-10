@@ -1,0 +1,209 @@
+#d1{
+	margin-left: 10px;
+	//min-height:500px;
+	
+}
+
+.course_card{
+	width:330px;
+	margin-left: 30px;
+	
+}
+
+ .disabled-link{
+     color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+    }
+
+
+#rec{
+	position: absolute;
+	margin-top:20px;
+}
+
+#cp{
+	position: absolute;
+	margin-top:20px;
+	margin-left: 200px;
+}
+
+.d_d{
+	position: absolute;
+	margin-top: 0px;
+}
+
+#hr1{
+	margin-top:-20px;
+}
+
+#c_fltr
+{
+	position: absolute;
+	margin-top:10px;
+	margin-left: 1090px;
+}
+
+#c_fltr_1
+{
+	position: absolute;
+	margin-top:10px;
+	margin-left: 900px;
+}
+
+.c_c{
+	position: absolute;
+	margin-top: 40px;
+}
+
+.course_logo{
+	width:120px;
+	height:120px;
+	margin-top:0px;
+	position: absolute;
+
+}
+
+#pc{
+	width: 500px;
+	height: 500px;
+	margin-left: 0px;
+	
+}
+
+#not{
+	margin-top:10px;
+	position :absolute;
+}
+
+.g_icon{
+	position:absolute;
+	margin-left:270px;
+	margin-top:-2px;
+	
+}
+
+.cb{
+    width: 15px;
+    height: 15px;
+    margin-top:0px;
+    margin-left:105px;
+    
+	 
+}
+
+.modal_styling {
+  position: relative;
+  background-color: #FFF;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;                
+}
+
+
+// extra styling
+.page-wrapper {
+  text-align: center;
+}
+
+button.modal-btn {
+  border: 1px solid steelblue;
+  background: #FFF;
+  color: steelblue;
+  padding: 10px 20px;
+  font-size: 16px;
+  &:hover {
+     background: steelblue;
+    color: #FFF;
+  }
+}
+
+.mfp-close:focus {
+  border: 1px solid steelblue;
+}
+/*
+#card1{
+	position: absolute;
+	margin-top: 110px;
+	
+}
+
+#card2{
+	position: absolute;
+	margin-top: -20px;
+	
+}
+
+#card3{
+	position: absolute;
+	margin-top: -732px;
+	margin-left: 370px;
+}
+
+#card4{
+	position: absolute;
+	margin-top: -377px;
+	margin-left: 370px;
+}
+
+#card5{
+	position: absolute;
+	margin-top: -20px;
+	margin-left: 0px;
+}
+
+#card6{
+	position: absolute;
+	margin-top: -375px;
+	margin-left: -370px;
+}
+
+#tech{
+	position: absolute;
+	margin-top:85px;
+	width: 795px;
+	margin-left: 50px;
+	
+}
+*/
+#tech{
+	position: absolute;
+	margin-top:105px;
+	width: 935px;
+	margin-left: 15px;
+	
+}
+
+#head{
+	margin-left:320px;
+}
+
+#card_body{
+	margin-left:-12px;
+	//position: absolute;
+	margin-top: 75px;
+	height: 100px;
+	width: 960px;
+}
+
+#card_con{
+	margin-top: 33px;
+	margin-left:362px;
+}
+
+.course_cards
+{
+	position: absolute;
+	margin-top: 100px;
+	margin-left:10px;
+	
+
+}
+
+#ann{
+	margin-left:150px;
+}
+
+
+

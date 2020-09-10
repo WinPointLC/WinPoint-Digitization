@@ -574,7 +574,6 @@
         //var streamId = 1;
         //var courseTypeId = courseTypeId;
         var courseId = courseId;
-        //alert(courseName);
         var myData = {
           streamId: streamId,
           courseTypeId: courseTypeId,
