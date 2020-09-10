@@ -41,4 +41,47 @@ public class SecurityQuestionsDao {
 		return securityQuestionsList;
 		
 	}
+
+	public void createSecurityQuestionsList(ArrayList<SecurityQuestions> newSecurityQuestionsArrayList) {
+
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(SecurityQuestions securityQuestions: newSecurityQuestionsArrayList) {
+			String query = "INSERT INTO SECURITY_QUESTIONS\n" + 
+					"(SECURITY_QUESTION) VALUES\n" + 
+					"('"+ securityQuestions.getSecurityQuestion() +"')";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+
+	public void deleteSecurityQuestionsList(ArrayList<Integer> deleteSecurityQuestionsArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteSecurityQuestionsString = new StringBuilder();
+			for(int securityQuestionsId: deleteSecurityQuestionsArrayList) {
+				deleteSecurityQuestionsString.append(securityQuestionsId);
+				deleteSecurityQuestionsString.append(',');
+			}
+			deleteSecurityQuestionsString.deleteCharAt(deleteSecurityQuestionsString.length()-1);
+			String query ="DELETE FROM SECURITY_QUESTIONS\n" + 
+					"WHERE SECURITY_QUESTION_ID IN ("+ deleteSecurityQuestionsString.toString() +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
+	}
+	
 }

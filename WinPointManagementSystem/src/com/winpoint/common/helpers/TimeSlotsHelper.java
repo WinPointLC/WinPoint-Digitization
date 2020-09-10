@@ -1,5 +1,6 @@
 package com.winpoint.common.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.TimeSlots;
@@ -11,4 +12,13 @@ public class TimeSlotsHelper {
 		return new TimeSlotsDao().getTimeSlotsList();
 	}
 
+	public void createTimeSlotsList(ArrayList<TimeSlots> newTimeSlotsArrayList) {
+		 new TimeSlotsDao().createTimeSlotsList(newTimeSlotsArrayList);
+	}
+	
+	public void deleteTimeSlotsList(ArrayList<Integer> deleteTimeSlotsArrayList) {
+		 new TimeSlotsDao().deleteTimeSlotsList(deleteTimeSlotsArrayList);
+	}
+
+	
 }

@@ -67,4 +67,47 @@ public class StreamDao {
 		return streamId;
 		
 	}
+	
+	// Abhishek - Web
+	public void createStreamList(ArrayList<Stream> newStreamArrayList) {
+
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(Stream streamList: newStreamArrayList) {
+			String query = "INSERT INTO STREAMS\n" + 
+					"(STREAM_NAME) VALUES \n" + 
+					"('"+ streamList.getStreamName() +"')";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+	//Abhishek - Web
+	public void deleteStreamList(ArrayList<Integer> deleteStreamArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteStreamString = new StringBuilder();
+			for(int streamId: deleteStreamArrayList) {
+				deleteStreamString.append(streamId);
+				deleteStreamString.append(',');
+			}
+			deleteStreamString.deleteCharAt(deleteStreamString.length()-1);
+			String query ="DELETE FROM STREAMS\n" + 
+					"WHERE STREAM_ID IN ("+deleteStreamString.toString()+")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
+	}
 }

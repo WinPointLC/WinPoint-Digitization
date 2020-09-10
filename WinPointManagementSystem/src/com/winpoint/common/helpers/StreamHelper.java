@@ -1,5 +1,6 @@
 package com.winpoint.common.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.Stream;
@@ -13,4 +14,13 @@ public class StreamHelper {
 	public Integer getStreamId(String streamName) {
 		return new StreamDao().getStreamId(streamName);
 	}
+	
+	public void createStreamList(ArrayList<Stream> newStreamArrayList) {
+		 new StreamDao().createStreamList(newStreamArrayList);
+	}
+	
+	public void deleteStreamList(ArrayList<Integer> deleteStreamArrayList) {
+		 new StreamDao().deleteStreamList(deleteStreamArrayList);
+	}
+
 }

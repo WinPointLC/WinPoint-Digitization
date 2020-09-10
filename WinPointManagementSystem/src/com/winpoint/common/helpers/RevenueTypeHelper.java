@@ -1,5 +1,6 @@
 package com.winpoint.common.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.winpoint.common.beans.RevenueType;
@@ -11,4 +12,13 @@ public class RevenueTypeHelper {
 		return new RevenueTypeDao().getRevenueTypeList();
 	}
 	
+	public void createRevenueTypeList(ArrayList<RevenueType> newRevenueTypeArrayList) {
+		 new RevenueTypeDao().createRevenueTypeList(newRevenueTypeArrayList);
+	}
+	
+	public void deleteRevenueTypeList(ArrayList<Integer> deleteRevenueTypeArrayList) {
+		 new RevenueTypeDao().deleteRevenueTypeList(deleteRevenueTypeArrayList);
+	}
+
+
 }

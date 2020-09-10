@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.ReminderType;
 import com.winpoint.common.util.sql.ConnectionManager;
 
@@ -30,5 +31,47 @@ public class ReminderTypeDao {
 		}
 		
 		return reminderTypeList;
+	}
+	
+	public void createReminderTypeList(ArrayList<ReminderType> newReminderTypeArrayList) {
+
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(ReminderType reminderType: newReminderTypeArrayList) {
+			String query = "INSERT INTO REMINDER_TYPE\n" + 
+					"(REMINDER_TYPE_CATEGORY) VALUES\n" + 
+					"('"+ reminderType.getReminderTypeCategory() +"')";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+
+	public void deleteReminderTypeList(ArrayList<Integer> deleteReminderTypeArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteReminderTypeString = new StringBuilder();
+			for(int reminderTypeId: deleteReminderTypeArrayList) {
+				deleteReminderTypeString.append(reminderTypeId);
+				deleteReminderTypeString.append(',');
+			}
+			deleteReminderTypeString.deleteCharAt(deleteReminderTypeString.length()-1);
+			String query ="DELETE FROM REMINDER_TYPE\n" + 
+					"WHERE REMINDER_TYPE_ID IN ("+ deleteReminderTypeString +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+		
 	}
 }

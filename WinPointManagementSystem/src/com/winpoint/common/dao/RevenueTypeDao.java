@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.RevenueType;
 import com.winpoint.common.util.sql.ConnectionManager;
 
@@ -37,5 +38,45 @@ public List<RevenueType> getRevenueTypeList(){
 		
 	}
 
+	public void createRevenueTypeList(ArrayList<RevenueType> newRevenueTypeArrayList) {
 	
+		try(Connection connection = ConnectionManager.getConnection()){			
+			Statement statement = connection.createStatement();
+			
+			for(RevenueType revenueTypeList: newRevenueTypeArrayList) {
+			String query = "INSERT INTO REVENUE_TYPE\n" + 
+					"(REVENUE_TYPE_NAME) VALUES\n" + 
+					"('"+ revenueTypeList.getRevenueTypeName() +"')";
+			statement.executeQuery(query);
+			}
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	}
+	
+	public void deleteRevenueTypeList(ArrayList<Integer> deleteRevenueTypeArrayList) {
+		try(Connection connection = ConnectionManager.getConnection()){
+			Statement statement = connection.createStatement();
+			StringBuilder deleteRevenueTypeString = new StringBuilder();
+			for(int revenueTypeId: deleteRevenueTypeArrayList) {
+				deleteRevenueTypeString.append(revenueTypeId);
+				deleteRevenueTypeString.append(',');
+			}
+			deleteRevenueTypeString.deleteCharAt(deleteRevenueTypeString.length()-1);
+			String query ="DELETE FROM REVENUE_TYPE\n" + 
+					"WHERE REVENUE_TYPE_ID IN ("+ deleteRevenueTypeString.toString() +")";
+			statement.executeQuery(query);
+		} 
+		catch (SQLServerException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+	
+}
 }
