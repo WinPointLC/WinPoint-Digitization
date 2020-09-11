@@ -90,14 +90,14 @@ public class EntityServlet extends ParentWEBController {
 			    System.out.println("**************************");
 			    UpdateEntity entityUpdateDetails = gson.fromJson(jsonString, UpdateEntity.class);
 			    Object[] addRows = entityUpdateDetails.getAddRows();
-			    int[] delRowIds = entityUpdateDetails.getDelRowIds();
+			    Object[] delRowIds = entityUpdateDetails.getDelRowIds();
 			    /*String beanClassName = "com.winpoint.common.beans." + entityInfoParam;
 			    Class<?> beanClass = Class.forName(beanClassName);
 			    Object bean= entityClass.newInstance();*/
 			    for (Object row : addRows) {
 			    	System.out.println(row);
 			    }
-			    for (int id : delRowIds) {
+			    for (Object id : delRowIds) {
 			    	System.out.println(id);
 			    }
 				System.out.println("**************************");
@@ -108,6 +108,11 @@ public class EntityServlet extends ParentWEBController {
 				Method invokeMethod = entity.getClass().getDeclaredMethod(methodName, paramType);
 				Object[] argumentArray = new Object[] { addRows };
 				invokeMethod.invoke(entity, argumentArray);
+				methodName = "delete" + entityInfoParam + "List";
+				paramType = new Class[] { Object[].class };
+				Object[] integerArgumentArray = new Object[] { delRowIds };
+				invokeMethod = entity.getClass().getDeclaredMethod(methodName, paramType);
+				invokeMethod.invoke(entity, integerArgumentArray);
 				System.out.println("After create from EntityServlet");
 			}
 		} catch (ClassNotFoundException e) {

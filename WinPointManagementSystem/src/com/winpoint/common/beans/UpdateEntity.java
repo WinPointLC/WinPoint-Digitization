@@ -3,12 +3,12 @@ package com.winpoint.common.beans;
 public class UpdateEntity {
 
 	Object addRows[];
-	int delRowIds[];
+	Integer delRowIds[];
 	
 	public UpdateEntity() {
 		
 	}
-	public UpdateEntity(Object[] addRows, int[] delRowIds) {
+	public UpdateEntity(Object[] addRows, Integer[] delRowIds) {
 		super();
 		this.addRows = addRows;
 		this.delRowIds = delRowIds;
@@ -19,10 +19,10 @@ public class UpdateEntity {
 	public void setAddRows(Object[] addRows) {
 		this.addRows = addRows;
 	}
-	public int[] getDelRowIds() {
+	public Integer[] getDelRowIds() {
 		return delRowIds;
 	}
-	public void setDelRowIds(int[] delRowIds) {
+	public void setDelRowIds(Integer[] delRowIds) {
 		this.delRowIds = delRowIds;
 	}
 	

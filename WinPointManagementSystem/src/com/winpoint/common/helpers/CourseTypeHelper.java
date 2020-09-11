@@ -35,23 +35,23 @@ public class CourseTypeHelper {
 		return new CourseTypeDao().getCoursesTypeList();
 	}
 	
-	//public void createCourseTypeList(ArrayList<CourseType> newCourseTypeArrayList) {
-		public void createCourseTypeList(Object[] courseTypes) {
-			System.out.println("From Course Type Helper");
+	public void createCourseTypeList(Object[] courseTypes) {
+		System.out.println("From Course Type Helper");
 			
-			ArrayList<CourseType>newCourseTypeList =new ArrayList<>();
-//		String array[] = new String[courseTypes.length]; //array size 
-//		System.arraycopy(courseTypes, 0, array, 0, courseTypes.length);
-			
+		ArrayList<CourseType>newCourseTypeList =new ArrayList<>();
 		for(Object courseTypeObj : courseTypes) {
-			newCourseTypeList.add(new CourseType(courseTypeObj.toString().substring(1, courseTypeObj.toString().length()-1)));
-//			Arrays courseTypeArray = (Arrays)courseTypeObj;
-//			String s
+			String string = courseTypeObj.toString();
+			newCourseTypeList.add(new CourseType(string.substring(1, string.length()-1)));
+			System.out.println("Data:"+string);
 		}
 		 new CourseTypeDao().createCourseTypeList(newCourseTypeList);
 	}
 	
-	public void deleteCourseType(ArrayList<Integer> deleteCourseTypeArrayList) {
-		 new CourseTypeDao().deleteCourseTypeList(deleteCourseTypeArrayList);
+	public void deleteCourseTypeList(Object[] deleteCourseTypeList) {
+			System.out.println("From Delete Course Type Helper ");
+			for(Object id: deleteCourseTypeList) {
+				System.out.println(id.toString());
+			}
+//		 new CourseTypeDao().deleteCourseTypeList(deleteCourseTypeArrayList);
 	}
 }

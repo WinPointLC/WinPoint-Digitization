@@ -214,8 +214,10 @@ public class CourseTypeDao {
 			Statement statement = connection.createStatement();
 			
 			for(CourseType courseList: newCourseTypeArrayList) {
-			String query = "INSERT INTO COURSE_TYPE VALUES("+courseList.getCourseTypeName()+",NULL,NULL)";
-			statement.executeQuery(query);
+			System.out.println("Reached dao."+courseList.getCourseTypeName());
+			String query = "INSERT INTO COURSE_TYPE VALUES('"+courseList.getCourseTypeName()+"',NULL,NULL)";
+			statement.executeUpdate(query);
+			System.out.println("end dao");
 			}
 		} 
 		catch (SQLServerException e) {
@@ -224,6 +226,7 @@ public class CourseTypeDao {
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		} 
+	
 	}
 
 	public void deleteCourseTypeList(ArrayList<Integer> deleteCourseTypeArrayList) {
