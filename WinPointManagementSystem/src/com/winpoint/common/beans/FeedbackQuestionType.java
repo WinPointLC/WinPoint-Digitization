@@ -11,6 +11,9 @@ public class FeedbackQuestionType {
 		this.feedbackQuestionTypeId = feedbackQuestionTypeId;
 		this.feedbackQuestionType = feedbackQuestionType;
 	}
+	public FeedbackQuestionType(String feedbackQuestionType) {
+		this.feedbackQuestionType = feedbackQuestionType;
+	}
 	public Integer getFeedbackQuestionTypeId() {
 		return feedbackQuestionTypeId;
 	}

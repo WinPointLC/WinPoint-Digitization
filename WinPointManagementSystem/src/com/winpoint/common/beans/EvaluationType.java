@@ -41,6 +41,11 @@ public class EvaluationType {
 		this.offlineCheck = offlineCheck;
 	}
 
+	public EvaluationType(String evaluationTypeName) {
+		this.evaluationTypeName = evaluationTypeName;
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the evaluationTypeId
 	 */

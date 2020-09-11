@@ -20,6 +20,10 @@ public class DifficultyLevel {
 		this.createdDate = createdDate;
 	}
 	
+	public DifficultyLevel(String difficultyLevelName) {
+		this.difficultyLevelName= difficultyLevelName;
+	}
+
 	/**
 	 * @return the difficultyLevelId
 	 */

@@ -18,6 +18,10 @@ public class OrganizationType {
 			this.organizationTypeName = organizationTypeName;
 		}
 
+		public OrganizationType(String organizationTypeName) {
+			this.organizationTypeName = organizationTypeName;
+		}
+
 		public Integer getOrganizationTypeId() {
 			return organizationTypeId;
 		}

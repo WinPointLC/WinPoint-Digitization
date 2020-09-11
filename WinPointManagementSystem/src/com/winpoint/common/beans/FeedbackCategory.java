@@ -8,6 +8,9 @@ public FeedbackCategory(Integer feedbackCategoryId, String feedbackCategoryDescr
 	this.feedbackCategoryId = feedbackCategoryId;
 	this.feedbackCategoryDescription = feedbackCategoryDescription;
 }
+public FeedbackCategory(String feedbackCategoryDescription) {
+	this.feedbackCategoryDescription = feedbackCategoryDescription;
+}
 public Integer getFeedbackCategoryId() {
 	return feedbackCategoryId;
 }

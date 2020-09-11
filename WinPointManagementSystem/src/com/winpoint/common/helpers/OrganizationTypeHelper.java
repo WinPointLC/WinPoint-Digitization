@@ -16,7 +16,11 @@ public class OrganizationTypeHelper {
 	//===============================================================================================
 
 
-public void createOrganizationType(ArrayList<OrganizationType> newOrganizationTypeArrayList) {
+public void createOrganizationType(Object newOrganizationTypeList []) {
+	ArrayList<OrganizationType>newOrganizationTypeArrayList =new ArrayList<>();	
+	for(Object organizationTypeObj : newOrganizationTypeList) {
+		newOrganizationTypeArrayList.add(new OrganizationType(organizationTypeObj.toString().substring(1, organizationTypeObj.toString().length()-1)));
+	}
 		 new OrganizationTypeDao().createOrganizationTypeList(newOrganizationTypeArrayList);
 	}
 	

@@ -16,7 +16,11 @@ public class EvaluationTypeHelper {
 	
 	
 	
-	public void createEvaluationType(ArrayList<EvaluationType> newEvaluationTypeArrayList) {
+	public void createEvaluationType(Object newEvaluationTypeList []) {
+		ArrayList<EvaluationType>newEvaluationTypeArrayList =new ArrayList<>();	
+		for(Object evaluationTypeObj : newEvaluationTypeList) {
+			newEvaluationTypeArrayList.add(new EvaluationType(evaluationTypeObj.toString().substring(1, evaluationTypeObj.toString().length()-1)));
+		}
 		 new EvaluationTypeDao().createEvaluationTypeList(newEvaluationTypeArrayList);
 	}
 	

@@ -16,7 +16,11 @@ public class FeedbackQuestionTypeHelper {
 
 
 	
-	public void createFeedbackQuestionType(ArrayList<FeedbackQuestionType> newFeedbackQuestionTypeArrayList) {
+	public void createFeedbackQuestionType(Object newFeedbackQuestionTypeList []) {
+		ArrayList<FeedbackQuestionType>newFeedbackQuestionTypeArrayList =new ArrayList<>();	
+		for(Object feedbackQuestionTypeObj : newFeedbackQuestionTypeList) {
+			newFeedbackQuestionTypeArrayList.add(new FeedbackQuestionType(feedbackQuestionTypeObj.toString().substring(1, feedbackQuestionTypeObj.toString().length()-1)));
+		}
 		 new FeedbackQuestionTypeDao().createFeedbackQuestionTypeList(newFeedbackQuestionTypeArrayList);
 	}
 	

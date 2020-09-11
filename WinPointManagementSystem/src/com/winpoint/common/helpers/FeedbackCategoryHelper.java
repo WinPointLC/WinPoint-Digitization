@@ -17,7 +17,11 @@ public class FeedbackCategoryHelper {
 	
 	
 	
-	public void createFeedbackCategory(ArrayList<FeedbackCategory> newFeedbackCategoryArrayList) {
+	public void createFeedbackCategory(Object newFeedbackCategoryList []) {
+		ArrayList<FeedbackCategory>newFeedbackCategoryArrayList =new ArrayList<>();	
+		for(Object feedbackCategoryObj : newFeedbackCategoryList) {
+			newFeedbackCategoryArrayList.add(new FeedbackCategory(feedbackCategoryObj.toString().substring(1, feedbackCategoryObj.toString().length()-1)));
+		}
 		 new FeedbackCategoryDao().createFeedbackCategoryList(newFeedbackCategoryArrayList);
 	}
 	

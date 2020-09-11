@@ -18,6 +18,10 @@ public class PaymentType {
 		this.paymentTypeName = paymentTypeName;
 	}
 
+	public PaymentType(String paymentTypeName) {
+		this.paymentTypeName = paymentTypeName;
+	}
+
 	public Integer getPaymentTypeId() {
 		return paymentTypeId;
 	}

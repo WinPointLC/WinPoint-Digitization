@@ -33,6 +33,10 @@ public class EmployeeCategory {
 		
 	}
 
+	public EmployeeCategory(String employeeCategoryName) {
+		this.employeeCategoryName = employeeCategoryName;
+	}
+
 	/**
 	 * @return the employeeCategoryId
 	 */

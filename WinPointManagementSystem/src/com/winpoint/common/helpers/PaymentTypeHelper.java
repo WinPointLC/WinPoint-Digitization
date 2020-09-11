@@ -14,7 +14,11 @@ public class PaymentTypeHelper {
 	//===============================================================================================
 
 
-public void createPaymentType(ArrayList<PaymentType> newPaymentTypeArrayList) {
+public void createPaymentType(Object newPaymentTypeList []) {
+		ArrayList<PaymentType>newPaymentTypeArrayList =new ArrayList<>();	
+		for(Object paymentTypeObj : newPaymentTypeList) {
+		newPaymentTypeArrayList.add(new PaymentType(paymentTypeObj.toString().substring(1, paymentTypeObj.toString().length()-1)));
+		}
 		 new PaymentTypeDao().createPaymentTypeList(newPaymentTypeArrayList);
 	}
 	

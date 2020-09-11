@@ -13,8 +13,12 @@ public class EmployeeCategoryHelper {
 		
 	}	
 		
-	public void createEmployeeCategory(ArrayList<EmployeeCategory> newEmployeeCategoryList) {
-		new EmployeeCategoryDao().createEmployeeCategoryList(newEmployeeCategoryList);
+	public void createEmployeeCategory(Object newEmployeeCategoryList []) {
+		ArrayList<EmployeeCategory>newEmployeeCategoryArrayList =new ArrayList<>();	
+		for(Object employeeCategoryObj : newEmployeeCategoryList) {
+			newEmployeeCategoryArrayList.add(new EmployeeCategory(employeeCategoryObj.toString().substring(1, employeeCategoryObj.toString().length()-1)));
+		}
+		new EmployeeCategoryDao().createEmployeeCategoryList(newEmployeeCategoryArrayList);
 	}
 		
 	public void deleteEmployeeCategory(ArrayList<Integer> deleteEmployeeCategoryArrayList) {

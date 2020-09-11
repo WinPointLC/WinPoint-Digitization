@@ -17,7 +17,11 @@ public class DifficultyLevelHelper {
 	//===============================================================================================
 
 	
-	public void createDifficultyLevel(ArrayList<DifficultyLevel> newDifficultyLevelArrayList) {
+	public void createDifficultyLevel(Object newDifficultyLevelList []) {
+		ArrayList<DifficultyLevel>newDifficultyLevelArrayList =new ArrayList<>();	
+		for(Object difficultyLevelObj : newDifficultyLevelList) {
+			newDifficultyLevelArrayList.add(new DifficultyLevel(difficultyLevelObj.toString().substring(1, difficultyLevelObj.toString().length()-1)));
+		}
 		 new DifficultyLevelDao().createDifficultyLevelList(newDifficultyLevelArrayList);
 	}
 	

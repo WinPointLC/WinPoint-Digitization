@@ -1,7 +1,6 @@
 package com.winpoint.common.helpers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.winpoint.common.beans.CourseType;
@@ -38,17 +37,18 @@ public class CourseTypeHelper {
 	
 	//public void createCourseTypeList(ArrayList<CourseType> newCourseTypeArrayList) {
 		public void createCourseTypeList(Object[] courseTypes) {
+			System.out.println("From Course Type Helper");
 			
+			ArrayList<CourseType>newCourseTypeList =new ArrayList<>();
 //		String array[] = new String[courseTypes.length]; //array size 
 //		System.arraycopy(courseTypes, 0, array, 0, courseTypes.length);
 			
-		System.out.println("From Course Type Helper");
 		for(Object courseTypeObj : courseTypes) {
+			newCourseTypeList.add(new CourseType(courseTypeObj.toString().substring(1, courseTypeObj.toString().length()-1)));
 //			Arrays courseTypeArray = (Arrays)courseTypeObj;
 //			String s
-			System.out.println(courseTypeObj.toString().substring(1, courseTypeObj.toString().length()-1));
 		}
-//		 new CourseTypeDao().createCourseTypeList(newCourseTypeArrayList);
+		 new CourseTypeDao().createCourseTypeList(newCourseTypeList);
 	}
 	
 	public void deleteCourseType(ArrayList<Integer> deleteCourseTypeArrayList) {
