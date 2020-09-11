@@ -240,7 +240,7 @@ public class CourseTypeDao {
 			deleteCourseTypeString.deleteCharAt(deleteCourseTypeString.length()-1);
 			String query ="DELETE FROM COURSE_TYPE\n" + 
 					"WHERE COURSE_TYPE_ID IN ("+ deleteCourseTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

@@ -49,9 +49,10 @@ public class CourseTypeHelper {
 	
 	public void deleteCourseTypeList(Object[] deleteCourseTypeList) {
 			System.out.println("From Delete Course Type Helper ");
+			ArrayList<Integer> deleteCourseTypeArrayList = new ArrayList<Integer>();
 			for(Object id: deleteCourseTypeList) {
-				System.out.println(id.toString());
+				deleteCourseTypeArrayList.add(Integer.parseInt(id.toString()));
 			}
-//		 new CourseTypeDao().deleteCourseTypeList(deleteCourseTypeArrayList);
+		 new CourseTypeDao().deleteCourseTypeList(deleteCourseTypeArrayList);
 	}
 }
