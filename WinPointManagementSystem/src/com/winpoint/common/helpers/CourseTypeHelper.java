@@ -38,12 +38,17 @@ public class CourseTypeHelper {
 	
 	//public void createCourseTypeList(ArrayList<CourseType> newCourseTypeArrayList) {
 		public void createCourseTypeList(Object[] courseTypes) {
+			
+//		String array[] = new String[courseTypes.length]; //array size 
+//		System.arraycopy(courseTypes, 0, array, 0, courseTypes.length);
+			
 		System.out.println("From Course Type Helper");
 		for(Object courseTypeObj : courseTypes) {
-			Arrays courseTypeArray = (Arrays)courseTypeObj;
-			System.out.println(courseTypeArray);
+//			Arrays courseTypeArray = (Arrays)courseTypeObj;
+//			String s
+			System.out.println(courseTypeObj.toString().substring(1, courseTypeObj.toString().length()-1));
 		}
-		 //new CourseTypeDao().createCourseTypeList(newCourseTypeArrayList);
+//		 new CourseTypeDao().createCourseTypeList(newCourseTypeArrayList);
 	}
 	
 	public void deleteCourseType(ArrayList<Integer> deleteCourseTypeArrayList) {
