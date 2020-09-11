@@ -46,8 +46,8 @@ public class EvaluationTypeDao {
 			Statement statement = connection.createStatement();
 			
 			for(EvaluationType EvaluationTypeList: newEvaluationTypeArrayList) {
-			String query = "INSERT INTO EVALUATION_TYPE VALUES ("+EvaluationTypeList.getEvaluationTypeName()+",'yes',NULL,NULL)";
-			statement.executeQuery(query);
+			String query = "INSERT INTO EVALUATION_TYPE VALUES ('"+EvaluationTypeList.getEvaluationTypeName()+"','yes',NULL,NULL)";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -71,7 +71,7 @@ public class EvaluationTypeDao {
 			deleteEvaluationTypeString.deleteCharAt(deleteEvaluationTypeString.length()-1);
 			String query ="DELETE FROM EVALUATION_TYPE \n" + 
 					"WHERE EVALUATION_TYPE_ID IN  ("+ deleteEvaluationTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

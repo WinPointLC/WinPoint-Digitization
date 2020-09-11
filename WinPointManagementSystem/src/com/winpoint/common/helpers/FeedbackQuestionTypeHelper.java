@@ -19,12 +19,17 @@ public class FeedbackQuestionTypeHelper {
 	public void createFeedbackQuestionType(Object newFeedbackQuestionTypeList []) {
 		ArrayList<FeedbackQuestionType>newFeedbackQuestionTypeArrayList =new ArrayList<>();	
 		for(Object feedbackQuestionTypeObj : newFeedbackQuestionTypeList) {
-			newFeedbackQuestionTypeArrayList.add(new FeedbackQuestionType(feedbackQuestionTypeObj.toString().substring(1, feedbackQuestionTypeObj.toString().length()-1)));
+			String string = feedbackQuestionTypeObj.toString();
+			newFeedbackQuestionTypeArrayList.add(new FeedbackQuestionType(string.substring(1, string.length()-1)));
 		}
 		 new FeedbackQuestionTypeDao().createFeedbackQuestionTypeList(newFeedbackQuestionTypeArrayList);
 	}
 	
-	public void deleteFeedbackQuestionType(ArrayList<Integer> deleteFeedbackQuestionTypeArrayList) {
+	public void deleteFeedbackQuestionType(ArrayList<Integer> deleteFeedbackQuestionTypeList) {
+		ArrayList<Integer> deleteFeedbackQuestionTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteFeedbackQuestionTypeList) {
+			deleteFeedbackQuestionTypeArrayList.add(Integer.parseInt(id.toString()));
+		}	
 		 new FeedbackQuestionTypeDao().deleteFeedbackQuestionTypeList(deleteFeedbackQuestionTypeArrayList);
 	}
 

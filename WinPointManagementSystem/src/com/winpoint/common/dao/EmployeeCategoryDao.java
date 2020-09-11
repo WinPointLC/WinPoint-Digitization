@@ -45,8 +45,8 @@ public class EmployeeCategoryDao {
 			Statement statement = connection.createStatement();
 		
 			for(EmployeeCategory EmployeeCategoryList: newEmployeeCategoryList) {
-			String query = "INSERT INTO EMPLOYEE_CATEGORY VALUES ("+EmployeeCategoryList.getEmployeeCategoryName()+",NULL,NULL)";
-			statement.executeQuery(query);
+			String query = "INSERT INTO EMPLOYEE_CATEGORY VALUES ('"+EmployeeCategoryList.getEmployeeCategoryName()+"',NULL,NULL)";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -68,7 +68,7 @@ public class EmployeeCategoryDao {
 			deleteEmployeeCategoryString.deleteCharAt(deleteEmployeeCategoryString.length()-1);
 			String query ="DELETE FROM EMPLOYEE_CATEGORY \n" +  
 					"WHERE EMPLOYEE_CATEGORY_ID IN ("+ deleteEmployeeCategoryString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

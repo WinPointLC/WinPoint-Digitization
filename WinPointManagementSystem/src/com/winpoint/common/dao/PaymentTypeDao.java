@@ -44,8 +44,8 @@ public class PaymentTypeDao {
 			Statement statement = connection.createStatement();
 			
 			for(PaymentType PaymentTypeList: newPaymentTypeArrayList) {
-			String query = "INSERT INTO PAYMENT_MODE VALUES ("+PaymentTypeList.getPaymentTypeName()+")";
-			statement.executeQuery(query);
+			String query = "INSERT INTO PAYMENT_MODE VALUES ('"+PaymentTypeList.getPaymentTypeName()+"')";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -67,7 +67,7 @@ public class PaymentTypeDao {
 			deletePaymentTypeString.deleteCharAt(deletePaymentTypeString.length()-1);
 			String query ="DELETE FROM PAYMENT_MODE \n" + 
 					"WHERE PAYMENT_MODE_ID IN  ("+ deletePaymentTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

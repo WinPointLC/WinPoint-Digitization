@@ -48,8 +48,8 @@ public List<OrganizationType> getOrganizationTypeList(){
 			Statement statement = connection.createStatement();
 			
 			for(OrganizationType OrganizationTypeList: newOrganizationTypeArrayList) {
-			String query = "INSERT INTO ORGANIZATION_TYPE VALUES ("+OrganizationTypeList.getOrganizationTypeName()+")";
-			statement.executeQuery(query);
+			String query = "INSERT INTO ORGANIZATION_TYPE VALUES ('"+OrganizationTypeList.getOrganizationTypeName()+"')";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -71,7 +71,7 @@ public List<OrganizationType> getOrganizationTypeList(){
 			deleteOrganizationTypeString.deleteCharAt(deleteOrganizationTypeString.length()-1);
 			String query ="DELETE FROM ORGANIZATION_TYPE \n" + 
 					"WHERE ORGANIZATION_TYPE_ID IN  ("+ deleteOrganizationTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

@@ -19,12 +19,17 @@ public class OrganizationTypeHelper {
 public void createOrganizationType(Object newOrganizationTypeList []) {
 	ArrayList<OrganizationType>newOrganizationTypeArrayList =new ArrayList<>();	
 	for(Object organizationTypeObj : newOrganizationTypeList) {
-		newOrganizationTypeArrayList.add(new OrganizationType(organizationTypeObj.toString().substring(1, organizationTypeObj.toString().length()-1)));
+		String string = organizationTypeObj.toString();
+		newOrganizationTypeArrayList.add(new OrganizationType(string.substring(1, string.length()-1)));
 	}
 		 new OrganizationTypeDao().createOrganizationTypeList(newOrganizationTypeArrayList);
 	}
 	
-	public void deleteOrganizationType(ArrayList<Integer> deleteOrganizationTypeArrayList) {
+	public void deleteOrganizationType(Object deleteOrganizationTypeList []) {
+		ArrayList<Integer> deleteOrganizationTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteOrganizationTypeList) {
+			deleteOrganizationTypeArrayList.add(Integer.parseInt(id.toString()));
+		}	
 		 new OrganizationTypeDao().deleteOrganizationTypeList(deleteOrganizationTypeArrayList);
 	}
 }

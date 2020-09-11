@@ -46,8 +46,8 @@ public class FeedbackQuestionTypeDao {
 			Statement statement = connection.createStatement();
 			
 			for(FeedbackQuestionType FeedbackQuestionTypeList: newFeedbackQuestionTypeArrayList) {
-			String query = "INSERT INTO DIFFICULTY_LEVEL VALUES ("+FeedbackQuestionTypeList.getFeedbackQuestionType()+")";
-			statement.executeQuery(query);
+			String query = "INSERT INTO DIFFICULTY_LEVEL VALUES ('"+FeedbackQuestionTypeList.getFeedbackQuestionType()+"')";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -69,7 +69,7 @@ public class FeedbackQuestionTypeDao {
 			deleteFeedbackQuestionTypeString.deleteCharAt(deleteFeedbackQuestionTypeString.length()-1);
 			String query ="DELETE FROM FEEDBACK_QUESTION_TYPE \n" + 
 					"WHERE FEEDBACK_QUESTION_TYPE_ID IN  ("+ deleteFeedbackQuestionTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

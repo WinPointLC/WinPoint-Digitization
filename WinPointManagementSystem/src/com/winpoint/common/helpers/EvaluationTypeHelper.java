@@ -19,12 +19,17 @@ public class EvaluationTypeHelper {
 	public void createEvaluationType(Object newEvaluationTypeList []) {
 		ArrayList<EvaluationType>newEvaluationTypeArrayList =new ArrayList<>();	
 		for(Object evaluationTypeObj : newEvaluationTypeList) {
-			newEvaluationTypeArrayList.add(new EvaluationType(evaluationTypeObj.toString().substring(1, evaluationTypeObj.toString().length()-1)));
+			String string = evaluationTypeObj.toString();
+			newEvaluationTypeArrayList.add(new EvaluationType(string.substring(1, string.length()-1)));
 		}
 		 new EvaluationTypeDao().createEvaluationTypeList(newEvaluationTypeArrayList);
 	}
 	
-	public void deleteEvaluationType(ArrayList<Integer> deleteEvaluationTypeArrayList) {
+	public void deleteEvaluationType(Object deleteEvaluationTypeList []) {
+		ArrayList<Integer> deleteEvaluationTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteEvaluationTypeList) {
+			deleteEvaluationTypeArrayList.add(Integer.parseInt(id.toString()));
+		}
 		 new EvaluationTypeDao().deleteEvaluationTypeList(deleteEvaluationTypeArrayList);
 	}
 

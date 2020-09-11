@@ -47,8 +47,8 @@ public class FeedbackCategoryDao {
 			Statement statement = connection.createStatement();
 			
 			for(FeedbackCategory FeedbackCategoryList: newFeedbackCategoryArrayList) {
-			String query = "INSERT INTO FEEDBACK_CATEGORY VALUES ("+FeedbackCategoryList.getFeedbackCategoryDescription()+")";
-			statement.executeQuery(query);
+			String query = "INSERT INTO FEEDBACK_CATEGORY VALUES ('"+FeedbackCategoryList.getFeedbackCategoryDescription()+"')";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -70,7 +70,7 @@ public class FeedbackCategoryDao {
 			deleteFeedbackCategoryString.deleteCharAt(deleteFeedbackCategoryString.length()-1);
 			String query ="DELETE FROM FEEDBACK_CATEGORY \n" + 
 					"WHERE FEEDBACK_CATEGORY_ID IN  ("+ deleteFeedbackCategoryString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

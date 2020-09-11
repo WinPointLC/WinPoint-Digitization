@@ -49,8 +49,8 @@ public class DifficultyLevelDao {
 			Statement statement = connection.createStatement();
 			
 			for(DifficultyLevel DifficultyLevelList: newDifficultyLevelArrayList) {
-			String query = "INSERT INTO DIFFICULTY_LEVEL VALUES ("+DifficultyLevelList.getDifficultyLevelName()+",NULL,NULL)";
-			statement.executeQuery(query);
+			String query = "INSERT INTO DIFFICULTY_LEVEL VALUES ('"+DifficultyLevelList.getDifficultyLevelName()+"',NULL,NULL)";
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -72,7 +72,7 @@ public class DifficultyLevelDao {
 			deleteDifficultyLevelString.deleteCharAt(deleteDifficultyLevelString.length()-1);
 			String query ="DELETE FROM DIFFICULTY_LEVEL \n" + 
 					"WHERE DIFFICULTY_LEVEL_ID IN  ("+ deleteDifficultyLevelString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();
