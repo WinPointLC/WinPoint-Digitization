@@ -12,11 +12,21 @@ public class RevenueTypeHelper {
 		return new RevenueTypeDao().getRevenueTypeList();
 	}
 	
-	public void createRevenueTypeList(ArrayList<RevenueType> newRevenueTypeArrayList) {
-		 new RevenueTypeDao().createRevenueTypeList(newRevenueTypeArrayList);
+	public void createRevenueTypeList(Object[] newRevenueTypeList) {
+		ArrayList<RevenueType> newRevenueTypeArrayList = new ArrayList<>();
+		for(Object object: newRevenueTypeList) {
+			String string = object.toString();
+			newRevenueTypeArrayList.add(new RevenueType(string.substring(1, string.length()-1)));
+		}
+ 
+		new RevenueTypeDao().createRevenueTypeList(newRevenueTypeArrayList);
 	}
 	
-	public void deleteRevenueTypeList(ArrayList<Integer> deleteRevenueTypeArrayList) {
+	public void deleteRevenueTypeList(Object[] deleteRevenueTypeList) {
+		ArrayList<Integer> deleteRevenueTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteRevenueTypeList) {
+			deleteRevenueTypeArrayList.add(Integer.parseInt(id.toString()));
+		}
 		 new RevenueTypeDao().deleteRevenueTypeList(deleteRevenueTypeArrayList);
 	}
 

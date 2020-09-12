@@ -51,7 +51,7 @@ public class SecurityQuestionsDao {
 			String query = "INSERT INTO SECURITY_QUESTIONS\n" + 
 					"(SECURITY_QUESTION) VALUES\n" + 
 					"('"+ securityQuestions.getSecurityQuestion() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -73,7 +73,7 @@ public class SecurityQuestionsDao {
 			deleteSecurityQuestionsString.deleteCharAt(deleteSecurityQuestionsString.length()-1);
 			String query ="DELETE FROM SECURITY_QUESTIONS\n" + 
 					"WHERE SECURITY_QUESTION_ID IN ("+ deleteSecurityQuestionsString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

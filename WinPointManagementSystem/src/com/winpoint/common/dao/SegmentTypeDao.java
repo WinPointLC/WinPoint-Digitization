@@ -47,7 +47,7 @@ public class SegmentTypeDao {
 			String query = "INSERT INTO SEGMENT_TYPE\n" + 
 					"(SEGMENT_TYPE_NAME) VALUES \n" + 
 					"('"+ segmentType.getSegmentTypeName() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -69,7 +69,7 @@ public class SegmentTypeDao {
 			deleteSegmentTypeString.deleteCharAt(deleteSegmentTypeString.length()-1);
 			String query ="DELETE FROM SEGMENT_TYPE\n" + 
 					"WHERE SEGMENT_TYPE_ID IN ("+ deleteSegmentTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

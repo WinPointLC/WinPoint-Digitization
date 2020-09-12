@@ -18,6 +18,11 @@ public class SegmentType {
 			this.segmentTypeName = segmentTypeName;
 		}
 
+		public SegmentType(String segmentTypeName) {
+			// TODO Auto-generated constructor stub
+			this.segmentTypeName = segmentTypeName;
+		}
+
 		/**
 		 * 
 		 * @return segmentTypeId

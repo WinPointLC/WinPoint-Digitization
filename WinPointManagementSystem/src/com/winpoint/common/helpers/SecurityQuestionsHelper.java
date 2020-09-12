@@ -11,11 +11,21 @@ public class SecurityQuestionsHelper {
 		return new SecurityQuestionsDao().getSecurityQuestionsList();
 	}
 	
-	public void createSecurityQuestionsList(ArrayList<SecurityQuestions> newSecurityQuestionsArrayList) {
+	public void createSecurityQuestionsList(Object[] newSecurityQuestionsList) {
+		ArrayList<SecurityQuestions> newSecurityQuestionsArrayList =new ArrayList<>();
+		for(Object object : newSecurityQuestionsList) {
+			String string = object.toString();
+			newSecurityQuestionsArrayList.add(new SecurityQuestions(string.substring(1, string.length()-1)));
+		}
 		 new SecurityQuestionsDao().createSecurityQuestionsList(newSecurityQuestionsArrayList);
 	}
 	
-	public void deleteSecurityQuestionsList(ArrayList<Integer> deleteSecurityQuestionsArrayList) {
+	public void deleteSecurityQuestionsList(Object[] deleteSecurityQuestionsList) {
+		ArrayList<Integer> deleteSecurityQuestionsArrayList = new ArrayList<Integer>();
+		for(Object id: deleteSecurityQuestionsList) {
+			deleteSecurityQuestionsArrayList.add(Integer.parseInt(id.toString()));
+		}
+
 		 new SecurityQuestionsDao().deleteSecurityQuestionsList(deleteSecurityQuestionsArrayList);
 	}
 

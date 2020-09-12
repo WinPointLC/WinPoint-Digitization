@@ -42,7 +42,6 @@ public class CourseTypeHelper {
 		for(Object courseTypeObj : courseTypes) {
 			String string = courseTypeObj.toString();
 			newCourseTypeList.add(new CourseType(string.substring(1, string.length()-1)));
-			System.out.println("Data:"+string);
 		}
 		 new CourseTypeDao().createCourseTypeList(newCourseTypeList);
 	}

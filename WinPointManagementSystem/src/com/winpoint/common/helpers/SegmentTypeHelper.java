@@ -13,11 +13,20 @@ public class SegmentTypeHelper {
 		return new SegmentTypeDao().getSegmentTypeList();
 	}
 	
-	public void createSegmentTypeList(ArrayList<SegmentType> newSegmentTypeArrayList) {
+	public void createSegmentTypeList(Object[] newSegmentTypeList) {
+		ArrayList<SegmentType> newSegmentTypeArrayList = new ArrayList<SegmentType>();
+		for(Object object: newSegmentTypeList) {
+			String string = object.toString();
+			newSegmentTypeArrayList.add(new SegmentType(string.substring(1, string.length()-1)));
+		}
 		 new SegmentTypeDao().createSegmentTypeList(newSegmentTypeArrayList);
 	}
 	
-	public void deleteSegmentTypeList(ArrayList<Integer> deleteSegmentTypeArrayList) {
+	public void deleteSegmentTypeList(Object[] deleteSegmentTypeList) {
+		ArrayList<Integer> deleteSegmentTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteSegmentTypeList) {
+			deleteSegmentTypeArrayList.add(Integer.parseInt(id.toString()));
+		}
 		new SegmentTypeDao().deleteSegmentTypeList(deleteSegmentTypeArrayList);
 	}
 

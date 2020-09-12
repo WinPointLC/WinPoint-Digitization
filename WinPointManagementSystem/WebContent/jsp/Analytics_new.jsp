@@ -49,6 +49,8 @@
   });*/
   
   
+  	alert("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"+userId);
+  
 			var myData = {
 						userId : userId
 			};
@@ -61,14 +63,14 @@
               traditional: true,
               success: function (jsonObj) {
                 studentCourseDetailsList=jsonObj[1];
-				studentGACourseDetailsList=jsonObj[2];
-				/*
+				//studentGACourseDetailsList=jsonObj[2];
+				
 				alert("1st courseName: " + studentCourseDetailsList[0].courseName);
 				alert("Aggregate: " + studentCourseDetailsList[0].courseAggr);
 				
-				alert("1st GA courseName: " + studentGACourseDetailsList[0].courseName);
-				alert("GA Aggregate: " + studentGACourseDetailsList[0].courseAggr);
-				*/
+				//alert("1st GA courseName: " + studentGACourseDetailsList[0].courseName);
+				//alert("GA Aggregate: " + studentGACourseDetailsList[0].courseAggr);
+				
 			  }
 			  
 		  });
@@ -100,8 +102,9 @@
       var techArray = [];// = [['Course', 'Marks'],['C', 10],['DS', 40],['Java', 70]];
       var header = ['Course', 'Marks'];
       techArray.push(header);
+	  alert("studentCourseDetailsList"+studentCourseDetailsList);
       for(var i=0; i<studentCourseDetailsList.length; i++){
-            // alert(studentCourseDetailsList.courseName);
+             alert("coursename"+studentCourseDetailsList[i].courseName);
         var techData = [studentCourseDetailsList[i].courseName, studentCourseDetailsList[i].courseAggr];
         techArray.push(techData);
       }
@@ -153,9 +156,10 @@ function drawChart2() {
 	 * this userId, testId, and course i.e. courseId of value1
 	 * Add these rows to the data object ----> data.addRows(JSON.parse(topicDetails))
 	 */
+	 alert( "USERID = "+userId+"COURSE ID = "+courseId );
  	 var myData = {
 					userId:userId,
-	     			courseId: courseId
+	     			courseId:courseId
     	    	  };
 			$.ajax({
 				type: 'POST',
@@ -254,7 +258,7 @@ else if (value1=='DB') {
 
    //   var GAData = '[["LR",30],["QA",26],["VR",39],["VA",32]]';
      // data.addRows(JSON.parse(GAData));
-
+		alert("studentGACourseDetailsList"+studentGACourseDetailsList);
       if(studentGACourseDetailsList.length !=0){
       var generalAptitudeData = '[["';
 		for(var i=0; i<studentGACourseDetailsList.length; i++){
@@ -445,7 +449,7 @@ else if (value3=='VA') {
                                         <h6 id="clickedcontent2" style="margin-left:60%;"></h6>
                                       </div>
                                       <div class="bar-graph">
-                                        <div id="barchart"style="width: 300px;height:200px;"></div>
+                                        <div id="barchart" style="width: 300px;height:200px;"></div>
                                       </div>
                                     </div>
 

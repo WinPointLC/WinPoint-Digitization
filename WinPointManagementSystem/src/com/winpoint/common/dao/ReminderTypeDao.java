@@ -42,7 +42,7 @@ public class ReminderTypeDao {
 			String query = "INSERT INTO REMINDER_TYPE\n" + 
 					"(REMINDER_TYPE_CATEGORY) VALUES\n" + 
 					"('"+ reminderType.getReminderTypeCategory() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -64,7 +64,7 @@ public class ReminderTypeDao {
 			deleteReminderTypeString.deleteCharAt(deleteReminderTypeString.length()-1);
 			String query ="DELETE FROM REMINDER_TYPE\n" + 
 					"WHERE REMINDER_TYPE_ID IN ("+ deleteReminderTypeString +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

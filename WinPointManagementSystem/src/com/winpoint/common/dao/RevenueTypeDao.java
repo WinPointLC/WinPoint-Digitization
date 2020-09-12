@@ -47,7 +47,7 @@ public List<RevenueType> getRevenueTypeList(){
 			String query = "INSERT INTO REVENUE_TYPE\n" + 
 					"(REVENUE_TYPE_NAME) VALUES\n" + 
 					"('"+ revenueTypeList.getRevenueTypeName() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -69,7 +69,7 @@ public List<RevenueType> getRevenueTypeList(){
 			deleteRevenueTypeString.deleteCharAt(deleteRevenueTypeString.length()-1);
 			String query ="DELETE FROM REVENUE_TYPE\n" + 
 					"WHERE REVENUE_TYPE_ID IN ("+ deleteRevenueTypeString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

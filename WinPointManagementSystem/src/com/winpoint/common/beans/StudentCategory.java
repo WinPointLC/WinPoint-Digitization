@@ -23,6 +23,11 @@ public class StudentCategory {
 		this.createdDate = createdDate;
 	}
 	
+	public StudentCategory(String studentCategoryName) {
+		// TODO Auto-generated constructor stub
+		this.studentCategoryName = studentCategoryName;
+	}
+
 	/**
 	 * @return the studentCategoryId
 	 */

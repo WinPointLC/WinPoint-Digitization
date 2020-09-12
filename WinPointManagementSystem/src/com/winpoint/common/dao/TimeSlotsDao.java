@@ -47,7 +47,7 @@ public class TimeSlotsDao {
 			String query = "INSERT INTO TIME_SLOTS\n" + 
 					"(TIME_SLOTS_DESCRIPTION) VALUES \n" + 
 					"('"+ timeSlots.getTimeSlotsDescription() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -70,7 +70,7 @@ public class TimeSlotsDao {
 			String query ="\n" + 
 					"DELETE FROM TIME_SLOTS\n" + 
 					"WHERE TIME_SLOTS_ID IN ("+ deleteTimeSlotsString.toString() +")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

@@ -15,11 +15,20 @@ public class StreamHelper {
 		return new StreamDao().getStreamId(streamName);
 	}
 	
-	public void createStreamList(ArrayList<Stream> newStreamArrayList) {
+	public void createStreamList(Object[] newStreamList) {
+		ArrayList<Stream> newStreamArrayList = new ArrayList<Stream>();
+		for(Object object: newStreamList) {
+			String string = object.toString();
+			newStreamArrayList.add(new Stream(string.substring(1, string.length()-1)));
+		}
 		 new StreamDao().createStreamList(newStreamArrayList);
 	}
 	
-	public void deleteStreamList(ArrayList<Integer> deleteStreamArrayList) {
+	public void deleteStreamList(Object[] deleteStreamList) {
+		ArrayList<Integer> deleteStreamArrayList = new ArrayList<>();
+		for(Object id: deleteStreamList) {
+			deleteStreamArrayList.add(Integer.parseInt(id.toString()));
+		}
 		 new StreamDao().deleteStreamList(deleteStreamArrayList);
 	}
 

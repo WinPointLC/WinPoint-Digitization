@@ -13,11 +13,22 @@ public class ReminderTypeHelper {
 		return new ReminderTypeDao().getReminderTypeList();
 	}
 	
-	public void createReminderTypeList(ArrayList<ReminderType> newReminderTypeArrayList) {
+	public void createReminderTypeList(Object[] newReminderTypeList) {
+		ArrayList<ReminderType> newReminderTypeArrayList = new ArrayList<>();
+		for(Object object: newReminderTypeList) {
+			String string = object.toString();
+			newReminderTypeArrayList.add(new ReminderType(string.substring(1, string.length()-1)));
+		}
+		
 		 new ReminderTypeDao().createReminderTypeList(newReminderTypeArrayList);
 	}
 	
-	public void deleteReminderTypeList(ArrayList<Integer> deleteReminderTypeArrayList) {
+	public void deleteReminderTypeList(Object[] deleteReminderTypeList) {
+		ArrayList<Integer> deleteReminderTypeArrayList = new ArrayList<Integer>();
+		for(Object id: deleteReminderTypeList) {
+			deleteReminderTypeArrayList.add(Integer.parseInt(id.toString()));
+		}
+		
 		 new ReminderTypeDao().deleteReminderTypeList(deleteReminderTypeArrayList);
 	}
 

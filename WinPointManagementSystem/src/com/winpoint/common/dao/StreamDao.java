@@ -78,7 +78,7 @@ public class StreamDao {
 			String query = "INSERT INTO STREAMS\n" + 
 					"(STREAM_NAME) VALUES \n" + 
 					"('"+ streamList.getStreamName() +"')";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -100,7 +100,7 @@ public class StreamDao {
 			deleteStreamString.deleteCharAt(deleteStreamString.length()-1);
 			String query ="DELETE FROM STREAMS\n" + 
 					"WHERE STREAM_ID IN ("+deleteStreamString.toString()+")";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

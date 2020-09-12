@@ -28,6 +28,11 @@ public class Stream {
 		this.streamName = streamName;
 	}
 
+	public Stream(String streamName) {
+		// TODO Auto-generated constructor stub
+		this.streamName = streamName;
+	}
+
 	/**
 	 * @return the streamId
 	 */

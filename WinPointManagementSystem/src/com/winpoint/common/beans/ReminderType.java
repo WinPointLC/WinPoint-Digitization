@@ -14,6 +14,12 @@ public class ReminderType {
 	}
 	
 	
+	public ReminderType(String reminderTypeCategory) {
+		// TODO Auto-generated constructor stub
+		this.reminderTypeCategory = reminderTypeCategory;
+	}
+
+
 	public Integer getReminderTypeId() {
 		return reminderTypeId;
 	}

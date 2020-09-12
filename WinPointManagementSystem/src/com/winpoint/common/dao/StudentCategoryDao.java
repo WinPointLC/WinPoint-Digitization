@@ -43,7 +43,7 @@ public List<StudentCategory> getStudentCategoryList(){
 			
 			for(StudentCategory studentCategoryList: newStudentCategoryArrayList) {
 			String query = "";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -64,7 +64,7 @@ public List<StudentCategory> getStudentCategoryList(){
 			}
 			deleteStudentCategoryString.deleteCharAt(deleteStudentCategoryString.length()-1);
 			String query ="";
-			statement.executeQuery(query);
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

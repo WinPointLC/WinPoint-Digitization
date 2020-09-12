@@ -11,11 +11,20 @@ public class StudentCategoryHelper {
 		return new StudentCategoryDao().getStudentCategoryList();
 	}
 	
-	public void createStudentCategoryList(ArrayList<StudentCategory> newStudentCategoryArrayList) {
+	public void createStudentCategoryList(Object[] newStudentCategoryList) {
+		ArrayList<StudentCategory> newStudentCategoryArrayList = new ArrayList<StudentCategory>();
+		for(Object object: newStudentCategoryList) {
+			String string = object.toString();
+			newStudentCategoryArrayList.add(new StudentCategory(string.substring(1, string.length()-1)));
+		}
 		 new StudentCategoryDao().createStudentCategoryList(newStudentCategoryArrayList);
 	}
 	
-	public void deleteStudentCategoryList(ArrayList<Integer> deleteStudentCategoryArrayList) {
+	public void deleteStudentCategoryList(Object[] deleteStudentCategoryList) {
+		ArrayList<Integer> deleteStudentCategoryArrayList = new ArrayList<Integer>();
+		for(Object id: deleteStudentCategoryList) {
+			deleteStudentCategoryArrayList.add(Integer.parseInt(id.toString()));
+		}
 		 new StudentCategoryDao().deleteStudentCategoryList(deleteStudentCategoryArrayList);
 	}
 

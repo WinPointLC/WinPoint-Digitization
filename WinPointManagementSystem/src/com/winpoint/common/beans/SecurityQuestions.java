@@ -32,6 +32,11 @@ public class SecurityQuestions {
 		this.securityQuestion = securityQuestion;
 	}
 
+	public SecurityQuestions(String securityQuestion) {
+		// TODO Auto-generated constructor stub
+		this.securityQuestion = securityQuestion;
+	}
+
 	/**
 	 * @return the securityQuestionId
 	 */

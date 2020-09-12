@@ -18,6 +18,12 @@ public class RevenueType {
 			this.revenueTypeName = revenueTypeName;
 		}
 
+		public RevenueType(String revenueTypeName) {
+			// TODO Auto-generated constructor stu
+			this.revenueTypeName = revenueTypeName;
+			
+		}
+
 		public Integer getRevenueTypeId() {
 			return revenueTypeId;
 		}

@@ -112,7 +112,12 @@ public class AnalyticsServlet extends ParentWEBController {
 				userId = (int) session.getAttribute("userId");	
 			}
 			else if (view.equals("userModal")) {
+				System.out.println(json);
+				System.out.println(StudentCourseDetails.class);
 				StudentCourseDetails studentCourseDetail = gson.fromJson(json, StudentCourseDetails.class);
+				System.out.println("***********"+studentCourseDetail);
+				System.out.println("###########"+userId);
+
 				userId = studentCourseDetail.getUserId();
 				courseId = studentCourseDetail.getCourseId();
 			}

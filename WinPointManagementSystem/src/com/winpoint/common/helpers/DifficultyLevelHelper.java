@@ -17,7 +17,7 @@ public class DifficultyLevelHelper {
 	//===============================================================================================
 
 	
-	public void createDifficultyLevel(Object newDifficultyLevelList []) {
+	public void createDifficultyLevelList(Object newDifficultyLevelList []) {
 		ArrayList<DifficultyLevel>newDifficultyLevelArrayList =new ArrayList<>();	
 		for(Object difficultyLevelObj : newDifficultyLevelList) {
 			String string = difficultyLevelObj.toString();
@@ -26,12 +26,15 @@ public class DifficultyLevelHelper {
 		 new DifficultyLevelDao().createDifficultyLevelList(newDifficultyLevelArrayList);
 	}
 	
-	public void deleteDifficultyLevel(Object deleteDifficultyLevelList []) {
-		ArrayList<Integer> deleteDifficultyLevelArrayList = new ArrayList<Integer>();
-		for(Object id: deleteDifficultyLevelList) {
-			deleteDifficultyLevelArrayList.add(Integer.parseInt(id.toString()));
-		}	
-		 new DifficultyLevelDao().deleteDifficultyLevelList(deleteDifficultyLevelArrayList);
+	public void deleteDifficultyLevelList(Object deleteDifficultyLevelList []) {
+		if(deleteDifficultyLevelList.length!=0) {
+			ArrayList<Integer> deleteDifficultyLevelArrayList = new ArrayList<Integer>();
+			for(Object id: deleteDifficultyLevelList) {
+				deleteDifficultyLevelArrayList.add(Integer.parseInt(id.toString()));
+			}	
+			 new DifficultyLevelDao().deleteDifficultyLevelList(deleteDifficultyLevelArrayList);
+	
+		}
 	}
 
 }

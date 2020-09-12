@@ -53,8 +53,8 @@ public class UserCategoryDao {
 					"(USER_CATEGORY_NAME) \n" + 
 					"VALUES('"+ userCategory.getUserCategoryName() +"')\n" + 
 					"";
-
-			statement.executeQuery(query);
+			System.out.println(query);
+			statement.executeUpdate(query);
 			}
 		} 
 		catch (SQLServerException e) {
@@ -75,8 +75,10 @@ public class UserCategoryDao {
 			}
 			deleteCourseString.deleteCharAt(deleteCourseString.length()-1);
 			String query ="DELETE FROM USER_CATEGORY\n" + 
-					"WHERE USER_CATEGORY_ID IN ("+ deleteUserCategoryArrayList.toString() +")";
-			statement.executeQuery(query);
+					"WHERE USER_CATEGORY_ID IN ("+ deleteCourseString.toString() +")";
+			System.out.println(query);
+
+			statement.executeUpdate(query);
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();
