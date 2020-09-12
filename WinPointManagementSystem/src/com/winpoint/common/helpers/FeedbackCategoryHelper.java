@@ -17,7 +17,7 @@ public class FeedbackCategoryHelper {
 	
 	
 	
-	public void createFeedbackCategory(Object newFeedbackCategoryList []) {
+	public void createFeedbackCategoryList(Object newFeedbackCategoryList []) {
 		ArrayList<FeedbackCategory>newFeedbackCategoryArrayList =new ArrayList<>();	
 		for(Object feedbackCategoryObj : newFeedbackCategoryList) {
 			String str  = feedbackCategoryObj.toString();
@@ -26,12 +26,13 @@ public class FeedbackCategoryHelper {
 		 new FeedbackCategoryDao().createFeedbackCategoryList(newFeedbackCategoryArrayList);
 	}
 	
-	public void deleteFeedbackCategory(Object deleteFeedbackCategoryList []) {
+	public void deleteFeedbackCategoryList(Object deleteFeedbackCategoryList []) {
 		ArrayList<Integer> deleteFeedbackCategoryArrayList = new ArrayList<Integer>();
 		for(Object id: deleteFeedbackCategoryList) {
 			deleteFeedbackCategoryArrayList.add(Integer.parseInt(id.toString()));
 		}	
-		 new FeedbackCategoryDao().deleteFeedbackCategoryList(deleteFeedbackCategoryArrayList);
+		if(deleteFeedbackCategoryArrayList.size()!=0)
+			new FeedbackCategoryDao().deleteFeedbackCategoryList(deleteFeedbackCategoryArrayList);
 	}
 
 	

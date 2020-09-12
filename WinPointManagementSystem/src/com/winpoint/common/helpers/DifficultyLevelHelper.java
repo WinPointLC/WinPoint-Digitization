@@ -27,14 +27,12 @@ public class DifficultyLevelHelper {
 	}
 	
 	public void deleteDifficultyLevelList(Object deleteDifficultyLevelList []) {
-		if(deleteDifficultyLevelList.length!=0) {
 			ArrayList<Integer> deleteDifficultyLevelArrayList = new ArrayList<Integer>();
 			for(Object id: deleteDifficultyLevelList) {
 				deleteDifficultyLevelArrayList.add(Integer.parseInt(id.toString()));
-			}	
-			 new DifficultyLevelDao().deleteDifficultyLevelList(deleteDifficultyLevelArrayList);
-	
+				if(deleteDifficultyLevelList.length!=0) {
+				 new DifficultyLevelDao().deleteDifficultyLevelList(deleteDifficultyLevelArrayList);
+				}
+			}
 		}
-	}
-
 }

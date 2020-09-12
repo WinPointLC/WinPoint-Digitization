@@ -29,7 +29,8 @@ public class FeedbackQuestionTypeHelper {
 		ArrayList<Integer> deleteFeedbackQuestionTypeArrayList = new ArrayList<Integer>();
 		for(Object id: deleteFeedbackQuestionTypeList) {
 			deleteFeedbackQuestionTypeArrayList.add(Integer.parseInt(id.toString()));
-		}	
+		}
+		if(deleteFeedbackQuestionTypeArrayList.size()!=0)
 		 new FeedbackQuestionTypeDao().deleteFeedbackQuestionTypeList(deleteFeedbackQuestionTypeArrayList);
 	}
 

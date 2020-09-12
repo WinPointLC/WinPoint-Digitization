@@ -14,7 +14,7 @@ public class PaymentTypeHelper {
 	//===============================================================================================
 
 
-public void createPaymentType(Object newPaymentTypeList []) {
+public void createPaymentTypeList(Object newPaymentTypeList []) {
 		ArrayList<PaymentType>newPaymentTypeArrayList =new ArrayList<>();	
 		for(Object paymentTypeObj : newPaymentTypeList) {
 			String string  = paymentTypeObj.toString();
@@ -23,11 +23,12 @@ public void createPaymentType(Object newPaymentTypeList []) {
 		 new PaymentTypeDao().createPaymentTypeList(newPaymentTypeArrayList);
 	}
 	
-	public void deletePaymentType(Object deletePaymentTypeList []) {
+	public void deletePaymentTypeList(Object deletePaymentTypeList []) {
 		ArrayList<Integer> deletePaymentTypeArrayList = new ArrayList<Integer>();
 		for(Object id: deletePaymentTypeList) {
 			deletePaymentTypeArrayList.add(Integer.parseInt(id.toString()));
 		}	
+		if(deletePaymentTypeArrayList.size()!=0)
 		 new PaymentTypeDao().deletePaymentTypeList(deletePaymentTypeArrayList);
 	}
 	
