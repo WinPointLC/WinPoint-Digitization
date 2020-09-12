@@ -27,7 +27,9 @@ public class RevenueTypeHelper {
 		for(Object id: deleteRevenueTypeList) {
 			deleteRevenueTypeArrayList.add(Integer.parseInt(id.toString()));
 		}
-		 new RevenueTypeDao().deleteRevenueTypeList(deleteRevenueTypeArrayList);
+		if(deleteRevenueTypeArrayList.size()!=0) {
+			new RevenueTypeDao().deleteRevenueTypeList(deleteRevenueTypeArrayList);
+		}
 	}
 
 

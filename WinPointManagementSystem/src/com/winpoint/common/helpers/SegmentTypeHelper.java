@@ -27,7 +27,9 @@ public class SegmentTypeHelper {
 		for(Object id: deleteSegmentTypeList) {
 			deleteSegmentTypeArrayList.add(Integer.parseInt(id.toString()));
 		}
-		new SegmentTypeDao().deleteSegmentTypeList(deleteSegmentTypeArrayList);
+		if(deleteSegmentTypeArrayList.size()!=0) {
+			new SegmentTypeDao().deleteSegmentTypeList(deleteSegmentTypeArrayList);
+		}
 	}
 
 }

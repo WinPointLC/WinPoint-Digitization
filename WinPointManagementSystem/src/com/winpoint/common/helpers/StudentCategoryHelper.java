@@ -25,7 +25,9 @@ public class StudentCategoryHelper {
 		for(Object id: deleteStudentCategoryList) {
 			deleteStudentCategoryArrayList.add(Integer.parseInt(id.toString()));
 		}
+		if(deleteStudentCategoryArrayList.size()!=0) {
 		 new StudentCategoryDao().deleteStudentCategoryList(deleteStudentCategoryArrayList);
+		}
 	}
 
 }

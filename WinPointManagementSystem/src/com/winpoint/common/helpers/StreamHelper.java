@@ -29,7 +29,8 @@ public class StreamHelper {
 		for(Object id: deleteStreamList) {
 			deleteStreamArrayList.add(Integer.parseInt(id.toString()));
 		}
+		if(deleteStreamArrayList.size()!=0) {
 		 new StreamDao().deleteStreamList(deleteStreamArrayList);
+		}
 	}
-
 }

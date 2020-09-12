@@ -26,7 +26,9 @@ public class TimeSlotsHelper {
 		for(Object id: deleteTimeSlotsList) {
 			deleteTimeSlotsArrayList.add(Integer.parseInt(id.toString()));
 		}
+		if(deleteTimeSlotsArrayList.size()!=0) {
 		 new TimeSlotsDao().deleteTimeSlotsList(deleteTimeSlotsArrayList);
+		}
 	}
 
 	
