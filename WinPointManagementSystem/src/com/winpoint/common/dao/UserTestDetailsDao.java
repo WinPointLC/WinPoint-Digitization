@@ -12,7 +12,6 @@ import java.util.List;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.QuestionBank;
 import com.winpoint.common.beans.Result;
-
 import com.winpoint.common.util.sql.ConnectionManager;
 
 public class UserTestDetailsDao {
@@ -84,4 +83,35 @@ public class UserTestDetailsDao {
 		} 
 	}
 
+	public boolean getTestStatus(int userId, int courseId) {
+						
+			ResultSet resultSet = null;
+			int testAttempted = 0;
+//			int marksObtained = 0;
+			
+			try(Connection connection = ConnectionManager.getConnection()){
+				Statement statement = connection.createStatement();
+				String query = "SELECT A.ATTEMPTED,A.MARKS_RECEIVED FROM USER_TEST_DETAILS A\n" + 
+						"JOIN TEST_DETAILS B \n" + 
+						"ON A.TEST_DETAIL_ID = B.TEST_DETAIL_ID\n" + 
+						"WHERE A.USER_ID = "+ userId +" AND B.COURSE_ID = "+courseId;
+				resultSet = statement.executeQuery(query);
+				
+				while(resultSet.next()) {
+					testAttempted = resultSet.getInt("A.ATTEMPTED");
+//					marksObtained = resultSet.getInt("A.MARKS_RECEIVED");
+					
+				}
+			} 
+			catch (SQLServerException e) {
+				e.printStackTrace();
+			} 
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			} 
+			if(testAttempted == 1)
+				return true;
+			else
+				return false;
+	}
 }
