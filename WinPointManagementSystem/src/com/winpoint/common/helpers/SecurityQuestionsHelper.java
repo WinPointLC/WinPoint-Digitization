@@ -25,8 +25,9 @@ public class SecurityQuestionsHelper {
 		for(Object id: deleteSecurityQuestionsList) {
 			deleteSecurityQuestionsArrayList.add(Integer.parseInt(id.toString()));
 		}
-
-		 new SecurityQuestionsDao().deleteSecurityQuestionsList(deleteSecurityQuestionsArrayList);
+		if(deleteSecurityQuestionsArrayList.size()!=0) {
+			new SecurityQuestionsDao().deleteSecurityQuestionsList(deleteSecurityQuestionsArrayList);
+		}
 	}
 
 }
