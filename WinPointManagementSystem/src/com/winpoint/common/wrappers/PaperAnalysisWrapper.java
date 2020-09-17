@@ -3,12 +3,14 @@ package com.winpoint.common.wrappers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.winpoint.common.beans.UserTestResponses;
+
 public class PaperAnalysisWrapper {
 	
 	private int totalQuestions;
 	private int marksReceived;
-	private int totalMarks;
-    List<QuestionAnswerWrapper> questionAnswerWrappers =  new ArrayList<QuestionAnswerWrapper>();
+	private int totalMarksOutOf;
+    List<UserTestResponses> userTestResponses =  new ArrayList<UserTestResponses>();
 	
 	
     public PaperAnalysisWrapper() {
@@ -16,12 +18,12 @@ public class PaperAnalysisWrapper {
 	}
     
     
-	public PaperAnalysisWrapper(int totalQuestions, int marksReceived, int totalMarks, List<QuestionAnswerWrapper> questionAnswerWrappers) {
+	public PaperAnalysisWrapper(int totalQuestions, int marksReceived, int totalMarks, List<UserTestResponses> userTestResponses) {
 		super();
 		this.totalQuestions = totalQuestions;
 		this.marksReceived = marksReceived;
-		this.totalMarks = totalMarks;
-		this.questionAnswerWrappers = questionAnswerWrappers;
+		this.totalMarksOutOf = totalMarks;
+		this.userTestResponses = userTestResponses;
 	}
 	
 	
@@ -42,19 +44,19 @@ public class PaperAnalysisWrapper {
 		this.marksReceived = marksReceived;
 	}
 	
-	public int getTotalMarks() {
-		return totalMarks;
+	public int getTotalMarksOutOf() {
+		return totalMarksOutOf;
 	}
 	
-	public void setTotalMarks(int totalMarks) {
-		this.totalMarks = totalMarks;
+	public void setTotalMarksOutOf(int totalMarks) {
+		this.totalMarksOutOf = totalMarks;
 	}
 	
-	public List<QuestionAnswerWrapper> getQuestionAnswersWrappers() {
-		return questionAnswerWrappers;
+	public List<UserTestResponses> getQuestionAnswersWrappers() {
+		return userTestResponses;
 	}
 	
-	public void setQuestionAnswersWrappers(ArrayList<QuestionAnswerWrapper> questionAnswersWrappers) {
-		this.questionAnswerWrappers = questionAnswersWrappers;
+	public void setUserTestResponses(ArrayList<UserTestResponses> userTestResponses) {
+		this.userTestResponses = userTestResponses;
 	}
 }

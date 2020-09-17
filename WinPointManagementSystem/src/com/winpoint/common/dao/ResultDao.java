@@ -12,6 +12,7 @@ import java.util.List;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.winpoint.common.beans.QuestionBank;
 import com.winpoint.common.beans.Result;
+import com.winpoint.common.beans.UserTestResponses;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.PaperAnalysisWrapper;
 import com.winpoint.common.wrappers.QuestionAnswerWrapper;
@@ -131,11 +132,11 @@ public class ResultDao {
 			String questionBankTableName = null;
 			int userTestId = 0;
 			int totalMarks=0;
-			ArrayList<String>optionList;
-			ArrayList<QuestionAnswerWrapper>questionAnswerWrappersList = new ArrayList<>();
+			ArrayList<UserTestResponses>userTestResponsesList = new ArrayList<>();
 	
 			PaperAnalysisWrapper paperAnalysisWrapper = new PaperAnalysisWrapper();
 			QuestionAnswerWrapper questionAnswerWrapper;
+			UserTestResponses userTestResponses;
 			
 			try(Connection connection = ConnectionManager.getConnection()){
 				Statement statement = connection.createStatement();
@@ -174,25 +175,28 @@ public class ResultDao {
 						"WHERE USER_TEST_ID =" + userTestId;
 				
 				while(resultSet.next()) {
+					userTestResponses = new UserTestResponses();
 					questionAnswerWrapper = new QuestionAnswerWrapper();
-					optionList = new ArrayList<>();
 					totalMarks += resultSet.getInt("B.MARKS");
 					questionAnswerWrapper.setCorrectOption(resultSet.getInt(""));
-					for(int i = 1; i<= 4; i++) {
-						String col = "OPTION_"+Integer.toString(i);
-						optionList.add(resultSet.getString(col));
-					}
-					questionAnswerWrapper.setOptions(optionList);
-					questionAnswerWrapper.setCorrectOption(resultSet.getInt("B.CORRECT_OPTION"));
-					questionAnswerWrapper.setQuestionNo(resultSet.getInt("A.Q_NUMBER"));
-					questionAnswerWrapper.setMarks(resultSet.getInt("B.MARKS"));
-					questionAnswerWrapper.setSelectedOption(resultSet.getInt("A.STUDENT_RESPONSE"));
-					questionAnswerWrapper.setQuestionStatement(resultSet.getString("B.QUESTION"));
-					questionAnswerWrapper.setExplanation(resultSet.getString("B.EXPLANATION"));
-					questionAnswerWrappersList.add(questionAnswerWrapper);
+//					userTestResponses.setCorrectOptionInt(resultSet.getInt("B.CORRECT_OPTION"));
+					
+					userTestResponses.setOption1(resultSet.getString("B.OPTION_1"));
+					userTestResponses.setOption2(resultSet.getString("B.OPTION_2"));
+					userTestResponses.setOption3(resultSet.getString("B.OPTION_3"));
+					userTestResponses.setOption4(resultSet.getString("B.OPTION_4"));
+					
+					
+					userTestResponses.setCorrectOptionInt(resultSet.getInt("B.CORRECT_OPTION"));
+					userTestResponses.setQuestionNo(resultSet.getInt("A.Q_NUMBER"));
+					userTestResponses.setTotalMarks(resultSet.getInt("B.MARKS"));
+					userTestResponses.setSelectedOption(resultSet.getInt("A.STUDENT_RESPONSE"));
+					userTestResponses.setQuestion(resultSet.getString("B.QUESTION"));
+					userTestResponses.setExplanation(resultSet.getString("B.EXPLANATION"));
+					userTestResponsesList.add(userTestResponses);
 				}
-				paperAnalysisWrapper.setTotalMarks(totalMarks);
-				paperAnalysisWrapper.setQuestionAnswersWrappers(questionAnswerWrappersList);			
+				paperAnalysisWrapper.setTotalMarksOutOf(totalMarks);
+				paperAnalysisWrapper.setUserTestResponses(userTestResponsesList);			
 			} 
 			
 			

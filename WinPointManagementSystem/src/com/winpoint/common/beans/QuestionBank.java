@@ -15,6 +15,7 @@ public class QuestionBank {
 	private String option3;
 	private String option4;
 	private String correctOption;
+	private Integer correctOptionInt;
 	private Integer totalMarks;
 	private String explanation;
 	private Integer difficultyLevelId;
@@ -39,6 +40,27 @@ public class QuestionBank {
 	 * @param createdBy
 	 * @param createdDate
 	 */
+	
+	
+	public QuestionBank() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public QuestionBank( String question, String option1,
+			String option2, String option3, String option4, Integer correctOptionInt, Integer totalMarks, String explanation) {
+		this.question = question;
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+		this.correctOptionInt = correctOptionInt;
+		this.totalMarks = totalMarks;
+		this.explanation = explanation;
+
+	}
+	
+	
 	public QuestionBank(Integer questionId, Integer courseId, Integer topicId, String question, String option1,
 			String option2, String option3, String option4, String correctOption, Integer totalMarks, String explanation,
 			Integer difficultyLevelId, String inCrt, Integer createdBy, Date createdDate) {
@@ -256,6 +278,19 @@ public class QuestionBank {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
+	
+	
+
+	public Integer getCorrectOptionInt() {
+		return correctOptionInt;
+	}
+
+
+	public void setCorrectOptionInt(Integer correctOptionInt) {
+		this.correctOptionInt = correctOptionInt;
+	}
+
 
 	@Override
 	public String toString() {
