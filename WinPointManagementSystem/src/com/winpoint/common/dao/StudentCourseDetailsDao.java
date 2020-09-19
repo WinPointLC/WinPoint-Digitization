@@ -280,6 +280,8 @@ public class StudentCourseDetailsDao {
 				
 				studentCourseDetailsList.add(secQuest);
 			}
+			
+			// for loop - traves the list , for every vourse if find out attempted value for user and course id , and set for course detail and back to the list
 		} 
 		catch (SQLServerException e) {
 			e.printStackTrace();

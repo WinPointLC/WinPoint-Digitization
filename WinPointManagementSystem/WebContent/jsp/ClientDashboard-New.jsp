@@ -19,6 +19,25 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet"/>
   <!-- own CSS -->
   <link rel="stylesheet" href="../assets/css/dashstyle.css">
+  <style>
+				.chip{
+					padding: 8px 10px;
+					border-radius: 10px;
+					font-weight: 600;
+					font-size: 12px;
+					box-shadow: 0 2px 5px rgba(0,0,0,.25);
+					margin: 0 10px;
+					width:100px;
+					cursor: pointer;
+				}
+
+				.chip.primary{
+					background: #2F4058;
+					color: whitesmoke;
+				}
+	</style>
+  
+   <link href="../css/employee_new_2.css" rel="stylesheet" />
   <!-- <link href="../MaterialKitHomePage/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" /> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -314,6 +333,13 @@ function LogoutSession() {
             <p>Result</p>
           </a>
         </li>
+		
+		<!--<li id="paper-analysis">
+			<a class="nav-link" href="#" onclick="Paper_link();">
+            <i class="material-icons" >subject</i>
+            <p>Paper Analysis</p>
+          </a>
+        </li>-->
        <%-- <li>
             <a class="nav-link" href="#" onclick="FeedbackForm_link();">
             <i class="material-icons">assessment</i>
@@ -513,7 +539,38 @@ function LogoutSession() {
   </div>
 </div>
 
+<!--Paper Analysis modal start-->
+		<div class="modal fade" id="mymodal_pa" style="margin-left:-500px;" >
+			<div class="modal-dialog" role="document" style="width:1000px;">
+				<div class="modal-content" style="width:1000px;">
+					<div class="modal-header">
+						<h2 id="modal-title" class="modal-title" tabindex="0">PAPER ANALYSIS</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						  <!--<div class="col-md-3">
+							<div class="stats">
+							  <div class="dropdown">
+								<button style ="margin-left:350px; width:200px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonBatch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  Select Test
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="test-dropdown">
 
+								</div>
+							  </div>
+							</div>
+						  </div>-->
+						  
+						  <br>
+							<div id="test-info"></div><br>
+							<div id="questions" style="margin-left:-110px; width:150px;"></div>
+					</div>						 
+				</div>
+			</div>
+		</div>
+<!--Paper Analysis modal end-->
 
 <!-- modal 2: batch announcment -->
 
@@ -844,6 +901,53 @@ function LogoutSession() {
            document.getElementById('Feedback-frame').style.display="none";
          }
     }
+	
+	function Paper_link() {
+     
+      Removeframes();
+	  document.getElementById('paper-analysis').className="nav-item active";
+      document.getElementById('course-reg').className="";
+      document.getElementById('user-dash').className=" ";
+      document.getElementById('analytics-link').className=" ";
+      document.getElementById('main-course').className=" ";
+      document.getElementById('res-link').className=" ";
+	  
+      paperframe = document.createElement('iframe');
+      paperframe.setAttribute('src', jspURL + "Paper_Analysis.jsp?varid=");
+      paperframe.setAttribute('width', 1100);
+      paperframe.setAttribute('height', 1000);
+      paperframe.id = 'PaperAnalysis-frame';
+      paperframe.setAttribute('style',"margin-top:3%;");
+      document.getElementById('iframediv').appendChild(paperframe);
+      
+      ShowHidePaper();
+    }
+    function ShowHidePaper() {
+      document.getElementById('Tech-content').style.display="none";
+  
+      document.getElementById('PaperAnalysis-frame').style.display="block";
+     
+      if(document.getElementById('Result-frame')!=null){
+        document.getElementById('Result-frame').style.display="none";
+      }
+	  
+	  if(document.getElementById('CourseRegistration-frame')!=null){
+        document.getElementById('CourseRegistration-frame').style.display="none";
+      }
+       if(document.getElementById('Analytics-frame')!=null){
+        document.getElementById('Analytics-frame').style.display="none";
+      }
+       if(document.getElementById('MainCoursePage-frame')!=null){
+        document.getElementById('MainCoursePage-frame').style.display="none";
+      }
+       if(document.getElementById('User-frame')!=null){
+        document.getElementById('User-frame').style.display="none";
+      }
+       if(document.getElementById('Feedback-frame')!=null){
+           document.getElementById('Feedback-frame').style.display="none";
+         }
+    }
+
 
     function MainCourse_link() {
      
@@ -934,136 +1038,9 @@ function LogoutSession() {
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
-
-/*var streamId = 1;
-var courseTypeId = 1;
-var courseTypeName = "";
-var chartCourseName = [];
-var chartData= [];
-var 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels:[],
-        datasets: [{
-            label: 'Attendance in %',
-            data:[],
-            backgroundColor:" rgb(142, 36, 170,0.4 )",
-           borderColor: ' rgb(142 36 170)',
-            borderWidth: 3
-           
-        }]
-    },
-    
-    options: {
-        scales: { 
-          xAxes: [{
-             barPercentage:0.2
-
-                
-            }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    max:100,
-                  callback: function(value) {
-               return value + "%"
-           }
-       },
-       scaleLabel: {
-           display: true,
-           labelString: "Percentage"
-       }
-                
-            }]
-
-        }
-    }
-});
-
-var searchString = window.location.search.substring(1);
-  var arr = searchString.split('&');
-  var data= arr[0].split('=')[1];
-  var decodedData = decodeURIComponent(data);
-  //alert(decodedData);
-  var data1 = decodedData.substring(0, decodedData.indexOf('}')+1);
-  //alert(data1);
-  userProfile =  eval('(' + data1 + ')');
-  var data2 = decodedData.substring(decodedData.indexOf('}')+1, decodedData.length);
-  //alert(data2);
-  streamList = eval('(' + data2 + ')');
-     // alert(streamList);
-            for(i=0; i<streamList.length; i++){
-              // alert(streamList[i].streamId + ":" + streamList[i].streamName)
-              // var arr = ['Technical','SoftSkills','General Aptitude'];
-              // for (var i = 0; i < arr.length; i++) {
-              // Inserted code
-              var div1 = document.createElement('div');
-              div1.id="tab-div";
-              var li = document.createElement('li');
-              li.className='nav-item';
-              li.id = streamList[i].streamId + 'l';
-
-              var anchor =document.createElement('a');
-              anchor.setAttribute('href',"#Profile");
-              anchor.setAttribute('data-toggle',"tab");
-              anchor.className='nav-link ';
-              anchor.id = streamList[i].streamId + 'a';
-              anchor.textContent=streamList[i].streamName;
-              li.id = streamList[i].streamId;
-             // alert("Li id = " + li.id);
-              li.appendChild(anchor);
-              li.setAttribute('onclick', "getStreamId(this.id)");
-              div1.appendChild(li);
-              document.getElementById("nav-tab").appendChild(div1);
-              // End Inserted Code
-            }
-            // }
-            var streamElem = document.getElementById(streamList[0].streamId + 'a');
-            streamElem.className='nav-link active';
-            
-            //End- Extract Stream List
-            var drop1 = document.getElementsByClassName('drop1');
-            var btn = document.createElement('button');
-            btn.className='btn btn-secondary dropdown-toggle';
-            btn.id='dropdownMenuButton';
-            btn.setAttribute('data-toggle', "dropdown");
-            btn.setAttribute('aria-haspopup', "true");
-            btn.setAttribute('aria-expanded',"false");
-           // btn.textContent="MODULAR";
-            btn.textContent="Course Category";
-            document.getElementById('drop11').appendChild(btn);
-
-            var dropdownMenu = document.createElement('div');
-            dropdownMenu.className='dropdown-menu';
-            dropdownMenu.id='dropdownMenu';
-            dropdownMenu.setAttribute('aria-labelledby',"dropdownMenuButton");
-            //Start- Extract Course Type List
-           /* var courseTypes = decodedData.substring(decodedData.indexOf(']')+1, decodedData.length);
-            var courseTypesList = eval('(' + courseTypes + ')');
-            // var arr2 = ['Modular','TBC','CRT'];
-            for(i=0; i<courseTypesList.length; i++){
-              var dropanchor = document.createElement('a');
-              dropanchor.className='dropdown-item';
-              dropanchor.setAttribute('href',"#");
-              dropanchor.id=courseTypesList[i].courseTypeId;
-              dropanchor.textContent=(courseTypesList[i].courseTypeName).toUpperCase();
-              dropanchor.setAttribute('onclick',"displayStreamCourses(this.id, this.textContent)");
-
-              dropdownMenu.appendChild(dropanchor);
-              // alert(courseTypesList[i].courseTypeId + ":" + courseTypesList[i].courseTypeName)
-            }
-            document.getElementById('drop11').appendChild(dropdownMenu);
-
-
-getStreamId(streamList[0].streamId);
-displayStreamCourses(courseTypeId, courseTypeName);Diksha
-*/
-
+  
 function getStreamId(stream_id){
         streamId = stream_id;
-        
         var streamElem = document.getElementById(streamId + 'a');
         var elem;
         for(i=0; i<streamList.length; i++){
@@ -1071,13 +1048,6 @@ function getStreamId(stream_id){
            elem.className = 'nav-link';
         }
         streamElem.className = 'nav-link active';
-
-       
-       /* elem = document.getElementById('courseList');
-        if(elem != null){
-          elem.parentNode.removeChild(elem);
-        }    */    
-        
         var myData = {
           streamId: streamId  
         };
@@ -1098,46 +1068,34 @@ function getStreamId(stream_id){
             if(elem != null){
               elem.parentNode.removeChild(elem);
             }
-            
             var elem = document.getElementById('dropdownMenuButton');
             elem.parentNode.removeChild(elem);
-
-            
-            //var drop1 = document.getElementsByClassName('drop1');
             var btn = document.createElement('button');
             btn.className='btn btn-secondary dropdown-toggle';
             btn.id='dropdownMenuButton';
             btn.setAttribute('data-toggle', "dropdown");
             btn.setAttribute('aria-haspopup', "true");
             btn.setAttribute('aria-expanded',"false");
-            //btn.textContent="Course Category";
             if(streamId==1){
            btn.textContent=courseTypesList[0].courseTypeName;}
            else{
             btn.textContent="Course Category";
            }
-          //btn.textContent="MODULAR";
-
-            document.getElementById('drop11').appendChild(btn);
-
-       
-              var dropdownMenu = document.createElement('div');
-              dropdownMenu.className='dropdown-menu';
-              dropdownMenu.id='dropdownMenu';
-              dropdownMenu.setAttribute('aria-labelledby',"dropdownMenuButton");
-              for(i=0; i<courseTypesList.length; i++){
-              //  alert(courseTypesList[i].courseTypeName);
+          document.getElementById('drop11').appendChild(btn);
+          var dropdownMenu = document.createElement('div');
+          dropdownMenu.className='dropdown-menu';
+          dropdownMenu.id='dropdownMenu';
+          dropdownMenu.setAttribute('aria-labelledby',"dropdownMenuButton");
+            for(i=0; i<courseTypesList.length; i++){
                   var dropanchor = document.createElement('a');
                   dropanchor.className='dropdown-item';
                   dropanchor.setAttribute('href',"#");
                   dropanchor.id=courseTypesList[i].courseTypeId;
                   courseTypeName = (courseTypesList[i].courseTypeName).toUpperCase();
-                  //alert(courseTypeName);
                   dropanchor.textContent=courseTypeName;
                   dropanchor.setAttribute('onclick',"displayStreamCourses(this.id, this.textContent)");
-
                   dropdownMenu.appendChild(dropanchor);
-                  // alert(courseTypesList[i].courseTypeId + ":" + courseTypesList[i].courseTypeName)
+                  
                 }
 
               document.getElementById('drop11').appendChild(dropdownMenu);
@@ -1152,12 +1110,8 @@ function getStreamId(stream_id){
         
       }
 function displayStreamCourses(courseType_id, courseTypeName ){
-        //var streamId = stream_id;
-        courseTypeId = courseType_id;
-        //alert("stream_id = " + streamId + "courseType_id = " + courseType_id);
-        
-          document.getElementById('dropdownMenuButton').textContent = courseTypeName;
-        
+       courseTypeId = courseType_id;
+       document.getElementById('dropdownMenuButton').textContent = courseTypeName;
         var myData = {
           //userId: userProfile.userId,
           streamId: streamId,
@@ -1172,37 +1126,18 @@ function displayStreamCourses(courseType_id, courseTypeName ){
           contentType: 'application/json; charset=utf-8',
           traditional: true,
           success: function (jsonObj) {
-            document.getElementById('crd').style.display="block";
-            var responseJson=jsonObj[0];
-            var strResJSON = JSON.stringify(responseJson);
-
-            // <div class="col-lg-3 col-md-6 col-sm-6 column3">
-            //   <div class="card card-stats">
-            //     <div class="card-header  card-header-primary card-header-icon">
-            //       <div class="card-icon">
-            //         <img src="../assets/img/Dashboard-main-page-images/js-brands.svg" alt="java" style=" height: 60px; width: 60px; ">
-            //         </div>
-            //         <a href="TestSelectPage.jsp" ><p class="card-category">JavaScript language</p></a>
-            //       </div>
-            //     </div>
-            //   </div>
+          document.getElementById('crd').style.display="block";
+          var responseJson=jsonObj[0];
+          var strResJSON = JSON.stringify(responseJson);
           var elem = document.getElementById('courselist');
           if(elem != null){
               elem.parentNode.removeChild(elem);
             }
-            //document.getElementById('profile').removeChild(document.getElementById('xyz'));
-            //var courseId=1;//responseJson[j].courseId;
-            //alert(courseId);
-            
             document.getElementById('crd').innerHTML=" ";
             var row  =document.createElement('div');
             row.className="row";
             row.id="courseList";
-  
-//for(var i=0; i<myList.length; i++){
-
 for(var j=0 ; j<responseJson.length; j++){
-  
   var col1 = document.createElement('div');
     col1.className="col-lg-5 col-md-5 col-sm-5";
     var card = document.createElement('div');
@@ -1214,323 +1149,306 @@ for(var j=0 ; j<responseJson.length; j++){
     var h2 = document.createElement('h2');
     h2.className="card-title";
     h2.textContent = responseJson[j].courseName;
-
     cardHeading.appendChild(h2);
-
     var s1= document.createElement('p');
-     s1.className="card-title";
+    s1.className="card-title";
     s1.textContent = 'Start Date:'+" "+ responseJson[j].batchDetails.startDate;
-  //s1.textContent = "04/04/2020";
-
-
-
     var e1= document.createElement('p');
      e1.className="card-title";
     e1.textContent = 'End Date:'+" "+ responseJson[j].batchDetails.endDate;
-   // e1.textContent = "04/05/2020";
-
     var cardIcon = document.createElement('div');
     cardIcon.className="card-icon";
     cardIcon.setAttribute('style',"padding: 0px;");
     var img = document.createElement('img');
-  
-
-       img.setAttribute('src',responseJson[j].logoLocation);
-        img.setAttribute('style', "width:90px;height:90px;");
-        //img.setAttribute('style', "padding:0px 0px;");
-        cardIcon.appendChild(img);
-
-/* <i class="material-icons">code</i>*/
+    img.setAttribute('src',responseJson[j].logoLocation);
+    img.setAttribute('style', "width:90px;height:90px;");
+    cardIcon.appendChild(img);
     var p1 = document.createElement('p');
     p1.className="card-title";
     p1.textContent = 'Batch Name:\n'+" "+responseJson[j].batchDetails.batchName;
-
-
     var p2 = document.createElement('p');
     p2.className="card-title";
-   p2.textContent = 'Faculty:'+" "+  responseJson[j].batchDetails.facultyName.toUpperCase();
-   p2.textContent = 'Faculty:\n'+" "+  responseJson[j].batchDetails.facultyName.toUpperCase();
-  // p2.textContent = "Anjali Mam";
-
-
+    p2.textContent = 'Faculty:'+" "+  responseJson[j].batchDetails.facultyName.toUpperCase();
+    p2.textContent = 'Faculty:\n'+" "+  responseJson[j].batchDetails.facultyName.toUpperCase();
     var p3 = document.createElement('p');
     p3.className="card-title";
-  p3.textContent = 'Marks Obtained : '+" "+ responseJson[j].courseAggr;
-  //p3.textContent = 'Marks Obtained : 55';
-
-
+    p3.textContent = 'Marks Obtained : '+" "+ responseJson[j].courseAggr;
+	
+	 var a_pa  = document.createElement('a');
+	a_pa.textContent = 'Go To Paper Analysis';
+	a_pa.className="modal-btn card-link";
+	/*
+	if(responseJson[j].testAttempted==1)
+	{
+		a_pa.className="modal-btn card-link";
+	}
+	else
+	{
+		a_pa.className="modal-btn card-link disabled-link";
+	}
+		*/
+	a_pa.id="pa-link"+(j+1);
+	a_pa.setAttribute('course-id',responseJson[j].courseId);
+	a_pa.setAttribute('onclick',"getTestDetails(this.getAttribute('course-id'))");
+	a_pa.setAttribute('data-toggle',"modal");
+	a_pa.setAttribute('data-target',"#mymodal_pa");
+	
     var h3 = document.createElement('h3');
-    /*Card header ends here*/
-
     var cardfooter = document.createElement('div');
-  cardfooter.className="card-footer";
-  var stats =document.createElement('div');
-  stats.className="stats";
-  var blink = document.createElement('div');
-//  var span=document.createElement('span');
-//span.className="blinking";
-
- var h4 = document.createElement('h4');
- if(responseJson[j].dueAmount==0){
-  h4.textContent="Amount due:INR"+" "+ responseJson[j].dueAmount;
-
- }
- else{
- h4.className="blinking";
- h4.textContent="Amount due:INR"+" "+ responseJson[j].dueAmount;
- //h4.textContent = "Amount due:4000";
-
-}
-var button=document.createElement('button');
+    cardfooter.className="card-footer";
+    var stats =document.createElement('div');
+    stats.className="stats";
+    var blink = document.createElement('div');
+    var h4 = document.createElement('h4');
+    if(responseJson[j].dueAmount==0){
+        h4.textContent="Amount due:INR"+" "+ responseJson[j].dueAmount;}
+    else{
+         h4.className="blinking";
+         h4.textContent="Amount due:INR"+" "+ responseJson[j].dueAmount;}
+    var button=document.createElement('button');
     button.id="modal-btn";
     button.onclick= function() {checkNotification()};
     var a_ann=document.createElement('a');
     a_ann.className="modal-btn";
-  a_ann.setAttribute('data-toggle',"modal");
-   a_ann.setAttribute('data-target',"#mymodal2");
-
+    a_ann.setAttribute('data-toggle',"modal");
+    a_ann.setAttribute('data-target',"#mymodal2");
     var img = document.createElement('img');
     img.className="card-icon"
     img.setAttribute('src','../assets/img/announcement.jpg');
     img.setAttribute('style', "width:30px;height:30px;");
-
     a_ann.appendChild(img);
     button.appendChild(a_ann)
     var button2=document.createElement('button');
     button2.id="modal-btn2";
-   // button2.setAttribute("onclick", "openFeedbackForm(courseId)");  
-    //button.onclick= function() {checkNotification()};
-  var a_feed=document.createElement('a');
-  a_feed.id="feedbackFormLink"
+    var a_feed=document.createElement('a');
+    a_feed.id="feedbackFormLink"
     a_feed.className="modal-btn";
-//a_feed.setAttribute('data-toggle',"modal");
-//a_feed.setAttribute('data-target',"#exampleModalLong");
-//alert("responseJSON[" + j + "] = " + responseJson[j].courseId);
-a_feed.setAttribute("onclick", "openModal(" + responseJson[j].courseId + ")");
-
+    a_feed.setAttribute("onclick", "openModal(" + responseJson[j].courseId + ")");
     var img_feed = document.createElement('img');
     img_feed.className="card-icon"
     img_feed.setAttribute('src','../assets/img/feed2.jpg');
     img_feed.setAttribute('style', "width:30px;height:30px;");
-
     a_feed.appendChild(img_feed);
     button2.appendChild(a_feed)
     if(responseJson[j].isFeedbackGiven=="YES"){
      // a_feed.removeAttr('onclick');
      document.getElementById('feedbackFormLink').disabled=true;
-    }
-  cardheader.appendChild(cardHeading); 
-  cardheader.appendChild(s1); 
-  cardheader.appendChild(e1);        
-  cardheader.appendChild(cardIcon);
-  cardheader.appendChild(p1);
-  cardheader.appendChild(p2);
-  cardheader.appendChild(p3);
-  cardheader.appendChild(h3);
-   
- // cardheader.appendChild(cardHeading);
-  card.appendChild(cardheader);
-  blink.appendChild(h4);
-  stats.appendChild(blink);
-  cardfooter.appendChild(stats);
-  cardfooter.appendChild(button);
-  cardfooter.appendChild(button2);
-  card.appendChild(cardfooter);
-  col1.appendChild(card);
-  // console.log("Inner For Loop");
-  row.appendChild(col1);
-   document.getElementById('crd').appendChild(row);
+  }
+    cardheader.appendChild(cardHeading); 
+    cardheader.appendChild(s1); 
+    cardheader.appendChild(e1);        
+    cardheader.appendChild(cardIcon);
+    cardheader.appendChild(p1);
+    cardheader.appendChild(p2);
+    cardheader.appendChild(p3);
+	cardheader.appendChild(a_pa);
+    cardheader.appendChild(h3);
+    card.appendChild(cardheader);
+    blink.appendChild(h4);
+    stats.appendChild(blink);
+    cardfooter.appendChild(stats);
+    cardfooter.appendChild(button);
+    cardfooter.appendChild(button2);
+    card.appendChild(cardfooter);
+    col1.appendChild(card);
+    row.appendChild(col1);
+    document.getElementById('crd').appendChild(row);
 
-}
-
-//alert(myChart.data.labels+" "+ "before");
-//alert(myChart.data.datasets[0].data+" "+"before"); 
-myChart.data.labels=[];
- myChart.data.datasets[0].data=[];
- //alert(myChart.data.labels+" "+"clear");
-//alert(myChart.data.datasets[0].data+" "+"clear"); 
+} 
+    myChart.data.labels=[];
+    myChart.data.datasets[0].data=[];
+     
 for(var j=0 ; j<responseJson.length; j++){
 
-  myChart.data.labels.push(responseJson[j].courseName);
-  myChart.data.datasets[0].data.push(responseJson[j].percentageAttendance);
-  //alert(myChart.data.labels+" "+"pushing value");
-//alert(myChart.data.datasets[0].data+" "+"pushing value"); 
-
-  }
-  myChart.update();
-
-      }
+    myChart.data.labels.push(responseJson[j].courseName);
+    myChart.data.datasets[0].data.push(responseJson[j].percentageAttendance);
+        }
+  myChart.update();}
 });
 }
 
-/*Feed back modal info
-private Integer feedbackQuestionId;
-  private Integer feedbackCategoryId;
-  private String feedbackQuestion;
-  private Integer feedbackQuestionTypeId;*/
+ /*function displayTests(course_id){
+	 
+	courseId=course_id;
 
-  function openModal(course_Id){
-    var feedbackcourseId=course_Id;
-   // alert("feedbackcourseId = " + feedbackcourseId);
-    $('#exampleModalLong').modal("show");
-    openFeedbackForm(feedbackcourseId);
+	var myData = {
+		courseId:courseId
+	};
+	$.ajax({
+		type: 'POST',
+		url: servletURL + 'PaperAnalysisServlet',
+		data: JSON.stringify(myData),
+		dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
+		traditional: true,
+		success: function (jsonObj) {
+		
+			testList=jsonObj[0];
+			alert("GOT TESTS");
+			
+			var testDropDown=document.getElementById('test-dropdown');
+			while (testDropDown.hasChildNodes()) {  
+				testDropDown.removeChild(testDropDown.firstChild);
+			}
+			
+			for (var k = 0; k < testList.length; k++) {
+				var anchor4 = document.createElement('a');
+				anchor4.className="dropdown-item";
+				anchor4.setAttribute('href', "#");
+				anchor4.textContent = testList[k].courseName.toUpperCase().replace("_"," ");
+				anchor4.id=testList[i].testId + 'T';
+				anchor4.setAttribute('onclick', "getTestId(this.id)");
+				document.getElementById('test-dropdown').appendChild(anchor4);
+			}
+			  
+		},
+		error: function(){
+			alert("Error");
+			//document.getElementById("error").innerHTML = "Invalid email or password";
+		}
+
+	});
+	 
+ }*/
+
+ function openModal(course_Id){
+        var feedbackcourseId=course_Id;
+        $('#exampleModalLong').modal("show");
+        openFeedbackForm(feedbackcourseId);
   }
 
 
   function openFeedbackForm(course_Id){
-  	
-  //document.getElementById('feedbackFormCard').innerHTML=" ";
-  var courseId=course_Id;
- // var courseName=course_name;
-   // alert(courseId);
-  var k=1;
-  
-  var srNumb=0;
-  var srNumbTheory=0;
+         var courseId=course_Id;
+         var k=1;
+         var srNumb=0;
+         var srNumbTheory=0;
+         var feedbackQuestionsList= eval('(' + '${feedbackQuestionsList}' + ')');
+         var formElem = document.getElementById(courseId);
+          	if(formElem!=null){
+          		formElem.parentNode.removeChild(formElem);
+          	}
+          var form=document.createElement('form');
+          form.id=courseId;
+          form.setAttribute('name','myForm');
+          form.setAttribute('onsubmit','sendUserFeedback(this.id)');
+          var mainDiv=document.createElement('div');
+          var tab=document.createElement('table');
+          tab.className="table";
+          tab.id="feedbackFormTable"
+          var thead=document.createElement('thead');
+          thead.className="text-primary";
+          var th1=document.createElement('th');
+          th1.textContent="SR";
+          var th2=document.createElement('th');
+          th2.className="col2";
+          th2.textContent="STATEMENT";
+          var th3=document.createElement('th');
+          th3.textContent="SCORE";
+          thead.appendChild(th1);
+          thead.appendChild(th2);
+          thead.appendChild(th3);
+          tab.appendChild(thead)
+        for(var i=0;i<feedbackQuestionsList.length;i++){
 
-  var feedbackQuestionsList= eval('(' + '${feedbackQuestionsList}' + ')');
- //alert(feedbackQuestionsList);
- var formElem = document.getElementById(courseId);
-  	if(formElem!=null){
-  		formElem.parentNode.removeChild(formElem);
-  	}
-  var form=document.createElement('form');
-  form.id=courseId;
-  form.setAttribute('name','myForm');
-  form.setAttribute('onsubmit','sendUserFeedback(this.id)');
-  var mainDiv=document.createElement('div');
-  var tab=document.createElement('table');
-  tab.className="table";
-  tab.id="feedbackFormTable"
-  var thead=document.createElement('thead');
-  thead.className="text-primary";
-  var th1=document.createElement('th');
-  th1.textContent="SR";
-  var th2=document.createElement('th');
-  th2.className="col2";
-  th2.textContent="STATEMENT";
-  var th3=document.createElement('th');
-  th3.textContent="SCORE";
-  thead.appendChild(th1);
-  thead.appendChild(th2);
-  thead.appendChild(th3);
-  tab.appendChild(thead)
-for(var i=0;i<feedbackQuestionsList.length;i++){
-//alert(feedbackQuestionsList[i].feedbackQuestionId + feedbackQuestionsList[i].feedbackQuestion + feedbackQuestionsList[i].feedbackQuestionTypeId);
-	if(feedbackQuestionsList[i].feedbackQuestionTypeId==1){
-    srNumb++;
-    var tr = document.createElement('tr');
-     var td1= document.createElement('td');
-     td1.id=(i+1)+"R";
-     td1.textContent= srNumb;
-     var td2= document.createElement('td');
-     td2.textContent= feedbackQuestionsList[i].feedbackQuestion;
-      var td3= document.createElement('td');
-    var name= "inlineRadioOptions"+k;
+        	if(feedbackQuestionsList[i].feedbackQuestionTypeId==1){
+            srNumb++;
+            var tr = document.createElement('tr');
+             var td1= document.createElement('td');
+             td1.id=(i+1)+"R";
+             td1.textContent= srNumb;
+             var td2= document.createElement('td');
+             td2.textContent= feedbackQuestionsList[i].feedbackQuestion;
+              var td3= document.createElement('td');
+            var name= "inlineRadioOptions"+k;
+         if(feedbackQuestionsList[i].feedbackQuestionId==17){
+              var div=document.createElement('div');
+                div.className="form-check form-check-radio form-check-inline";
+                var label=document.createElement('label');
+                label.textContent="YES";
+                var input=document.createElement('input');
+                input.setAttribute('type','radio');
+                input.setAttribute('name',name);
+                input.setAttribute('value',"YES");
+                input.setAttribute('required','required')
+                label.appendChild(input);
+                div.appendChild(label);
+                td3.appendChild(div);
+                var div=document.createElement('div');
+                div.className="form-check form-check-radio form-check-inline";
+                var label=document.createElement('label');
+                label.textContent="NO";
+                var input_1=document.createElement('input');
+                input_1.setAttribute('type','radio');
+                input_1.setAttribute('name',name);
+                input_1.setAttribute('value','NO');
+                input_1.setAttribute('required','required')
+                label.appendChild(input_1);
+                div.appendChild(label);
+                td3.appendChild(div);
+              }
+              else{
+              for(var j=1;j<6;j++){
 
-
-
-    if(feedbackQuestionsList[i].feedbackQuestionId==17){
-      var div=document.createElement('div');
-        div.className="form-check form-check-radio form-check-inline";
-        var label=document.createElement('label');
-        label.textContent="YES";
-        var input=document.createElement('input');
-        input.setAttribute('type','radio');
-        input.setAttribute('name',name);
-        input.setAttribute('value',"YES");
-        input.setAttribute('required','required')
-        label.appendChild(input);
-        div.appendChild(label);
-        td3.appendChild(div);
-      var div=document.createElement('div');
-        div.className="form-check form-check-radio form-check-inline";
-        var label=document.createElement('label');
-        label.textContent="NO";
-        var input_1=document.createElement('input');
-        input_1.setAttribute('type','radio');
-        input_1.setAttribute('name',name);
-        input_1.setAttribute('value','NO');
-        input_1.setAttribute('required','required')
-        label.appendChild(input_1);
-        div.appendChild(label);
-        td3.appendChild(div);
-      }
-      else{
-      for(var j=1;j<6;j++){
-
-        var div=document.createElement('div');
-        div.className="form-check form-check-radio form-check-inline";
-        var label=document.createElement('label');
-        label.textContent=j;
-        var input=document.createElement('input');
-        input.setAttribute('type','radio');
-        input.setAttribute('name',name);
-        input.setAttribute('value',j);
-        input.setAttribute('required','required')
-        label.appendChild(input);
-        div.appendChild(label);
-        td3.appendChild(div);
-      }
-}
-      k++;
-   
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-              
-    tab.appendChild(tr);
-   
-}
-else if(feedbackQuestionsList[i].feedbackQuestionTypeId==2){
-  srNumbTheory++;
-//alert(feedbackQuestionsList[i].feedbackQuestionId + feedbackQuestionsList[i].feedbackQuestion + feedbackQuestionsList[i].feedbackQuestionTypeId);
-
-    var div1=document.createElement('div');
-    div1.textContent= srNumbTheory+" "+ feedbackQuestionsList[i].feedbackQuestion;
-    var div2 =document.createElement('div');
-    div2.className="form-group form-file-upload form-file-simple";
-     var input1=document.createElement('input');
-     input1.className="form-control inputFileVisible";
-     input1.id=feedbackQuestionsList[i].feedbackQuestionId +"A";
-        input1.setAttribute('type','text');
-        input1.setAttribute('placeholder','Answer');
-        input.setAttribute('required','required');
-        div2.appendChild(input1);
-        mainDiv.appendChild(div1);
-        mainDiv.appendChild(div2);
+                var div=document.createElement('div');
+                div.className="form-check form-check-radio form-check-inline";
+                var label=document.createElement('label');
+                label.textContent=j;
+                var input=document.createElement('input');
+                input.setAttribute('type','radio');
+                input.setAttribute('name',name);
+                input.setAttribute('value',j);
+                input.setAttribute('required','required')
+                label.appendChild(input);
+                div.appendChild(label);
+                td3.appendChild(div);
+              }
+        }
+              k++;
+           
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tab.appendChild(tr);
+           
+        }
+        else if(feedbackQuestionsList[i].feedbackQuestionTypeId==2){
+          srNumbTheory++;
+            var div1=document.createElement('div');
+            div1.textContent= srNumbTheory+" "+ feedbackQuestionsList[i].feedbackQuestion;
+            var div2 =document.createElement('div');
+            div2.className="form-group form-file-upload form-file-simple";
+            var input1=document.createElement('input');
+            input1.className="form-control inputFileVisible";
+            input1.id=feedbackQuestionsList[i].feedbackQuestionId +"A";
+            input1.setAttribute('type','text');
+            input1.setAttribute('placeholder','Answer');
+            input.setAttribute('required','required');
+            div2.appendChild(input1);
+            mainDiv.appendChild(div1);
+            mainDiv.appendChild(div2);
 
 
- }
-}
-var divButton=document.createElement('div');
-divButton.className="btn-submit";
-var submitButton=document.createElement('button')
-submitButton.className="btn btn-primary";
-submitButton.id="formSubmitButton";
-//submitButton.className="close";
-submitButton.textContent="SUBMIT";
-//submitButton.setAtrribute("onclick", "sendUserFeedback(courseId)");
-//submitButton.onclick = "sendUserFeedback(courseId)";
-divButton.appendChild(submitButton);
-form.appendChild(tab);
-form.appendChild(mainDiv);
-form.appendChild(divButton);
-document.getElementById('feedbackFormCard').appendChild(form);
-
-
+         }
+        }
+            var divButton=document.createElement('div');
+            divButton.className="btn-submit";
+            var submitButton=document.createElement('button')
+            submitButton.className="btn btn-primary";
+            submitButton.id="formSubmitButton";
+            submitButton.textContent="SUBMIT";
+            divButton.appendChild(submitButton);
+            form.appendChild(tab);
+            form.appendChild(mainDiv);
+            form.appendChild(divButton);
+            document.getElementById('feedbackFormCard').appendChild(form);
 }
 function sendUserFeedback(course_Id){
 	 
       var courseId=course_Id;
-      alert("preventing refresh");
       event.preventDefault();
-      alert('afetrpreventdefault');
-    
       var feedbackQuestionsList= eval('(' + '${feedbackQuestionsList}' + ')');
-//alert("feedbackQuestionsList : " + feedbackQuestionsList);
-//alert("Creating response list");
-        var responseList=[];
+      var responseList=[];
       var table = document.getElementById('feedbackFormTable');
       var rows = table.getElementsByTagName('tr');
       var k=1;
@@ -1547,18 +1465,12 @@ function sendUserFeedback(course_Id){
  for(var i=0;i<feedbackQuestionsList.length;i++){
   if(feedbackQuestionsList[i].feedbackQuestionTypeId==2){
     var theoryAnswerId=feedbackQuestionsList[i].feedbackQuestionId+"A";
-    //alert(theoryAnswerId);
-  
     var responseTheory= document.getElementById(theoryAnswerId).value;
-   // alert(responseTheory);
     responseList.push(responseTheory); 
 }
  }
-alert(responseList);
-
-        var feedbackFormResponse=[];
-
-      for(var i=0;i<feedbackQuestionsList.length;i++){
+    var feedbackFormResponse=[];
+    for(var i=0;i<feedbackQuestionsList.length;i++){
         var feedbackObj={
           courseId:courseId,
           feedbackId:feedbackQuestionsList[i].feedbackQuestionId,
@@ -1567,9 +1479,6 @@ alert(responseList);
         }
         feedbackFormResponse.push(feedbackObj);
       }
-   // alert(feedbackFormResponse);
-  //  alert("This is sendUserFunction")
-
         $.ajax({
             type: 'POST',
             url: servletURL + 'CourseFeedbackServlet',
@@ -1585,18 +1494,13 @@ alert(responseList);
               alert("Error");
               exampleModalLong
               //document.getElementById("error").innerHTML = "Invalid email or password";
-            }
-
-
-          });
+            }});
         
         alert("Feedback Submitted");
-        
-            $('#exampleModalLong').modal('hide');
+        $('#exampleModalLong').modal('hide');
     
 
     }
-
 
   $(document).ready(function() {
     $().ready(function() {
@@ -1768,6 +1672,261 @@ alert(responseList);
     });
   });
   </script>
+  
+  <script>
+	
+	function getTestDetails(course_id){
+			
+		courseId=course_id;
+			
+		var myData = {
+			courseId:courseId
+		};
+		$.ajax({
+			type: 'POST',
+			url: servletURL + 'PaperAnalysisServlet',
+			data: JSON.stringify(myData),
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			traditional: true,
+			success: function (jsonObj) {
+			
+				questionsList=jsonObj;
+				alert("Questions List" + questionsList);
+				
+				var elem = document.getElementById('btn-score');
+				if(elem!=null){
+					elem.parentNode.removeChild(elem);
+				}
+					
+				var btn_score=document.createElement('button');
+				btn_score.setAttribute('type','button');
+				btn_score.id="btn-score";
+				btn_score.className="btn btn-info";
+				btn_score.setAttribute('style','width:180px;margin-left:20px;');
+				btn_score.textContent="Your Score";
+				var score_span=document.createElement('span');
+				score_span.className="chip primary";
+				//score_span.textContent=20;
+				score_span.textContent=questionsList.marksReceived;
+				btn_score.appendChild(score_span);
+				document.getElementById('test-info').appendChild(btn_score);
+				
+				var elem = document.getElementById('btn-total-score');
+				if(elem!=null){
+					elem.parentNode.removeChild(elem);
+				}
+				
+				var btn__total_score=document.createElement('button');
+				btn__total_score.setAttribute('type','button');
+				btn__total_score.id="btn-total-score";
+				btn__total_score.className="btn btn-info";
+				btn__total_score.setAttribute('style','width:180px;margin-left:50px;');
+				btn__total_score.textContent="Total Marks";
+				var total_score_span=document.createElement('span');
+				total_score_span.className="chip primary";
+				//total_score_span.textContent=30;
+				total_score_span.textContent=questionsList.totalMarksOutOf;
+				btn__total_score.appendChild(total_score_span);
+				document.getElementById('test-info').appendChild(btn__total_score);
+				
+				var elem = document.getElementById('btn-attempted');
+				if(elem!=null){
+					elem.parentNode.removeChild(elem);
+				}
+				
+				var btn_attempted=document.createElement('button');
+				btn_attempted.setAttribute('type','button');
+				btn_attempted.id="btn-attempted";
+				btn_attempted.className="btn btn-info";
+				btn_attempted.setAttribute('style','width:220px;margin-left:50px;');
+				btn_attempted.textContent="Questions Attempted";
+				var attempt_span=document.createElement('span');
+				attempt_span.className="chip primary";
+				attempt_span.textContent=30;
+				btn_attempted.appendChild(attempt_span);
+				document.getElementById('test-info').appendChild(btn_attempted);
+				
+				var elem = document.getElementById('btn-ques');
+				if(elem!=null){
+					elem.parentNode.removeChild(elem);
+				}
+				
+				var btn_ques=document.createElement('button');
+				btn_ques.setAttribute('type','button');
+				btn_ques.id="btn-ques";
+				btn_ques.className="btn btn-info";
+				btn_ques.setAttribute('style','width:200px;margin-left:50px;');
+				btn_ques.textContent="Total Questions";
+				var ques_span=document.createElement('span');
+				ques_span.className="chip primary";
+				//ques_span.textContent=30;
+				ques_span.textContent=questionsList.totalQuestions;
+				btn_ques.appendChild(ques_span);
+				document.getElementById('test-info').appendChild(btn_ques);
+			
+				for(var i=0;i<questionsList.userTestResponses.length;i++){
+					
+					//alert("Question count: " + (i+1));
+				
+					var div_questions=document.createElement('div');
+					div_questions.id = "div-ques";
+					/*
+					var elem = document.getElementById('div-ques');
+					if(elem!=null){
+						elem.parentNode.removeChild(elem);
+					}
+					*/
+					var question_col=document.createElement('div');
+					question_col.className="col-md-6";
+					
+					var ques_card=document.createElement('div');
+					ques_card.className="card";
+					ques_card.setAttribute('style',"width:920px; margin-left:120px;");
+					
+					var ques_card_body=document.createElement('div');
+					ques_card_body.className="card-body";
+					ques_card_body.setAttribute('style',"margin-left:30px");
+					
+					var status = document.createElement('p');
+					if(questionsList.userTestResponses[i].isCorrect==1)
+					{
+						status.setAttribute('style',"color:green; font-weight:bolder;");
+						status.textContent="CORRECT";
+					}
+					else if(questionsList.userTestResponses[i].isCorrect==0)
+					{
+						status.setAttribute('style',"color:red; font-style:bold;");
+						status.textContent="WRONG";
+					}
+					//status.textContent=questionsList.userTestResponses[i].isCorrect;
+					ques_card_body.appendChild(status);
+					
+					//alert("Question No: " + questionsList.userTestResponses[i].questionNo);
+					var question = document.createElement('pre');
+					question.textContent=questionsList.userTestResponses[i].questionNo+". " + questionsList.userTestResponses[i].question;
+					question.setAttribute('style','font-family:Arial, Helvetica, sans-serif;font-size:14px');
+					ques_card_body.appendChild(question);
+						
+					var options_div=document.createElement('div');
+					options_div.id="div-options";
+					//options_div.setAttribute('style',"margin-left:425px; position:relative; margin-top:-150px;");
+					//div_options.appendChild(options_div);
+					
+					var radio_1=document.createElement('div');
+					radio_1.className="form-check form-check-radio disabled";
+					var label_1=document.createElement('label');
+					label_1.className="form-check-label";
+					var input_1=document.createElement('input');
+					input_1.className="form-check-input";
+					input_1.setAttribute('type',"radio");
+					input_1.setAttribute('disabled',true);
+					//label_1.textContent=1;
+					label_1.textContent=questionsList.userTestResponses[i].option1;
+					label_1.appendChild(input_1);
+					var span=document.createElement('span');
+					span.className="circle";
+					var inner_span=document.createElement('span');
+					inner_span.className="check";
+					span.appendChild(inner_span);
+					label_1.appendChild(span);
+					radio_1.appendChild(label_1);
+					options_div.appendChild(radio_1);
+					
+					var radio_1=document.createElement('div');
+					radio_1.className="form-check form-check-radio disabled";
+					var label_1=document.createElement('label');
+					label_1.className="form-check-label";
+					var input_1=document.createElement('input');
+					input_1.className="form-check-input";
+					input_1.setAttribute('type',"radio");
+					input_1.setAttribute('disabled',true);
+					//label_1.textContent=2;
+					label_1.textContent=questionsList.userTestResponses[i].option2;
+					label_1.appendChild(input_1);
+					var span=document.createElement('span');
+					span.className="circle";
+					var inner_span=document.createElement('span');
+					inner_span.className="check";
+					span.appendChild(inner_span);
+					label_1.appendChild(span);
+					radio_1.appendChild(label_1);
+					options_div.appendChild(radio_1);
+					
+					var radio_1=document.createElement('div');
+					radio_1.className="form-check form-check-radio disabled";
+					var label_1=document.createElement('label');
+					label_1.className="form-check-label";
+					var input_1=document.createElement('input');
+					input_1.className="form-check-input";
+					input_1.setAttribute('type',"radio");
+					input_1.setAttribute('disabled',true);
+					//label_1.textContent=3;
+					label_1.textContent=questionsList.userTestResponses[i].option3;
+					label_1.appendChild(input_1);
+					var span=document.createElement('span');
+					span.className="circle";
+					var inner_span=document.createElement('span');
+					inner_span.className="check";
+					span.appendChild(inner_span);
+					label_1.appendChild(span);
+					radio_1.appendChild(label_1);
+					options_div.appendChild(radio_1);
+					
+					var radio_1=document.createElement('div');
+					radio_1.className="form-check form-check-radio disabled";
+					var label_1=document.createElement('label');
+					label_1.className="form-check-label";
+					var input_1=document.createElement('input');   
+					input_1.className="form-check-input";
+					input_1.setAttribute('type',"radio");
+					input_1.setAttribute('disabled',true);
+					//label_1.textContent="Compilation Error";
+					label_1.textContent=questionsList.userTestResponses[i].option4;
+					label_1.appendChild(input_1);
+					var span=document.createElement('span');
+					span.className="circle";
+					var inner_span=document.createElement('span');
+					inner_span.className="check";
+					span.appendChild(inner_span);
+					label_1.appendChild(span);
+					radio_1.appendChild(label_1);
+					options_div.appendChild(radio_1);
+					
+					ques_card_body.appendChild(options_div);
+					
+					var your_ans = document.createElement('p');
+					your_ans.textContent="Your Answer : "+ questionsList.userTestResponses[i].selectedOption;
+					ques_card_body.appendChild(your_ans);
+					
+					var correct_ans = document.createElement('p');
+					correct_ans.textContent="Correct Answer : "+ questionsList.userTestResponses[i].correctOption;
+					ques_card_body.appendChild(correct_ans);
+					
+					var explain = document.createElement('p');
+					explain.textContent="Explanation : "+ questionsList.userTestResponses[i].explanation;
+					ques_card_body.appendChild(explain);
+					
+					ques_card.appendChild(ques_card_body);
+					question_col.appendChild(ques_card);
+					div_questions.appendChild(question_col);
+					document.getElementById('questions').appendChild(div_questions);
+					
+					
+				}
+				  
+			},
+			error: function(){
+				alert("Error");
+				//document.getElementById("error").innerHTML = "Invalid email or password";
+			}
+
+		});
+			
+				
+	}
+</script>
+  
   <script>
   $(document).ready(function() {
     // Javascript method's body can be found in assets/js/demos.js
@@ -1845,24 +2004,17 @@ myChart = new Chart(ctx, {
 });
 
 var searchString = window.location.search.substring(1);
-//alert("SearchString = " + searchString);
+
   var arr = searchString.split('&');
   var data= arr[0].split('=')[1];
   var decodedData = decodeURIComponent(data);
-  //alert(decodedData);
   var data1 = decodedData.substring(0, decodedData.indexOf('}')+1);
- // alert(data1);
   userProfile =  eval('(' + data1 + ')');
   document.getElementById('welcome').textContent = userProfile.firstName + " " + userProfile.lastName;
   var data2 = decodedData.substring(decodedData.indexOf('}')+1, decodedData.length);
- // alert(data2);
   streamList = eval('(' + data2 + ')');
-     // alert(streamList);
+    
             for(i=0; i<streamList.length; i++){
-              // alert(streamList[i].streamId + ":" + streamList[i].streamName)
-              // var arr = ['Technical','SoftSkills','General Aptitude'];
-              // for (var i = 0; i < arr.length; i++) {
-              // Inserted code
               var div1 = document.createElement('div');
               div1.id="tab-div";
               var li = document.createElement('li');
@@ -1876,18 +2028,14 @@ var searchString = window.location.search.substring(1);
               anchor.id = streamList[i].streamId + 'a';
               anchor.textContent=streamList[i].streamName;
               li.id = streamList[i].streamId;
-             // alert("Li id = " + li.id);
               li.appendChild(anchor);
               li.setAttribute('onclick', "getStreamId(this.id)");
               div1.appendChild(li);
               document.getElementById("nav-tab").appendChild(div1);
-              // End Inserted Code
             }
-            // }
+            
             var streamElem = document.getElementById(streamList[0].streamId + 'a');
             streamElem.className='nav-link active';
-            
-            //End- Extract Stream List
             var drop1 = document.getElementsByClassName('drop1');
             var btn = document.createElement('button');
             btn.className='btn btn-secondary dropdown-toggle';
@@ -1895,34 +2043,15 @@ var searchString = window.location.search.substring(1);
             btn.setAttribute('data-toggle', "dropdown");
             btn.setAttribute('aria-haspopup', "true");
             btn.setAttribute('aria-expanded',"false");
-           // btn.textContent="MODULAR";
             btn.textContent="Course Category";
             document.getElementById('drop11').appendChild(btn);
-
             var dropdownMenu = document.createElement('div');
             dropdownMenu.className='dropdown-menu';
             dropdownMenu.id='dropdownMenu';
             dropdownMenu.setAttribute('aria-labelledby',"dropdownMenuButton");
-            //Start- Extract Course Type List
-           /* var courseTypes = decodedData.substring(decodedData.indexOf(']')+1, decodedData.length);
-            var courseTypesList = eval('(' + courseTypes + ')');
-            // var arr2 = ['Modular','TBC','CRT'];
-            for(i=0; i<courseTypesList.length; i++){
-              var dropanchor = document.createElement('a');
-              dropanchor.className='dropdown-item';
-              dropanchor.setAttribute('href',"#");
-              dropanchor.id=courseTypesList[i].courseTypeId;
-              dropanchor.textContent=(courseTypesList[i].courseTypeName).toUpperCase();
-              dropanchor.setAttribute('onclick',"displayStreamCourses(this.id, this.textContent)");
-
-              dropdownMenu.appendChild(dropanchor);
-              // alert(courseTypesList[i].courseTypeId + ":" + courseTypesList[i].courseTypeName)
-            }*/
             document.getElementById('drop11').appendChild(dropdownMenu);
-
-
 getStreamId(streamList[0].streamId);
-displayStreamCourses(courseTypeId, courseTypeName);/*Diksha*/
+displayStreamCourses(courseTypeId, courseTypeName);
 
 }
 
@@ -1936,3 +2065,4 @@ $(document).ready(function() {
 </body>
 
 </html>
+

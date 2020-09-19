@@ -24,6 +24,8 @@ public class PaperAnalysisWrapper {
 		this.marksReceived = marksReceived;
 		this.totalMarksOutOf = totalMarks;
 		this.userTestResponses = userTestResponses;
+		
+		
 	}
 	
 	
@@ -59,4 +61,14 @@ public class PaperAnalysisWrapper {
 	public void setUserTestResponses(ArrayList<UserTestResponses> userTestResponses) {
 		this.userTestResponses = userTestResponses;
 	}
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return ""+this.getMarksReceived()+"   "+this.getTotalMarksOutOf()+"   "+this.getTotalQuestions();
+	}
+	
+	
+	
 }
