@@ -6,10 +6,11 @@ public class QuestionAnswerWrapper {
 
 		int questionNo;
 		String questionStatement;
-		ArrayList<String>options;
+		ArrayList<String>options;   // String array.
 		int selectedOption;
 		int correctOption;
 		int marks;
+		int isCorrect;
 		String explanation;
 		
 		public QuestionAnswerWrapper() {
@@ -28,6 +29,16 @@ public class QuestionAnswerWrapper {
 			this.marks = marks;
 		}
 		
+
+		public int getIsCorrect() {
+			return isCorrect;
+		}
+
+
+		public void setIsCorrect(int isCorrect) {
+			this.isCorrect = isCorrect;
+		}
+
 
 		public int getQuestionNo() {
 			return questionNo;

@@ -140,12 +140,15 @@ public class ResultDao {
 			
 			try(Connection connection = ConnectionManager.getConnection()){
 				Statement statement = connection.createStatement();
-				String query = "SELECT COURSE_TYPE.COURSE_TYPE_NAME, COURSES.COURSE_ID, COURSES.COURSE_NAME\n" + 
+				String query = "SELECT STREAM_NAME,COURSE_TYPE.COURSE_TYPE_NAME, COURSES.COURSE_ID, COURSES.COURSE_NAME\n" + 
 						"FROM COURSES JOIN COURSE_TYPE  \n" + 
 						"ON COURSES.COURSE_TYPE_ID =  COURSE_TYPE.COURSE_TYPE_ID \n"+
 						"JOIN STREAMS\n" + 
-						"ON COURSES.STREAM_ID = STREAMS.STREAM_ID"+
+						"ON COURSES.STREAM_ID = STREAMS.STREAM_ID "+
 						"WHERE COURSES.COURSE_ID ="+courseId  ;
+				System.out.println("########################################################################");
+				System.out.println(query);
+				System.out.println("########################################################################");
 				
 				resultSet = statement.executeQuery(query);
 				while(resultSet.next()) {
@@ -153,7 +156,7 @@ public class ResultDao {
 							"_"+resultSet.getString("COURSE_TYPE_NAME").toUpperCase();
 					
 					System.out.println(resultTableName);
-					questionBankTableName = resultSet.getString("STREAM_NAME").toUpperCase()+"_QUESTION_BANKS";
+					questionBankTableName = resultSet.getString("STREAM_NAME").toUpperCase()+"_QUESTION_BANK";
 				}
 				
 				query ="SELECT A.USER_TEST_ID,A.MARKS_RECEIVED, B.TOTAL_QUESTIONS FROM USER_TEST_DETAILS A\n" + 
@@ -165,7 +168,8 @@ public class ResultDao {
 				resultSet = statement.executeQuery(query);
 				while(resultSet.next()) {
 					userTestId = resultSet.getInt("USER_TEST_ID");
-					paperAnalysisWrapper.setMarksReceived(resultSet.getInt("MARKS_RCEIVED"));
+					paperAnalysisWrapper.setMarksReceived(resultSet.getInt("MARKS_RECEIVED"));
+					paperAnalysisWrapper.setTotalQuestions(resultSet.getInt("TOTAL_QUESTIONS"));
 				}
 				
 				query = "SELECT A.Q_NUMBER,A.STUDENT_RESPONSE,A.IS_CORRECT,B.EXPLANATION,B.MARKS,B.OPTION_1,B.OPTION_2,"
@@ -177,28 +181,38 @@ public class ResultDao {
 						"ON E.TOPIC_ID = B.TOPIC_ID AND E.COURSE_ID = B.COURSE_ID \n"+ 
 						"WHERE USER_TEST_ID =" + userTestId + " ORDER BY Q_NUMBER";
 				
+				resultSet = statement.executeQuery(query);
+				
+				
+				System.out.println("@@@@@@@@@@@@@@");
+				System.out.println(query);
+				System.out.println("@@@@@@@@@@@@@@");
+				
 				while(resultSet.next()) {
 					userTestResponses = new UserTestResponses();
 					questionAnswerWrapper = new QuestionAnswerWrapper();
-					totalMarks += resultSet.getInt("B.MARKS");
-					questionAnswerWrapper.setCorrectOption(resultSet.getInt(""));
+					totalMarks += resultSet.getInt("MARKS");
+					System.out.println("total marks = = = = "+totalMarks);
+					System.out.println(resultSet.getInt("IS_CORRECT"));
+					userTestResponses.setIsCorrect(resultSet.getInt("IS_CORRECT"));
 //					userTestResponses.setCorrectOptionInt(resultSet.getInt("B.CORRECT_OPTION"));
 					
-					userTestResponses.setOption1(resultSet.getString("B.OPTION_1"));
-					userTestResponses.setOption2(resultSet.getString("B.OPTION_2"));
-					userTestResponses.setOption3(resultSet.getString("B.OPTION_3"));
-					userTestResponses.setOption4(resultSet.getString("B.OPTION_4"));
+					userTestResponses.setOption1(resultSet.getString("OPTION_1"));
+					userTestResponses.setOption2(resultSet.getString("OPTION_2"));
+					userTestResponses.setOption3(resultSet.getString("OPTION_3"));
+					userTestResponses.setOption4(resultSet.getString("OPTION_4"));
 					userTestResponses.setDifficultyLevelName(resultSet.getString("DIFFICULTY_LEVEL_NAME"));
 					userTestResponses.setTopicName(resultSet.getString("TOPIC_NAME"));
-					userTestResponses.setCorrectOptionInt(resultSet.getInt("B.CORRECT_OPTION"));
-					userTestResponses.setQuestionNo(resultSet.getInt("A.Q_NUMBER"));
-					userTestResponses.setTotalMarks(resultSet.getInt("B.MARKS"));
-					userTestResponses.setSelectedOption(resultSet.getInt("A.STUDENT_RESPONSE"));
-					userTestResponses.setQuestion(resultSet.getString("B.QUESTION"));
-					userTestResponses.setExplanation(resultSet.getString("B.EXPLANATION"));
+					userTestResponses.setCorrectOption(resultSet.getString("CORRECT_OPTION"));
+					userTestResponses.setQuestionNo(resultSet.getInt("Q_NUMBER"));
+					userTestResponses.setTotalMarks(resultSet.getInt("MARKS"));
+					userTestResponses.setSelectedOption(resultSet.getInt("STUDENT_RESPONSE"));
+					userTestResponses.setQuestion(resultSet.getString("QUESTION"));
+					userTestResponses.setExplanation(resultSet.getString("EXPLANATION"));
 					userTestResponsesList.add(userTestResponses);
 				}
 				paperAnalysisWrapper.setTotalMarksOutOf(totalMarks);
+				System.out.println("TOTAL MARKS : "+paperAnalysisWrapper.getTotalMarksOutOf()+"   "+totalMarks);
 				paperAnalysisWrapper.setUserTestResponses(userTestResponsesList);			
 			} 
 			
