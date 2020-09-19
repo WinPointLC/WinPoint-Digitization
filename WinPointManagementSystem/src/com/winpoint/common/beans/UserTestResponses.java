@@ -5,6 +5,24 @@ public class UserTestResponses extends QuestionBank{
 	int isCorrect;
 	int selectedOption;
 	int questionNo;
+	String DifficultyLevelName;
+	public String getDifficultyLevelName() {
+		return DifficultyLevelName;
+	}
+
+	public void setDifficultyLevelName(String difficultyLevelName) {
+		DifficultyLevelName = difficultyLevelName;
+	}
+
+	public String getTopicName() {
+		return TopicName;
+	}
+
+	public void setTopicName(String topicName) {
+		TopicName = topicName;
+	}
+
+	String TopicName;
 	
 	
 	public UserTestResponses() {

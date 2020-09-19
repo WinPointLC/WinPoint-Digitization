@@ -169,10 +169,13 @@ public class ResultDao {
 				}
 				
 				query = "SELECT A.Q_NUMBER,A.STUDENT_RESPONSE,A.IS_CORRECT,B.EXPLANATION,B.MARKS,B.OPTION_1,B.OPTION_2,"
-						+ "B.OPTION_3,B.OPTION_4,B.QUESTION,B.CORRECT_OPTION FROM " + resultTableName + 
+						+ "B.OPTION_3,B.OPTION_4,B.QUESTION,B.CORRECT_OPTION, C.DIFFICULTY_LEVEL_NAME,E.TOPIC_NAME FROM " + resultTableName + 
 						" A JOIN "+ questionBankTableName +" B\n" + 
-						"ON A.QUESTION_ID = B.QUESTION_ID \n"+ 
-						"WHERE USER_TEST_ID =" + userTestId;
+						"ON A.QUESTION_ID = B.QUESTION_ID JOIN DIFFICULTY_LEVEL C\n" + 
+						"ON B.DIFFICULTY_LEVEL_ID = C.DIFFICULTY_LEVEL_ID\n" + 
+						"JOIN TOPICS E \n" + 
+						"ON E.TOPIC_ID = B.TOPIC_ID AND E.COURSE_ID = B.COURSE_ID \n"+ 
+						"WHERE USER_TEST_ID =" + userTestId + " ORDER BY Q_NUMBER";
 				
 				while(resultSet.next()) {
 					userTestResponses = new UserTestResponses();
@@ -185,8 +188,8 @@ public class ResultDao {
 					userTestResponses.setOption2(resultSet.getString("B.OPTION_2"));
 					userTestResponses.setOption3(resultSet.getString("B.OPTION_3"));
 					userTestResponses.setOption4(resultSet.getString("B.OPTION_4"));
-					
-					
+					userTestResponses.setDifficultyLevelName(resultSet.getString("DIFFICULTY_LEVEL_NAME"));
+					userTestResponses.setTopicName(resultSet.getString("TOPIC_NAME"));
 					userTestResponses.setCorrectOptionInt(resultSet.getInt("B.CORRECT_OPTION"));
 					userTestResponses.setQuestionNo(resultSet.getInt("A.Q_NUMBER"));
 					userTestResponses.setTotalMarks(resultSet.getInt("B.MARKS"));
