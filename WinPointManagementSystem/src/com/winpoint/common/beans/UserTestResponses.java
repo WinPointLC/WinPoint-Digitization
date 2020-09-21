@@ -3,7 +3,7 @@ package com.winpoint.common.beans;
 
 public class UserTestResponses extends QuestionBank{
 	int isCorrect;
-	int selectedOption;
+	char selectedOption;
 	int questionNo;
 	String DifficultyLevelName;
 	public String getDifficultyLevelName() {
@@ -29,7 +29,7 @@ public class UserTestResponses extends QuestionBank{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public UserTestResponses(int isCorrect, int selectedOption, String question, String option1,
+	public UserTestResponses(int isCorrect, char selectedOption, String question, String option1,
 			String option2, String option3, String option4, Integer correctOption, Integer totalMarks, String explanation) {
 		
 		super(question,  option1,option2,  option3,  option4,  correctOption,  totalMarks,  explanation);
@@ -46,11 +46,11 @@ public class UserTestResponses extends QuestionBank{
 		this.isCorrect = isCorrect;
 	}
 
-	public int getSelectedOption() {
+	public char getSelectedOption() {
 		return selectedOption;
 	}
 
-	public void setSelectedOption(int selectedOption) {
+	public void setSelectedOption(char selectedOption) {
 		this.selectedOption = selectedOption;
 	}
 

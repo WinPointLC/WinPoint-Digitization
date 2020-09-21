@@ -15,7 +15,6 @@ import com.winpoint.common.beans.Result;
 import com.winpoint.common.beans.UserTestResponses;
 import com.winpoint.common.util.sql.ConnectionManager;
 import com.winpoint.common.wrappers.PaperAnalysisWrapper;
-import com.winpoint.common.wrappers.QuestionAnswerWrapper;
 
 public class ResultDao {
 	public boolean updateStudentTestResponses(int userId, List<QuestionBank> questionsList, Integer[] answersList, Integer[] isCorrectList, Result result){
@@ -135,7 +134,6 @@ public class ResultDao {
 			ArrayList<UserTestResponses>userTestResponsesList = new ArrayList<>();
 	
 			PaperAnalysisWrapper paperAnalysisWrapper = new PaperAnalysisWrapper();
-			QuestionAnswerWrapper questionAnswerWrapper;
 			UserTestResponses userTestResponses;
 			
 			try(Connection connection = ConnectionManager.getConnection()){
@@ -190,7 +188,6 @@ public class ResultDao {
 				
 				while(resultSet.next()) {
 					userTestResponses = new UserTestResponses();
-					questionAnswerWrapper = new QuestionAnswerWrapper();
 					totalMarks += resultSet.getInt("MARKS");
 					System.out.println("total marks = = = = "+totalMarks);
 					System.out.println(resultSet.getInt("IS_CORRECT"));
@@ -206,7 +203,7 @@ public class ResultDao {
 					userTestResponses.setCorrectOption(resultSet.getString("CORRECT_OPTION"));
 					userTestResponses.setQuestionNo(resultSet.getInt("Q_NUMBER"));
 					userTestResponses.setTotalMarks(resultSet.getInt("MARKS"));
-					userTestResponses.setSelectedOption(resultSet.getInt("STUDENT_RESPONSE"));
+					userTestResponses.setSelectedOption((char)(resultSet.getInt("STUDENT_RESPONSE")+64));
 					userTestResponses.setQuestion(resultSet.getString("QUESTION"));
 					userTestResponses.setExplanation(resultSet.getString("EXPLANATION"));
 					userTestResponsesList.add(userTestResponses);
