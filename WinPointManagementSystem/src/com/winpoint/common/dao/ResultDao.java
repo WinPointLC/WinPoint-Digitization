@@ -131,6 +131,7 @@ public class ResultDao {
 			String questionBankTableName = null;
 			int userTestId = 0;
 			int totalMarks=0;
+			int attempted = 0;
 			ArrayList<UserTestResponses>userTestResponsesList = new ArrayList<>();
 	
 			PaperAnalysisWrapper paperAnalysisWrapper = new PaperAnalysisWrapper();
@@ -144,7 +145,7 @@ public class ResultDao {
 						"JOIN STREAMS\n" + 
 						"ON COURSES.STREAM_ID = STREAMS.STREAM_ID "+
 						"WHERE COURSES.COURSE_ID ="+courseId  ;
-				System.out.println("########################################################################");
+				System.out.println("##  ######################################################################");
 				System.out.println(query);
 				System.out.println("########################################################################");
 				
@@ -212,7 +213,11 @@ public class ResultDao {
 					userTestResponses.setQuestion(resultSet.getString("QUESTION"));
 					userTestResponses.setExplanation(resultSet.getString("EXPLANATION"));
 					userTestResponsesList.add(userTestResponses);
+					if((Integer)resultSet.getInt("STUDENT_RESPONSE")!= null) {
+						attempted+=1;
+					}
 				}
+				paperAnalysisWrapper.setQuestionsAttempted(attempted);
 				paperAnalysisWrapper.setTotalMarksOutOf(totalMarks);
 				System.out.println("TOTAL MARKS : "+paperAnalysisWrapper.getTotalMarksOutOf()+"   "+totalMarks);
 				paperAnalysisWrapper.setUserTestResponses(userTestResponsesList);			

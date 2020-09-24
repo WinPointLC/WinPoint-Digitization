@@ -8,6 +8,7 @@ import com.winpoint.common.beans.UserTestResponses;
 public class PaperAnalysisWrapper {
 	
 	private int totalQuestions;
+	private int questionsAttempted;
 	private int marksReceived;
 	private int totalMarksOutOf;
 	private int testAttempted;
@@ -81,6 +82,13 @@ public class PaperAnalysisWrapper {
 	
 	public void setUserTestResponses(ArrayList<UserTestResponses> userTestResponses) {
 		this.userTestResponses = userTestResponses;
+	}
+	
+	public int getQuestionsAttempted() {
+		return questionsAttempted;
+	}
+	public void setQuestionsAttempted(int questionsAttempted) {
+		this.questionsAttempted = questionsAttempted;
 	}
 
 
