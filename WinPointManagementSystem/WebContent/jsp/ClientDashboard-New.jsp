@@ -32,8 +32,12 @@
 				}
 
 				.chip.primary{
-					background: #2F4058;
-					color: whitesmoke;
+					background: #e0e0eb;
+					color: black;
+				}
+				
+				.btn-clr{
+					background:#000080;
 				}
 	</style>
   
@@ -550,21 +554,10 @@ function LogoutSession() {
 						</button>
 					</div>
 					<div class="modal-body">
-						  <!--<div class="col-md-3">
-							<div class="stats">
-							  <div class="dropdown">
-								<button style ="margin-left:350px; width:200px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonBatch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								  Select Test
-								</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="test-dropdown">
-
-								</div>
-							  </div>
-							</div>
-						  </div>-->
-						  
-						  <br>
-							<div id="test-info"></div><br>
+						 
+							<div id="test-info" class="row" style="margin-left:50px; width:870px;" ></div><br>
+							<p style="margin-left:400px;">TOPIC WISE ANALYSIS</p>
+							<div id="bar-chart" style="margin-left:300px;width:200px;height:300px;margin-top:30px"></div><br>
 							<div id="questions" style="margin-left:-110px; width:150px;"></div>
 					</div>						 
 				</div>
@@ -657,6 +650,7 @@ function LogoutSession() {
   var feedbackframe
   var resultframe;
   var courseframe;
+  var courseId;
 
 
   function Removeframes() {
@@ -1177,8 +1171,10 @@ for(var j=0 ; j<responseJson.length; j++){
 	 var a_pa  = document.createElement('a');
 	a_pa.textContent = 'Go To Paper Analysis';
 	a_pa.className="modal-btn card-link";
-	/*
-	if(responseJson[j].testAttempted==1)
+	
+	alert("TEST ATTEMPTED:  " + responseJson[j].testAttempt);
+	
+	if(responseJson[j].testAttempt==1)
 	{
 		a_pa.className="modal-btn card-link";
 	}
@@ -1186,7 +1182,7 @@ for(var j=0 ; j<responseJson.length; j++){
 	{
 		a_pa.className="modal-btn card-link disabled-link";
 	}
-		*/
+		
 	a_pa.id="pa-link"+(j+1);
 	a_pa.setAttribute('course-id',responseJson[j].courseId);
 	a_pa.setAttribute('onclick',"getTestDetails(this.getAttribute('course-id'))");
@@ -1678,6 +1674,9 @@ function sendUserFeedback(course_Id){
 	function getTestDetails(course_id){
 			
 		courseId=course_id;
+		
+		google.charts.load('current', {'packages':['bar']});
+		google.charts.setOnLoadCallback(drawChart2);
 			
 		var myData = {
 			courseId:courseId
@@ -1702,8 +1701,8 @@ function sendUserFeedback(course_Id){
 				var btn_score=document.createElement('button');
 				btn_score.setAttribute('type','button');
 				btn_score.id="btn-score";
-				btn_score.className="btn btn-info";
-				btn_score.setAttribute('style','width:180px;margin-left:20px;');
+				btn_score.className="btn btn-clr col";
+				//btn_score.setAttribute('style','width:180px;margin-left:50px;');
 				btn_score.textContent="Your Score";
 				var score_span=document.createElement('span');
 				score_span.className="chip primary";
@@ -1720,8 +1719,8 @@ function sendUserFeedback(course_Id){
 				var btn__total_score=document.createElement('button');
 				btn__total_score.setAttribute('type','button');
 				btn__total_score.id="btn-total-score";
-				btn__total_score.className="btn btn-info";
-				btn__total_score.setAttribute('style','width:180px;margin-left:50px;');
+				btn__total_score.className="btn btn-clr col";
+				//btn__total_score.setAttribute('style','width:180px;margin-left:250px;margin-top:-30px;');
 				btn__total_score.textContent="Total Marks";
 				var total_score_span=document.createElement('span');
 				total_score_span.className="chip primary";
@@ -1738,8 +1737,8 @@ function sendUserFeedback(course_Id){
 				var btn_attempted=document.createElement('button');
 				btn_attempted.setAttribute('type','button');
 				btn_attempted.id="btn-attempted";
-				btn_attempted.className="btn btn-info";
-				btn_attempted.setAttribute('style','width:220px;margin-left:50px;');
+				btn_attempted.className="btn btn-clr col";
+				//btn_attempted.setAttribute('style','width:220px;margin-left:20px;');
 				btn_attempted.textContent="Questions Attempted";
 				var attempt_span=document.createElement('span');
 				attempt_span.className="chip primary";
@@ -1755,8 +1754,8 @@ function sendUserFeedback(course_Id){
 				var btn_ques=document.createElement('button');
 				btn_ques.setAttribute('type','button');
 				btn_ques.id="btn-ques";
-				btn_ques.className="btn btn-info";
-				btn_ques.setAttribute('style','width:200px;margin-left:50px;');
+				btn_ques.className="btn btn-clr col";
+				//btn_ques.setAttribute('style','width:200px;margin-left:20px;');
 				btn_ques.textContent="Total Questions";
 				var ques_span=document.createElement('span');
 				ques_span.className="chip primary";
@@ -1764,13 +1763,21 @@ function sendUserFeedback(course_Id){
 				ques_span.textContent=questionsList.totalQuestions;
 				btn_ques.appendChild(ques_span);
 				document.getElementById('test-info').appendChild(btn_ques);
+				
+				var div_questions=document.createElement('div');
+				div_questions.id = "div-ques";
+				
+				var elem = document.getElementById('div-ques');
+				if(elem!=null){
+					elem.parentNode.removeChild(elem);
+				}
 			
 				for(var i=0;i<questionsList.userTestResponses.length;i++){
 					
 					//alert("Question count: " + (i+1));
 				
-					var div_questions=document.createElement('div');
-					div_questions.id = "div-ques";
+					//var div_questions=document.createElement('div');
+					//div_questions.id = "div-ques";
 					/*
 					var elem = document.getElementById('div-ques');
 					if(elem!=null){
@@ -1813,6 +1820,8 @@ function sendUserFeedback(course_Id){
 					//options_div.setAttribute('style',"margin-left:425px; position:relative; margin-top:-150px;");
 					//div_options.appendChild(options_div);
 					
+					var span_alpha=document.createElement('span');
+				    span_alpha.textContent='A ';	
 					var radio_1=document.createElement('div');
 					radio_1.className="form-check form-check-radio disabled";
 					var label_1=document.createElement('label');
@@ -1830,9 +1839,12 @@ function sendUserFeedback(course_Id){
 					inner_span.className="check";
 					span.appendChild(inner_span);
 					label_1.appendChild(span);
+					radio_1.appendChild(span_alpha);
 					radio_1.appendChild(label_1);
 					options_div.appendChild(radio_1);
 					
+					var span_alpha=document.createElement('span');
+				    span_alpha.textContent='B ';		
 					var radio_1=document.createElement('div');
 					radio_1.className="form-check form-check-radio disabled";
 					var label_1=document.createElement('label');
@@ -1850,9 +1862,13 @@ function sendUserFeedback(course_Id){
 					inner_span.className="check";
 					span.appendChild(inner_span);
 					label_1.appendChild(span);
+					radio_1.appendChild(span_alpha);
 					radio_1.appendChild(label_1);
 					options_div.appendChild(radio_1);
 					
+					
+					var span_alpha=document.createElement('span');
+				    span_alpha.textContent='C ';	
 					var radio_1=document.createElement('div');
 					radio_1.className="form-check form-check-radio disabled";
 					var label_1=document.createElement('label');
@@ -1870,9 +1886,12 @@ function sendUserFeedback(course_Id){
 					inner_span.className="check";
 					span.appendChild(inner_span);
 					label_1.appendChild(span);
+					radio_1.appendChild(span_alpha);
 					radio_1.appendChild(label_1);
 					options_div.appendChild(radio_1);
 					
+					var span_alpha=document.createElement('span');
+				    span_alpha.textContent='D ';		
 					var radio_1=document.createElement('div');
 					radio_1.className="form-check form-check-radio disabled";
 					var label_1=document.createElement('label');
@@ -1890,6 +1909,7 @@ function sendUserFeedback(course_Id){
 					inner_span.className="check";
 					span.appendChild(inner_span);
 					label_1.appendChild(span);
+					radio_1.appendChild(span_alpha);
 					radio_1.appendChild(label_1);
 					options_div.appendChild(radio_1);
 					
@@ -1906,6 +1926,11 @@ function sendUserFeedback(course_Id){
 					var explain = document.createElement('p');
 					explain.textContent="Explanation : "+ questionsList.userTestResponses[i].explanation;
 					ques_card_body.appendChild(explain);
+					
+					var diff_topic=document.createElement('pre');
+					diff_topic.textContent="Topic : " + questionsList.userTestResponses[i].TopicName + "            Difficulty Level : " +  questionsList.userTestResponses[i].DifficultyLevelName;
+					diff_topic.setAttribute('style','font-family:Arial, Helvetica, sans-serif;font-size:14px');
+					ques_card_body.appendChild(diff_topic);
 					
 					ques_card.appendChild(ques_card_body);
 					question_col.appendChild(ques_card);
@@ -1925,6 +1950,54 @@ function sendUserFeedback(course_Id){
 			
 				
 	}
+	
+	function drawChart2() {
+
+ 	 var myData = {
+	     			courseId: courseId
+    	    	  };
+			$.ajax({
+				type: 'POST',
+				url: servletURL + 'AnalyticsServlet?getInfoParam=topicDetails&view=ClientDash',
+				data: JSON.stringify(myData),
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				traditional: true,
+				success: function (jsonObj) {
+					//alert("Success from AnalyticsForm");
+					var responseJson1=jsonObj[0], responseJson2=jsonObj[1];
+
+					
+
+				  var topicArray = [];// = [['Course', 'Marks'],['C', 10],['DS', 40],['Java', 70]];
+				  var topicHeader = ['TopicName', 'TopicwiseMarks'];
+				  topicArray.push(topicHeader);
+				  for(var i=0; i<responseJson2.length; i++){
+					// alert(studentCourseDetailsList.courseName);
+					var topicData = [responseJson2[i].topicName , responseJson2[i].topicwiseNumberOfCorrectAns];
+					topicArray.push(topicData);
+				  }
+
+				  // alert("topicArray: "+  topicArray);
+				  var data = new google.visualization.arrayToDataTable(topicArray);
+
+							var options = {
+									legend: { position: 'none'},
+									title: 'Your Topicwise score in Evaluations',
+									 width: 400,
+									 height: 300,
+							};
+							var chart = new google.charts.Bar(document.getElementById('bar-chart'));
+							chart.draw(data, options);
+						},
+						error: function(){
+							//alert("Error");
+							document.getElementById("error").innerHTML = "Invalid email or password";
+						}
+
+			});
+
+}
 </script>
   
   <script>
@@ -2065,4 +2138,3 @@ $(document).ready(function() {
 </body>
 
 </html>
-

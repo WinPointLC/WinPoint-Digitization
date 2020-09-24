@@ -157,7 +157,7 @@ public class ResultDao {
 					questionBankTableName = resultSet.getString("STREAM_NAME").toUpperCase()+"_QUESTION_BANK";
 				}
 				
-				query ="SELECT A.USER_TEST_ID,A.MARKS_RECEIVED, B.TOTAL_QUESTIONS FROM USER_TEST_DETAILS A\n" + 
+				query ="SELECT A.ATTEMPTED, A.USER_TEST_ID,A.MARKS_RECEIVED, B.TOTAL_QUESTIONS FROM USER_TEST_DETAILS A\n" + 
 						"				JOIN TEST_DETAILS B\n" + 
 						"				ON A.TEST_DETAIL_ID = B.TEST_DETAIL_ID\n" + 
 						"				WHERE A.USER_ID = "+ userId +" AND B.COURSE_ID = "+courseId;
@@ -168,6 +168,11 @@ public class ResultDao {
 					userTestId = resultSet.getInt("USER_TEST_ID");
 					paperAnalysisWrapper.setMarksReceived(resultSet.getInt("MARKS_RECEIVED"));
 					paperAnalysisWrapper.setTotalQuestions(resultSet.getInt("TOTAL_QUESTIONS"));
+					int testAttempted = resultSet.getInt("ATTEMPTED");
+					if(testAttempted == 1)
+						paperAnalysisWrapper.setTestAttempted(1);
+					else
+						paperAnalysisWrapper.setTestAttempted(0);
 				}
 				
 				query = "SELECT A.Q_NUMBER,A.STUDENT_RESPONSE,A.IS_CORRECT,B.EXPLANATION,B.MARKS,B.OPTION_1,B.OPTION_2,"

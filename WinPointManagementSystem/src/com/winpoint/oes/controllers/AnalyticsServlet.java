@@ -79,12 +79,19 @@ public class AnalyticsServlet extends ParentWEBController {
 		System.out.println("action = " + getInfoParam);
 		int courseId = 0;
 		int userId = 0;
+		
+		if(br != null){
+	    	json = br.readLine();
+	    }
+		
 		if(getInfoParam.equals("courseDetails")) {
 			
-		    if(br != null){
-		    	json = br.readLine();
-		    }
+//		    if(br != null){
+//		    	json = br.readLine();
+//		    }
 		   
+//		    System.out.println("JSON : "+json);
+		    
 			UserProfile userProfile = gson.fromJson(json, UserProfile.class);
 			ArrayList <StudentCourseDetails>studentCourseDetailsList =  new StudentCourseDetailsHelper().getStudentCourseDetailsList(userProfile.getUserId());
 			
@@ -101,10 +108,15 @@ public class AnalyticsServlet extends ParentWEBController {
 		}
 		else if(getInfoParam.equals("topicDetails")) {
 			String view = request.getParameter("view");
-			
+			System.out.println("VIEW IS : "+view);
 			if(view.equals("ClientDash")){
 				
+//				if(br != null){
+//			    	json = br.readLine();
+//			    }
+				
 			    Course course = gson.fromJson(json, Course.class);
+			    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+course);
 				if(course != null) 
 				   courseId = course.getCourseId();
 				
@@ -121,6 +133,7 @@ public class AnalyticsServlet extends ParentWEBController {
 				userId = studentCourseDetail.getUserId();
 				courseId = studentCourseDetail.getCourseId();
 			}
+			System.out.println("ANALYTICS SERVLET     =        "+courseId);
 			ArrayList<TopicWisePerformance > topicPerfoList = new AnalyticsHelper().getStudentTestAnalysis(userId, courseId);
 	        if (topicPerfoList != null) {
 	        	json2 = gson.toJson(topicPerfoList);

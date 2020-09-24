@@ -40,12 +40,4 @@ public class StudentCourseDetailsHelper {
 		return new StudentCourseDetailsDao().getStudentCourseDetailList(userId, streamId, courseTypeId);
 	}
 
-//	public void create(Integer userId, Integer courseId, Integer batchId) {
-//		// TODO Auto-generated method stub
-//		new StudentCourseDetailsDao().create(userId, courseId, batchId);
-//	}
-
-
-
-
 }

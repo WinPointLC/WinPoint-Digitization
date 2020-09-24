@@ -10,13 +10,8 @@ public class PaperAnalysisWrapper {
 	private int totalQuestions;
 	private int marksReceived;
 	private int totalMarksOutOf;
-    List<UserTestResponses> userTestResponses =  new ArrayList<UserTestResponses>();
-	
-	
-    public PaperAnalysisWrapper() {
-		super();
-	}
-    
+	private int testAttempted;
+
     
 	public PaperAnalysisWrapper(int totalQuestions, int marksReceived, int totalMarks, List<UserTestResponses> userTestResponses) {
 		super();
@@ -27,7 +22,33 @@ public class PaperAnalysisWrapper {
 		
 		
 	}
+    public int getTestAttempted() {
+		return testAttempted;
+	}
+
+
+	public void setTestAttempted(int testAttempted) {
+		this.testAttempted = testAttempted;
+	}
+
+
+	public List<UserTestResponses> getUserTestResponses() {
+		return userTestResponses;
+	}
+
+
+	public void setUserTestResponses(List<UserTestResponses> userTestResponses) {
+		this.userTestResponses = userTestResponses;
+	}
+
+
+	List<UserTestResponses> userTestResponses =  new ArrayList<UserTestResponses>();
 	
+	
+    public PaperAnalysisWrapper() {
+		super();
+	}
+    
 	
 	
 	public int getTotalQuestions() {

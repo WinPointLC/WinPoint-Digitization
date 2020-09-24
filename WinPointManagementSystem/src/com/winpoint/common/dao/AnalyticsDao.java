@@ -36,6 +36,7 @@ public class AnalyticsDao {
 			   userTestId = resultSet.getInt("USER_TEST_ID");
 			}
 			
+			System.out.println(courseId+"COURSE ID JNOJNOJNONOJNOJNOJNOJNOJNJONO");
 			String courseName = "";
 			String courseTypeName = "";
 			query = "SELECT COURSE_TYPE.COURSE_TYPE_NAME, COURSES.COURSE_ID, COURSES.COURSE_NAME\r\n" + 
@@ -43,12 +44,14 @@ public class AnalyticsDao {
 					"						ON COURSES.COURSE_TYPE_ID =  COURSE_TYPE.COURSE_TYPE_ID \r\n" + 
 					"							\r\n" + 
 					"					WHERE COURSES.COURSE_ID =" + courseId;
+			System.out.println(query);
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()) {
 				courseName = resultSet.getString("COURSE_NAME");
 				courseTypeName = resultSet.getString("COURSE_TYPE_NAME");
 			}
-			 
+			 System.out.println(courseName);
+			 System.out.println(courseTypeName);
 			String tableName = "STUDENT_TEST_RESULT_" + courseName.toUpperCase() + "_" + courseTypeName.toUpperCase();
 			System.out.println(tableName + "***" + tableName);
 			String topicName = "";
@@ -61,6 +64,7 @@ public class AnalyticsDao {
 					"ON TB.QUESTION_ID = S.QUESTION_ID\r\n" + 
 					"WHERE IS_CORRECT='1' AND USER_TEST_ID= " + userTestId + " AND TB.COURSE_ID= " + courseId + " AND T.TOPIC_ID = TB.TOPIC_ID\r\n" + 
 					"GROUP BY  T.TOPIC_NAME";
+			System.out.println(query);
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()) {
 				topicName = resultSet.getString("topic_name");

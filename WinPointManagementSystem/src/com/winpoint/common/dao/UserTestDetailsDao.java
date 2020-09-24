@@ -98,7 +98,7 @@ public class UserTestDetailsDao {
 				resultSet = statement.executeQuery(query);
 				
 				while(resultSet.next()) {
-					testAttempted = resultSet.getInt("A.ATTEMPTED");
+					testAttempted = resultSet.getInt("ATTEMPTED");
 //					marksObtained = resultSet.getInt("A.MARKS_RECEIVED");
 					
 				}

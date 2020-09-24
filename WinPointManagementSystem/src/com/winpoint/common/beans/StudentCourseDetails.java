@@ -26,6 +26,18 @@ public class StudentCourseDetails {
 	private Integer dueAmount;
 	private int percentageAttendance;
 	private BatchDetails batchDetails;
+	
+	private int testAttempt;
+	public int getTestAttempt() {
+		return testAttempt;
+	}
+
+
+	public void setTestAttempt(int testAttempt) {
+		this.testAttempt = testAttempt;
+	}
+
+
 	/**
 	 * @param user
 	 * @param batchId
@@ -127,7 +139,7 @@ public class StudentCourseDetails {
 
 
 	public StudentCourseDetails(int userId, int courseId, String courseName, String logoLocation,
-			String courseTypeName, String streamName, int courseAggr, int dueAmount, int percentageAttendance, BatchDetails batchDetails) {
+			String courseTypeName, String streamName, int courseAggr, int dueAmount, int percentageAttendance, BatchDetails batchDetails, int testAttempt) {
 		// TODO Auto-generated constructor stub
 		this.userId = userId;
 		this.courseId = courseId;
@@ -139,6 +151,7 @@ public class StudentCourseDetails {
 		this.dueAmount = dueAmount;
 		this.percentageAttendance = percentageAttendance;
 		this.batchDetails = batchDetails;
+		this.testAttempt = testAttempt;
 	}
 
 
