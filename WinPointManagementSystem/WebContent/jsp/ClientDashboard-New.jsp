@@ -1742,7 +1742,8 @@ function sendUserFeedback(course_Id){
 				btn_attempted.textContent="Questions Attempted";
 				var attempt_span=document.createElement('span');
 				attempt_span.className="chip primary";
-				attempt_span.textContent=30;
+				//attempt_span.textContent=30;
+				attempt_span.textContent=questionsList.questionsAttempted;
 				btn_attempted.appendChild(attempt_span);
 				document.getElementById('test-info').appendChild(btn_attempted);
 				
