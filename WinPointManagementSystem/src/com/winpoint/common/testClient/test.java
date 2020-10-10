@@ -6,24 +6,30 @@ import java.util.HashSet;
 import java.util.StringTokenizer;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
+import com.winpoint.common.dao.UserTestDetailsDao;
+import com.winpoint.common.helpers.UserTestDetailsHelper;
 
 public class test {
 
 	public static void main(String args[]) {
-	
-		HashMap<Integer, String> id = new HashMap<>();
-
-		String courseInterestedIn = "1-A,2-B,3-C,4-D,5-E";
-		String array[] = courseInterestedIn.split(",");
-		
-		for(String s: array) {
-			String[] split = s.split("-");
-			id.put(Integer.parseInt(split[0]), split[1]);
-		}
-		
-		for(Integer i: id.keySet()) {
-			System.out.println(i);
-		}
+			
+	 System.out.println(reverse(12345));
 		
 	}
+
+	public static int reverse(int number) {
+		
+		int reverse = 0;
+        int original = number;
+        while(number != 0)
+        {
+            int remainder = number % 10;
+            reverse = reverse * 10 + remainder;
+            number = number/10;
+        }
+       
+        return reverse;
+		
+	}
+	
 }

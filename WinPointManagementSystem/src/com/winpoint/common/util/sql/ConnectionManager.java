@@ -13,8 +13,8 @@ public class ConnectionManager {
 
 		dataSource.setUser("sa");
 
-		dataSource.setPassword("winpoint");
-		dataSource.setServerName("DESKTOP-8PA8OIH");
+//		dataSource.setPassword("winpoint");
+		dataSource.setServerName("localhost");
 
 		//dataSource.setPassword("Dockersql123");
 
@@ -28,7 +28,7 @@ public class ConnectionManager {
 		//dataSource.setPassword("Dockersql123");
 
 //		dataSource.setPassword("@Shradz8888");
-		dataSource.setPassword("Dockersql123");
+		dataSource.setPassword("Docker@123");
 //		dataSource.setServerName("SHRIRANGMHALGI\\SQLEXPRESS");
 	//	dataSource.setServerName("localhost");
 
