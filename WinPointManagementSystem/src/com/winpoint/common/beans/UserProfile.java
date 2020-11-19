@@ -382,7 +382,7 @@ public UserProfile(Integer userId, String firstName, String lastName, String ema
 		
 		
 	}
-
+	
 	public UserProfile(String firstName, String lastName, String email, String mobileNumber, String address) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;

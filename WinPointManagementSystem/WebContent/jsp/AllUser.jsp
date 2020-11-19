@@ -23,7 +23,7 @@
             <link rel="stylesheet" href="../css/EmployeeDashboard.css">-->
 			<link rel="stylesheet" href="../css/analytics_modal.css">
 			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+            <script type="text/javascript" src="../js/WinPointScripts.js"></script>
      <script>
 		 <c:import url="/GetUsersServlet" />
 		 <c:set var="allUsersList" value="${requestScope.allUsersList}" />

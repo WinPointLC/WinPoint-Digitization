@@ -17,8 +17,14 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" /> 
   <!--<link href="../MaterialKitHomePage/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />-->
   <!--<link rel="stylesheet" href="../css/AdminPage.css">-->
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
   
+<!--   <script>alert(""+${pageContext.request.contextPath});</script>
+ --><%--   <script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+ --%>  
+ 
+ 	  <script type="text/javascript" src="../js/WinPointScripts.js"></script>
+ 	
+ 
 </head>
 <body>
   <!-- Adding content of Admin Page -->

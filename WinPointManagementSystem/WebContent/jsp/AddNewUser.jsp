@@ -19,7 +19,7 @@
             <!-- own CSS -->
             <link rel="stylesheet" href="../css/Dashboard.css">
               <!-- <link rel="stylesheet" href="../css/EmployeeDashboard.css"> -->
-              <script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+              <script type="text/javascript" src="../js/WinPointScripts.js"></script>
             </head>
 
             <body>

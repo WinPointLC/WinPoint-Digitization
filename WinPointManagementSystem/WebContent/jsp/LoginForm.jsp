@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/LoginForm.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+ --%>		
+	<script type="text/javascript" src="../js/WinPointScripts.js"></script>	
 	<script>
 	alert(servletURL);
 	$(function () {

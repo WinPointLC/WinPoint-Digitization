@@ -377,6 +377,7 @@ public class SignUpFormController extends ParentFXMLController {
 
 		}
     }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	

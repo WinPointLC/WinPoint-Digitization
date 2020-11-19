@@ -18,7 +18,7 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/WinPointScripts.js"></script>
   <script type="text/javascript">
   var studentCourseDetailsList;
   var studentGACourseDetailsList;

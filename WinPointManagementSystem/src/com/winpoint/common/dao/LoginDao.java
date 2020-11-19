@@ -189,7 +189,8 @@ public class LoginDao {
 						"           ,[ROLE]\r\n" + 
 						"           ,[EXPERIENCE]\r\n" + 
 						"           ,[CREATED_BY]\r\n" + 
-						"           ,[CREATED_DATE])\r\n" + 
+						"           ,[CREATED_DATE]\r\n" + 
+						"           ,[ACTIVE_STATUS])\r\n" + 
 						"     VALUES\r\n" + 
 						"           ('" + userProfile.getFirstName() + "'\r\n" + 
 						"           ,'" + userProfile.getLastName() + "'\r\n" + 
@@ -213,7 +214,8 @@ public class LoginDao {
 						"           ," + null + "\r\n" + 
 						"           ," + null + "\r\n" + 
 						"           ," + 1 + "\r\n" + 
-						"           ," + null + ")";
+						"           ," + null + "\r\n" + 
+						"           ," + 1 + ")";
 				statement.executeUpdate(query);
 				} catch (SQLException e) {
 				e.printStackTrace();
